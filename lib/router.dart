@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 import 'package:gh_battle_assistant/screens/home_screen.dart';
 
 class NoMatchedRouteError extends Error {
@@ -12,8 +14,18 @@ class GHRouter {
     switch (settings.name) {
       case '/':
         return CupertinoPageRoute(builder: (_) => HomeScreen());
+      case 'add-unit':
+        return PageRouteBuilder(
+            pageBuilder: (_, __, ___) => AddUnitScreen()
+        );
       default:
-        throw NoMatchedRouteError(settings.name);
+        return CupertinoPageRoute(builder: (_) {
+          return CupertinoPageScaffold(
+            child: Center(
+              child: Text('No route defined for ${settings.name}'),
+            ),
+          );
+        });
     }
   }
 }
