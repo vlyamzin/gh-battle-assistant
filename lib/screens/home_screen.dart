@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/widgets/card/card.dart';
+import 'package:gh_battle_assistant/widgets/unit_action_card/card.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
       landscape: 3,
       portrait: 2,
       children: cardList.map((int value) {
-        return Card(
+        return UnitActionCard(
           key: ValueKey(value),
           width: cardWidth,
           height: cardHeight,
