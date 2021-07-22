@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/common/card.dart';
+import 'package:gh_battle_assistant/widgets/card/card.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 
@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
   /// Create [GridView] widget with unit cards in it
   Widget _gridView(BuildContext context) {
     final cardWidth = _screenSize(context) / 2;
-    final double cardHeight = 400;
+    final double cardHeight = MediaQuery.of(context).orientation == Orientation.portrait ? 300 : 400;
 
     return Grid(
       landscape: 3,
