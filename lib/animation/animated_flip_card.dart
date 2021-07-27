@@ -26,7 +26,7 @@ class AnimatedFlipCard extends AnimatedWidget with CardBorderRadius {
 
   Widget _transformation({required Widget child}) {
     return Transform(
-      alignment: FractionalOffset.center,
+      alignment: Alignment.center,
       transform: Matrix4.identity()..rotateY(pi * animation.value),
       child: child,
     );
@@ -52,7 +52,7 @@ class AnimatedFlipCard extends AnimatedWidget with CardBorderRadius {
   Widget _noBackWidgetPlaceholder() {
     return Transform(
       transform: Matrix4.identity()..rotateY(pi),
-      alignment: FractionalOffset.center,
+      alignment: Alignment.center,
       child: Container(child: Text('No Back Widget')),
     );
   }

@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
+import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card_detail.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card_image.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card_title.dart';
 
 class UnitActionCard extends StatefulWidget with CardBorderRadius {
-  const UnitActionCard({Key? key, required this.width, required this.height})
+  const UnitActionCard({Key? key, required this.width, required this.height, required this.monster})
       : super(key: key);
 
+  final UnitStack monster;
   final double width, height;
 
   @override
   _UnitActionCardState createState() => _UnitActionCardState();
 }
 
-class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProviderStateMixin {
+class _UnitActionCardState extends State<UnitActionCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
   AnimationStatus _animationStatus = AnimationStatus.dismissed;
@@ -45,7 +48,9 @@ class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProvid
       backSideChild: UnitActionCardBackSide(
         title: 'Bandit Guard',
         backButtonCallback: () => _animationController.reverse(),
-        deleteButtonCallback: () {print('delete ${widget.key}');},
+        deleteButtonCallback: () {
+          print('delete ${widget.key}');
+        },
       ),
     );
   }

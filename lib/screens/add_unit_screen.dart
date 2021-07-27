@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:gh_battle_assistant/models/home_screen_model.dart';
+import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:provider/provider.dart';
 
 class AddUnitScreen extends StatelessWidget {
   const AddUnitScreen({Key? key}) : super(key: key);
@@ -9,7 +12,13 @@ class AddUnitScreen extends StatelessWidget {
       navigationBar: _navBar(context),
       child: ListView(
         children: [
-          Text('test')
+          Text('test'),
+          CupertinoButton(
+            child: Text('add unit'),
+            onPressed: () => Provider.of<HomeScreenModel>(context, listen: false)..addMonsterStack(
+              UnitStack(id: '888', type: UnitType.banditGuard)
+            ),
+          ),
         ],
       ),
     );
