@@ -9,9 +9,6 @@ import 'package:provider/provider.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  // TODO remove
-  final cardList = const <int>[1, 2, 3, 4];
-
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -44,9 +41,8 @@ class HomeScreen extends StatelessWidget {
   /// Create [GridView] widget with unit cards in it
   Widget _gridView(BuildContext context) {
     final cardWidth = _screenSize(context) / 2;
-    final double cardHeight = MediaQuery
-        .of(context)
-        .orientation == Orientation.portrait ? 300 : 400;
+    final double cardHeight =
+        MediaQuery.of(context).orientation == Orientation.portrait ? 300 : 400;
 
     return Consumer<HomeScreenModel>(
       builder: (context, model, _) {
@@ -54,11 +50,14 @@ class HomeScreen extends StatelessWidget {
           landscape: 3,
           portrait: 2,
           children: model.monsters.map((UnitStack stack) {
-            return UnitActionCard(
-              key: ValueKey(stack.id),
-              monster: stack,
-              width: cardWidth,
-              height: cardHeight,
+            return ChangeNotifierProvider.value(
+              value: stack,
+              child: UnitActionCard(
+                key: ValueKey(stack.id),
+                monster: stack,
+                width: cardWidth,
+                height: cardHeight,
+              ),
             );
           }).toList(),
           childWidth: cardWidth,
@@ -69,9 +68,5 @@ class HomeScreen extends StatelessWidget {
   }
 
   /// Get screen size
-  double _screenSize(BuildContext context) =>
-      MediaQuery
-          .of(context)
-          .size
-          .width;
+  double _screenSize(BuildContext context) => MediaQuery.of(context).size.width;
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/di.dart';
+import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/home_screen_model.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
-import 'package:provider/provider.dart';
 
 class AddUnitScreen extends StatelessWidget {
   const AddUnitScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class AddUnitScreen extends StatelessWidget {
             onPressed: () {
               di<HomeScreenModel>()
                 ..addMonsterStack(
-                  UnitStack(id: '888', type: UnitType.banditGuard),
+                  UnitStack(id: '888', type: UnitType.ancientArtillery, displayName: 'Artillery'),
                 );
               Navigator.pop(context);
             },

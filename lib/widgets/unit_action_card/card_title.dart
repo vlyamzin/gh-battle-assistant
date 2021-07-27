@@ -1,4 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:provider/provider.dart';
 
 class CardTitle extends StatelessWidget {
   const CardTitle({Key? key}) : super(key: key);
@@ -14,7 +16,9 @@ class CardTitle extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(5),
             alignment: Alignment.center,
-            child: Text('Bandit Guard'),
+            child: Text(
+              context.select<UnitStack, String>((unit) => unit.displayName),
+            ),
           ),
         ),
         SizedBox(

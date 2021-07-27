@@ -1,14 +1,14 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
-
-enum UnitType { banditGuard }
 
 class UnitStack with ChangeNotifier {
   late final String id;
   late final UnitType type;
+  late final String displayName;
   late final List<Unit> units;
   late final List<UnitAction> actions;
   late final int? maxNumber;
@@ -31,6 +31,7 @@ class UnitStack with ChangeNotifier {
   UnitStack({
     required this.id,
     required this.type,
+    required this.displayName,
     this.maxNumber = 6,
     List<Unit>? units,
     List<UnitAction>? actions,
@@ -45,11 +46,13 @@ class UnitStack with ChangeNotifier {
   /// Creates [UnitStack] object and automatically generates [id]
   UnitStack.withId({
     required UnitType type,
+    required String displayName,
     List<Unit>? units,
     List<UnitAction>? actions,
     int? maxNumber,
   }) : this(
           type: type,
+          displayName: displayName,
           id: _generateId(type),
           units: units,
           actions: actions,
@@ -65,6 +68,7 @@ class UnitStack with ChangeNotifier {
     units = _createUnits(json['units']);
     id = json['id'] ?? _generateId(type);
     maxNumber = json['maxNumber'] ?? 6;
+    displayName = json['displayName'];
     availableNumbersPull = json['availableNumbersPull'] ??
         _getAvailableNumbersPull(maxNumber!);
   }

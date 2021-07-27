@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
+import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card_detail.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card_image.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card_title.dart';
+import 'package:provider/provider.dart';
 
 class UnitActionCard extends StatefulWidget with CardBorderRadius {
   const UnitActionCard({Key? key, required this.width, required this.height, required this.monster})
@@ -18,8 +21,7 @@ class UnitActionCard extends StatefulWidget with CardBorderRadius {
   _UnitActionCardState createState() => _UnitActionCardState();
 }
 
-class _UnitActionCardState extends State<UnitActionCard>
-    with SingleTickerProviderStateMixin {
+class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
   AnimationStatus _animationStatus = AnimationStatus.dismissed;
@@ -37,21 +39,25 @@ class _UnitActionCardState extends State<UnitActionCard>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedFlipCard(
-      animation: _animation,
-      frontActionCallback: () {
-        if (_animationStatus == AnimationStatus.dismissed) {
-          _animationController.forward();
-        }
+    return Consumer<UnitStack>(
+      builder: (context, model, _) {
+        return AnimatedFlipCard(
+          animation: _animation,
+          frontActionCallback: () {
+            if (_animationStatus == AnimationStatus.dismissed) {
+              _animationController.forward();
+            }
+          },
+          frontSideChild: _body(),
+          backSideChild: UnitActionCardBackSide(
+            title: context.select<UnitStack, String>((value) => value.displayName),
+            backButtonCallback: () => _animationController.reverse(),
+            deleteButtonCallback: () {
+              print('delete ${widget.key}');
+            },
+          ),
+        );
       },
-      frontSideChild: _body(),
-      backSideChild: UnitActionCardBackSide(
-        title: 'Bandit Guard',
-        backButtonCallback: () => _animationController.reverse(),
-        deleteButtonCallback: () {
-          print('delete ${widget.key}');
-        },
-      ),
     );
   }
 
@@ -71,11 +77,14 @@ class _UnitActionCardState extends State<UnitActionCard>
 
   /// Left side of the card
   Widget _leftSide() {
+    var type = context.read<UnitStack>().type;
+    var imagePath = di<ImageService>().getUnitImageByType(type);
+
     return Expanded(
       flex: 1,
       child: CardImage(
         heightConstrain: widget.height,
-        imagePath: 'assets/unit_images/Bandit-Guard-214x300.jpg',
+        imagePath: imagePath
       ),
     );
   }
