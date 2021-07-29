@@ -1,39 +1,61 @@
-import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/di.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/home_screen_model.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'dart:async';
 
-class AddUnitScreen extends StatelessWidget {
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:gh_battle_assistant/widgets/add_unit_form/add_unit_form.dart';
+
+class AddUnitScreen extends StatefulWidget {
   const AddUnitScreen({Key? key}) : super(key: key);
+
+  @override
+  _AddUnitScreenState createState() => _AddUnitScreenState();
+}
+
+class _AddUnitScreenState extends State<AddUnitScreen> {
+  bool _formSubmitter = false;
+  StreamController _triggerFormSubmission = StreamController();
 
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: _navBar(context),
-      child: ListView(
-        children: [
-          Text('test'),
-          CupertinoButton(
-            child: Text('add unit'),
-            onPressed: () {
-              di<HomeScreenModel>()
-                ..addMonsterStack(
-                  UnitStack(id: '888', type: UnitType.ancientArtillery, displayName: 'Artillery'),
-                );
-              Navigator.pop(context);
-            },
-          ),
-        ],
+      child: AddUnitForm(
+        submit: _triggerFormSubmission.stream,
+        onSubmitted: () {
+          setState(() {
+            _formSubmitter = true;
+          });
+        },
       ),
     );
   }
 
   CupertinoNavigationBar _navBar(BuildContext context) {
     return CupertinoNavigationBar(
-        leading: CupertinoNavigationBarBackButton(
-          onPressed: () => Navigator.pop(context),
-        ),
-        middle: Text('Add Unit'));
+      leading: CupertinoNavigationBarBackButton(
+        onPressed: () => Navigator.pop(context),
+      ),
+      middle: Text('Add Unit'),
+      trailing: CupertinoButton(
+        padding: EdgeInsets.all(0),
+        onPressed: _formSubmitter ? _closeScreen : _submitForm,
+        child: _formSubmitter ? Text('Done') : Text('Add'),
+      ),
+    );
+  }
+
+  void _submitForm() {
+    _triggerFormSubmission.add(null);
+  }
+
+  void _closeScreen() {
+    // TODO create/update stack with new units
+    Navigator.pop(context);
+  }
+
+  @override
+  void dispose() {
+    _triggerFormSubmission.close();
+    super.dispose();
   }
 }
