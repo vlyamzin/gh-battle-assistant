@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
+import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 
-class HomeScreenModel with ChangeNotifier {
+class GameDataModel with ChangeNotifier {
   final List<UnitStack> monsters;
 
-  HomeScreenModel({monsters}): this.monsters = monsters ?? [];
+  GameDataModel({monsters}): this.monsters = monsters ?? [];
+
+  UnitStack? getByType(UnitType type) {
+    return monsters.firstWhere((element) => element.type == type );
+  }
 
   void addMonsterStack(UnitStack stack) {
     monsters.add(stack);

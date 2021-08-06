@@ -1,6 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
 enum UnitType {
+  @JsonValue(0)
   ancientArtillery,
+  @JsonValue(1)
   banditArcher,
+  @JsonValue(2)
   banditGuard,
   banditLeader,
   blackImp,
@@ -46,4 +51,6 @@ enum UnitType {
   vermlingShaman,
   windDemon,
   wingedHorror,
+  @JsonValue(99999)
+  aestherAshblade
 }

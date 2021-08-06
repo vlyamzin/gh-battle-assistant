@@ -4,19 +4,23 @@ class Unit {
   late final String displayName;
   late final int healthPoint;
   late final int? shield;
-  late final int? meleeAttack;
-  late final int? rangeAttack;
+  late final int? attack;
+  late final int? range;
+  late final int? move;
   late final int? retaliate;
   late final List? perks;
+  late final bool? elite;
 
   Unit({
     int? number,
     required this.displayName,
     required this.healthPoint,
     this.shield = 0,
-    this.meleeAttack = 0,
-    this.rangeAttack = 0,
-    this.retaliate = 0
+    this.attack = 0,
+    this.range = 0,
+    this.move = 0,
+    this.retaliate = 0,
+    this.elite = false
   }) {
     if (number != null) this._number = number;
   }
@@ -29,9 +33,10 @@ class Unit {
     displayName = data['displayName'];
     healthPoint = data['healthPoint'];
     shield = data['shield'];
-    meleeAttack = data['meleeAttack'];
-    rangeAttack = data['rangeAttack'];
+    attack = data['meleeAttack'];
+    range = data['rangeAttack'];
     retaliate = data['retaliate'];
+    elite = data['elite'];
   }
 
   int? get number => _number;

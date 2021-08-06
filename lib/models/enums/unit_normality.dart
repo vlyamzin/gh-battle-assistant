@@ -1,0 +1,4 @@
+enum UnitNormality {
+  normal,
+  elite
+}

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:gh_battle_assistant/models/add_unit_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/services/unit_service.dart';
+import 'package:provider/provider.dart';
 
 typedef ParamCallback = void Function(MapEntry<UnitType, String>?);
 
@@ -33,40 +34,46 @@ class _UnitSearchState extends State<UnitSearch> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CupertinoTypeAheadFormField(
-          getImmediateSuggestions: true,
-          onSuggestionSelected: (String itemName) {
-            var item = UnitService.itemByName(itemName);
+        Consumer<AddUnitProvider>(
+          builder: (context, model, _) {
+            return CupertinoTypeAheadFormField(
+              getImmediateSuggestions: true,
+              onSuggestionSelected: (String itemName) {
+                // var item = UnitService.itemByName(itemName);
+                var item = model.getUnitByName(itemName);
+                
+                assert(item != null);
+                if (item != null) _typeaheedController.text = item.value;
+                widget.onSelectedCallback(item);
+              },
+              suggestionsBoxController: _controller,
+              textFieldConfiguration: CupertinoTextFieldConfiguration(
+                  controller: _typeaheedController,
+                  placeholder: 'Search',
+                  prefixMode: OverlayVisibilityMode.always,
+                  clearButtonMode: OverlayVisibilityMode.editing,
+                  prefix: Icon(Icons.search, color: Color(0xff7f7f82)),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFECECEE),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
 
-            assert(item != null);
-            if (item != null) _typeaheedController.text = item.value;
-            widget.onSelectedCallback(item);
-          },
-          suggestionsBoxController: _controller,
-          textFieldConfiguration: CupertinoTextFieldConfiguration(
-            controller: _typeaheedController,
-            placeholder: 'Search',
-            prefixMode: OverlayVisibilityMode.always,
-            clearButtonMode: OverlayVisibilityMode.editing,
-            prefix: Icon(Icons.search, color: Color(0xff7f7f82)),
-            decoration: BoxDecoration(
-              color: Color(0xFFECECEE),
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-
-            )
-          ),
-          itemBuilder: (context, String suggestions) {
-            return Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(width: 1, color: Color(0xFFD3D3D3)),
-                  ),
-                ),
-                child: Text(suggestions));
-          },
-          suggestionsCallback: (query) {
-            return UnitService.getSuggestions(query).values;
+                  )
+              ),
+              itemBuilder: (context, String suggestions) {
+                return Container(
+                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(width: 1, color: Color(0xFFD3D3D3)),
+                      ),
+                    ),
+                    child: Text(suggestions));
+              },
+              suggestionsCallback: (query) {
+                // return UnitService.getSuggestions(query).values;
+                return model.getSuggestions(query).values;
+              },
+            );
           },
         ),
       ],

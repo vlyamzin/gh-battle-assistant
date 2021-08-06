@@ -11,7 +11,7 @@ class UnitStack with ChangeNotifier {
   late final String displayName;
   late final List<Unit> units;
   late final List<UnitAction> actions;
-  late final int? maxNumber;
+  late int? maxNumber;
   late final String? imgPath;
   late List<int> availableNumbersPull;
 
@@ -74,10 +74,19 @@ class UnitStack with ChangeNotifier {
   }
 
   /// Adds [Unit] object to the list of [units]
+  /// Decreases the maximum unit number
   void addUnit(Unit newUnit) {
     var randomIndex = Random().nextInt(availableNumbersPull.length);
     newUnit.number = availableNumbersPull.removeAt(randomIndex);
     units.add(newUnit);
+    maxNumber = maxNumber! - 1;
+  }
+
+  /// Removes [Unit] object from the lust of [units]
+  /// Increases the maximum unit number
+  void removeUnit(int number) {
+    units.removeWhere((element) => element.number == number);
+    maxNumber = maxNumber! + 1;
   }
 
   /// Creates and returns the list of [units] based on json data
@@ -92,6 +101,11 @@ class UnitStack with ChangeNotifier {
   /// Returns the list of numbers started from 1 till the [n]
   List<int> _getAvailableNumbersPull(int n) {
     return List.generate(n, (index) => index + 1);
+  }
+
+  @override
+  String toString() {
+    return 'Stack $displayName with units count: ${units.length}';
   }
 }
 
