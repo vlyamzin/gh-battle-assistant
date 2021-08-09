@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/game_data_model.dart';
+import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
@@ -32,6 +32,6 @@ void setupDI() {
   //services
   di.registerSingleton<ImageService>(ImageService());
   // models
-  di.registerSingleton<GameDataModel>(GameDataModel(monsters: _monstersMock));
+  di.registerSingleton<HomeScreenProvider>(HomeScreenProvider(monsters: _monstersMock));
   di.registerFactoryParam<UnitAction, UnitType, void>((type, _) => UnitAction(type: type));
 }

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/models/add_unit_provider.dart';
+import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:gh_battle_assistant/widgets/add_unit_form/add_unit_form.dart';
 import 'package:gh_battle_assistant/widgets/unit_preparation_list/unit_preparation_list.dart';
 import 'package:provider/provider.dart';
@@ -74,11 +75,16 @@ class _AddUnitScreenState extends State<AddUnitScreen> {
   }
 
   void _closeScreen(BuildContext context) {
-    // TODO get GameDataModel
-    // TODO check if there is a stack there
-    // TODO create/update stack with new units
-    throw UnimplementedError();
-    // Navigator.pop(context);
+    final homeScreenProvider = context.read<HomeScreenProvider>();
+    final addUnitProvider = context.read<AddUnitProvider>();
+
+    if(addUnitProvider.stack != null) {
+      homeScreenProvider.addMonsterStack(addUnitProvider.stack!);
+    } else {
+      throw StateError('Unable to add new units');
+    }
+
+    Navigator.pop(context);
   }
 
   @override

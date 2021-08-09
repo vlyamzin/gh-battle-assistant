@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
-import 'package:gh_battle_assistant/models/game_data_model.dart';
+import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/screens/home_screen.dart';
@@ -30,7 +30,7 @@ class Application extends StatelessWidget {
           initialData: GameData([]),
         ),
         ChangeNotifierProvider.value(
-          value: di<GameDataModel>(),
+          value: di<HomeScreenProvider>(),
         ),
       ],
       child: CupertinoApp(

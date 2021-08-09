@@ -5,7 +5,7 @@ import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/game_data_model.dart';
+import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 
@@ -25,6 +25,7 @@ class AddUnitScreenProvider with ChangeNotifier {
 class AddUnitProvider {
   final GameData data;
   UnitStack? stack;
+  List<Unit> tempUnits = [];
   UnitRawData? unit;
   int unitNumber = 0, eliteNumber = 0;
 
@@ -50,13 +51,15 @@ class AddUnitProvider {
   }
 
   UnitStack initUnitStack(
-      UnitType type, String unitName, GameDataModel gameModel) {
-    stack = gameModel.monsters.firstWhere((element) => element.type == type,
-        orElse: () => UnitStack.withId(
+      UnitType type, String unitName, HomeScreenProvider gameModel) {
+    var _stack = gameModel.monsters.firstWhere((element) => element.type == type,
+        orElse: () => UnitStack(
             type: type,
             displayName: unitName,
             maxNumber: data.getUnitDataById(type).maxNumber));
 
+    // TODO remove copy. You probably don't need it
+    stack = UnitStack.copy(_stack);
     return stack!;
   }
 
@@ -73,7 +76,6 @@ class AddUnitProvider {
   }
 
   void addUnitsToStack() {
-    assert(stack != null);
     if (stack == null)
       throw StateError('[AddUnitProvider]: Stack is not defined');
 
@@ -85,13 +87,17 @@ class AddUnitProvider {
         : statsByDifficulty()![UnitNormality.normal];
 
     while (eliteCount > 0) {
-      stack!.addUnit(_createUnit(unit!.name, statsByNormality(true)!, true));
+      final _unit = _createUnit(unit!.name, statsByNormality(true)!, true);
+      stack!.addUnit(_unit);
+      tempUnits.add(_unit);
       --eliteCount;
       --normalCount;
     }
 
     for (var i = 0; i < normalCount; i++) {
-      stack!.addUnit(_createUnit(unit!.name, statsByNormality(false)!, false));
+      final _unit = _createUnit(unit!.name, statsByNormality(false)!, false);
+      stack!.addUnit(_unit);
+      tempUnits.add(_unit);
     }
   }
 

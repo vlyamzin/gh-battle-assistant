@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/models/game_data_model.dart';
+import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
     final double cardHeight =
         MediaQuery.of(context).orientation == Orientation.portrait ? 300 : 400;
 
-    return Consumer<GameDataModel>(
+    return Consumer<HomeScreenProvider>(
       builder: (context, model, _) {
         return Grid(
           landscape: 3,
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
             return ChangeNotifierProvider.value(
               value: stack,
               child: UnitActionCard(
-                key: ValueKey(stack.id),
+                key: ValueKey(stack.type),
                 monster: stack,
                 width: cardWidth,
                 height: cardHeight,

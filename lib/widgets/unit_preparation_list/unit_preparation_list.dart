@@ -38,15 +38,10 @@ class UnitPreparationList extends StatelessWidget {
   Widget _list(AddUnitProvider provider) {
     return ListView.builder(
       padding: EdgeInsets.zero,
-      itemCount: provider.stack?.units.length ?? 0,
+      itemCount: provider.tempUnits.length,
       itemBuilder: (context, int index) {
-        if (provider.stack != null) {
-          var unit = provider.stack!.units[index];
-          // return Text('${provider.stack!.units[index]}');
-          return _listItem(unit.displayName, unit.number, unit.elite);
-        } else {
-          return Container();
-        }
+        final unit = provider.tempUnits[index];
+        return _listItem(unit.displayName, unit.number, unit.elite);
       },
     );
   }
