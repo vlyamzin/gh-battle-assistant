@@ -33,5 +33,5 @@ void setupDI() {
   di.registerSingleton<ImageService>(ImageService());
   // models
   di.registerSingleton<HomeScreenProvider>(HomeScreenProvider(monsters: _monstersMock));
-  di.registerFactoryParam<UnitAction, UnitType, void>((type, _) => UnitAction(type: type));
+  // di.registerFactoryParam<UnitAction, UnitType, void>((type, _) => UnitAction(type: type));
 }

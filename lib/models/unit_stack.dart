@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
@@ -10,6 +11,7 @@ class UnitStack with ChangeNotifier {
   late final String displayName;
   late final List<Unit> units;
   late final List<UnitAction> actions;
+  late final List<UnitAction> _allActions;
   late int? maxNumber;
   late final String? imgPath;
   late List<int> availableNumbersPull;
@@ -50,7 +52,8 @@ class UnitStack with ChangeNotifier {
     if (json['type'] == null) throw NoUnitTypeError();
 
     type = json['type'];
-    actions = _createActions(json['actions']);
+    // actions = _createActions(json['actions']);
+    actions = [];
     units = _createUnits(json['units']);
     maxNumber = json['maxNumber'] ?? 6;
     displayName = json['displayName'];
@@ -58,21 +61,36 @@ class UnitStack with ChangeNotifier {
         json['availableNumbersPull'] ?? _getAvailableNumbersPull(maxNumber!);
   }
 
+  /// Create [UnitStack] instance from [UnitRawData]
+  factory UnitStack.fromRawData(UnitRawData data) {
+    final actions = data.actions
+        .map((e) => UnitAction.fromRawData(e))
+        .toList();
+
+    return UnitStack(
+      type: data.id,
+      displayName: data.name,
+      maxNumber: data.maxNumber,
+      actions: actions
+    );
+  }
+
   /// Create a new copy of [UnitStack] with updated data
   UnitStack copyWith(
       {UnitType? type,
-        String? displayName,
-        int? maxNumber,
-        List<Unit>? units,
-        List<UnitAction>? actions,
-        List<int>? availableNumbersPull}) {
+      String? displayName,
+      int? maxNumber,
+      List<Unit>? units,
+      List<UnitAction>? actions,
+      List<int>? availableNumbersPull}) {
     return UnitStack(
-        type: type ?? this.type,
-        displayName: displayName ?? this.displayName,
-        maxNumber: maxNumber ?? this.maxNumber,
-        units: units ?? this.units.toList(),
-        actions: actions ?? this.actions.toList(),
-        availableNumbersPull: availableNumbersPull ?? this.availableNumbersPull.toList(),
+      type: type ?? this.type,
+      displayName: displayName ?? this.displayName,
+      maxNumber: maxNumber ?? this.maxNumber,
+      units: units ?? this.units.toList(),
+      actions: actions ?? this.actions.toList(),
+      availableNumbersPull:
+          availableNumbersPull ?? this.availableNumbersPull.toList(),
     );
   }
 
@@ -98,7 +116,8 @@ class UnitStack with ChangeNotifier {
   }
 
   List<UnitAction> _createActions(List<Map>? actions) {
-    return (actions ?? []).map((e) => UnitAction.fromJson(e)).toList();
+    // return (actions ?? []).map((e) => UnitAction.fromJson(e)).toList();
+    throw UnimplementedError();
   }
 
   /// Returns the list of numbers started from 1 till the [n]

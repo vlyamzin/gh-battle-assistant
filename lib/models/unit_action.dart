@@ -1,31 +1,40 @@
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
+import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
 
 class UnitAction {
-  late final UnitType type;
-  late final int? initiative;
-  late final List<Action>? actions;
+  late final int initiative;
+  late final List<GHAction> values;
+  late final Map<ModifierType, int> modifiers;
   late final bool? shouldRefresh;
 
   UnitAction({
-    required this.type,
-    this.initiative,
-    this.actions,
+    required this.initiative,
+    values,
+    modifiers,
     this.shouldRefresh,
-  });
+  }) {
+    this.values = values ?? [];
+    this.modifiers = modifiers ?? <ModifierType, int>{};
+  }
 
-  UnitAction.fromJson(Map data)
-      : this(
-          // TODO add action generation here
-          actions: data['actions'],
-          initiative: data['initiative'],
-          shouldRefresh: data['shouldRefresh'],
-          type: data['type']
-        );
+  factory UnitAction.fromRawData(UnitRawAction data) {
+    return UnitAction(
+      initiative: data.initiative,
+      modifiers: data.modifier,
+      shouldRefresh: data.shouldRefresh,
+      values: data.values.map((e) => GHAction(
+        title: e.title,
+        subtitle: e.subtitle,
+        area: e.area
+      )).toList()
+    );
+  }
 }
 
-class Action {
+class GHAction {
   String? title;
   String? subtitle;
+  String? area;
 
-  Action({this.title, this.subtitle});
+  GHAction({this.title, this.subtitle, this.area});
 }

@@ -52,14 +52,11 @@ class AddUnitProvider {
 
   UnitStack initUnitStack(
       UnitType type, String unitName, HomeScreenProvider gameModel) {
-    var _stack = gameModel.monsters.firstWhere((element) => element.type == type,
-        orElse: () => UnitStack(
-            type: type,
-            displayName: unitName,
-            maxNumber: data.getUnitDataById(type).maxNumber));
+    var _stack = gameModel.getByType(type);
+    stack = _stack != null
+        ? UnitStack.copy(_stack)
+        : UnitStack.fromRawData(data.getUnitDataById(type));
 
-    // TODO remove copy. You probably don't need it
-    stack = UnitStack.copy(_stack);
     return stack!;
   }
 

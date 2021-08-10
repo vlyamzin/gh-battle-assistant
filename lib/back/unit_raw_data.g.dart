@@ -11,7 +11,9 @@ UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) {
     _$enumDecode(_$UnitTypeEnumMap, json['id']),
     json['name'] as String,
     json['maxNumber'] as int,
-    json['actions'] as List<dynamic>,
+    (json['actions'] as List<dynamic>)
+        .map((e) => UnitRawAction.fromJson(e as Map<String, dynamic>))
+        .toList(),
     (json['stats'] as Map<String, dynamic>).map(
       (k, e) => MapEntry(
           k,
