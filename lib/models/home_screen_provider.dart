@@ -42,11 +42,10 @@ class HomeScreenProvider with ChangeNotifier {
 
     // save locally
     saveToStorage().then((value) => {notifyListeners()});
-    // di<StoreService>().
   }
 
   void removeMonsterStack(UnitType type) {
     _monsters.removeWhere((element) => element.type == type);
-    notifyListeners();
+    saveToStorage().then((value) => {notifyListeners()});
   }
 }

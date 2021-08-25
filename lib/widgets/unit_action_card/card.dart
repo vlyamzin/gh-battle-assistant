@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
 import 'package:gh_battle_assistant/di.dart';
+import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
@@ -53,7 +54,7 @@ class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProvid
             title: context.select<UnitStack, String>((value) => value.displayName),
             backButtonCallback: () => _animationController.reverse(),
             deleteButtonCallback: () {
-              print('delete ${widget.key}');
+              context.read<HomeScreenProvider>().removeMonsterStack(model.type);
             },
           ),
         );
