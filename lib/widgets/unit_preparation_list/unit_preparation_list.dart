@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gh_battle_assistant/models/add_unit_provider.dart';
+import 'package:gh_battle_assistant/controllers/add_unit_provider.dart';
 import 'package:provider/provider.dart';
 
 class UnitPreparationList extends StatelessWidget {

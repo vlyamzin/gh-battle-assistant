@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:gh_battle_assistant/models/add_unit_provider.dart';
+import 'package:gh_battle_assistant/controllers/add_unit_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:provider/provider.dart';
 

@@ -1,26 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/home_screen_provider.dart';
+import 'package:gh_battle_assistant/models/home.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
-
-enum FormStatus { submitted, pristine }
-
-class AddUnitScreenProvider with ChangeNotifier {
-  FormStatus _formStatus = FormStatus.pristine;
-
-  FormStatus get formStatus => _formStatus;
-
-  set formStatus(FormStatus status) {
-    _formStatus = status;
-    notifyListeners();
-  }
-}
 
 class AddUnitProvider {
   final GameData data;
@@ -51,7 +37,7 @@ class AddUnitProvider {
   }
 
   UnitStack initUnitStack(
-      UnitType type, String unitName, HomeScreenProvider gameModel) {
+      UnitType type, String unitName, Home gameModel) {
     var _stack = gameModel.getByType(type);
     stack = _stack != null
         ? UnitStack.copy(_stack)

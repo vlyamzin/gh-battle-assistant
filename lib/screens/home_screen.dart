@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/models/home_screen_provider.dart';
+import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
@@ -45,12 +45,12 @@ class HomeScreen extends StatelessWidget {
         MediaQuery.of(context).orientation == Orientation.portrait ? 300 : 400;
 
     return Consumer<HomeScreenProvider>(
-      builder: (context, model, _) {
+      builder: (context, provider, _) {
         return Grid(
           landscape: 3,
           portrait: 2,
-          children: model.monsters.map((UnitStack stack) {
-            return Provider.value(
+          children: provider.model.monsters.map((UnitStack stack) {
+            return Provider<UnitStack>.value(
               value: stack,
               child: UnitActionCard(
                 key: ValueKey(stack.type),

@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/models/add_unit_provider.dart';
+import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/controllers/add_unit_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/add_unit_form/elite_number_input.dart';
 import 'package:gh_battle_assistant/widgets/add_unit_form/unit_number_input.dart';
@@ -101,7 +101,7 @@ class _AddUnitFormState extends State<AddUnitForm> {
       MapEntry<UnitType, String>? item) {
     if (item != null) {
       provider.initUnitStack(
-          item.key, item.value, context.read<HomeScreenProvider>());
+          item.key, item.value, context.read<HomeScreenProvider>().model);
     } else {
       provider.clearUnitStack();
     }

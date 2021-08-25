@@ -4,7 +4,10 @@ import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
+import 'package:gh_battle_assistant/services/util_service.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../di.dart';
 
 part 'unit_stack.g.dart';
 
@@ -14,11 +17,12 @@ class UnitStack {
   late final String displayName;
   late final List<Unit> units;
   late final List<UnitAction> actions;
-  late final List<UnitAction> _allActions;
   late int? maxNumber;
 
-  // @JsonKey(defaultValue: '')
-  // late final String? imgPath;
+  @JsonKey(ignore: true)
+  late UnitAction currentAction;
+  @JsonKey(ignore: true)
+  late final List<UnitAction> _allActions;
 
   late List<int> availableNumbersPull;
 
@@ -41,6 +45,7 @@ class UnitStack {
         availableNumbersPull ?? _getAvailableNumbersPull(this.maxNumber!);
     this.units = units ?? <Unit>[];
     this.actions = actions ?? <UnitAction>[];
+    this.currentAction = this.setAction();
   }
 
   /// Creates [UnitStack] object from another [UnitStack]
@@ -112,4 +117,13 @@ class UnitStack {
   List<int> _getAvailableNumbersPull(int n) {
     return List.generate(n, (index) => index + 1);
   }
+
+  UnitAction setAction() {
+    final rnd = di<UtilService>().randomize(actions.length);
+    return actions.removeAt(rnd);
+  }
+
+  void shuffleActions() => actions.shuffle();
+
+
 }
