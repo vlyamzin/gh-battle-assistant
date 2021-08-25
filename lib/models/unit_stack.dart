@@ -1,19 +1,25 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-class UnitStack with ChangeNotifier {
+part 'unit_stack.g.dart';
+
+@JsonSerializable()
+class UnitStack {
   late final UnitType type;
   late final String displayName;
   late final List<Unit> units;
   late final List<UnitAction> actions;
   late final List<UnitAction> _allActions;
   late int? maxNumber;
-  late final String? imgPath;
+
+  // @JsonKey(defaultValue: '')
+  // late final String? imgPath;
+
   late List<int> availableNumbersPull;
 
   /// Creates [UnitStack] object with predefined data
@@ -48,18 +54,7 @@ class UnitStack with ChangeNotifier {
             availableNumbersPull: stack.availableNumbersPull.toList());
 
   /// Creates [UnitStack] object from json data
-  UnitStack.fromJson(Map<String, dynamic> json) {
-    if (json['type'] == null) throw NoUnitTypeError();
-
-    type = json['type'];
-    // actions = _createActions(json['actions']);
-    actions = [];
-    units = _createUnits(json['units']);
-    maxNumber = json['maxNumber'] ?? 6;
-    displayName = json['displayName'];
-    availableNumbersPull =
-        json['availableNumbersPull'] ?? _getAvailableNumbersPull(maxNumber!);
-  }
+  factory UnitStack.fromJson(Map<String, dynamic> json) => _$UnitStackFromJson(json);
 
   /// Create [UnitStack] instance from [UnitRawData]
   factory UnitStack.fromRawData(UnitRawData data) {
@@ -94,6 +89,9 @@ class UnitStack with ChangeNotifier {
     );
   }
 
+  /// Convert [UnitStack] object to json
+  Map<String, dynamic> toJson() => _$UnitStackToJson(this);
+
   /// Adds [Unit] object to the list of [units]
   /// Decreases the maximum unit number
   void addUnit(Unit newUnit) {
@@ -110,28 +108,8 @@ class UnitStack with ChangeNotifier {
     maxNumber = maxNumber! + 1;
   }
 
-  /// Creates and returns the list of [units] based on json data
-  List<Unit> _createUnits(List<Map>? units) {
-    return (units ?? []).map((e) => Unit.fromJson(e)).toList();
-  }
-
-  List<UnitAction> _createActions(List<Map>? actions) {
-    // return (actions ?? []).map((e) => UnitAction.fromJson(e)).toList();
-    throw UnimplementedError();
-  }
-
   /// Returns the list of numbers started from 1 till the [n]
   List<int> _getAvailableNumbersPull(int n) {
     return List.generate(n, (index) => index + 1);
   }
-
-  @override
-  String toString() {
-    return 'Stack $displayName with units count: ${units.length}';
-  }
-}
-
-class NoUnitTypeError extends Error {
-  @override
-  String toString() => 'Empty Unit Type';
 }

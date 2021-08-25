@@ -1,21 +1,33 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/models/home_screen_provider.dart';
+import 'package:gh_battle_assistant/services/store_service.dart';
 import 'package:provider/provider.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/screens/home_screen.dart';
 
 void main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   setupDI();
-  runApp(Application());
+
+  try {
+    final data = await di<StoreService>().read();
+    runApp(Application(data: jsonDecode(data)));
+  } on FileSystemException catch (_) {
+    runApp(Application(data: null));
+  }
 }
 
 class Application extends StatelessWidget {
+  final Map<String, dynamic>? data;
+  Application({required this.data});
+
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -30,7 +42,7 @@ class Application extends StatelessWidget {
           initialData: GameData([]),
         ),
         ChangeNotifierProvider.value(
-          value: di<HomeScreenProvider>(),
+          value: data != null ? HomeScreenProvider.fromJson(data!) : HomeScreenProvider(),
         ),
       ],
       child: CupertinoApp(

@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
           landscape: 3,
           portrait: 2,
           children: model.monsters.map((UnitStack stack) {
-            return ChangeNotifierProvider.value(
+            return Provider.value(
               value: stack,
               child: UnitActionCard(
                 key: ValueKey(stack.type),
