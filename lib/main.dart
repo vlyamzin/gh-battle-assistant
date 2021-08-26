@@ -14,35 +14,48 @@ import 'package:gh_battle_assistant/screens/home_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupDI();
+  late GameData rawData;
 
   try {
+    final rawDataString = await rootBundle.loadString('assets/cfg/game-data.json');
+    rawData = GameData.fromJson(jsonDecode(rawDataString));
     final data = await di<StoreService>().read();
-    runApp(Application(data: jsonDecode(data)));
+    runApp(Application(data: jsonDecode(data), rawData: rawData,));
+  } on FormatException catch (_) {
+    print('Raw data json is not valid');
   } on FileSystemException catch (_) {
-    runApp(Application(data: null));
+    runApp(Application(data: null, rawData: rawData,));
   }
 }
 
-class Application extends StatelessWidget {
+class Application extends StatefulWidget {
   final Map<String, dynamic>? data;
-  Application({required this.data});
+  final GameData rawData;
+  Application({required this.data, required this.rawData});
 
+  @override
+  _ApplicationState createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+  late HomeScreenProvider _homeScreenProvider;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.data != null) _homeScreenProvider = HomeScreenProvider.fromJson(widget.data!);
+    else _homeScreenProvider = HomeScreenProvider.empty();
+  }
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        FutureProvider<GameData>(
-          create: (context) async {
-            var string =
-                await rootBundle.loadString('assets/cfg/game-data.json');
-            return GameData.fromJson(jsonDecode(string));
-          },
-          lazy: false,
-          initialData: GameData([]),
+        Provider<GameData>.value(
+          value: widget.rawData,
         ),
         ChangeNotifierProvider.value(
-          value: data != null ? HomeScreenProvider.fromJson(data!) : HomeScreenProvider.empty(),
+          value: _homeScreenProvider,
         ),
       ],
       child: CupertinoApp(

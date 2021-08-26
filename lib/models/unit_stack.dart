@@ -4,6 +4,7 @@ import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
+import 'package:gh_battle_assistant/models/unit_action_list.dart';
 import 'package:gh_battle_assistant/services/util_service.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -16,7 +17,8 @@ class UnitStack {
   late final UnitType type;
   late final String displayName;
   late final List<Unit> units;
-  late final List<UnitAction> actions;
+  // late final List<UnitAction> actions;
+  late final UnitActionList actions;
   late int? maxNumber;
 
   @JsonKey(ignore: true)
@@ -38,14 +40,13 @@ class UnitStack {
     required this.displayName,
     this.maxNumber = 6,
     List<Unit>? units,
-    List<UnitAction>? actions,
+    UnitActionList? actions,
     List<int>? availableNumbersPull,
   }) {
     this.availableNumbersPull =
         availableNumbersPull ?? _getAvailableNumbersPull(this.maxNumber!);
     this.units = units ?? <Unit>[];
-    this.actions = actions ?? <UnitAction>[];
-    this.currentAction = this.setAction();
+    this.actions = actions ?? UnitActionList();
   }
 
   /// Creates [UnitStack] object from another [UnitStack]
@@ -55,7 +56,7 @@ class UnitStack {
             displayName: stack.displayName,
             maxNumber: stack.maxNumber,
             units: stack.units.toList(),
-            actions: stack.actions.toList(),
+            actions: stack.actions,
             availableNumbersPull: stack.availableNumbersPull.toList());
 
   /// Creates [UnitStack] object from json data
@@ -63,15 +64,10 @@ class UnitStack {
 
   /// Create [UnitStack] instance from [UnitRawData]
   factory UnitStack.fromRawData(UnitRawData data) {
-    final actions = data.actions
-        .map((e) => UnitAction.fromRawData(e))
-        .toList();
-
     return UnitStack(
       type: data.id,
       displayName: data.name,
       maxNumber: data.maxNumber,
-      actions: actions
     );
   }
 
@@ -81,14 +77,14 @@ class UnitStack {
       String? displayName,
       int? maxNumber,
       List<Unit>? units,
-      List<UnitAction>? actions,
+      UnitActionList? actions,
       List<int>? availableNumbersPull}) {
     return UnitStack(
       type: type ?? this.type,
       displayName: displayName ?? this.displayName,
       maxNumber: maxNumber ?? this.maxNumber,
       units: units ?? this.units.toList(),
-      actions: actions ?? this.actions.toList(),
+      actions: actions ?? this.actions,
       availableNumbersPull:
           availableNumbersPull ?? this.availableNumbersPull.toList(),
     );
@@ -117,13 +113,6 @@ class UnitStack {
   List<int> _getAvailableNumbersPull(int n) {
     return List.generate(n, (index) => index + 1);
   }
-
-  UnitAction setAction() {
-    final rnd = di<UtilService>().randomize(actions.length);
-    return actions.removeAt(rnd);
-  }
-
-  void shuffleActions() => actions.shuffle();
 
 
 }

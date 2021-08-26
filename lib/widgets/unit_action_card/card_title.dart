@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:provider/provider.dart';
 
@@ -25,9 +26,14 @@ class CardTitle extends StatelessWidget {
           width: 50,
           height: 50,
           child: Center(
-            child: Text(
-              '99',
-              style: TextStyle(fontSize: 15),
+            child: Consumer<UnitActionProvider>(
+              builder: (context, provider, _) {
+                final action = provider.actions.currentAction ?? null;
+                return Text(
+                  action != null ? action.initiative.toString() : '',
+                  style: TextStyle(fontSize: 15),
+                );
+              },
             ),
           ),
         )

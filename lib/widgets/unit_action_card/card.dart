@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
+import 'package:gh_battle_assistant/back/game_data.dart';
+import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
@@ -12,7 +15,10 @@ import 'package:gh_battle_assistant/widgets/unit_action_card/card_title.dart';
 import 'package:provider/provider.dart';
 
 class UnitActionCard extends StatefulWidget with CardBorderRadius {
-  const UnitActionCard({Key? key, required this.width, required this.height, required this.monster})
+  const UnitActionCard({Key? key,
+    required this.width,
+    required this.height,
+    required this.monster})
       : super(key: key);
 
   final UnitStack monster;
@@ -22,7 +28,8 @@ class UnitActionCard extends StatefulWidget with CardBorderRadius {
   _UnitActionCardState createState() => _UnitActionCardState();
 }
 
-class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProviderStateMixin {
+class _UnitActionCardState extends State<UnitActionCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
   AnimationStatus _animationStatus = AnimationStatus.dismissed;
@@ -51,7 +58,8 @@ class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProvid
           },
           frontSideChild: _body(),
           backSideChild: UnitActionCardBackSide(
-            title: context.select<UnitStack, String>((value) => value.displayName),
+            title:
+            context.select<UnitStack, String>((value) => value.displayName),
             backButtonCallback: () => _animationController.reverse(),
             deleteButtonCallback: () {
               context.read<HomeScreenProvider>().removeMonsterStack(model.type);
@@ -78,15 +86,14 @@ class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProvid
 
   /// Left side of the card
   Widget _leftSide() {
-    var type = context.read<UnitStack>().type;
+    var type = context
+        .read<UnitStack>()
+        .type;
     var imagePath = di<ImageService>().getUnitImageByType(type);
 
     return Expanded(
       flex: 1,
-      child: CardImage(
-        heightConstrain: widget.height,
-        imagePath: imagePath
-      ),
+      child: CardImage(heightConstrain: widget.height, imagePath: imagePath),
     );
   }
 
@@ -94,15 +101,24 @@ class _UnitActionCardState extends State<UnitActionCard> with SingleTickerProvid
   Widget _rightSide() {
     return Expanded(
       flex: 2,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          CardTitle(),
-          Flexible(
-            flex: 1,
-            child: CardDetail(),
-          )
-        ],
+      child: ChangeNotifierProvider<UnitActionProvider>(
+        create: (context) {
+          final UnitStack stack = context.read<UnitStack>();
+          final HomeScreenProvider store = context.read<HomeScreenProvider>();
+          final List<UnitRawAction> rawData = context.read<GameData>().getUnitDataById(stack.type).actions;
+
+          return UnitActionProvider(actions: stack.actions, store: store, rawData: rawData);
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            CardTitle(),
+            Flexible(
+              flex: 1,
+              child: CardDetail(),
+            )
+          ],
+        ),
       ),
     );
   }

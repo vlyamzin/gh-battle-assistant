@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
@@ -22,6 +24,13 @@ class HomeScreen extends StatelessWidget {
 
   CupertinoNavigationBar _navBar(BuildContext context) {
     return CupertinoNavigationBar(
+      leading: Container(
+        child: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () => context.read<HomeScreenProvider>().emit(HomeScreenEvents.NEW_ACTIONS),
+          child: Icon(Icons.refresh),
+        ),
+      ),
       middle: const Text('Gloomhaven Battle Assistant'),
       trailing: Container(
         child: CupertinoButton(

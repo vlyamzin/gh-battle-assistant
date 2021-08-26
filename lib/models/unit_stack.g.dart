@@ -14,9 +14,9 @@ UnitStack _$UnitStackFromJson(Map<String, dynamic> json) {
     units: (json['units'] as List<dynamic>?)
         ?.map((e) => Unit.fromJson(e as Map<String, dynamic>))
         .toList(),
-    actions: (json['actions'] as List<dynamic>?)
-        ?.map((e) => UnitAction.fromJson(e as Map<String, dynamic>))
-        .toList(),
+    actions: json['actions'] == null
+        ? null
+        : UnitActionList.fromJson(json['actions'] as Map<String, dynamic>),
     availableNumbersPull: (json['availableNumbersPull'] as List<dynamic>?)
         ?.map((e) => e as int)
         .toList(),
