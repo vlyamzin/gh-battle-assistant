@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
+import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/card.dart';
-import 'package:gh_battle_assistant/common/grid.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -14,24 +15,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      navigationBar: _navBar(context),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+      child: PullToRefresh(
+        onRefresh: () async { await _refreshUnitActions(context); },
         child: _gridView(context),
+        header: _navBar(context),
       ),
     );
   }
 
-  CupertinoNavigationBar _navBar(BuildContext context) {
-    return CupertinoNavigationBar(
-      leading: Container(
-        child: CupertinoButton(
-          padding: EdgeInsets.zero,
-          onPressed: () => context.read<HomeScreenProvider>().emit(HomeScreenEvents.NEW_ACTIONS),
-          child: Icon(Icons.refresh),
-        ),
-      ),
-      middle: const Text('Gloomhaven Battle Assistant'),
+  Future<void> _refreshUnitActions(BuildContext context) async {
+    await Future.delayed(Duration(milliseconds: 1000));
+    context.read<HomeScreenProvider>().emit(HomeScreenEvents.NEW_ACTIONS);
+  }
+
+  CupertinoSliverNavigationBar _navBar(BuildContext context) {
+    return CupertinoSliverNavigationBar(
+      largeTitle: const Text('Gloomhaven Battle Assistant'),
       trailing: Container(
         child: CupertinoButton(
           padding: EdgeInsets.zero,
@@ -55,7 +54,8 @@ class HomeScreen extends StatelessWidget {
 
     return Consumer<HomeScreenProvider>(
       builder: (context, provider, _) {
-        return Grid(
+        return GHSliverGrid(
+          padding: 8.0,
           landscape: 3,
           portrait: 2,
           children: provider.model.monsters.map((UnitStack stack) {

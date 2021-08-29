@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
-import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
+import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
 import 'package:gh_battle_assistant/di.dart';

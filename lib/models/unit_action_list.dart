@@ -10,7 +10,7 @@ class UnitActionList {
   List<int>? availableActionIndexes;
 
   @JsonKey(ignore: true)
-  late final List<UnitAction> allActions;
+  late List<UnitAction> allActions;
 
   UnitActionList({this.currentAction, this.availableActionIndexes});
 

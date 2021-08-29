@@ -1,33 +1,38 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/common/mixins/grid_axis_counter_mixin.dart';
 
-/// Custom [GridView] widget that align items based on provided [landscape] and [portrait] sizes
+class GHSliverGrid extends StatelessWidget with GridAxisCounter {
+  final List<Widget> children;
+  final double? padding;
+  final double childWidth, childHeight;
 
-class Grid extends StatelessWidget with GridAxisCounter {
-
-  Grid({
+  GHSliverGrid({
     Key? key,
     required landscape,
     required portrait,
     required this.children,
     this.childWidth = 3,
     this.childHeight = 2,
+    this.padding
   }) {
     this.landscape = landscape;
     this.portrait = portrait;
   }
 
-  final List<Widget> children;
-  final double childWidth, childHeight;
-
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      mainAxisSpacing: 20,
-      crossAxisSpacing: 0,
+    Widget current = SliverGrid.count(
       crossAxisCount: getCrossAxisCount(MediaQuery.of(context).orientation),
+      mainAxisSpacing: 20.0,
+      crossAxisSpacing: 0,
       childAspectRatio: childWidth / childHeight,
       children: children,
     );
+
+    if (padding != null) {
+      current = SliverPadding(padding: EdgeInsets.all(padding!), sliver: current,);
+    }
+
+    return current;
   }
 }

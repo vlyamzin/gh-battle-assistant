@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
+import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
 
 class CardImage extends StatelessWidget with CardBorderRadius {
   const CardImage(

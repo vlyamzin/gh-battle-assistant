@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/common/card.dart';
-import 'package:gh_battle_assistant/common/card_border_radius_mixin.dart';
+import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
 
 class AnimatedFlipCard extends AnimatedWidget with CardBorderRadius {
   AnimatedFlipCard({
