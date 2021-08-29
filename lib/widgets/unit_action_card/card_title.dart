@@ -31,7 +31,7 @@ class CardTitle extends StatelessWidget {
                 final action = provider.actions.currentAction ?? null;
                 return Text(
                   action != null ? action.initiative.toString() : '',
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: 17),
                 );
               },
             ),
