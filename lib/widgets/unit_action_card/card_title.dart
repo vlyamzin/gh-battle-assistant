@@ -1,3 +1,6 @@
+import 'dart:collection';
+
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
@@ -19,6 +22,10 @@ class CardTitle extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               context.select<UnitStack, String>((unit) => unit.displayName),
+              style: TextStyle(
+                fontSize: 25,
+                fontFamily: 'PirataOne'
+              ),
             ),
           ),
         ),
@@ -31,14 +38,29 @@ class CardTitle extends StatelessWidget {
                 final action = provider.actions.currentAction ?? null;
                 return Text(
                   action != null ? action.initiative.toString() : '',
-                  style: TextStyle(fontSize: 17),
+                  style: TextStyle(fontSize: 25, fontFamily: 'PirataOne', shadows: _outlinedText(strokeColor: Color(0xFFFFFFFF))),
                 );
               },
             ),
           ),
-        )
-        // SizedBox(child: Text('55'), width: 30, height: 30,)
+        ),
       ],
     );
+  }
+
+  /// Outlines a text using shadows.
+  static List<Shadow> _outlinedText({double strokeWidth = 2, Color strokeColor = Colors.black, int precision = 5}) {
+    Set<Shadow> result = HashSet();
+    for (int x = 1; x < strokeWidth + precision; x++) {
+      for(int y = 1; y < strokeWidth + precision; y++) {
+        double offsetX = x.toDouble();
+        double offsetY = y.toDouble();
+        result.add(Shadow(offset: Offset(-strokeWidth / offsetX, -strokeWidth / offsetY), color: strokeColor));
+        result.add(Shadow(offset: Offset(-strokeWidth / offsetX, strokeWidth / offsetY), color: strokeColor));
+        result.add(Shadow(offset: Offset(strokeWidth / offsetX, -strokeWidth / offsetY), color: strokeColor));
+        result.add(Shadow(offset: Offset(strokeWidth / offsetX, strokeWidth / offsetY), color: strokeColor));
+      }
+    }
+    return result.toList();
   }
 }

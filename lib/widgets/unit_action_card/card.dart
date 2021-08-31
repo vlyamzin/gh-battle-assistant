@@ -15,12 +15,14 @@ import 'package:gh_battle_assistant/widgets/unit_action_card/card_title.dart';
 import 'package:provider/provider.dart';
 
 class UnitActionCard extends StatefulWidget with CardBorderRadius {
-  const UnitActionCard({Key? key,
-    required this.width,
-    required this.height,
-    required this.monster})
+  const UnitActionCard(
+      {Key? key,
+      required this.width,
+      required this.height,
+      required this.monster})
       : super(key: key);
 
+  final backgroundImage = 'assets/images/ability_front.jpg';
   final UnitStack monster;
   final double width, height;
 
@@ -59,7 +61,7 @@ class _UnitActionCardState extends State<UnitActionCard>
           frontSideChild: _body(),
           backSideChild: UnitActionCardBackSide(
             title:
-            context.select<UnitStack, String>((value) => value.displayName),
+                context.select<UnitStack, String>((value) => value.displayName),
             backButtonCallback: () => _animationController.reverse(),
             deleteButtonCallback: () {
               context.read<HomeScreenProvider>().removeMonsterStack(model.type);
@@ -86,9 +88,7 @@ class _UnitActionCardState extends State<UnitActionCard>
 
   /// Left side of the card
   Widget _leftSide() {
-    var type = context
-        .read<UnitStack>()
-        .type;
+    var type = context.read<UnitStack>().type;
     var imagePath = di<ImageService>().getUnitImageByType(type);
 
     return Expanded(
@@ -105,19 +105,28 @@ class _UnitActionCardState extends State<UnitActionCard>
         create: (context) {
           final UnitStack stack = context.read<UnitStack>();
           final HomeScreenProvider store = context.read<HomeScreenProvider>();
-          final List<UnitRawAction> rawData = context.read<GameData>().getUnitDataById(stack.type).actions;
+          final List<UnitRawAction> rawData =
+              context.read<GameData>().getUnitDataById(stack.type).actions;
 
-          return UnitActionProvider(actions: stack.actions, store: store, rawData: rawData);
+          return UnitActionProvider(
+              actions: stack.actions, store: store, rawData: rawData);
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            CardTitle(),
-            Flexible(
-              flex: 1,
-              child: CardDetail(),
-            )
-          ],
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage(widget.backgroundImage),
+            fit: BoxFit.cover,
+          )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              CardTitle(),
+              Flexible(
+                flex: 1,
+                child: CardDetail(),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -1,8 +1,16 @@
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 
+enum IconSize {
+  s32,
+  s64,
+  s128
+}
+
 class ImageService {
   static const unitImageBaseUrl = 'assets/unit_images/';
-  final unitImageMap = <UnitType, String>{
+  static const iconsBaseUrl = 'assets/images/icons';
+
+  final _unitImageMap = <UnitType, String>{
     UnitType.ancientArtillery: '${ImageService.unitImageBaseUrl}Ancient-Artillery-214x300.jpg',
     UnitType.banditArcher: '${ImageService.unitImageBaseUrl}Bandit-Archer-214x300.jpg',
     UnitType.banditGuard: '${ImageService.unitImageBaseUrl}Bandit-Guard-214x300.jpg',
@@ -52,5 +60,106 @@ class ImageService {
     UnitType.wingedHorror: '${ImageService.unitImageBaseUrl}Winged-Horror-214x300.jpg',
   };
 
-  String getUnitImageByType(UnitType type) => unitImageMap[type] ?? '';
+  final _iconsMap32 = <String, String>{
+    'ae': '$iconsBaseUrl/32/all_elements_32.png',
+    'atk': '$iconsBaseUrl/32/attack_32.png',
+    'dark': '$iconsBaseUrl/32/dark_32.png',
+    'fire': '$iconsBaseUrl/32/fire_32.png',
+    'frost': '$iconsBaseUrl/32/frost_32.png',
+    'heal': '$iconsBaseUrl/32/heal_32.png',
+    'ha': '$iconsBaseUrl/32/hit_area_32.png',
+    'jmp': '$iconsBaseUrl/32/jump_32.png',
+    'leaf': '$iconsBaseUrl/32/leaf_32.png',
+    'light': '$iconsBaseUrl/32/light_32.png',
+    'lt': '$iconsBaseUrl/32/loot_32.png',
+    'mv': '$iconsBaseUrl/32/move_32.png',
+    'nha': '$iconsBaseUrl/32/neutral_hit_area_32.png',
+    'ndark': '$iconsBaseUrl/32/no_dark.png',
+    'ne': '$iconsBaseUrl/32/no_elements_32.png',
+    'nfire': '$iconsBaseUrl/32/no_fire_32.png',
+    'nfrost': '$iconsBaseUrl/32/no_frost_32.png',
+    'nleaf': '$iconsBaseUrl/32/no_leaf_32.png',
+    'nlight': '$iconsBaseUrl/32/no_light_32.png',
+    'nwind': '$iconsBaseUrl/32/no_wind_32.png',
+    'rng': '$iconsBaseUrl/32/range_32.png',
+    'rtlt': '$iconsBaseUrl/32/retaliate_32.png',
+    'shld': '$iconsBaseUrl/32/shield_32.png',
+    'wind': '$iconsBaseUrl/32/wind_32.png',
+    '1r': '$iconsBaseUrl/32/1_round.png',
+    '1rg': '$iconsBaseUrl/32/1_round_grey.png',
+    '1rgv2': '$iconsBaseUrl/32/1_round_grey_v2.png',
+    '3lg': '$iconsBaseUrl/32/3_line_grey.png',
+    '3p': '$iconsBaseUrl/32/3_points.png',
+    '3pg': '$iconsBaseUrl/32/3_points_grey.png',
+    '4lg': '$iconsBaseUrl/32/4_line_grey.png',
+    '4lgv2': '$iconsBaseUrl/32/4_line_grey_v2.png',
+    '4pg': '$iconsBaseUrl/32/4_points_grey.png',
+    '4pgv2': '$iconsBaseUrl/32/4_points_grey_v2.png',
+    '6lg': '$iconsBaseUrl/32/6_line_grey.png',
+    '6pg': '$iconsBaseUrl/32/6_points_grey.png',
+  };
+
+  final _iconsMap64 = <String, String>{
+    'ae': '$iconsBaseUrl/64/all_elements_64.png',
+    'atk': '$iconsBaseUrl/64/attack_64.png',
+    'dark': '$iconsBaseUrl/64/dark_64.png',
+    'fire': '$iconsBaseUrl/64/fire_64.png',
+    'frost': '$iconsBaseUrl/64/frost_64.png',
+    'heal': '$iconsBaseUrl/64/heal_64.png',
+    'ha': '$iconsBaseUrl/64/hit_area_64.png',
+    'jmp': '$iconsBaseUrl/64/jump_64.png',
+    'leaf': '$iconsBaseUrl/64/leaf_64.png',
+    'light': '$iconsBaseUrl/64/light_64.png',
+    'lt': '$iconsBaseUrl/64/loot_64.png',
+    'mv': '$iconsBaseUrl/64/move_64.png',
+    'nha': '$iconsBaseUrl/64/neutral_hit_area_64.png',
+    'ndark': '$iconsBaseUrl/64/no_dark.png',
+    'ne': '$iconsBaseUrl/64/no_elements_64.png',
+    'nfire': '$iconsBaseUrl/64/no_fire_64.png',
+    'nfrost': '$iconsBaseUrl/64/no_frost_64.png',
+    'nleaf': '$iconsBaseUrl/64/no_leaf_64.png',
+    'nlight': '$iconsBaseUrl/64/no_light_64.png',
+    'nwind': '$iconsBaseUrl/64/no_wind_64.png',
+    'rng': '$iconsBaseUrl/64/range_64.png',
+    'rtlt': '$iconsBaseUrl/64/retaliate_64.png',
+    'shld': '$iconsBaseUrl/64/shield_64.png',
+    'wind': '$iconsBaseUrl/64/wind_64.png',
+  };
+
+  final _iconsMap128 = <String, String>{
+    'ae': '$iconsBaseUrl/128/all_elements_128.png',
+    'atk': '$iconsBaseUrl/128/attack_128.png',
+    'dark': '$iconsBaseUrl/128/dark_128.png',
+    'fire': '$iconsBaseUrl/128/fire_128.png',
+    'frost': '$iconsBaseUrl/128/frost_128.png',
+    'heal': '$iconsBaseUrl/128/heal_128.png',
+    'ha': '$iconsBaseUrl/128/hit_area_128.png',
+    'jmp': '$iconsBaseUrl/128/jump_128.png',
+    'leaf': '$iconsBaseUrl/128/leaf_128.png',
+    'light': '$iconsBaseUrl/128/light_128.png',
+    'lt': '$iconsBaseUrl/128/loot_128.png',
+    'mv': '$iconsBaseUrl/128/move_128.png',
+    'nha': '$iconsBaseUrl/128/neutral_hit_area_128.png',
+    'ndark': '$iconsBaseUrl/128/no_dark.png',
+    'ne': '$iconsBaseUrl/128/no_elements_128.png',
+    'nfire': '$iconsBaseUrl/128/no_fire_128.png',
+    'nfrost': '$iconsBaseUrl/128/no_frost_128.png',
+    'nleaf': '$iconsBaseUrl/128/no_leaf_128.png',
+    'nlight': '$iconsBaseUrl/128/no_light_128.png',
+    'nwind': '$iconsBaseUrl/128/no_wind_128.png',
+    'rng': '$iconsBaseUrl/128/range_128.png',
+    'rtlt': '$iconsBaseUrl/128/retaliate_128.png',
+    'shld': '$iconsBaseUrl/128/shield_128.png',
+    'wind': '$iconsBaseUrl/128/wind_128.png',
+  };
+
+  String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';
+
+  String getIcon(String key, [IconSize size = IconSize.s32]) {
+    switch (size) {
+      case IconSize.s32: { return _iconsMap32[key] ?? ''; }
+      case IconSize.s64: { return _iconsMap64[key] ?? ''; }
+      case IconSize.s128: { return _iconsMap128[key] ?? ''; }
+    }
+  }
 }

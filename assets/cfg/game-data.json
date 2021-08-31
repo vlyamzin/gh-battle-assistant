@@ -292,8 +292,8 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Attack -1",
-              "subtitle": "Range +2"
+              "title": "Attack |%atk%| -1",
+              "subtitle": "Range |%rng%|+2"
             }
           ],
           "modifier": {
@@ -306,7 +306,7 @@
           "shouldRefresh": true,
           "values": [
             {
-              "title": "Attack +0",
+              "title": "Attack |%atk%|+0",
               "subtitle": "All adjacent enemies suffer 2 damage"
             }
           ],
@@ -319,7 +319,7 @@
           "shouldRefresh": true,
           "values": [
             {
-              "title": "Attack +0",
+              "title": "Attack |%atk%|+0",
               "subtitle": "All adjacent enemies suffer 2 damage"
             }
           ],
@@ -336,9 +336,9 @@
               "subtitle": "Target all adjacent enemies"
             },
             {
-              "title": "Attack -1",
-              "subtitle": "Range -1",
-              "area": "round_3"
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|-1",
+              "area": "|%3p%|"
             }
           ],
           "modifier": {
@@ -355,9 +355,9 @@
               "subtitle": "Target all adjacent enemies"
             },
             {
-              "title": "Attack -1",
-              "subtitle": "Range -1",
-              "area": "round_7"
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|-1",
+              "area": "|%1r%|"
             }
           ],
           "modifier": {
@@ -370,7 +370,7 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Attack +1"
+              "title": "Attack |%atk%|+1"
             }
           ],
           "modifier": {
@@ -386,10 +386,10 @@
               "subtitle": "Target all adjacent enemies"
             },
             {
-              "title": "Shield 2"
+              "title": "Shield |%shld%|2"
             },
             {
-              "title": "Attack -2"
+              "title": "Attack |%atk%|-2"
             }
           ],
           "modifier": {
@@ -403,7 +403,7 @@
           "values": [
             {
               "title": "Attack -1",
-              "subtitle": "Immobilize",
+              "subtitle": "IMMOBILIZE",
               "area": "round_3"
             }
           ],

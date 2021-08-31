@@ -6,6 +6,7 @@ import 'package:gh_battle_assistant/widgets/unit_action_record/unit_action_recor
 import 'package:provider/provider.dart';
 
 class CardDetail extends StatelessWidget {
+  static const iconPath = 'assets/images/icons/';
   const CardDetail({Key? key}) : super(key: key);
 
   @override
@@ -17,7 +18,7 @@ class CardDetail extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(5, 5, 5, 30),
+              padding: const EdgeInsets.fromLTRB(5, 5, 5, 35),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,11 +33,11 @@ class CardDetail extends StatelessWidget {
               bottom: 10,
               right: 10,
               child: SizedBox(
-                width: 20,
-                height: 20,
+                width: 25,
+                height: 25,
                 child: Builder(builder: (context) {
                   if (action != null && action.shouldRefresh == true) {
-                    return Center(child: Icon(Icons.refresh));
+                    return Center(child: Image(image: AssetImage('${iconPath}64/refresh_64.png'),));
                   } else {
                     return Container();
                   }

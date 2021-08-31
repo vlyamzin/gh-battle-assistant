@@ -57,6 +57,8 @@ flutter:
   assets:
     - assets/unit_images/
     - assets/images/
+    - assets/images/icons/32/
+    - assets/images/icons/64/
     - assets/cfg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -70,6 +72,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: PirataOne
+      fonts:
+        - asset: fonts/PirataOne-Gloomhaven.ttf
+    - family: Nyala
+      fonts:
+        - asset: fonts/nyala.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
