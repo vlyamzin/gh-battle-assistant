@@ -57,6 +57,8 @@ class UnitActionCardBackSide extends StatelessWidget with CardBorderRadius {
                 style: Theme.of(context).textTheme.headline5!.copyWith(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'PirataOne',
+                  letterSpacing: 1.5,
                   shadows: [
                     Shadow(offset: Offset(1.5, 1.5), color: Color(0xFF333333))
                   ],

@@ -338,7 +338,7 @@
             {
               "title": "Attack |%atk%|-1",
               "subtitle": "Range |%rng%|-1",
-              "area": "|%3p%|"
+              "area": "%3p%"
             }
           ],
           "modifier": {
@@ -357,7 +357,7 @@
             {
               "title": "Attack |%atk%|-1",
               "subtitle": "Range |%rng%|-1",
-              "area": "|%1r%|"
+              "area": "%1r%"
             }
           ],
           "modifier": {
@@ -404,7 +404,7 @@
             {
               "title": "Attack -1",
               "subtitle": "IMMOBILIZE",
-              "area": "round_3"
+              "area": "%3p%"
             }
           ],
           "modifier": {

@@ -17,6 +17,7 @@ class UnitActionRecord extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(child: _mainBlock()),
+          record.area != null ? _AreaEffect(area: record.area!) : Container(),
         ],
       ),
     );
@@ -64,6 +65,14 @@ class UnitActionRecord extends StatelessWidget {
   }
 }
 
+String _replaceWithIconPath(String str) {
+  return str.replaceAllMapped(RegExp(r'%\w+%'), (Match match) {
+    var iconKey = match.group(0) ?? '';
+    iconKey = iconKey.replaceAll('%', '');
+    return di<ImageService>().getIcon(iconKey, IconSize.s32);
+  });
+}
+
 class _RecordString extends StatelessWidget {
   final String str;
   final TextStyle textStyle;
@@ -98,12 +107,17 @@ class _RecordString extends StatelessWidget {
   }
 
   List<String> _splitString(String str) => str.split('|');
+}
 
-  String _replaceWithIconPath(String str) {
-    return str.replaceAllMapped(RegExp(r'%\w+%'), (Match match) {
-      var iconKey = match.group(0) ?? '';
-      iconKey = iconKey.replaceAll('%', '');
-      return di<ImageService>().getIcon(iconKey, IconSize.s32);
-    });
+class _AreaEffect extends StatelessWidget {
+  final String area;
+  
+  const _AreaEffect({Key? key, required this.area}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Image(image: AssetImage(_replaceWithIconPath(area)),),
+    );
   }
 }
