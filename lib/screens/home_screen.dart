@@ -6,7 +6,7 @@ import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/card.dart';
+import 'package:gh_battle_assistant/widgets/unit_action_card/unit_action_card.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 import 'package:provider/provider.dart';
 

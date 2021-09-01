@@ -3,6 +3,7 @@ import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
+import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
@@ -30,47 +31,21 @@ class UnitActionCard extends StatefulWidget with CardBorderRadius {
   _UnitActionCardState createState() => _UnitActionCardState();
 }
 
-class _UnitActionCardState extends State<UnitActionCard>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
-  AnimationStatus _animationStatus = AnimationStatus.dismissed;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
-    _animation = Tween<double>(begin: 0, end: 1).animate(_animationController)
-      ..addStatusListener((AnimationStatus status) {
-        _animationStatus = status;
-      });
-  }
-
+class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
   @override
   Widget build(BuildContext context) {
     return AnimatedFlipCard(
-      animation: _animation,
-      frontActionCallback: () {
-        if (_animationStatus == AnimationStatus.dismissed) {
-          _animationController.forward();
-        }
-      },
+      animation: animation,
+      frontActionCallback: animationForward,
       frontSideChild: _body(),
       backSideChild: UnitActionCardBackSide(
         title: widget.stack.displayName,
-        backButtonCallback: () => _animationController.reverse(),
+        backButtonCallback: animationBackward,
         deleteButtonCallback: () {
           context.read<HomeScreenProvider>().removeMonsterStack(widget.stack.type);
         },
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
   }
 
   Widget _body() {
