@@ -12,6 +12,8 @@ import '../di.dart';
 
 part 'unit_stack.g.dart';
 
+// TODO decouple controller from model
+
 @JsonSerializable()
 class UnitStack {
   late final UnitType type;

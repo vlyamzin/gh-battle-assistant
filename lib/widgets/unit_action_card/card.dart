@@ -19,11 +19,11 @@ class UnitActionCard extends StatefulWidget with CardBorderRadius {
       {Key? key,
       required this.width,
       required this.height,
-      required this.monster})
+      required this.stack})
       : super(key: key);
 
-  final backgroundImage = 'assets/images/ability_front.jpg';
-  final UnitStack monster;
+  final backgroundImage = 'assets/images/ability_front_2.jpg';
+  final UnitStack stack;
   final double width, height;
 
   @override
@@ -49,26 +49,21 @@ class _UnitActionCardState extends State<UnitActionCard>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<UnitStack>(
-      builder: (context, model, _) {
-        return AnimatedFlipCard(
-          animation: _animation,
-          frontActionCallback: () {
-            if (_animationStatus == AnimationStatus.dismissed) {
-              _animationController.forward();
-            }
-          },
-          frontSideChild: _body(),
-          backSideChild: UnitActionCardBackSide(
-            title:
-                context.select<UnitStack, String>((value) => value.displayName),
-            backButtonCallback: () => _animationController.reverse(),
-            deleteButtonCallback: () {
-              context.read<HomeScreenProvider>().removeMonsterStack(model.type);
-            },
-          ),
-        );
+    return AnimatedFlipCard(
+      animation: _animation,
+      frontActionCallback: () {
+        if (_animationStatus == AnimationStatus.dismissed) {
+          _animationController.forward();
+        }
       },
+      frontSideChild: _body(),
+      backSideChild: UnitActionCardBackSide(
+        title: widget.stack.displayName,
+        backButtonCallback: () => _animationController.reverse(),
+        deleteButtonCallback: () {
+          context.read<HomeScreenProvider>().removeMonsterStack(widget.stack.type);
+        },
+      ),
     );
   }
 
@@ -88,7 +83,7 @@ class _UnitActionCardState extends State<UnitActionCard>
 
   /// Left side of the card
   Widget _leftSide() {
-    var type = context.read<UnitStack>().type;
+    var type = widget.stack.type;
     var imagePath = di<ImageService>().getUnitImageByType(type);
 
     return Expanded(
@@ -103,7 +98,7 @@ class _UnitActionCardState extends State<UnitActionCard>
       flex: 2,
       child: ChangeNotifierProvider<UnitActionProvider>(
         create: (context) {
-          final UnitStack stack = context.read<UnitStack>();
+          final UnitStack stack = widget.stack;
           final HomeScreenProvider store = context.read<HomeScreenProvider>();
           final List<UnitRawAction> rawData =
               context.read<GameData>().getUnitDataById(stack.type).actions;
@@ -115,12 +110,12 @@ class _UnitActionCardState extends State<UnitActionCard>
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage(widget.backgroundImage),
-            fit: BoxFit.cover,
+            fit: BoxFit.fill,
           )),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              CardTitle(),
+              CardTitle(title: widget.stack.displayName,),
               Flexible(
                 flex: 1,
                 child: CardDetail(),

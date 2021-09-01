@@ -3,11 +3,11 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:provider/provider.dart';
 
 class CardTitle extends StatelessWidget {
-  const CardTitle({Key? key}) : super(key: key);
+  final String title;
+  const CardTitle({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class CardTitle extends StatelessWidget {
             padding: const EdgeInsets.all(5),
             alignment: Alignment.center,
             child: Text(
-              context.select<UnitStack, String>((unit) => unit.displayName),
+              title,
               style: TextStyle(
                 fontSize: 25,
                 fontFamily: 'PirataOne'
