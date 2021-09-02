@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
+import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card/unit_stats_card.dart';
+import 'package:provider/provider.dart';
 
 class StatsScreen extends StatefulWidget {
   final UnitStack stack;
@@ -22,7 +24,8 @@ class _StatsScreenState extends State<StatsScreen>
   void initState() {
     _fadeAnimationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(_fadeAnimationController);
+    _fadeAnimation =
+        Tween<double>(begin: 0, end: 1).animate(_fadeAnimationController);
     super.initState();
   }
 
@@ -76,8 +79,16 @@ class _StatsScreenState extends State<StatsScreen>
 
   List<Widget> _unitCards() {
     return widget.stack.units.map((unit) {
-      return UnitStatsCard(
-          key: ValueKey(unit.number), width: 500, height: 400, unit: unit);
+      return ChangeNotifierProvider(
+        create: (BuildContext context) => UnitStatsProvider(unit: unit),
+        child: UnitStatsCard(
+          key: ValueKey(unit.number),
+          width: 500,
+          height: 400,
+          unit: unit,
+          type: widget.stack.type,
+        ),
+      );
     }).toList();
   }
 }

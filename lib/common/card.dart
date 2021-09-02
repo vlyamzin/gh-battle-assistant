@@ -20,7 +20,7 @@ class Card extends StatelessWidget with CardBorderRadius {
         borderRadius: BorderRadius.all(getRadius()),
         boxShadow: [
           BoxShadow(
-              blurRadius: 3.0, spreadRadius: 0.0, color: Color(0xFFBEBEBE))
+              blurRadius: 3.5, spreadRadius: 0.5, color: Color(0xFF797979))
         ],
       ),
       child: child,

@@ -45,6 +45,7 @@ class _ApplicationState extends State<Application> {
     super.initState();
     if (widget.data != null) _homeScreenProvider = HomeScreenProvider.fromJson(widget.data!);
     else _homeScreenProvider = HomeScreenProvider.empty();
+    di.registerSingleton<HomeScreenProvider>(_homeScreenProvider);
   }
 
   @override
