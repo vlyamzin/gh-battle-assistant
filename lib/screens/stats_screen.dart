@@ -65,6 +65,8 @@ class _StatsScreenState extends State<StatsScreen>
                     child: Grid(
                       landscape: 2,
                       portrait: 1,
+                      childWidth: 1.8,
+                      childHeight: 1,
                       children: _unitCards(),
                     ),
                   );
