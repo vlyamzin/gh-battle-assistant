@@ -10,9 +10,12 @@ class GameData {
 
   GameData(this.monsters);
 
-  factory GameData.fromJson(Map<String, dynamic> json) => _$GameDataFromJson(json);
+  factory GameData.fromJson(Map<String, dynamic> json) =>
+      _$GameDataFromJson(json);
 
-  UnitRawData getUnitDataById(UnitType id) => monsters.firstWhere((element) => element.id == id);
-  UnitRawData getUnitDataByName(String query) => monsters.firstWhere((element) => element.name == query);
+  UnitRawData getUnitDataById(UnitType id) =>
+      monsters.firstWhere((element) => element.id == id);
 
+  UnitRawData getUnitDataByName(String query) =>
+      monsters.firstWhere((element) => element.name == query);
 }

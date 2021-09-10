@@ -19,5 +19,9 @@ class UnitRawData {
 
   UnitRawData(this.id, this.name, this.maxNumber, this.actions, this.stats);
 
-  factory UnitRawData.fromJson(Map<String, dynamic> json) => _$UnitRawDataFromJson(json);
+  factory UnitRawData.fromJson(Map<String, dynamic> json) =>
+      _$UnitRawDataFromJson(json);
+
+  StatsByUnitNormalityMap? getUnitStats([String difficulty = '1']) =>
+      stats[difficulty];
 }

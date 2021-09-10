@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
@@ -9,6 +11,7 @@ import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
 import 'package:provider/provider.dart';
+import 'package:simple_tooltip/simple_tooltip.dart';
 
 import '../../di.dart';
 
@@ -179,8 +182,7 @@ class _Stats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final unit =
-        context.select<UnitStatsProvider, Unit>((provider) => provider.unit);
+    final unit = context.watch<UnitStatsProvider>().unit;
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -220,17 +222,142 @@ class _ButtonBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Color(0xFF741E1E),
-            ),
-            child: Text('Button bar'),
-          ),
-        )
+        _EndTurnButton(),
+        Container(
+          width: 50,
+        ),
+        _ActionButton(),
       ],
+    );
+  }
+}
+
+class _ActionButton extends StatelessWidget {
+  const _ActionButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.read<UnitStatsProvider>();
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CupertinoButton(
+          child: Icon(
+            Icons.remove,
+            size: 35,
+            color: Color(0xFF000000),
+          ),
+          onPressed: () => provider.minusActivity(),
+        ),
+        _ActionTypeSelector(),
+        CupertinoButton(
+          child: Icon(
+            Icons.add,
+            size: 35,
+            color: Color(0xFF000000),
+          ),
+          onPressed: () => provider.plusActivity(),
+        ),
+      ],
+    );
+  }
+}
+
+class _ActionTypeSelector extends StatefulWidget {
+  const _ActionTypeSelector({Key? key}) : super(key: key);
+
+  @override
+  __ActionTypeSelectorState createState() => __ActionTypeSelectorState();
+}
+
+class __ActionTypeSelectorState extends State<_ActionTypeSelector> {
+  late bool showTooltip;
+
+  @override
+  void initState() {
+    super.initState();
+    showTooltip = false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SimpleTooltip(
+      child: CupertinoButton(
+        padding: EdgeInsets.all(0),
+        onPressed: () => setState(() => showTooltip = !showTooltip),
+        child: Container(
+          width: 50,
+          height: 50,
+          padding: EdgeInsets.all(6.5),
+          child: Consumer<UnitStatsProvider>(
+            builder: (context, provider, child) {
+              return Image(
+                image: AssetImage(
+                  provider.selectedActivity.value,
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+      content: Row(
+        children: context
+            .read<UnitStatsProvider>()
+            .getAvailableActivities
+            .map(
+              (activity) => GestureDetector(
+                onTap: () {
+                  Provider.of<UnitStatsProvider>(context, listen: false)
+                      .selectedActivity = activity;
+                  setState(() {
+                    showTooltip = !showTooltip;
+                  });
+                },
+                child: Image(
+                  image: AssetImage(
+                    activity.value,
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+      ),
+      arrowLength: 8,
+      backgroundColor: Color(0xFF797979),
+      borderColor: Color(0xFF696969),
+      show: showTooltip,
+    );
+  }
+}
+
+class _EndTurnButton extends StatelessWidget {
+  const _EndTurnButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: CupertinoButton(
+        onPressed: () => print('End turn'),
+        child: Container(
+          child: Text(
+            'End turn',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFFFFFFFF),
+            ),
+          ),
+          width: 70,
+          padding: EdgeInsets.all(6.5),
+          decoration: BoxDecoration(
+            color: Color(0xFF9C0707),
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,15 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
+import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card/unit_stats_card.dart';
 import 'package:provider/provider.dart';
 
 class StatsScreen extends StatefulWidget {
   final UnitStack stack;
+  final Map<UnitNormality, UnitRawStats> defaultStats;
   static const backgroundImage = 'assets/images/ability_front_2.jpg';
 
-  const StatsScreen({Key? key, required this.stack}) : super(key: key);
+  const StatsScreen({
+    Key? key,
+    required this.stack,
+    required this.defaultStats,
+  }) : super(key: key);
 
   @override
   _StatsScreenState createState() => _StatsScreenState();
@@ -81,8 +88,16 @@ class _StatsScreenState extends State<StatsScreen>
 
   List<Widget> _unitCards() {
     return widget.stack.units.map((unit) {
+      final UnitRawStats? stats = unit.elite == true
+          ? widget.defaultStats[UnitNormality.elite]
+          : widget.defaultStats[UnitNormality.normal];
+
       return ChangeNotifierProvider(
-        create: (BuildContext context) => UnitStatsProvider(unit: unit),
+        create: (BuildContext context) => UnitStatsProvider(
+          unit: unit,
+          modifiers: widget.stack.actions.currentAction?.modifiers ?? {},
+          defaultStats: stats!,
+        ),
         child: UnitStatsCard(
           key: ValueKey(unit.number),
           width: 500,

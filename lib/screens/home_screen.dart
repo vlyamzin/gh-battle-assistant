@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gh_battle_assistant/back/game_data.dart';
+import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
+import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/unit_action_card.dart';
@@ -49,10 +53,21 @@ class HomeScreen extends StatelessWidget {
     return CupertinoPageRoute(builder: (_) => AddUnitScreen());
   }
 
-  PageRouteBuilder _unitStatsRoute(UnitStack unitStackProvider) {
-    return PageRouteBuilder(
-      pageBuilder: (_, __, ___) => StatsScreen(stack: unitStackProvider),
-    );
+  PageRouteBuilder _unitStatsRoute(UnitStack stack, GameData rawData) {
+    final Map<UnitNormality, UnitRawStats>? unitStats =
+        rawData.getUnitDataById(stack.type).getUnitStats(difficulty);
+
+    if (unitStats != null) {
+      return PageRouteBuilder(
+        pageBuilder: (_, __, ___) => StatsScreen(
+          stack: stack,
+          defaultStats: unitStats,
+        ),
+      );
+    } else
+      throw StateError(
+        'Cannot get unit stats for level $difficulty of unit ${stack.displayName}',
+      );
   }
 
   /// Create [GridView] widget with unit cards in it
@@ -60,6 +75,7 @@ class HomeScreen extends StatelessWidget {
     final cardWidth = _screenSize(context) / 2;
     final double cardHeight =
         MediaQuery.of(context).orientation == Orientation.portrait ? 300 : 400;
+    final rawData = context.read<GameData>();
 
     return Consumer<HomeScreenProvider>(
       builder: (context, provider, _) {
@@ -70,7 +86,7 @@ class HomeScreen extends StatelessWidget {
           children: provider.model.monsters.map((UnitStack stack) {
             return GestureDetector(
               onTap: () {
-                Navigator.of(context).push(_unitStatsRoute(stack));
+                Navigator.of(context).push(_unitStatsRoute(stack, rawData));
               },
               child: Hero(
                 tag: 'stats_${stack.type}',

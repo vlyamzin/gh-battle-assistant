@@ -1,4 +1,4 @@
-
+import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'unit.g.dart';
@@ -7,14 +7,16 @@ part 'unit.g.dart';
 class Unit {
   int? _number;
   late final String displayName;
-  late final int healthPoint;
-  late final int? shield;
-  late final int? attack;
-  late final int? range;
-  late final int? move;
-  late final int? retaliate;
+  late int healthPoint;
+  late int? shield;
+  late int? attack;
+  late int? range;
+  late int? move;
+  late int? retaliate;
   @JsonKey(defaultValue: [])
   late final List? perks;
+  @JsonKey(defaultValue: [])
+  late final List<ActivityType>? immune;
   late final bool? elite;
 
   Unit({
@@ -27,11 +29,18 @@ class Unit {
     this.move = 0,
     this.retaliate = 0,
     this.elite = false,
-    List? perks
+    List? perks,
+    List<ActivityType>? immune,
   }) {
     if (number != null) this._number = number;
-    if (perks == null) this.perks = [];
-    else this.perks = perks;
+    if (perks == null)
+      this.perks = [];
+    else
+      this.perks = perks;
+    if (immune == null)
+      this.immune = <ActivityType>[];
+    else
+      this.immune = immune;
   }
 
   factory Unit.fromJson(Map<String, dynamic> json) => _$UnitFromJson(json);

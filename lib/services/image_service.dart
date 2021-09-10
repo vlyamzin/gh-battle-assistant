@@ -1,3 +1,4 @@
+import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 
@@ -8,7 +9,7 @@ class ImageService {
   static const unitIconBaseUrl = 'assets/unit_icons/';
   static const iconsBaseUrl = 'assets/images/icons';
 
-  final _unitImageMap = <UnitType, String>{
+  static final _unitImageMap = <UnitType, String>{
     UnitType.ancientArtillery:
         '${ImageService.unitImageBaseUrl}Ancient-Artillery-214x300.jpg',
     UnitType.banditArcher:
@@ -94,7 +95,7 @@ class ImageService {
         '${ImageService.unitImageBaseUrl}Winged-Horror-214x300.jpg',
   };
 
-  final _unitPortraitMap = <UnitType, Map<UnitNormality, String>>{
+  static final _unitPortraitMap = <UnitType, Map<UnitNormality, String>>{
     UnitType.ancientArtillery: {
       UnitNormality.normal:
           '${ImageService.unitIconBaseUrl}Ancient_Artillery_normal_256.png',
@@ -161,13 +162,14 @@ class ImageService {
     // UnitType.wingedHorror: '${ImageService.unitIconBaseUrl}Winged-Horror-214x300.jpg',
   };
 
-  final _iconsMap32 = <String, String>{
+  static final _iconsMap32 = <String, String>{
     'ae': '$iconsBaseUrl/32/all_elements_32.png',
     'atk': '$iconsBaseUrl/32/attack_32.png',
     'dark': '$iconsBaseUrl/32/dark_32.png',
     'fire': '$iconsBaseUrl/32/fire_32.png',
     'frost': '$iconsBaseUrl/32/frost_32.png',
     'heal': '$iconsBaseUrl/32/heal_32.png',
+    'sfr': '$iconsBaseUrl/32/suffer_32.png',
     'ha': '$iconsBaseUrl/32/hit_area_32.png',
     'jmp': '$iconsBaseUrl/32/jump_32.png',
     'leaf': '$iconsBaseUrl/32/leaf_32.png',
@@ -216,13 +218,14 @@ class ImageService {
     '6pg': '$iconsBaseUrl/area/6_points_grey.png',
   };
 
-  final _iconsMap64 = <String, String>{
+  static final _iconsMap64 = <String, String>{
     'ae': '$iconsBaseUrl/64/all_elements_64.png',
     'atk': '$iconsBaseUrl/64/attack_64.png',
     'dark': '$iconsBaseUrl/64/dark_64.png',
     'fire': '$iconsBaseUrl/64/fire_64.png',
     'frost': '$iconsBaseUrl/64/frost_64.png',
     'heal': '$iconsBaseUrl/64/heal_64.png',
+    'sfr': '$iconsBaseUrl/64/suffer_64.png',
     'ha': '$iconsBaseUrl/64/hit_area_64.png',
     'jmp': '$iconsBaseUrl/64/jump_64.png',
     'leaf': '$iconsBaseUrl/64/leaf_64.png',
@@ -287,9 +290,46 @@ class ImageService {
     'wind': '$iconsBaseUrl/128/wind_128.png',
   };
 
+  final _attackEffects32 = {
+    ActivityType.attack: _iconsMap32['atk']!,
+    ActivityType.heal: _iconsMap32['heal']!,
+    ActivityType.suffer: _iconsMap32['sfr']!,
+    ActivityType.pierce: _iconsMap32['prc']!,
+    ActivityType.poison: _iconsMap32['poi']!,
+    ActivityType.wound: _iconsMap32['wnd']!,
+    ActivityType.disarm: _iconsMap32['darm']!,
+    ActivityType.stun: _iconsMap32['stn']!,
+    ActivityType.muddle: _iconsMap32['mud']!,
+    // ActivityType.curse: 'crs',
+    // ActivityType.bless: 'bless',
+    ActivityType.strengthen: _iconsMap32['str']!,
+  };
+
+  final _attackEffects64 = {
+    ActivityType.attack: _iconsMap64['atk']!,
+    ActivityType.heal: _iconsMap64['heal']!,
+    ActivityType.suffer: _iconsMap64['sfr']!,
+    ActivityType.pierce: _iconsMap64['prc']!,
+    ActivityType.poison: _iconsMap64['poi']!,
+    ActivityType.wound: _iconsMap64['wnd']!,
+    ActivityType.disarm: _iconsMap64['darm']!,
+    ActivityType.stun: _iconsMap64['stn']!,
+    ActivityType.muddle: _iconsMap64['mud']!,
+    // ActivityType.curse: 'crs',
+    // ActivityType.bless: 'bless',
+    ActivityType.strengthen: _iconsMap64['str']!,
+  };
+
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';
   String getUnitPortraitByType(UnitType type, UnitNormality normality) =>
       _unitPortraitMap[type]?[normality] ?? '';
+
+  Map<ActivityType, String> getAttackEffect([IconSize size = IconSize.s32]) {
+    if (size == IconSize.s64)
+      return _attackEffects64;
+    else
+      return _attackEffects32;
+  }
 
   String getIcon(String key, [IconSize size = IconSize.s32]) {
     switch (size) {
