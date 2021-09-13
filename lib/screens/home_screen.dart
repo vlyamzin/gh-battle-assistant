@@ -1,19 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
-import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_stack_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/unit_action_card.dart';
+import 'package:gh_battle_assistant/widgets/hero_stack_card/hero_stack_card.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -93,55 +90,16 @@ class HomeScreen extends StatelessWidget {
             return GestureDetector(
                 onTap: () =>
                     _navigateToUnitStatsScreen(context, stack, rawData),
-                child: Hero(
-                  tag: 'stats_${stack.type}',
-                  child: _initProviders(
-                    context: context,
-                    unitStack: stack,
-                    store: provider,
-                    child: UnitActionCard(
-                      key: ValueKey(stack.type),
-                      width: cardWidth,
-                      height: cardHeight,
-                    ),
-                  ),
+                child: HeroStackCard(
+                  stack: stack,
+                  cardWidth: cardWidth,
+                  cardHeight: cardHeight,
                 ));
           }).toList(),
           childWidth: cardWidth,
           childHeight: cardHeight,
         );
       },
-    );
-  }
-
-  Widget _initProviders({
-    required BuildContext context,
-    required UnitStack unitStack,
-    required HomeScreenProvider store,
-    required Widget child,
-  }) {
-    final gameDataProvider = context.read<GameData>();
-    final List<UnitRawAction> rawData =
-        gameDataProvider.getUnitDataById(unitStack.type).actions;
-    final unitStackProvider = UnitStackProvider(
-        store: store, unitStack: unitStack, gameData: gameDataProvider);
-
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<UnitStackProvider>.value(
-            value: unitStackProvider),
-        ChangeNotifierProvider<UnitActionProvider>(
-          create: (context) {
-            return UnitActionProvider(
-              actions: unitStack.actions,
-              store: store,
-              rawData: rawData,
-              stackProvider: unitStackProvider,
-            );
-          },
-        ),
-      ],
-      child: child,
     );
   }
 
