@@ -12,7 +12,8 @@ class HomeScreenProvider with ChangeNotifier {
   Home model;
   StreamController<HomeScreenEvents> _eventEmitter;
 
-  HomeScreenProvider({required this.model}): _eventEmitter = StreamController.broadcast();
+  HomeScreenProvider({required this.model})
+      : _eventEmitter = StreamController.broadcast();
 
   factory HomeScreenProvider.fromJson(Map<String, dynamic> json) {
     return HomeScreenProvider(model: Home.fromJson(json));

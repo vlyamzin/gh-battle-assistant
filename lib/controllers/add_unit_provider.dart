@@ -36,8 +36,7 @@ class AddUnitProvider {
     return MapEntry(unit!.id, unit!.name);
   }
 
-  UnitStack initUnitStack(
-      UnitType type, String unitName, Home gameModel) {
+  UnitStack initUnitStack(UnitType type, String unitName, Home gameModel) {
     var _stack = gameModel.getByType(type);
     stack = _stack != null
         ? UnitStack.copy(_stack)
@@ -92,6 +91,8 @@ class AddUnitProvider {
         shield: data.shield,
         attack: data.attack,
         move: data.move,
+        turnEnded: false,
+        retaliate: data.retaliate,
         range: data.range);
   }
 }

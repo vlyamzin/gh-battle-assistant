@@ -61,6 +61,7 @@ const _$ModifierTypeEnumMap = {
   ModifierType.health: 'health',
   ModifierType.shield: 'shield',
   ModifierType.retaliate: 'retaliate',
+  ModifierType.suffer: 'suffer',
 };
 
 RawActionValue _$RawActionValueFromJson(Map<String, dynamic> json) {

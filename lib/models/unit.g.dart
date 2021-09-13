@@ -16,12 +16,18 @@ Unit _$UnitFromJson(Map<String, dynamic> json) {
     range: json['range'] as int?,
     move: json['move'] as int?,
     retaliate: json['retaliate'] as int?,
+    suffer: json['suffer'] as int,
     elite: json['elite'] as bool,
+    turnEnded: json['turnEnded'] as bool,
     perks: json['perks'] as List<dynamic>? ?? [],
     immune: (json['immune'] as List<dynamic>?)
             ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
             .toList() ??
         [],
+    negativeEffects: (json['negativeEffects'] as List<dynamic>?)
+            ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+            .toSet() ??
+        {},
   );
 }
 
@@ -33,9 +39,14 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'range': instance.range,
       'move': instance.move,
       'retaliate': instance.retaliate,
+      'suffer': instance.suffer,
       'perks': instance.perks,
       'immune': instance.immune?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'negativeEffects': instance.negativeEffects
+          ?.map((e) => _$ActivityTypeEnumMap[e])
+          .toList(),
       'elite': instance.elite,
+      'turnEnded': instance.turnEnded,
       'number': instance.number,
     };
 

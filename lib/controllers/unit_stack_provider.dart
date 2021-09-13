@@ -42,6 +42,9 @@ class UnitStackProvider with ChangeNotifier {
               if (unit.retaliate != null)
                 unit.retaliate = unit.retaliate! + modifier.value;
               break;
+            case ModifierType.suffer:
+              unit.suffer = modifier.value;
+              break;
             default:
               break;
           }
@@ -67,9 +70,22 @@ class UnitStackProvider with ChangeNotifier {
 
         unit.perks?.clear();
         unit.perks?.addAll(_defaultStats![normality]?.perks ?? []);
+        unit.turnEnded = false;
       } catch (error) {
         print('Unit Stack Provider: Default stats error $error');
       }
+    });
+  }
+
+  void applyNegativeEffect() {
+    unitStack.units.where((unit) => !unit.turnEnded).forEach((unit) {
+      unit.applyWound();
+      unit.applyDisarm();
+      unit.applyMuddle();
+      unit.applyPeirce();
+      unit.applyStrengthen();
+      unit.applyStun();
+      unit.applySuffer();
     });
   }
 }

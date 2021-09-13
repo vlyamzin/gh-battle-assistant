@@ -13,11 +13,15 @@ class Unit {
   late int? range;
   late int? move;
   late int? retaliate;
+  late int suffer;
   @JsonKey(defaultValue: [])
   late final List? perks;
-  @JsonKey(defaultValue: [])
+  @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType>? immune;
+  @JsonKey(defaultValue: <ActivityType>{})
+  late final Set<ActivityType>? negativeEffects;
   late final bool elite;
+  late bool turnEnded;
 
   Unit({
     int? number,
@@ -28,9 +32,12 @@ class Unit {
     this.range = 0,
     this.move = 0,
     this.retaliate = 0,
+    this.suffer = 0,
     this.elite = false,
+    this.turnEnded = false,
     List? perks,
     List<ActivityType>? immune,
+    Set<ActivityType>? negativeEffects,
   }) {
     if (number != null) this._number = number;
     if (perks == null)
@@ -41,6 +48,10 @@ class Unit {
       this.immune = <ActivityType>[];
     else
       this.immune = immune;
+
+    negativeEffects == null
+        ? this.negativeEffects = <ActivityType>{}
+        : this.negativeEffects = negativeEffects;
   }
 
   factory Unit.fromJson(Map<String, dynamic> json) => _$UnitFromJson(json);
@@ -57,4 +68,25 @@ class Unit {
   }
 
   String toString() => 'Unit$number: $displayName';
+
+  void applyWound() {
+    if (negativeEffects?.contains(ActivityType.wound) == true) {
+      healthPoint -= 1;
+    }
+  }
+
+  void applySuffer() {
+    healthPoint -= suffer;
+    suffer = 0;
+  }
+
+  void applyStun() => negativeEffects?.remove(ActivityType.stun);
+
+  void applyMuddle() => negativeEffects?.remove(ActivityType.muddle);
+
+  void applyDisarm() => negativeEffects?.remove(ActivityType.disarm);
+
+  void applyPeirce() => negativeEffects?.remove(ActivityType.pierce);
+
+  void applyStrengthen() => negativeEffects?.remove(ActivityType.strengthen);
 }

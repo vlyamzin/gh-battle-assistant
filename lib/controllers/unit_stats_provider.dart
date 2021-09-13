@@ -39,6 +39,10 @@ class UnitStatsProvider with ChangeNotifier {
       ActivityType.muddle: _muddle,
       ActivityType.strengthen: _strengthen,
     };
+
+    this.activeEffects = Set.from(
+        unit.negativeEffects?.map((e) => Effect(e, defaultActivities[e]!)) ??
+            {});
   }
 
   /// List of all activities that can affect [Unit] stats this round
@@ -48,7 +52,7 @@ class UnitStatsProvider with ChangeNotifier {
 
   /// Set of active effects applied to [Unit]
   /// displays in ActiveEffects section of the [UnitStatsCard]
-  final Set<Effect> activeEffects = Set();
+  late final Set<Effect> activeEffects;
 
   /// Helper to proxy user action to a proper activity
   late final Map<ActivityType, Function> _activityHandlers;
@@ -81,29 +85,6 @@ class UnitStatsProvider with ChangeNotifier {
 
   // String getActivityIcon(String key) => di<ImageService>().getIcon(key);
 
-  /// DONT DO it here. Modifiers should apply on Home screen after new UnitAction is drawn
-  void _applyActionModifiers() {
-    modifiers.entries.forEach((modifier) {
-      switch (modifier.key) {
-        case ModifierType.attack:
-          if (unit.attack != null) unit.attack = unit.attack! + modifier.value;
-          break;
-        case ModifierType.health:
-          _deferredActivity[modifier.key] = modifier.value;
-          break;
-        case ModifierType.move:
-          if (unit.move != null) unit.move = unit.move! + modifier.value;
-          break;
-        case ModifierType.range:
-          if (unit.range != null) unit.range = unit.range! + modifier.value;
-
-          break;
-        default:
-          break;
-      }
-    });
-  }
-
   /// Check if unit has enough health point to be treated like alive
   bool get isUnitDead => unit.healthPoint <= 0;
 
@@ -116,7 +97,7 @@ class UnitStatsProvider with ChangeNotifier {
     else if (!isUnitDead)
       unit.healthPoint -= value;
     else {
-      // mark for remove
+      // TODO mark for remove
     }
 
     save();
@@ -171,14 +152,18 @@ class UnitStatsProvider with ChangeNotifier {
   void _strengthen(int value) => _toggleEffect(value, ActivityType.strengthen);
 
   void _toggleEffect(int value, ActivityType effectType) {
-    if (value > 0)
+    if (value > 0) {
       activeEffects.add(
         Effect(effectType, defaultActivities[effectType]!),
       );
-    else
+      unit.negativeEffects?.add(effectType);
+    } else {
       activeEffects.remove(
         Effect(effectType, defaultActivities[effectType]!),
       );
+      unit.negativeEffects?.remove(effectType);
+    }
+
     save();
   }
 }

@@ -29,11 +29,20 @@ class UnitActionProvider with ChangeNotifier {
 
     if (this.actions.currentAction == null) {
       _setAction();
+      stackProvider.applyModifiers(this.actions.currentAction!.modifiers);
       _saveChanges();
     }
   }
 
-  void refreshActions() {
+  void endRound() {
+    stackProvider.applyNegativeEffect();
+    _refreshActions();
+    stackProvider.refreshStatsToDefault();
+    stackProvider.applyModifiers(actions.currentAction!.modifiers);
+    _saveChanges();
+  }
+
+  void _refreshActions() {
     if (actions.currentAction != null &&
         actions.currentAction!.shouldRefresh == true) {
       _initAvailableIndexes();
@@ -41,17 +50,12 @@ class UnitActionProvider with ChangeNotifier {
     }
 
     _setAction();
-
-    stackProvider.refreshStatsToDefault();
-    stackProvider.applyModifiers(actions.currentAction!.modifiers);
-
-    _saveChanges();
   }
 
   void _subscribeToUpdates() {
     _subscription = this.store.event$.listen((event) {
       if (event == HomeScreenEvents.NEW_ACTIONS) {
-        refreshActions();
+        endRound();
       }
     });
   }
