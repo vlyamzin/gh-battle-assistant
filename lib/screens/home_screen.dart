@@ -44,32 +44,35 @@ class HomeScreen extends StatelessWidget {
       trailing: Container(
         child: CupertinoButton(
           padding: EdgeInsets.zero,
-          onPressed: () => Navigator.of(context).push(_addUnitRoute()),
+          onPressed: () => _navigateToAddUnitRoute(context),
           child: Text('Add Unit'),
         ),
       ),
     );
   }
 
-  /// Add extra route with [AddUnitScreen] widget
-  CupertinoPageRoute _addUnitRoute() {
-    return CupertinoPageRoute(builder: (_) => AddUnitScreen());
+  void _navigateToAddUnitRoute(BuildContext context) {
+    Navigator.of(context)
+        .push(CupertinoPageRoute(builder: (_) => AddUnitScreen()));
   }
 
-  PageRouteBuilder _unitStatsRoute(UnitStack stack, GameData rawData) {
+  void _navigateToUnitStatsScreen(
+      BuildContext context, UnitStack stackModel, GameData rawData) {
     final Map<UnitNormality, UnitRawStats>? unitStats =
-        rawData.getUnitDataById(stack.type).getUnitStats(difficulty);
+        rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
 
     if (unitStats != null) {
-      return PageRouteBuilder(
+      final route = PageRouteBuilder(
         pageBuilder: (_, __, ___) => StatsScreen(
-          stack: stack,
+          stack: stackModel,
           defaultStats: unitStats,
         ),
       );
+
+      Navigator.of(context).push(route);
     } else
       throw StateError(
-        'Cannot get unit stats for level $difficulty of unit ${stack.displayName}',
+        'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}',
       );
   }
 
@@ -88,9 +91,8 @@ class HomeScreen extends StatelessWidget {
           portrait: 2,
           children: provider.model.monsters.map((UnitStack stack) {
             return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(_unitStatsRoute(stack, rawData));
-                },
+                onTap: () =>
+                    _navigateToUnitStatsScreen(context, stack, rawData),
                 child: Hero(
                   tag: 'stats_${stack.type}',
                   child: _initProviders(
@@ -121,31 +123,23 @@ class HomeScreen extends StatelessWidget {
     final gameDataProvider = context.read<GameData>();
     final List<UnitRawAction> rawData =
         gameDataProvider.getUnitDataById(unitStack.type).actions;
+    final unitStackProvider = UnitStackProvider(
+        store: store, unitStack: unitStack, gameData: gameDataProvider);
 
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<UnitStackProvider>.value(
+            value: unitStackProvider),
         ChangeNotifierProvider<UnitActionProvider>(
           create: (context) {
             return UnitActionProvider(
-                actions: unitStack.actions, store: store, rawData: rawData);
+              actions: unitStack.actions,
+              store: store,
+              rawData: rawData,
+              stackProvider: unitStackProvider,
+            );
           },
         ),
-        ChangeNotifierProxyProvider<UnitActionProvider, UnitStackProvider>(
-          create: (context) {
-            return UnitStackProvider(
-                store: store, unitStack: unitStack, gameData: gameDataProvider);
-          },
-          update: (context, actionProvider, stackProvider) {
-            final currentAction = actionProvider.actions.currentAction;
-            stackProvider?.refreshStatsToDefault();
-            stackProvider?.applyModifiers(currentAction?.modifiers);
-            return stackProvider ??
-                UnitStackProvider(
-                    store: store,
-                    unitStack: unitStack,
-                    gameData: gameDataProvider);
-          },
-        )
       ],
       child: child,
     );

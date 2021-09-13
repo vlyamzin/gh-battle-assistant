@@ -57,7 +57,7 @@ class UnitStatsProvider with ChangeNotifier {
   MapEntry<ActivityType, String> selectedActivity = defaultActivities.entries
       .firstWhere((activity) => activity.key == ActivityType.attack);
 
-  /// Map of deffered activitied
+  /// Map of deferred activities
   final _deferredActivity = <ModifierType, int>{};
 
   /// Store files locally via [HomeScreenProvider]

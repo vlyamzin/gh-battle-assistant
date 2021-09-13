@@ -48,8 +48,6 @@ class UnitStackProvider with ChangeNotifier {
         });
       });
     }
-
-    store.saveToStorage();
   }
 
   void refreshStatsToDefault() {
