@@ -60,6 +60,7 @@ const _$ModifierTypeEnumMap = {
   ModifierType.move: 'move',
   ModifierType.health: 'health',
   ModifierType.shield: 'shield',
+  ModifierType.retaliate: 'retaliate',
 };
 
 GHAction _$GHActionFromJson(Map<String, dynamic> json) {

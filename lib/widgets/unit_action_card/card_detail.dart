@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
-import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_record/unit_action_record.dart';
 import 'package:provider/provider.dart';
 
@@ -37,7 +36,10 @@ class CardDetail extends StatelessWidget {
                 height: 25,
                 child: Builder(builder: (context) {
                   if (action != null && action.shouldRefresh == true) {
-                    return Center(child: Image(image: AssetImage('${iconPath}64/refresh_64.png'),));
+                    return Center(
+                        child: Image(
+                      image: AssetImage('${iconPath}64/refresh_64.png'),
+                    ));
                   } else {
                     return Container();
                   }

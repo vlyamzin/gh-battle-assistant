@@ -24,4 +24,8 @@ class UnitRawData {
 
   StatsByUnitNormalityMap? getUnitStats([String difficulty = '1']) =>
       stats[difficulty];
+
+  UnitRawStats? getUnitStatsByNormality(UnitNormality normality,
+          [String difficulty = '1']) =>
+      stats[difficulty]?[normality];
 }

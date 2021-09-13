@@ -1,34 +1,25 @@
-import 'dart:async';
-
+import 'package:flutter/cupertino.dart';
+import 'package:gh_battle_assistant/back/game_data.dart';
+import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
-import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 
-class UnitStackProvider {
+class UnitStackProvider with ChangeNotifier {
   final UnitStack unitStack;
   final HomeScreenProvider store;
-  late StreamSubscription _subscription;
+  final GameData gameData;
+  late final StatsByUnitNormalityMap? _defaultStats;
 
   UnitStackProvider({
     required this.unitStack,
     required this.store,
-  }) {
-    _subscribeToUpdates();
-  }
+    required this.gameData,
+  }) : _defaultStats = gameData.getUnitDataById(unitStack.type).getUnitStats();
 
-  void _subscribeToUpdates() {
-    _subscription = this.store.event$.listen((event) {
-      if (event == HomeScreenEvents.NEW_ACTIONS) {
-        _applyModifiers();
-      }
-    });
-  }
-
-  void _applyModifiers() {
-    final modifiers = unitStack.actions.currentAction?.modifiers;
-
+  void applyModifiers(Map<ModifierType, int>? modifiers) {
     if (modifiers != null) {
       modifiers.entries.forEach((modifier) {
         unitStack.units.forEach((Unit unit) {
@@ -61,7 +52,26 @@ class UnitStackProvider {
     store.saveToStorage();
   }
 
-  void dispose() {
-    _subscription.cancel();
+  void refreshStatsToDefault() {
+    if (_defaultStats == null)
+      throw StateError(
+          'Unit Stack Provider: Default unit stats are not defined');
+
+    unitStack.units.forEach((unit) {
+      final normality = unit.elite ? UnitNormality.elite : UnitNormality.normal;
+
+      try {
+        unit.attack = _defaultStats![normality]!.attack;
+        unit.range = _defaultStats![normality]!.range;
+        unit.move = _defaultStats![normality]!.move;
+        unit.shield = _defaultStats![normality]!.shield;
+        unit.retaliate = _defaultStats![normality]!.retaliate;
+
+        unit.perks?.clear();
+        unit.perks?.addAll(_defaultStats![normality]?.perks ?? []);
+      } catch (error) {
+        print('Unit Stack Provider: Default stats error $error');
+      }
+    });
   }
 }

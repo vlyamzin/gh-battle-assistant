@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
+import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
+import 'package:gh_battle_assistant/controllers/unit_stack_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
@@ -85,24 +88,66 @@ class HomeScreen extends StatelessWidget {
           portrait: 2,
           children: provider.model.monsters.map((UnitStack stack) {
             return GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(_unitStatsRoute(stack, rawData));
-              },
-              child: Hero(
-                tag: 'stats_${stack.type}',
-                child: UnitActionCard(
-                  key: ValueKey(stack.type),
-                  stack: stack,
-                  width: cardWidth,
-                  height: cardHeight,
-                ),
-              ),
-            );
+                onTap: () {
+                  Navigator.of(context).push(_unitStatsRoute(stack, rawData));
+                },
+                child: Hero(
+                  tag: 'stats_${stack.type}',
+                  child: _initProviders(
+                    context: context,
+                    unitStack: stack,
+                    store: provider,
+                    child: UnitActionCard(
+                      key: ValueKey(stack.type),
+                      width: cardWidth,
+                      height: cardHeight,
+                    ),
+                  ),
+                ));
           }).toList(),
           childWidth: cardWidth,
           childHeight: cardHeight,
         );
       },
+    );
+  }
+
+  Widget _initProviders({
+    required BuildContext context,
+    required UnitStack unitStack,
+    required HomeScreenProvider store,
+    required Widget child,
+  }) {
+    final gameDataProvider = context.read<GameData>();
+    final List<UnitRawAction> rawData =
+        gameDataProvider.getUnitDataById(unitStack.type).actions;
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UnitActionProvider>(
+          create: (context) {
+            return UnitActionProvider(
+                actions: unitStack.actions, store: store, rawData: rawData);
+          },
+        ),
+        ChangeNotifierProxyProvider<UnitActionProvider, UnitStackProvider>(
+          create: (context) {
+            return UnitStackProvider(
+                store: store, unitStack: unitStack, gameData: gameDataProvider);
+          },
+          update: (context, actionProvider, stackProvider) {
+            final currentAction = actionProvider.actions.currentAction;
+            stackProvider?.refreshStatsToDefault();
+            stackProvider?.applyModifiers(currentAction?.modifiers);
+            return stackProvider ??
+                UnitStackProvider(
+                    store: store,
+                    unitStack: unitStack,
+                    gameData: gameDataProvider);
+          },
+        )
+      ],
+      child: child,
     );
   }
 

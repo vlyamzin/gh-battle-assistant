@@ -17,7 +17,7 @@ class Unit {
   late final List? perks;
   @JsonKey(defaultValue: [])
   late final List<ActivityType>? immune;
-  late final bool? elite;
+  late final bool elite;
 
   Unit({
     int? number,
