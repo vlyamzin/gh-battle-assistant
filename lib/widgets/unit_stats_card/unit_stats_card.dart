@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
@@ -69,15 +67,29 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
   Widget _leftSide() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         _UnitPortrait(
           unitNumber: widget.unit.number!,
           type: widget.type,
-          normality: (widget.unit.elite != null && widget.unit.elite == true)
+          normality: (widget.unit.elite == true)
               ? UnitNormality.elite
               : UnitNormality.normal,
         ),
-        _ActiveEffects(),
+        Flexible(
+          flex: 2,
+          child: Container(
+            decoration: BoxDecoration(border: Border.all()),
+            child: Expanded(
+              child: Column(
+                children: [
+                  _ActiveEffects(),
+                  _ImmuneEffects(),
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -87,11 +99,6 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       children: [
         Expanded(flex: 7, child: _StatsBar()),
         Expanded(flex: 3, child: _ButtonBar()),
-        // Stats bar
-        // Stats
-        // Attack effects
-        // Button bar
-        // Buttons
       ],
     );
   }
@@ -149,15 +156,84 @@ class _ActiveEffects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 2,
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color(0xFF666666),
-        ),
-        child: Text('Active Effects'),
+    return Container(
+        padding: EdgeInsets.all(8.0),
+        child: Selector<UnitStatsProvider, Set<Effect>>(
+          selector: (_, statsProvider) => statsProvider.activeEffects,
+          shouldRebuild: (oldState, newState) =>
+              oldState.length != newState.length,
+          builder: (_, effects, __) => Wrap(
+            alignment: WrapAlignment.spaceEvenly,
+            direction: Axis.horizontal,
+            children: [
+              Center(
+                child: Text(
+                  'Active effects',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Nyala',
+                  ),
+                ),
+              ),
+              ...effects
+                  .map((Effect e) => SizedBox(
+                        width: 40,
+                        height: 40,
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Image(
+                            image: AssetImage(e.iconShortcut),
+                          ),
+                        ),
+                      ))
+                  .toList(),
+            ],
+          ),
+        ));
+  }
+}
+
+class _ImmuneEffects extends StatelessWidget {
+  const _ImmuneEffects({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final immuneList = context.read<UnitStatsProvider>().immuneEffects;
+
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      child: Wrap(
+        alignment: WrapAlignment.spaceEvenly,
+        direction: Axis.horizontal,
+        children: [
+          Center(
+            child: Text(
+              'Immune to',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Nyala',
+              ),
+            ),
+          ),
+          ..._list(immuneList),
+        ],
       ),
     );
+  }
+
+  List<Widget> _list(List<Effect?> immuneList) {
+    return immuneList
+        .map((e) => SizedBox(
+              width: 40,
+              height: 40,
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: e != null
+                    ? Image(image: AssetImage(e.iconShortcut))
+                    : Container(),
+              ),
+            ))
+        .toList();
   }
 }
 

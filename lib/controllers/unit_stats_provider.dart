@@ -10,7 +10,7 @@ import '../di.dart';
 
 typedef DefaultStats = UnitRawStats;
 
-/// Controller that is responsible for stats_screen business logic and other manipulations
+/// Controller that is responsible for [StatsScreen] business logic and other manipulations
 /// Implements [ChangeNotifier] Provider
 class UnitStatsProvider with ChangeNotifier {
   final Unit unit;
@@ -52,7 +52,7 @@ class UnitStatsProvider with ChangeNotifier {
 
   /// Set of active effects applied to [Unit]
   /// displays in ActiveEffects section of the [UnitStatsCard]
-  late final Set<Effect> activeEffects;
+  late Set<Effect> activeEffects;
 
   /// Helper to proxy user action to a proper activity
   late final Map<ActivityType, Function> _activityHandlers;
@@ -72,6 +72,14 @@ class UnitStatsProvider with ChangeNotifier {
   Iterable<MapEntry<ActivityType, String>> get getAvailableActivities {
     return defaultActivities.entries
         .where((activity) => !unit.immune!.contains(activity.key));
+  }
+
+  /// Return List of immune effects
+  /// This list is rendered in 'Immune to' section of [UnitStatsCard]
+  List<Effect?> get immuneEffects {
+    return unit.immune != null
+        ? unit.immune!.map((e) => Effect(e, defaultActivities[e]!)).toList()
+        : [];
   }
 
   /// Increase activity status
@@ -150,11 +158,14 @@ class UnitStatsProvider with ChangeNotifier {
 
   void _toggleEffect(int value, ActivityType effectType) {
     if (value > 0) {
-      activeEffects.add(
-        Effect(effectType, defaultActivities[effectType]!),
-      );
+      activeEffects = {
+        ...activeEffects,
+        Effect(effectType, defaultActivities[effectType]!)
+      };
       unit.negativeEffects?.add(effectType);
     } else {
+      // hack for Provider.Selector
+      activeEffects = {...activeEffects};
       activeEffects.remove(
         Effect(effectType, defaultActivities[effectType]!),
       );
@@ -162,6 +173,7 @@ class UnitStatsProvider with ChangeNotifier {
     }
 
     save();
+    notifyListeners();
   }
 }
 
