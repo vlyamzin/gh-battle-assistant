@@ -14,8 +14,8 @@ class Unit {
   late int? move;
   late int? retaliate;
   late int suffer;
-  @JsonKey(defaultValue: [])
-  late final List? perks;
+  @JsonKey(defaultValue: <ActivityType>[])
+  late final List<ActivityType>? perks;
   @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType>? immune;
   @JsonKey(defaultValue: <ActivityType>{})
@@ -35,7 +35,7 @@ class Unit {
     this.suffer = 0,
     this.elite = false,
     this.turnEnded = false,
-    List? perks,
+    List<ActivityType>? perks,
     List<ActivityType>? immune,
     Set<ActivityType>? negativeEffects,
   }) {
@@ -54,6 +54,42 @@ class Unit {
         : this.negativeEffects = negativeEffects;
   }
 
+  factory Unit.fromRawData({
+    int? number,
+    required displayName,
+    required healthPoint,
+    shield = 0,
+    attack = 0,
+    range = 0,
+    move = 0,
+    retaliate = 0,
+    suffer = 0,
+    elite = false,
+    turnEnded = false,
+    List<String>? perks,
+    List<String>? immune,
+    Set<ActivityType>? negativeEffects,
+  }) {
+    var sPerks = serializeRawData(perks);
+    var sImmune = serializeRawData(immune);
+
+    return Unit(
+      displayName: displayName,
+      healthPoint: healthPoint,
+      number: number,
+      shield: shield,
+      attack: attack,
+      range: range,
+      move: move,
+      retaliate: retaliate,
+      suffer: suffer,
+      elite: elite,
+      negativeEffects: negativeEffects,
+      perks: sPerks,
+      immune: sImmune,
+    );
+  }
+
   factory Unit.fromJson(Map<String, dynamic> json) => _$UnitFromJson(json);
 
   Map<String, dynamic> toJson() => _$UnitToJson(this);
@@ -69,6 +105,18 @@ class Unit {
 
   String toString() => 'Unit$number: $displayName';
 
+  void applyNegativeEffects() {
+    applyWound();
+    applyDisarm();
+    applyMuddle();
+    applyPeirce();
+    applyStrengthen();
+    applyStun();
+    applySuffer();
+    applyInvisible();
+    applyImmobilize();
+  }
+
   void applyWound() {
     if (negativeEffects?.contains(ActivityType.wound) == true) {
       healthPoint -= 1;
@@ -82,6 +130,10 @@ class Unit {
 
   void applyStun() => negativeEffects?.remove(ActivityType.stun);
 
+  void applyInvisible() => negativeEffects?.remove(ActivityType.invisible);
+
+  void applyImmobilize() => negativeEffects?.remove(ActivityType.immobilize);
+
   void applyMuddle() => negativeEffects?.remove(ActivityType.muddle);
 
   void applyDisarm() => negativeEffects?.remove(ActivityType.disarm);
@@ -89,4 +141,41 @@ class Unit {
   void applyPeirce() => negativeEffects?.remove(ActivityType.pierce);
 
   void applyStrengthen() => negativeEffects?.remove(ActivityType.strengthen);
+
+  static List<ActivityType>? serializeRawData(List<String>? list) {
+    return list?.map((value) {
+      switch (value) {
+        case 'pierce':
+          return ActivityType.pierce;
+        case 'poison':
+          return ActivityType.poison;
+        case 'wound':
+          return ActivityType.wound;
+        case 'disarm':
+          return ActivityType.stun;
+        case 'immobilize':
+          return ActivityType.immobilize;
+        case 'muddle':
+          return ActivityType.muddle;
+        case 'curse':
+          return ActivityType.curse;
+        case 'bless':
+          return ActivityType.bless;
+        case 'invisible':
+          return ActivityType.invisible;
+        case 'strengthen':
+          return ActivityType.strengthen;
+        case 'target_2':
+          return ActivityType.target_2;
+        case 'target_3':
+          return ActivityType.target_3;
+        case 'target_4':
+          return ActivityType.target_4;
+        case 'target_all':
+          return ActivityType.target_all;
+        default:
+          return ActivityType.none;
+      }
+    }).toList();
+  }
 }

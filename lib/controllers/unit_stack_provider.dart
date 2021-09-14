@@ -69,7 +69,10 @@ class UnitStackProvider with ChangeNotifier {
         unit.retaliate = _defaultStats![normality]!.retaliate;
 
         unit.perks?.clear();
-        unit.perks?.addAll(_defaultStats![normality]?.perks ?? []);
+        unit.perks?.addAll(
+            Unit.serializeRawData(_defaultStats![normality]?.perks) ?? []);
+        unit.immune?.addAll(
+            Unit.serializeRawData(_defaultStats![normality]?.immune) ?? []);
         unit.turnEnded = false;
       } catch (error) {
         print('Unit Stack Provider: Default stats error $error');
@@ -78,14 +81,8 @@ class UnitStackProvider with ChangeNotifier {
   }
 
   void applyNegativeEffect() {
-    unitStack.units.where((unit) => !unit.turnEnded).forEach((unit) {
-      unit.applyWound();
-      unit.applyDisarm();
-      unit.applyMuddle();
-      unit.applyPeirce();
-      unit.applyStrengthen();
-      unit.applyStun();
-      unit.applySuffer();
-    });
+    unitStack.units
+        .where((unit) => !unit.turnEnded)
+        .forEach((unit) => unit.applyNegativeEffects());
   }
 }

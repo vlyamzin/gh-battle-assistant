@@ -1,4 +1,5 @@
 enum ActivityType {
+  none,
   attack,
   heal,
   suffer,
@@ -7,8 +8,14 @@ enum ActivityType {
   wound,
   disarm,
   stun,
+  immobilize,
   muddle,
   curse,
   bless,
-  strengthen
+  strengthen,
+  target_2,
+  target_3,
+  target_4,
+  target_all,
+  invisible,
 }

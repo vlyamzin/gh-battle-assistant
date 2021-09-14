@@ -19,7 +19,10 @@ Unit _$UnitFromJson(Map<String, dynamic> json) {
     suffer: json['suffer'] as int,
     elite: json['elite'] as bool,
     turnEnded: json['turnEnded'] as bool,
-    perks: json['perks'] as List<dynamic>? ?? [],
+    perks: (json['perks'] as List<dynamic>?)
+            ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+            .toList() ??
+        [],
     immune: (json['immune'] as List<dynamic>?)
             ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
             .toList() ??
@@ -40,7 +43,7 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'move': instance.move,
       'retaliate': instance.retaliate,
       'suffer': instance.suffer,
-      'perks': instance.perks,
+      'perks': instance.perks?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
       'immune': instance.immune?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
       'negativeEffects': instance.negativeEffects
           ?.map((e) => _$ActivityTypeEnumMap[e])
@@ -77,6 +80,7 @@ K _$enumDecode<K, V>(
 }
 
 const _$ActivityTypeEnumMap = {
+  ActivityType.none: 'none',
   ActivityType.attack: 'attack',
   ActivityType.heal: 'heal',
   ActivityType.suffer: 'suffer',
@@ -85,8 +89,14 @@ const _$ActivityTypeEnumMap = {
   ActivityType.wound: 'wound',
   ActivityType.disarm: 'disarm',
   ActivityType.stun: 'stun',
+  ActivityType.immobilize: 'immobilize',
   ActivityType.muddle: 'muddle',
   ActivityType.curse: 'curse',
   ActivityType.bless: 'bless',
   ActivityType.strengthen: 'strengthen',
+  ActivityType.target_2: 'target_2',
+  ActivityType.target_3: 'target_3',
+  ActivityType.target_4: 'target_4',
+  ActivityType.target_all: 'target_all',
+  ActivityType.invisible: 'invisible',
 };

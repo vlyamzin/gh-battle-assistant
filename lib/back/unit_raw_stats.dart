@@ -10,7 +10,10 @@ class UnitRawStats {
   final int? attack;
   final int? range;
   final int? retaliate;
-  final List<String> perks;
+  @JsonKey(defaultValue: <String>[])
+  final List<String>? perks;
+  @JsonKey(defaultValue: <String>[])
+  final List<String>? immune;
 
   UnitRawStats(
     this.health,
@@ -20,6 +23,7 @@ class UnitRawStats {
     this.range,
     this.retaliate,
     this.perks,
+    this.immune,
   );
 
   factory UnitRawStats.fromJson(Map<String, dynamic> json) =>

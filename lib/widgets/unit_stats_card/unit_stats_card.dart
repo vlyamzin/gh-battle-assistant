@@ -80,13 +80,11 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
           flex: 2,
           child: Container(
             decoration: BoxDecoration(border: Border.all()),
-            child: Expanded(
-              child: Column(
-                children: [
-                  _ActiveEffects(),
-                  _ImmuneEffects(),
-                ],
-              ),
+            child: Column(
+              children: [
+                _ActiveEffects(),
+                _ImmuneEffects(),
+              ],
             ),
           ),
         ),

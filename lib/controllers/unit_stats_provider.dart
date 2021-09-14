@@ -38,6 +38,8 @@ class UnitStatsProvider with ChangeNotifier {
       ActivityType.stun: _stun,
       ActivityType.muddle: _muddle,
       ActivityType.strengthen: _strengthen,
+      ActivityType.immobilize: _immobilize,
+      ActivityType.invisible: _invisible,
     };
 
     this.activeEffects = Set.from(
@@ -150,11 +152,24 @@ class UnitStatsProvider with ChangeNotifier {
     _toggleEffect(value, ActivityType.disarm);
   }
 
+  void _immobilize(int value) {
+    if (value > 0) {
+      unit.move = 0;
+    } else {
+      if (defaultStats.move != null) {
+        unit.move = defaultStats.move! + (modifiers[ModifierType.move] ?? 0);
+      }
+    }
+    _toggleEffect(value, ActivityType.immobilize);
+  }
+
   void _stun(int value) => _toggleEffect(value, ActivityType.stun);
 
   void _muddle(int value) => _toggleEffect(value, ActivityType.muddle);
 
   void _strengthen(int value) => _toggleEffect(value, ActivityType.strengthen);
+
+  void _invisible(int value) => _toggleEffect(value, ActivityType.invisible);
 
   void _toggleEffect(int value, ActivityType effectType) {
     if (value > 0) {

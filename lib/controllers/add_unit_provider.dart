@@ -84,15 +84,18 @@ class AddUnitProvider {
   }
 
   Unit _createUnit(String name, UnitRawStats data, bool elite) {
-    return Unit(
-        elite: elite,
-        displayName: name,
-        healthPoint: data.health,
-        shield: data.shield,
-        attack: data.attack,
-        move: data.move,
-        turnEnded: false,
-        retaliate: data.retaliate,
-        range: data.range);
+    return Unit.fromRawData(
+      elite: elite,
+      displayName: name,
+      healthPoint: data.health,
+      shield: data.shield,
+      attack: data.attack,
+      move: data.move,
+      turnEnded: false,
+      retaliate: data.retaliate,
+      range: data.range,
+      perks: data.perks,
+      immune: data.immune,
+    );
   }
 }

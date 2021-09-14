@@ -192,7 +192,7 @@ class ImageService {
     'crs': '$iconsBaseUrl/32/curse_32.png',
     'darm': '$iconsBaseUrl/32/disarm_32.png',
     'fl': '$iconsBaseUrl/32/flight_32.png',
-    'imbz': '$iconsBaseUrl/32/immobilze_32.png',
+    'imbz': '$iconsBaseUrl/32/immobilize_32.png',
     'inv': '$iconsBaseUrl/32/invis_32.png',
     'mud': '$iconsBaseUrl/32/muddle_32.png',
     'prc': '$iconsBaseUrl/32/pierce_32.png',
@@ -248,7 +248,7 @@ class ImageService {
     'crs': '$iconsBaseUrl/64/curse_64.png',
     'darm': '$iconsBaseUrl/64/disarm_64.png',
     'fl': '$iconsBaseUrl/64/flight_64.png',
-    'imbz': '$iconsBaseUrl/64/immobilze_64.png',
+    'imbz': '$iconsBaseUrl/64/immobilize_64.png',
     'inv': '$iconsBaseUrl/64/invis_64.png',
     'mud': '$iconsBaseUrl/64/muddle_64.png',
     'prc': '$iconsBaseUrl/64/pierce_64.png',
@@ -303,6 +303,8 @@ class ImageService {
     // ActivityType.curse: 'crs',
     // ActivityType.bless: 'bless',
     ActivityType.strengthen: _iconsMap32['str']!,
+    ActivityType.immobilize: _iconsMap32['imbz']!,
+    ActivityType.invisible: _iconsMap32['inv']!,
   };
 
   final _attackEffects64 = {
@@ -318,6 +320,8 @@ class ImageService {
     // ActivityType.curse: 'crs',
     // ActivityType.bless: 'bless',
     ActivityType.strengthen: _iconsMap64['str']!,
+    ActivityType.immobilize: _iconsMap64['imbz']!,
+    ActivityType.invisible: _iconsMap64['inv']!,
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';
