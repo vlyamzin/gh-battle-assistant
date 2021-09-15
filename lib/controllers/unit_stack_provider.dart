@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
@@ -53,6 +54,12 @@ class UnitStackProvider with ChangeNotifier {
     }
   }
 
+  void applyPerks(List<ActivityType>? perks) {
+    if (perks != null) {
+      unitStack.units.forEach((unit) => unit.perks?.addAll(perks));
+    }
+  }
+
   void refreshStatsToDefault() {
     if (_defaultStats == null)
       throw StateError(
@@ -71,8 +78,6 @@ class UnitStackProvider with ChangeNotifier {
         unit.perks?.clear();
         unit.perks?.addAll(
             Unit.serializeRawData(_defaultStats![normality]?.perks) ?? []);
-        unit.immune?.addAll(
-            Unit.serializeRawData(_defaultStats![normality]?.immune) ?? []);
         unit.turnEnded = false;
       } catch (error) {
         print('Unit Stack Provider: Default stats error $error');

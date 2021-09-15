@@ -161,6 +161,8 @@ class Unit {
           return ActivityType.curse;
         case 'bless':
           return ActivityType.bless;
+        case 'stun':
+          return ActivityType.stun;
         case 'invisible':
           return ActivityType.invisible;
         case 'strengthen':
@@ -174,7 +176,7 @@ class Unit {
         case 'target_all':
           return ActivityType.target_all;
         default:
-          return ActivityType.none;
+          throw Exception('Serialize raw data exception');
       }
     }).toList();
   }

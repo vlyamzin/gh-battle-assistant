@@ -18,7 +18,9 @@
             "move": 3,
             "attack": 3,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         },
         "1": {
@@ -34,7 +36,9 @@
             "move": 4,
             "attack": 3,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         },
         "2": {
@@ -50,7 +54,9 @@
             "move": 4,
             "attack": 4,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         },
         "3": {
@@ -59,14 +65,19 @@
             "move": 3,
             "attack": 3,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           },
           "elite": {
             "health": 18,
             "move": 4,
             "attack": 4,
             "range": null,
-            "perks": ["poison", "disadvantage"]
+            "perks": [
+              "poison",
+              "disadvantage"
+            ]
           }
         },
         "4": {
@@ -75,14 +86,19 @@
             "move": 4,
             "attack": 4,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           },
           "elite": {
             "health": 21,
             "move": 4,
             "attack": 5,
             "range": null,
-            "perks": ["poison", "disadvantage"]
+            "perks": [
+              "poison",
+              "disadvantage"
+            ]
           }
         },
         "5": {
@@ -91,14 +107,19 @@
             "move": 4,
             "attack": 4,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           },
           "elite": {
             "health": 25,
             "move": 4,
             "attack": 5,
             "range": null,
-            "perks": ["poison", "disadvantage"]
+            "perks": [
+              "poison",
+              "disadvantage"
+            ]
           }
         },
         "6": {
@@ -107,14 +128,19 @@
             "move": 4,
             "attack": 4,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           },
           "elite": {
             "health": 28,
             "move": 4,
             "attack": 6,
             "range": null,
-            "perks": ["poison", "disadvantage"]
+            "perks": [
+              "poison",
+              "disadvantage"
+            ]
           }
         },
         "7": {
@@ -123,14 +149,19 @@
             "move": 4,
             "attack": 5,
             "range": null,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           },
           "elite": {
             "health": 32,
             "move": 5,
             "attack": 6,
             "range": null,
-            "perks": ["poison", "disadvantage"]
+            "perks": [
+              "poison",
+              "disadvantage"
+            ]
           }
         }
       },
@@ -228,7 +259,9 @@
             "move": null,
             "attack": 4,
             "range": 6,
-            "perks": ["target_2"]
+            "perks": [
+              "target_2"
+            ]
           }
         },
         "5": {
@@ -246,7 +279,9 @@
             "move": null,
             "attack": 4,
             "range": 7,
-            "perks": ["target_2"]
+            "perks": [
+              "target_2"
+            ]
           }
         },
         "6": {
@@ -264,7 +299,9 @@
             "move": null,
             "attack": 5,
             "range": 7,
-            "perks": ["target_2"]
+            "perks": [
+              "target_2"
+            ]
           }
         },
         "7": {
@@ -282,7 +319,9 @@
             "move": null,
             "attack": 5,
             "range": 7,
-            "perks": ["target_2"]
+            "perks": [
+              "target_2"
+            ]
           }
         }
       },
@@ -410,7 +449,9 @@
           "modifier": {
             "attack": -1
           },
-          "perks": ["immobilize"]
+          "perks": [
+            "immobilize"
+          ]
         }
       ]
     },
@@ -506,7 +547,9 @@
             "move": 3,
             "attack": 4,
             "range": 6,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         },
         "5": {
@@ -524,7 +567,9 @@
             "move": 4,
             "attack": 4,
             "range": 6,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         },
         "6": {
@@ -542,7 +587,9 @@
             "move": 4,
             "attack": 5,
             "range": 6,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         },
         "7": {
@@ -560,10 +607,11 @@
             "move": 4,
             "attack": 5,
             "range": 6,
-            "perks": ["poison"]
+            "perks": [
+              "poison"
+            ]
           }
         }
-
       },
       "actions": [
         {
@@ -644,7 +692,9 @@
           "modifier": {
             "attack": -1
           },
-          "perks": ["target_2"]
+          "perks": [
+            "target_2"
+          ]
         },
         {
           "initiative": 68,
@@ -694,7 +744,9 @@
             "range": 1,
             "move": 0
           },
-          "perks": ["immobilize"]
+          "perks": [
+            "immobilize"
+          ]
         }
       ]
     },
@@ -790,7 +842,9 @@
             "move": 3,
             "attack": 4,
             "range": null,
-            "perks": ["muddle"]
+            "perks": [
+              "muddle"
+            ]
           }
         },
         "5": {
@@ -808,7 +862,9 @@
             "move": 3,
             "attack": 5,
             "range": null,
-            "perks": ["muddle"]
+            "perks": [
+              "muddle"
+            ]
           }
         },
         "6": {
@@ -826,7 +882,9 @@
             "move": 3,
             "attack": 5,
             "range": null,
-            "perks": ["muddle"]
+            "perks": [
+              "muddle"
+            ]
           }
         },
         "7": {
@@ -844,7 +902,9 @@
             "move": 3,
             "attack": 5,
             "range": null,
-            "perks": ["muddle"]
+            "perks": [
+              "muddle"
+            ]
           }
         }
       },
@@ -863,7 +923,9 @@
           "modifier": {
             "shield": 1
           },
-          "perks": ["retaliate_2"]
+          "perks": [
+            "retaliate_2"
+          ]
         },
         {
           "initiative": 30,
@@ -966,7 +1028,9 @@
             "attack": 0,
             "move": -1
           },
-          "perks": ["strengthen"]
+          "perks": [
+            "strengthen"
+          ]
         },
         {
           "initiative": 15,
@@ -984,7 +1048,9 @@
             "attack": 0,
             "shield": 1
           },
-          "perks": ["poison"]
+          "perks": [
+            "poison"
+          ]
         }
       ]
     }

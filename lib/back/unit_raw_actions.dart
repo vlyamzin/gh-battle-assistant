@@ -9,10 +9,19 @@ class UnitRawAction {
   final bool shouldRefresh;
   final List<RawActionValue> values;
   final Map<ModifierType, int> modifier;
+  @JsonKey(defaultValue: <String>[])
+  final List<String>? perks;
 
-  UnitRawAction(this.initiative, this.shouldRefresh, this.values, this.modifier);
+  UnitRawAction(
+    this.initiative,
+    this.shouldRefresh,
+    this.values,
+    this.modifier,
+    this.perks,
+  );
 
-  factory UnitRawAction.fromJson(Map<String, dynamic> json) => _$UnitRawActionFromJson(json);
+  factory UnitRawAction.fromJson(Map<String, dynamic> json) =>
+      _$UnitRawActionFromJson(json);
 }
 
 @JsonSerializable()
@@ -23,5 +32,6 @@ class RawActionValue {
 
   RawActionValue(this.title, this.subtitle, this.area);
 
-  factory RawActionValue.fromJson(Map<String, dynamic> json) => _$RawActionValueFromJson(json);
+  factory RawActionValue.fromJson(Map<String, dynamic> json) =>
+      _$RawActionValueFromJson(json);
 }

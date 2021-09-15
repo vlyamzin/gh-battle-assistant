@@ -30,6 +30,7 @@ class UnitActionProvider with ChangeNotifier {
     if (this.actions.currentAction == null) {
       _setAction();
       stackProvider.applyModifiers(this.actions.currentAction!.modifiers);
+      stackProvider.applyPerks(this.actions.currentAction!.perks);
       _saveChanges();
     }
   }
@@ -39,6 +40,7 @@ class UnitActionProvider with ChangeNotifier {
     _refreshActions();
     stackProvider.refreshStatsToDefault();
     stackProvider.applyModifiers(actions.currentAction!.modifiers);
+    stackProvider.applyPerks(actions.currentAction!.perks);
     _saveChanges();
   }
 

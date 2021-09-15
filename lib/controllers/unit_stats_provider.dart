@@ -84,6 +84,14 @@ class UnitStatsProvider with ChangeNotifier {
         : [];
   }
 
+  /// Return List of attack effects
+  /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
+  List<Effect?> get attackEffects {
+    return unit.perks != null
+        ? unit.perks!.map((p) => Effect(p, defaultActivities[p]!)).toList()
+        : [];
+  }
+
   /// Increase activity status
   void plusActivity() => _activityHandlers[selectedActivity.key]!(1);
 

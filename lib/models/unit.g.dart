@@ -80,7 +80,6 @@ K _$enumDecode<K, V>(
 }
 
 const _$ActivityTypeEnumMap = {
-  ActivityType.none: 'none',
   ActivityType.attack: 'attack',
   ActivityType.heal: 'heal',
   ActivityType.suffer: 'suffer',

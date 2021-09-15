@@ -244,8 +244,8 @@ class _StatsBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(child: _Stats()),
-        _AttackEffect(),
+        Expanded(flex: 2, child: _Stats()),
+        Flexible(flex: 1, child: _AttackEffect()),
       ],
     );
   }
@@ -281,12 +281,45 @@ class _AttackEffect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final attackEffectList = context.read<UnitStatsProvider>().attackEffects;
+
     return Container(
+      padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: Color(0xFF666666),
+        border: Border.all(),
       ),
-      child: Text('Attack Effects'),
+      child: Wrap(
+        alignment: WrapAlignment.spaceEvenly,
+        direction: Axis.horizontal,
+        children: [
+          Center(
+            child: Text(
+              'Attack effects',
+              style: TextStyle(
+                fontSize: 18,
+                fontFamily: 'Nyala',
+              ),
+            ),
+          ),
+          ..._list(attackEffectList)
+        ],
+      ),
     );
+  }
+
+  List<Widget> _list(List<Effect?> attackEffectList) {
+    return attackEffectList
+        .map((e) => SizedBox(
+              width: 40,
+              height: 40,
+              child: Padding(
+                padding: const EdgeInsets.all(2.0),
+                child: e != null
+                    ? Image(image: AssetImage(e.iconShortcut))
+                    : Container(),
+              ),
+            ))
+        .toList();
   }
 }
 

@@ -1,5 +1,4 @@
 enum ActivityType {
-  none,
   attack,
   heal,
   suffer,
