@@ -37,7 +37,7 @@ class HomeScreenProvider with ChangeNotifier {
   void addMonsterStack(UnitStack data) {
     var stack = model.getByType(data.type);
     if (stack != null)
-      stack = data;
+      model.update(data);
     else
       model.add(data);
 

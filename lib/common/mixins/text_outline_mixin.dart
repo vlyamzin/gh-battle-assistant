@@ -1,8 +1,8 @@
 import 'dart:collection';
 import 'dart:ui';
 
+/// Outlines a text using shadows.
 class TextOutline {
-  /// Outlines a text using shadows.
   List<Shadow> outlinedText({
     double strokeWidth = 2,
     Color strokeColor = const Color(0xFF000000),

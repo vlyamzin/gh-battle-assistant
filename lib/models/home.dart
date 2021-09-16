@@ -10,8 +10,7 @@ class Home {
 
   Home({List<UnitStack>? monsters}) : this._monsters = monsters ?? [];
 
-  factory Home.fromJson(Map<String, dynamic> json) =>
-      _$HomeFromJson(json);
+  factory Home.fromJson(Map<String, dynamic> json) => _$HomeFromJson(json);
 
   Map<String, dynamic> toJson() => _$HomeToJson(this);
 
@@ -31,5 +30,10 @@ class Home {
 
   void remove(UnitType id) {
     _monsters.removeWhere((element) => element.type == id);
+  }
+
+  void update(UnitStack data) {
+    var index = _monsters.indexWhere((m) => m.type == data.type);
+    _monsters[index] = UnitStack.copy(data);
   }
 }
