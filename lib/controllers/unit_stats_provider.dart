@@ -107,6 +107,17 @@ class UnitStatsProvider with ChangeNotifier {
   /// Public getter for [_counter] value
   int get counter => _counter;
 
+  /// Check if unit has enough health point to be treated like alive
+  bool get isUnitDead => unit.healthPoint <= 0;
+
+  /// Check if unit has Poison [ActivityType]
+  bool get isPoisoned =>
+      unit.negativeEffects?.contains(ActivityType.poison) ?? false;
+
+  /// Check if unit has Wound [ActivityType]
+  bool get isWounded =>
+      unit.negativeEffects?.contains(ActivityType.wound) ?? false;
+
   /// Handler to user action of activity selection from the available pull
   void selectActivity(MapEntry<ActivityType, String> activity) {
     selectedActivity = activity;
@@ -142,20 +153,17 @@ class UnitStatsProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  /// Check if unit has enough health point to be treated like alive
-  bool get isUnitDead => unit.healthPoint <= 0;
-
   /// Regular attack activity.
   /// Changes [Unit] healthPoint
   /// Can be blocked by shield
   void _attack(int value) {
+    if (isPoisoned) value += 1;
+
     if (unit.shield != null && unit.shield! > 0)
       unit.shield = unit.shield! + value;
-    else if (!isUnitDead)
-      unit.healthPoint -= value;
-    else {
-      // TODO mark for remove [03357dff2866b00df7c9f443e0cad241]
-    }
+    else if (!isUnitDead) unit.healthPoint -= value;
+
+    // TODO check for dead and remove if so [03357dff2866b00df7c9f443e0cad241]
 
     save();
   }
@@ -164,6 +172,13 @@ class UnitStatsProvider with ChangeNotifier {
   /// Works opposite to suffer damage activity
   /// Increases the number of [Unit] health point
   void _heal(int value) {
+    _toggleEffect(-1, ActivityType.wound);
+
+    if (isPoisoned) {
+      _toggleEffect(-1, ActivityType.poison);
+      return;
+    }
+
     unit.healthPoint += value;
     save();
   }

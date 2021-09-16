@@ -267,7 +267,8 @@ class _Stats extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _StatsRecord(text: 'Health: ${unit.healthPoint}'),
+          _StatsRecord(
+              text: 'Health: ${unit.healthPoint > 0 ? unit.healthPoint : 0}'),
           _StatsRecord(text: 'Shield: ${unit.shield ?? '0'}'),
           _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
           _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
@@ -440,15 +441,18 @@ class _ActionButton extends StatelessWidget {
           Flexible(
             flex: 1,
             child: _ActivityButton(
-              child: CupertinoButton(
-                padding: EdgeInsets.all(0),
-                child:
-                    Selector<UnitStatsProvider, MapEntry<ActivityType, String>>(
-                  builder: (_, activity, __) =>
-                      Image(image: AssetImage(activity.value)),
-                  selector: (_, provider) => provider.selectedActivity,
+              child: GestureDetector(
+                child: Container(
+                  padding: EdgeInsets.all(0),
+                  child: Selector<UnitStatsProvider,
+                      MapEntry<ActivityType, String>>(
+                    builder: (_, activity, __) =>
+                        Image(image: AssetImage(activity.value)),
+                    selector: (_, provider) => provider.selectedActivity,
+                  ),
                 ),
-                onPressed: () => provider.applyActivity(),
+                onTap: () => provider.applyActivity(),
+                onLongPress: () => print('LOng press'),
               ),
             ),
           ),
