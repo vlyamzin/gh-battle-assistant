@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
+import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
@@ -266,13 +267,35 @@ class _Stats extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(child: Text('Health: ${unit.healthPoint}')),
-          Container(child: Text('Shield: ${unit.shield ?? '-'}')),
-          Container(child: Text('Move: ${unit.move ?? '-'}')),
-          Container(child: Text('Attack: ${unit.attack ?? '-'}')),
-          Container(child: Text('Range: ${unit.range ?? '-'}')),
-          Container(child: Text('Retaliate: ${unit.retaliate ?? '-'}')),
+          _StatsRecord(text: 'Health: ${unit.healthPoint}'),
+          _StatsRecord(text: 'Shield: ${unit.shield ?? '0'}'),
+          _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
+          _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
+          _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
+          _StatsRecord(text: 'Retaliate: ${unit.retaliate ?? '0'}'),
         ],
+      ),
+    );
+  }
+}
+
+class _StatsRecord extends StatelessWidget with TextOutline {
+  const _StatsRecord({Key? key, required this.text}) : super(key: key);
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        text,
+        style: TextStyle(
+            fontFamily: 'Nyala',
+            fontSize: 22,
+            shadows: outlinedText(
+              strokeColor: Color(0xFFD0D0D0),
+              strokeWidth: 1,
+            )),
       ),
     );
   }

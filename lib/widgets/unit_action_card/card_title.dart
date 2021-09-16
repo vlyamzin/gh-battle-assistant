@@ -2,10 +2,11 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/controllers/unit_action_provider.dart';
 import 'package:provider/provider.dart';
 
-class CardTitle extends StatelessWidget {
+class CardTitle extends StatelessWidget with TextOutline {
   final String title;
   const CardTitle({Key? key, required this.title}) : super(key: key);
 
@@ -22,10 +23,7 @@ class CardTitle extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               title,
-              style: TextStyle(
-                fontSize: 25,
-                fontFamily: 'PirataOne'
-              ),
+              style: TextStyle(fontSize: 25, fontFamily: 'PirataOne'),
             ),
           ),
         ),
@@ -38,7 +36,13 @@ class CardTitle extends StatelessWidget {
                 final action = provider.actions.currentAction ?? null;
                 return Text(
                   action != null ? action.initiative.toString() : '',
-                  style: TextStyle(fontSize: 25, fontFamily: 'PirataOne', shadows: _outlinedText(strokeColor: Color(0xFFFFFFFF))),
+                  style: TextStyle(
+                    fontSize: 25,
+                    fontFamily: 'PirataOne',
+                    shadows: outlinedText(
+                      strokeColor: Color(0xFFFFFFFF),
+                    ),
+                  ),
                 );
               },
             ),
@@ -46,21 +50,5 @@ class CardTitle extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  /// Outlines a text using shadows.
-  static List<Shadow> _outlinedText({double strokeWidth = 2, Color strokeColor = Colors.black, int precision = 5}) {
-    Set<Shadow> result = HashSet();
-    for (int x = 1; x < strokeWidth + precision; x++) {
-      for(int y = 1; y < strokeWidth + precision; y++) {
-        double offsetX = x.toDouble();
-        double offsetY = y.toDouble();
-        result.add(Shadow(offset: Offset(-strokeWidth / offsetX, -strokeWidth / offsetY), color: strokeColor));
-        result.add(Shadow(offset: Offset(-strokeWidth / offsetX, strokeWidth / offsetY), color: strokeColor));
-        result.add(Shadow(offset: Offset(strokeWidth / offsetX, -strokeWidth / offsetY), color: strokeColor));
-        result.add(Shadow(offset: Offset(strokeWidth / offsetX, strokeWidth / offsetY), color: strokeColor));
-      }
-    }
-    return result.toList();
   }
 }
