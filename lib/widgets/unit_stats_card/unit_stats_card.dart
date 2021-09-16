@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
+import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
+import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
@@ -95,8 +97,8 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
   Widget _rightSide() {
     return Column(
       children: [
-        Expanded(flex: 7, child: _StatsBar()),
-        Expanded(flex: 3, child: _ButtonBar()),
+        Expanded(child: _StatsBar()),
+        _ButtonBar(),
       ],
     );
   }
@@ -328,16 +330,62 @@ class _ButtonBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        _EndTurnButton(),
-        Container(
-          width: 50,
+    return SizedBox(
+      height: 90,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+        decoration: BoxDecoration(border: Border.all()),
+        margin: EdgeInsets.fromLTRB(5, 5, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _ActivitySelector(),
+            Container(
+              width: 1,
+              decoration: BoxDecoration(
+                  border: Border(
+                left: BorderSide(width: 1),
+              )),
+            ),
+            _ActionButton(),
+          ],
         ),
-        _ActionButton(),
-      ],
+      ),
+    );
+  }
+}
+
+class _ActivitySelector extends StatelessWidget {
+  const _ActivitySelector({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final provider = context.read<UnitStatsProvider>();
+
+    return Expanded(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: provider.availableActivities
+              .map(
+                (activity) => GestureDetector(
+                  onTap: () => provider.selectActivity(activity),
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    padding: EdgeInsets.all(5),
+                    child: Image(
+                      image: AssetImage(
+                        activity.value,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+              .toList(),
+        ),
+      ),
     );
   }
 }
@@ -349,122 +397,77 @@ class _ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.read<UnitStatsProvider>();
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CupertinoButton(
-          child: Icon(
-            Icons.remove,
-            size: 35,
-            color: Color(0xFF000000),
-          ),
-          onPressed: () => provider.minusActivity(),
-        ),
-        _ActionTypeSelector(),
-        CupertinoButton(
-          child: Icon(
-            Icons.add,
-            size: 35,
-            color: Color(0xFF000000),
-          ),
-          onPressed: () => provider.plusActivity(),
-        ),
-      ],
-    );
-  }
-}
-
-class _ActionTypeSelector extends StatefulWidget {
-  const _ActionTypeSelector({Key? key}) : super(key: key);
-
-  @override
-  __ActionTypeSelectorState createState() => __ActionTypeSelectorState();
-}
-
-class __ActionTypeSelectorState extends State<_ActionTypeSelector> {
-  late bool showTooltip;
-
-  @override
-  void initState() {
-    super.initState();
-    showTooltip = false;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SimpleTooltip(
-      child: CupertinoButton(
-        padding: EdgeInsets.all(0),
-        onPressed: () => setState(() => showTooltip = !showTooltip),
-        child: Container(
-          width: 50,
-          height: 50,
-          padding: EdgeInsets.all(6.5),
-          child: Consumer<UnitStatsProvider>(
-            builder: (context, provider, child) {
-              return Image(
-                image: AssetImage(
-                  provider.selectedActivity.value,
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-      content: Row(
-        children: context
-            .read<UnitStatsProvider>()
-            .getAvailableActivities
-            .map(
-              (activity) => GestureDetector(
-                onTap: () {
-                  Provider.of<UnitStatsProvider>(context, listen: false)
-                      .selectedActivity = activity;
-                  setState(() {
-                    showTooltip = !showTooltip;
-                  });
-                },
-                child: Image(
-                  image: AssetImage(
-                    activity.value,
-                  ),
-                ),
+    return SizedBox(
+      width: 160,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Flexible(
+            flex: 1,
+            child: CupertinoButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(
+                Icons.remove,
+                size: 35,
+                color: Color(0xFF000000),
               ),
-            )
-            .toList(),
-      ),
-      arrowLength: 8,
-      backgroundColor: Color(0xFF797979),
-      borderColor: Color(0xFF696969),
-      show: showTooltip,
-    );
-  }
-}
-
-class _EndTurnButton extends StatelessWidget {
-  const _EndTurnButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: CupertinoButton(
-        onPressed: () => print('End turn'),
-        child: Container(
-          child: Text(
-            'End turn',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFFFFFFFF),
+              onPressed: () => provider.minusActivity(),
             ),
           ),
-          width: 70,
-          padding: EdgeInsets.all(6.5),
-          decoration: BoxDecoration(
-            color: Color(0xFF9C0707),
-            borderRadius: BorderRadius.circular(15),
+          Flexible(
+            flex: 1,
+            child: _ActivityButton(
+              child: CupertinoButton(
+                padding: EdgeInsets.all(0),
+                child:
+                    Selector<UnitStatsProvider, MapEntry<ActivityType, String>>(
+                  builder: (_, activity, __) =>
+                      Image(image: AssetImage(activity.value)),
+                  selector: (_, provider) => provider.selectedActivity,
+                ),
+                onPressed: () => provider.applyActivity(),
+              ),
+            ),
           ),
-        ),
+          Flexible(
+            flex: 1,
+            child: CupertinoButton(
+              padding: EdgeInsets.all(0),
+              child: Icon(
+                Icons.add,
+                size: 35,
+                color: Color(0xFF000000),
+              ),
+              onPressed: () => provider.plusActivity(),
+            ),
+          ),
+        ],
       ),
+    );
+  }
+}
+
+class _ActivityButton extends StatelessWidget {
+  const _ActivityButton({Key? key, required this.child}) : super(key: key);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ActivityTooltipProvider>(
+      builder: (context, provider, child) => SimpleTooltip(
+        child: child!,
+        content: Text(
+          provider.message,
+          style: TextStyle(
+              fontFamily: 'Nyala', fontSize: 28, color: Color(0xFFFFFFFF)),
+        ),
+        show: provider.showTooltip,
+        arrowLength: 8,
+        backgroundColor: Color(0xFF797979),
+        borderColor: Color(0xFF696969),
+      ),
+      child: child,
     );
   }
 }

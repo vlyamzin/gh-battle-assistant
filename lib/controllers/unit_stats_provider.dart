@@ -52,12 +52,24 @@ class UnitStatsProvider with ChangeNotifier {
   static final EffectMap defaultActivities =
       di<ImageService>().getAttackEffect(IconSize.s64);
 
+  /// Define [ActivityType] types that are countable
+  /// It means the counter for these types can be bigger than -1, 0, 1
+  Set<ActivityType> _countable = const <ActivityType>{
+    ActivityType.attack,
+    ActivityType.heal,
+    ActivityType.pierce,
+    ActivityType.suffer
+  };
+
   /// Set of active effects applied to [Unit]
   /// displays in ActiveEffects section of the [UnitStatsCard]
   late Set<Effect> activeEffects;
 
   /// Helper to proxy user action to a proper activity
   late final Map<ActivityType, Function> _activityHandlers;
+
+  /// Counter for plus/minus buttons
+  int _counter = 0;
 
   /// Selected activity. Defines which attack type will be made
   MapEntry<ActivityType, String> selectedActivity = defaultActivities.entries
@@ -71,7 +83,7 @@ class UnitStatsProvider with ChangeNotifier {
 
   /// Return List of activities that are not blocked by unit immunity
   /// This list is being used in activity selection tooltip
-  Iterable<MapEntry<ActivityType, String>> get getAvailableActivities {
+  Iterable<MapEntry<ActivityType, String>> get availableActivities {
     return defaultActivities.entries
         .where((activity) => !unit.immune!.contains(activity.key));
   }
@@ -92,13 +104,43 @@ class UnitStatsProvider with ChangeNotifier {
         : [];
   }
 
+  /// Public getter for [_counter] value
+  int get counter => _counter;
+
+  /// Handler to user action of activity selection from the available pull
+  void selectActivity(MapEntry<ActivityType, String> activity) {
+    selectedActivity = activity;
+    _counter = 0;
+    notifyListeners();
+  }
+
   /// Increase activity status
-  void plusActivity() => _activityHandlers[selectedActivity.key]!(1);
+  // void plusActivity() => _activityHandlers[selectedActivity.key]!(1);
+  void plusActivity() {
+    if (_countable.contains(selectedActivity.key)) {
+      _counter += 1;
+    } else {
+      _counter = 1;
+    }
+    notifyListeners();
+  }
 
   /// Decrease activity status
-  void minusActivity() => _activityHandlers[selectedActivity.key]!(-1);
+  void minusActivity() {
+    if (_countable.contains(selectedActivity.key)) {
+      _counter = _counter > 0 ? _counter - 1 : 0;
+    } else {
+      _counter = -1;
+    }
+    notifyListeners();
+  }
 
-  // String getActivityIcon(String key) => di<ImageService>().getIcon(key);
+  /// Apply [_counter] value for selected activity
+  void applyActivity() {
+    _activityHandlers[selectedActivity.key]!(_counter);
+    _counter = 0;
+    notifyListeners();
+  }
 
   /// Check if unit has enough health point to be treated like alive
   bool get isUnitDead => unit.healthPoint <= 0;
@@ -112,7 +154,7 @@ class UnitStatsProvider with ChangeNotifier {
     else if (!isUnitDead)
       unit.healthPoint -= value;
     else {
-      // TODO mark for remove
+      // TODO mark for remove [03357dff2866b00df7c9f443e0cad241]
     }
 
     save();
@@ -186,7 +228,7 @@ class UnitStatsProvider with ChangeNotifier {
         Effect(effectType, defaultActivities[effectType]!)
       };
       unit.negativeEffects?.add(effectType);
-    } else {
+    } else if (value < 0) {
       // hack for Provider.Selector
       activeEffects = {...activeEffects};
       activeEffects.remove(
@@ -200,6 +242,7 @@ class UnitStatsProvider with ChangeNotifier {
   }
 }
 
+// TODO Move into a separate file in model/ folder [069640eea5965a350fea04bebaceedb9]
 typedef EffectMap = Map<ActivityType, String>;
 typedef EffectMapEntry = MapEntry<ActivityType, String>;
 
