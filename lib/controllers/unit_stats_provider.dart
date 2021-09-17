@@ -197,8 +197,6 @@ class UnitStatsProvider with ChangeNotifier {
   ///   damage = 3 + 0 - (1 - 2) = 4
   ///   healthPoint = 5 - 4 = 1
   void _attack(int value) {
-    // if (isPoisoned) value += 1;
-
     var damagedShield = unit.shield - unit.pierced;
 
     while (damagedShield > 0 && value > 0) {
@@ -213,8 +211,6 @@ class UnitStatsProvider with ChangeNotifier {
 
     unit.healthPoint -= value;
     unit.pierced = 0;
-
-    // TODO check for dead and remove if so [03357dff2866b00df7c9f443e0cad241]
 
     save();
   }

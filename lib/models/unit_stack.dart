@@ -93,10 +93,12 @@ class UnitStack {
     maxNumber = maxNumber! - 1;
   }
 
-  /// Removes [Unit] object from the lust of [units]
+  /// Removes [Unit] object from the list of [units]
+  /// Return number back into [availableNumbersPull]
   /// Increases the maximum unit number
   void removeUnit(int number) {
     units.removeWhere((element) => element.number == number);
+    availableNumbersPull.add(number);
     maxNumber = maxNumber! + 1;
   }
 

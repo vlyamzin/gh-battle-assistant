@@ -4,7 +4,6 @@ import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_stack_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
@@ -22,14 +21,16 @@ class UnitStatsCard extends StatefulWidget {
   final double width, height;
   final UnitType type;
   final Unit unit;
+  final VoidCallback onRemove;
 
-  const UnitStatsCard(
-      {Key? key,
-      required this.width,
-      required this.height,
-      required this.unit,
-      required this.type})
-      : super(key: key);
+  const UnitStatsCard({
+    Key? key,
+    required this.width,
+    required this.height,
+    required this.unit,
+    required this.type,
+    required this.onRemove,
+  }) : super(key: key);
 
   @override
   _UnitStatsCardState createState() => _UnitStatsCardState();
@@ -38,15 +39,17 @@ class UnitStatsCard extends StatefulWidget {
 class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
   @override
   Widget build(BuildContext context) {
-    return AnimatedFlipCard(
-      animation: super.animation,
-      key: widget.key,
-      frontSideChild: _body(),
-      frontActionCallback: super.animationForward,
-      backSideChild: UnitActionCardBackSide(
-        title: '${widget.unit.displayName} ${widget.unit.number}',
-        backButtonCallback: super.animationBackward,
-        deleteButtonCallback: () => print('Delete unit'),
+    return _unitDeadListener(
+      child: AnimatedFlipCard(
+        animation: super.animation,
+        key: widget.key,
+        frontSideChild: _body(),
+        frontActionCallback: super.animationForward,
+        backSideChild: UnitActionCardBackSide(
+          title: '${widget.unit.displayName} ${widget.unit.number}',
+          backButtonCallback: super.animationBackward,
+          deleteButtonCallback: () => widget.onRemove(),
+        ),
       ),
     );
   }
@@ -102,6 +105,17 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
         Expanded(child: _StatsBar()),
         _ButtonBar(),
       ],
+    );
+  }
+
+  Widget _unitDeadListener({Widget? child}) {
+    return Selector<UnitStatsProvider, bool>(
+      builder: (_, shouldRemove, child) {
+        if (shouldRemove) widget.onRemove();
+        return child ?? Container();
+      },
+      selector: (_, controller) => controller.isUnitDead,
+      child: child,
     );
   }
 }
