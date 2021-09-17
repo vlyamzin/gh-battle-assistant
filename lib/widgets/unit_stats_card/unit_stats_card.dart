@@ -4,6 +4,7 @@ import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
+import 'package:gh_battle_assistant/controllers/unit_stack_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
@@ -259,22 +260,34 @@ class _Stats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final unit = context.watch<UnitStatsProvider>().unit;
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          _StatsRecord(
-              text: 'Health: ${unit.healthPoint > 0 ? unit.healthPoint : 0}'),
-          _StatsRecord(text: 'Shield: ${unit.shield ?? '0'}'),
-          _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
-          _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
-          _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
-          _StatsRecord(text: 'Retaliate: ${unit.retaliate ?? '0'}'),
-        ],
+      child: Consumer<UnitStatsProvider>(
+        builder: (_, controller, __) {
+          var unit = controller.unit;
+
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _StatsRecord(
+                text: 'Health: ${unit.healthPoint > 0 ? unit.healthPoint : 0}',
+              ),
+              controller.isPierced
+                  ? _StatsRecordWithIcon(
+                      label: 'Shield: ',
+                      iconPath: di<ImageService>()
+                          .getAttackEffect(IconSize.s32)[ActivityType.pierce]!,
+                      value: unit.shield.toString(),
+                    )
+                  : _StatsRecord(text: 'Shield: ${unit.shield}'),
+              _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
+              _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
+              _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
+              _StatsRecord(text: 'Retaliate: ${unit.retaliate ?? '0'}'),
+            ],
+          );
+        },
       ),
     );
   }
@@ -298,6 +311,49 @@ class _StatsRecord extends StatelessWidget with TextOutline {
               strokeWidth: 1,
             )),
       ),
+    );
+  }
+}
+
+class _StatsRecordWithIcon extends StatelessWidget with TextOutline {
+  const _StatsRecordWithIcon({
+    Key? key,
+    required this.label,
+    required this.iconPath,
+    required this.value,
+  }) : super(key: key);
+
+  final String label;
+  final String iconPath;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final textStyle = TextStyle(
+        fontFamily: 'Nyala',
+        fontSize: 22,
+        shadows: outlinedText(
+          strokeColor: Color(0xFFD0D0D0),
+          strokeWidth: 1,
+        ));
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          label,
+          style: textStyle,
+        ),
+        Container(
+          width: 30,
+          height: 30,
+          child: Image(image: AssetImage(iconPath)),
+        ),
+        Text(
+          value,
+          style: textStyle,
+        )
+      ],
     );
   }
 }

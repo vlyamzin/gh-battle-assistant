@@ -8,12 +8,13 @@ class Unit {
   int? _number;
   late final String displayName;
   late int healthPoint;
-  late int? shield;
+  late int shield;
   late int? attack;
   late int? range;
   late int? move;
   late int? retaliate;
   late int suffer;
+  late int pierced;
   @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType>? perks;
   @JsonKey(defaultValue: <ActivityType>[])
@@ -33,6 +34,7 @@ class Unit {
     this.move = 0,
     this.retaliate = 0,
     this.suffer = 0,
+    this.pierced = 0,
     this.elite = false,
     this.turnEnded = false,
     List<ActivityType>? perks,
@@ -64,6 +66,7 @@ class Unit {
     move = 0,
     retaliate = 0,
     suffer = 0,
+    pierced = 0,
     elite = false,
     turnEnded = false,
     List<String>? perks,
@@ -83,6 +86,7 @@ class Unit {
       move: move,
       retaliate: retaliate,
       suffer: suffer,
+      pierced: pierced,
       elite: elite,
       negativeEffects: negativeEffects,
       perks: sPerks,
@@ -138,7 +142,10 @@ class Unit {
 
   void applyDisarm() => negativeEffects?.remove(ActivityType.disarm);
 
-  void applyPeirce() => negativeEffects?.remove(ActivityType.pierce);
+  void applyPeirce() {
+    negativeEffects?.remove(ActivityType.pierce);
+    pierced = 0;
+  }
 
   void applyStrengthen() => negativeEffects?.remove(ActivityType.strengthen);
 

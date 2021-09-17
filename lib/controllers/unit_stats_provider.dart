@@ -118,6 +118,9 @@ class UnitStatsProvider with ChangeNotifier {
   bool get isWounded =>
       unit.negativeEffects?.contains(ActivityType.wound) ?? false;
 
+  /// Check if unit has Pierce [ActivityType]
+  bool get isPierced => unit.pierced > 0;
+
   /// Handler to user action of activity selection from the available pull
   void selectActivity(MapEntry<ActivityType, String> activity) {
     selectedActivity = activity;
@@ -154,14 +157,62 @@ class UnitStatsProvider with ChangeNotifier {
   }
 
   /// Regular attack activity.
-  /// Changes [Unit] healthPoint
-  /// Can be blocked by shield
+  /// Changes [Unit.healthPoint] and/or [Unit.shield]
+  /// Can be affected by [ActivityType.poison] or [ActivityType.pierce]
+  ///
+  /// Example 1:
+  /// Unit has:
+  ///   healthPoint: 5
+  ///   shield: 4
+  /// Attack is:
+  ///   pierce: 2
+  ///   attack: 3
+  /// Result will be:
+  ///   damage = attack + poison + (shield - pierce)
+  ///   damage = 3 + 0 - (4 - 2) = 1
+  ///   healthPoint = 5 - 1 = 4
+  ///
+  /// Example 2:
+  /// Unit has:
+  ///   healthPoint: 5
+  ///   shield: 6
+  /// Attack is:
+  ///   pierce: 2
+  ///   attack: 3
+  /// Result will be:
+  ///   damage = attack + poison + (shield - pierce)
+  ///   damage = 3 + 0 - (6 - 2) = -1
+  ///   healthPoint = 5 (as damage is less than 0)
+  ///
+  ///
+  /// Example 3:
+  /// Unit has:
+  ///   healthPoint: 5
+  ///   shield: 1
+  /// Attack is:
+  ///   pierce: 2
+  ///   attack: 3
+  /// Result will be:
+  ///   damage = attack + poison + (shield - pierce)
+  ///   damage = 3 + 0 - (1 - 2) = 4
+  ///   healthPoint = 5 - 4 = 1
   void _attack(int value) {
-    if (isPoisoned) value += 1;
+    // if (isPoisoned) value += 1;
 
-    if (unit.shield != null && unit.shield! > 0)
-      unit.shield = unit.shield! + value;
-    else if (!isUnitDead) unit.healthPoint -= value;
+    var damagedShield = unit.shield - unit.pierced;
+
+    while (damagedShield > 0 && value > 0) {
+      damagedShield--;
+      value--;
+    }
+
+    if (damagedShield >= 0)
+      unit.shield = damagedShield + unit.pierced;
+    else
+      value += -damagedShield;
+
+    unit.healthPoint -= value;
+    unit.pierced = 0;
 
     // TODO check for dead and remove if so [03357dff2866b00df7c9f443e0cad241]
 
@@ -193,11 +244,14 @@ class UnitStatsProvider with ChangeNotifier {
   }
 
   /// Piece attack activity
-  /// damage only [Unit] shield
+  /// Modify [Unit.pierced] value
+  /// Define how much damage will pass through [Unit.shield]
   /// Refreshes after the end of round
   void _pierceAttack(int value) {
-    if (unit.shield != null && unit.shield! > 0)
-      unit.shield = unit.shield! - value;
+    // unit.negativeEffects?.add(ActivityType.pierce);
+    unit.pierced = value;
+    // if (unit.shield != null && unit.shield! > 0)
+    //   unit.shield = unit.shield! - value;
     save();
   }
 

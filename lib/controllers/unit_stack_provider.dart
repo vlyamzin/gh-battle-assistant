@@ -36,8 +36,7 @@ class UnitStackProvider with ChangeNotifier {
               if (unit.range != null) unit.range = unit.range! + modifier.value;
               break;
             case ModifierType.shield:
-              if (unit.shield != null)
-                unit.shield = unit.shield! + modifier.value;
+              unit.shield = unit.shield + modifier.value;
               break;
             case ModifierType.retaliate:
               if (unit.retaliate != null)
@@ -72,7 +71,7 @@ class UnitStackProvider with ChangeNotifier {
         unit.attack = _defaultStats![normality]!.attack;
         unit.range = _defaultStats![normality]!.range;
         unit.move = _defaultStats![normality]!.move;
-        unit.shield = _defaultStats![normality]!.shield;
+        unit.shield = _defaultStats![normality]?.shield ?? 0;
         unit.retaliate = _defaultStats![normality]!.retaliate;
 
         unit.perks?.clear();
