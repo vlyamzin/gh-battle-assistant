@@ -28,6 +28,8 @@ Unit _$UnitFromJson(Map<String, dynamic> json) {
             ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
             .toList() ??
         [],
+    area: (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+        [],
     negativeEffects: (json['negativeEffects'] as List<dynamic>?)
             ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
             .toSet() ??
@@ -47,6 +49,7 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'pierced': instance.pierced,
       'perks': instance.perks?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
       'immune': instance.immune?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'area': instance.area,
       'negativeEffects': instance.negativeEffects
           ?.map((e) => _$ActivityTypeEnumMap[e])
           .toList(),

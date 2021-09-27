@@ -383,7 +383,10 @@
           "modifier": {
             "attack": -1,
             "range": -1
-          }
+          },
+          "area": [
+            "3p"
+          ]
         },
         {
           "initiative": 37,
@@ -402,7 +405,10 @@
           "modifier": {
             "attack": -1,
             "range": -1
-          }
+          },
+          "area": [
+            "1r"
+          ]
         },
         {
           "initiative": 95,
@@ -451,6 +457,9 @@
           },
           "perks": [
             "immobilize"
+          ],
+          "area": [
+            "3p"
           ]
         }
       ]

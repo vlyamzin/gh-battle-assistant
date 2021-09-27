@@ -19,6 +19,8 @@ class Unit {
   late final List<ActivityType>? perks;
   @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType>? immune;
+  @JsonKey(defaultValue: <String>[])
+  late final List<String> area;
   @JsonKey(defaultValue: <ActivityType>{})
   late final Set<ActivityType>? negativeEffects;
   late final bool elite;
@@ -39,6 +41,7 @@ class Unit {
     this.turnEnded = false,
     List<ActivityType>? perks,
     List<ActivityType>? immune,
+    List<String>? area,
     Set<ActivityType>? negativeEffects,
   }) {
     if (number != null) this._number = number;
@@ -50,6 +53,8 @@ class Unit {
       this.immune = <ActivityType>[];
     else
       this.immune = immune;
+
+    this.area = area ?? <String>[];
 
     negativeEffects == null
         ? this.negativeEffects = <ActivityType>{}
@@ -71,6 +76,7 @@ class Unit {
     turnEnded = false,
     List<String>? perks,
     List<String>? immune,
+    List<String>? area,
     Set<ActivityType>? negativeEffects,
   }) {
     var sPerks = serializeRawData(perks);
@@ -91,6 +97,7 @@ class Unit {
       negativeEffects: negativeEffects,
       perks: sPerks,
       immune: sImmune,
+      area: area,
     );
   }
 

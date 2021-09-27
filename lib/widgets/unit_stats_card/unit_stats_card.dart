@@ -377,7 +377,9 @@ class _AttackEffect extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final attackEffectList = context.read<UnitStatsProvider>().attackEffects;
+    final controller = context.read<UnitStatsProvider>();
+    final attackEffectList = controller.attackEffects;
+    final areaEffectList = controller.areaEffects;
 
     return Container(
       padding: EdgeInsets.all(8.0),
@@ -397,13 +399,14 @@ class _AttackEffect extends StatelessWidget {
               ),
             ),
           ),
-          ..._list(attackEffectList)
+          ..._attackList(attackEffectList),
+          ..._areaList(areaEffectList),
         ],
       ),
     );
   }
 
-  List<Widget> _list(List<Effect?> attackEffectList) {
+  List<Widget> _attackList(List<Effect?> attackEffectList) {
     return attackEffectList
         .map((e) => SizedBox(
               width: 40,
@@ -414,6 +417,15 @@ class _AttackEffect extends StatelessWidget {
                     ? Image(image: AssetImage(e.iconShortcut))
                     : Container(),
               ),
+            ))
+        .toList();
+  }
+
+  List<Widget> _areaList(List<String> areaEffects) {
+    return areaEffects
+        .map((e) => Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: e.isNotEmpty ? Image.asset(e) : Container(),
             ))
         .toList();
   }

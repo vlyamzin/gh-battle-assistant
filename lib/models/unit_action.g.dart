@@ -20,6 +20,8 @@ UnitAction _$UnitActionFromJson(Map<String, dynamic> json) {
             ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
             .toList() ??
         [],
+    area: (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+        [],
   );
 }
 
@@ -31,6 +33,7 @@ Map<String, dynamic> _$UnitActionToJson(UnitAction instance) =>
           .map((k, e) => MapEntry(_$ModifierTypeEnumMap[k], e)),
       'shouldRefresh': instance.shouldRefresh,
       'perks': instance.perks.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'area': instance.area,
     };
 
 K _$enumDecode<K, V>(

@@ -88,7 +88,7 @@ class UnitStatsProvider with ChangeNotifier {
         .where((activity) => !unit.immune!.contains(activity.key));
   }
 
-  /// Return List of immune effects
+  /// Return List of immune [Effect]
   /// This list is rendered in 'Immune to' section of [UnitStatsCard]
   List<Effect?> get immuneEffects {
     return unit.immune != null
@@ -96,12 +96,17 @@ class UnitStatsProvider with ChangeNotifier {
         : [];
   }
 
-  /// Return List of attack effects
+  /// Return List of attack [Effect]
   /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
   List<Effect?> get attackEffects {
     return unit.perks != null
         ? unit.perks!.map((p) => Effect(p, defaultActivities[p]!)).toList()
         : [];
+  }
+
+  /// Return List of area images as path to assets
+  List<String> get areaEffects {
+    return unit.area.map((i) => di<ImageService>().getIcon(i)).toList();
   }
 
   /// Public getter for [_counter] value

@@ -14,6 +14,8 @@ class UnitAction {
   late final bool? shouldRefresh;
   @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType> perks;
+  @JsonKey(defaultValue: <String>[])
+  late final List<String> area;
 
   UnitAction({
     required this.initiative,
@@ -21,10 +23,12 @@ class UnitAction {
     Map<ModifierType, int>? modifiers,
     this.shouldRefresh,
     List<ActivityType>? perks,
+    List<String>? area,
   }) {
     this.values = values ?? [];
     this.modifiers = modifiers ?? <ModifierType, int>{};
     this.perks = perks ?? [];
+    this.area = area ?? [];
   }
 
   factory UnitAction.fromJson(Map<String, dynamic> json) =>
@@ -40,6 +44,7 @@ class UnitAction {
               GHAction(title: e.title, subtitle: e.subtitle, area: e.area))
           .toList(),
       perks: UnitAction.serializeRawData(data.perks),
+      area: data.area,
     );
   }
 

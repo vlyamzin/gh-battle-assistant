@@ -31,6 +31,7 @@ class UnitActionProvider with ChangeNotifier {
       _setAction();
       stackProvider.applyModifiers(this.actions.currentAction!.modifiers);
       stackProvider.applyPerks(this.actions.currentAction!.perks);
+      stackProvider.applyArea(this.actions.currentAction!.area);
       _saveChanges();
     }
   }
@@ -41,6 +42,7 @@ class UnitActionProvider with ChangeNotifier {
     stackProvider.refreshStatsToDefault();
     stackProvider.applyModifiers(actions.currentAction!.modifiers);
     stackProvider.applyPerks(actions.currentAction!.perks);
+    stackProvider.applyArea(this.actions.currentAction!.area);
     _saveChanges();
   }
 

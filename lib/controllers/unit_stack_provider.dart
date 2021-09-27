@@ -59,6 +59,12 @@ class UnitStackProvider with ChangeNotifier {
     }
   }
 
+  void applyArea(List<String>? area) {
+    if (area != null) {
+      unitStack.units.forEach((unit) => unit.area.addAll(area));
+    }
+  }
+
   void refreshStatsToDefault() {
     if (_defaultStats == null)
       throw StateError(
@@ -75,6 +81,7 @@ class UnitStackProvider with ChangeNotifier {
         unit.retaliate = _defaultStats![normality]!.retaliate;
 
         unit.perks?.clear();
+        unit.area.clear();
         unit.perks?.addAll(
             Unit.serializeRawData(_defaultStats![normality]?.perks) ?? []);
         unit.turnEnded = false;
