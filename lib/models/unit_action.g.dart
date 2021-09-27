@@ -86,6 +86,8 @@ const _$ActivityTypeEnumMap = {
   ActivityType.curse: 'curse',
   ActivityType.bless: 'bless',
   ActivityType.strengthen: 'strengthen',
+  ActivityType.pull: 'pull',
+  ActivityType.push: 'push',
   ActivityType.target_2: 'target_2',
   ActivityType.target_3: 'target_3',
   ActivityType.target_4: 'target_4',

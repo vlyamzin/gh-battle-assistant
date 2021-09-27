@@ -82,10 +82,24 @@ class UnitStatsProvider with ChangeNotifier {
   }
 
   /// Return List of activities that are not blocked by unit immunity
+  /// Exclude Pull, Push, Target, Bless and Curse as these activities don't affect unit stats in any way
   /// This list is being used in activity selection tooltip
   Iterable<MapEntry<ActivityType, String>> get availableActivities {
-    return defaultActivities.entries
-        .where((activity) => !unit.immune!.contains(activity.key));
+    final exclude = [
+      ActivityType.pull,
+      ActivityType.push,
+      ActivityType.bless,
+      ActivityType.curse,
+      ActivityType.target_2,
+      ActivityType.target_3,
+      ActivityType.target_4,
+      ActivityType.target_all,
+    ];
+    return defaultActivities.entries.where(
+      (activity) =>
+          !unit.immune!.contains(activity.key) &&
+          !exclude.contains(activity.key),
+    );
   }
 
   /// Return List of immune [Effect]

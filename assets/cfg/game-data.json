@@ -371,7 +371,7 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Push 1",
+              "title": "PUSH |%push%|1",
               "subtitle": "Target all adjacent enemies"
             },
             {
@@ -384,6 +384,9 @@
             "attack": -1,
             "range": -1
           },
+          "perks": [
+            "push"
+          ],
           "area": [
             "3p"
           ]
@@ -393,7 +396,7 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Push 1",
+              "title": "PUSH |%push%|1",
               "subtitle": "Target all adjacent enemies"
             },
             {
@@ -406,6 +409,9 @@
             "attack": -1,
             "range": -1
           },
+          "perks": [
+            "push"
+          ],
           "area": [
             "1r"
           ]
@@ -427,7 +433,7 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Push 2",
+              "title": "PUSH |%push%|2",
               "subtitle": "Target all adjacent enemies"
             },
             {
@@ -440,15 +446,18 @@
           "modifier": {
             "attack": -2,
             "shield": 2
-          }
+          },
+          "perks": [
+            "push"
+          ]
         },
         {
           "initiative": 46,
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Attack -1",
-              "subtitle": "IMMOBILIZE",
+              "title": "Attack |%atk%|-1",
+              "subtitle": "IMMOBILIZE |%imbz%|",
               "area": "%3p%"
             }
           ],
@@ -628,10 +637,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move +1"
+              "title": "Move |%mv%|+1"
             },
             {
-              "title": "Attack -1"
+              "title": "Attack |%atk%|-1"
             }
           ],
           "modifier": {
@@ -644,10 +653,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move +0"
+              "title": "Move |%mv%|+0"
             },
             {
-              "title": "Attack +0"
+              "title": "Attack |%atk%|+0"
             }
           ],
           "modifier": {
@@ -660,11 +669,11 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move +0"
+              "title": "Move |%mv%|+0"
             },
             {
-              "title": "Attack +1",
-              "subtitle": "Range -1"
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|-1"
             }
           ],
           "modifier": {
@@ -678,10 +687,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move -1"
+              "title": "Move |%mv%|-1"
             },
             {
-              "title": "Attack +1"
+              "title": "Attack |%atk%|+1"
             }
           ],
           "modifier": {
@@ -694,8 +703,8 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move -1",
-              "subtitle": "Target 2"
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Target |%trgt%|2"
             }
           ],
           "modifier": {
@@ -710,8 +719,8 @@
           "shouldRefresh": true,
           "values": [
             {
-              "title": "Attack +1",
-              "subtitle": "Range +1"
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|+1"
             }
           ],
           "modifier": {
@@ -724,10 +733,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move -1"
+              "title": "Move |%mv%|-1"
             },
             {
-              "title": "Attack -1",
+              "title": "Attack |%atk%|-1",
               "subtitle": "Create a damage trap in an adjacent empty hex closest to an enemy"
             }
           ],
@@ -741,11 +750,11 @@
           "shouldRefresh": true,
           "values": [
             {
-              "title": "Move +0"
+              "title": "Move |%mv%|+0"
             },
             {
-              "title": "Attack -1",
-              "subtitle": "Range +1. Immobilize"
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|+1. IMMOBILIZE |%imbz%|"
             }
           ],
           "modifier": {
@@ -923,28 +932,26 @@
           "shouldRefresh": true,
           "values": [
             {
-              "title": "Shield 1"
+              "title": "Shield |%shld%|1"
             },
             {
-              "title": "Retaliate 2"
+              "title": "Retaliate |%rtlt%|2"
             }
           ],
           "modifier": {
-            "shield": 1
-          },
-          "perks": [
-            "retaliate_2"
-          ]
+            "shield": 1,
+            "retaliate": 2
+          }
         },
         {
           "initiative": 30,
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move +1"
+              "title": "Move |%mv%|+1"
             },
             {
-              "title": "Attack -1"
+              "title": "Attack |%atk%|-1"
             }
           ],
           "modifier": {
@@ -957,11 +964,11 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move -1"
+              "title": "Move |%mv%|-1"
             },
             {
-              "title": "Attack +0",
-              "subtitle": "Range 2"
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Range |%rng%|2"
             }
           ],
           "modifier": {
@@ -975,10 +982,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move +0"
+              "title": "Move |%mv%|+0"
             },
             {
-              "title": "Attack +0"
+              "title": "Attack |%atk%|+0"
             }
           ],
           "modifier": {
@@ -991,10 +998,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move +0"
+              "title": "Move |%mv%|+0"
             },
             {
-              "title": "Attack +0"
+              "title": "Attack |%atk%|+0"
             }
           ],
           "modifier": {
@@ -1007,10 +1014,10 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move -1"
+              "title": "Move |%mv%|-1"
             },
             {
-              "title": "Attack +1"
+              "title": "Attack |%atk%|+1"
             }
           ],
           "modifier": {
@@ -1023,13 +1030,13 @@
           "shouldRefresh": false,
           "values": [
             {
-              "title": "Move -1"
+              "title": "Move |%mv%|-1"
             },
             {
-              "title": "Attack +0"
+              "title": "Attack |%atk%|+0"
             },
             {
-              "title": "Strengthen",
+              "title": "STRENGTHEN |%str%|",
               "subtitle": "self"
             }
           ],
@@ -1046,11 +1053,11 @@
           "shouldRefresh": true,
           "values": [
             {
-              "title": "Shield 1"
+              "title": "Shield |%shld%|1"
             },
             {
-              "title": "Attack +0",
-              "subtitle": "Poison"
+              "title": "Attack |%atk%|+0",
+              "subtitle": "POISON |%poi%|"
             }
           ],
           "modifier": {

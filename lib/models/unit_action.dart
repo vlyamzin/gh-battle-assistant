@@ -75,6 +75,10 @@ class UnitAction {
           return ActivityType.invisible;
         case 'strengthen':
           return ActivityType.strengthen;
+        case 'pull':
+          return ActivityType.pull;
+        case 'push':
+          return ActivityType.push;
         case 'target_2':
           return ActivityType.target_2;
         case 'target_3':

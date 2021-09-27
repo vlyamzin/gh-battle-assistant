@@ -12,6 +12,8 @@ enum ActivityType {
   curse,
   bless,
   strengthen,
+  pull,
+  push,
   target_2,
   target_3,
   target_4,
