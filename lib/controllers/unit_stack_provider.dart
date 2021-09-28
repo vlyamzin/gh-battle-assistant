@@ -22,28 +22,48 @@ class UnitStackProvider with ChangeNotifier {
 
   void applyModifiers(Map<ModifierType, int>? modifiers) {
     if (modifiers != null) {
-      modifiers.entries.forEach((modifier) {
+      // if action does not have attack || range || move modifiers
+      // then these stats must be set to null
+      // default unit stats values are ignored
+      var _modifiers = {..._emptyModifiers, ...modifiers};
+
+      _modifiers.entries.forEach((modifier) {
         unitStack.units.forEach((Unit unit) {
           switch (modifier.key) {
             case ModifierType.attack:
+              if (modifier.value == null) {
+                unit.attack = null;
+                return;
+              }
               if (unit.attack != null)
-                unit.attack = unit.attack! + modifier.value;
+                unit.attack = unit.attack! + modifier.value!;
               break;
             case ModifierType.move:
-              if (unit.move != null) unit.move = unit.move! + modifier.value;
+              if (modifier.value == null) {
+                unit.move = null;
+                return;
+              }
+              if (unit.move != null) unit.move = unit.move! + modifier.value!;
               break;
             case ModifierType.range:
-              if (unit.range != null) unit.range = unit.range! + modifier.value;
+              if (modifier.value == null) {
+                unit.range = null;
+                return;
+              }
+              if (unit.range != null)
+                unit.range = unit.range! + modifier.value!;
               break;
             case ModifierType.shield:
-              unit.shield = unit.shield + modifier.value;
+              unit.shield = unit.shield + modifier.value!;
               break;
             case ModifierType.retaliate:
               if (unit.retaliate != null)
-                unit.retaliate = unit.retaliate! + modifier.value;
+                unit.retaliate = unit.retaliate! + modifier.value!;
+              else
+                unit.retaliate = modifier.value;
               break;
             case ModifierType.suffer:
-              unit.suffer = modifier.value;
+              unit.suffer = modifier.value!;
               break;
             default:
               break;
@@ -96,4 +116,10 @@ class UnitStackProvider with ChangeNotifier {
         .where((unit) => !unit.turnEnded)
         .forEach((unit) => unit.applyNegativeEffects());
   }
+
+  Map<ModifierType, int?> get _emptyModifiers => {
+        ModifierType.attack: null,
+        ModifierType.move: null,
+        ModifierType.range: null,
+      };
 }
