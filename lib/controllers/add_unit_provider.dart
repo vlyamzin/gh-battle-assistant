@@ -7,6 +7,7 @@ import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/home.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
 
 class AddUnitProvider {
   final GameData data;
@@ -63,6 +64,7 @@ class AddUnitProvider {
 
     var eliteCount = eliteNumber;
     var normalCount = unitNumber;
+    final difficulty = di<SettingsController>().difficulty.toString();
     final statsByDifficulty = () => unit?.stats[difficulty];
     final statsByNormality = (bool elite) => elite
         ? statsByDifficulty()![UnitNormality.elite]

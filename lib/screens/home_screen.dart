@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
@@ -37,6 +39,13 @@ class HomeScreen extends StatelessWidget {
 
   CupertinoSliverNavigationBar _navBar(BuildContext context) {
     return CupertinoSliverNavigationBar(
+      leading: Container(
+        child: CupertinoButton(
+          padding: EdgeInsets.zero,
+          child: Icon(Icons.settings),
+          onPressed: () => _showSettings(context),
+        ),
+      ),
       largeTitle: const Text('Gloomhaven Battle Assistant'),
       trailing: Container(
         child: CupertinoButton(
@@ -54,7 +63,11 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _navigateToUnitStatsScreen(
-      BuildContext context, UnitStack stackModel, GameData rawData) {
+    BuildContext context,
+    UnitStack stackModel,
+    GameData rawData,
+  ) {
+    final difficulty = di<SettingsController>().difficulty.toString();
     final Map<UnitNormality, UnitRawStats>? unitStats =
         rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
 
@@ -71,6 +84,14 @@ class HomeScreen extends StatelessWidget {
       throw StateError(
         'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}',
       );
+  }
+
+  void _showSettings(context) {
+    showCupertinoModalPopup(
+        context: context,
+        builder: (context) {
+          return SettingsDialog();
+        });
   }
 
   /// Create [GridView] widget with unit cards in it
