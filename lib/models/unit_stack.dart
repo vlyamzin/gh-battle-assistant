@@ -84,6 +84,8 @@ class UnitStack {
   /// Convert [UnitStack] object to json
   Map<String, dynamic> toJson() => _$UnitStackToJson(this);
 
+  bool get isEmpty => units.isEmpty;
+
   /// Adds [Unit] object to the list of [units]
   /// Decreases the maximum unit number
   void addUnit(Unit newUnit) {

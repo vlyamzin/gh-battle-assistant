@@ -37,6 +37,8 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
     );
   }
 
+  void _gotoHomeScreen(BuildContext context) => Navigator.of(context).pop();
+
   List<Widget> _unitCards() {
     return widget.stack.units.map((unit) {
       final UnitRawStats? stats = unit.elite == true
@@ -71,15 +73,23 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
           height: 400,
           unit: unit,
           type: widget.stack.type,
-          onRemove: () => _removeUnitFromStack(unit.number),
+          onRemove: () => _removeUnitFromStack(unit.number, context),
         ),
       );
     }).toList();
   }
 
-  void _removeUnitFromStack(int? unitNumber) {
+  void _removeUnitFromStack(int? unitNumber, BuildContext context) {
     assert(unitNumber != null);
+    final homeController = di<HomeScreenProvider>();
+
     widget.stack.removeUnit(unitNumber!);
-    di<HomeScreenProvider>().saveToStorage().then((_) => setState(() {}));
+
+    if (widget.stack.isEmpty) {
+      homeController.removeMonsterStack(widget.stack.type);
+      _gotoHomeScreen(context);
+    } else {
+      homeController.saveToStorage().then((_) => setState(() {}));
+    }
   }
 }
