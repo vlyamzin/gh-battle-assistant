@@ -8,6 +8,8 @@ class ImageService {
   static const unitImageBaseUrl = 'assets/unit_images/';
   static const unitIconBaseUrl = 'assets/unit_icons/';
   static const iconsBaseUrl = 'assets/images/icons';
+  static const mainBackground = 'assets/images/home_bg.png';
+  static const headerBackground = 'assets/images/header_bg.jpg';
 
   static final _unitImageMap = <UnitType, String>{
     UnitType.ancientArtillery:
@@ -337,6 +339,7 @@ class ImageService {
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';
+
   String getUnitPortraitByType(UnitType type, UnitNormality normality) =>
       _unitPortraitMap[type]?[normality] ?? '';
 

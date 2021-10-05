@@ -12,6 +12,7 @@ import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
+import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/hero_stack_card/hero_stack_card.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 import 'package:provider/provider.dart';
@@ -22,12 +23,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      child: PullToRefresh(
-        onRefresh: () async {
-          await _refreshUnitActions(context);
-        },
-        child: _gridView(context),
-        header: _navBar(context),
+      child: Container(
+        decoration: BoxDecoration(
+          image: const DecorationImage(
+            image: AssetImage(ImageService.mainBackground),
+            fit: BoxFit.fill,
+          ),
+        ),
+        child: PullToRefresh(
+          onRefresh: () async {
+            await _refreshUnitActions(context);
+          },
+          child: _gridView(context),
+          header: _navBar(context),
+        ),
       ),
     );
   }
@@ -39,6 +48,7 @@ class HomeScreen extends StatelessWidget {
 
   CupertinoSliverNavigationBar _navBar(BuildContext context) {
     return CupertinoSliverNavigationBar(
+      backgroundColor: Color(0xFF3C4659),
       leading: Container(
         child: CupertinoButton(
           padding: EdgeInsets.zero,
@@ -46,7 +56,14 @@ class HomeScreen extends StatelessWidget {
           onPressed: () => _showSettings(context),
         ),
       ),
-      largeTitle: const Text('Gloomhaven Battle Assistant'),
+      largeTitle: const Text(
+        'Gloomhaven Battle Assistant',
+        style: const TextStyle(
+          fontFamily: 'PirataOne',
+          color: Color(0xFFC2ECF2),
+          letterSpacing: 3,
+        ),
+      ),
       trailing: Container(
         child: CupertinoButton(
           padding: EdgeInsets.zero,
