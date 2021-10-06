@@ -35,48 +35,42 @@ class _StatsScreenState extends State<StatsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: 'stats_${widget.stack.type}',
-      child: CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          transitionBetweenRoutes: false,
-          leading: CupertinoNavigationBarBackButton(
-            onPressed: () => Navigator.pop(context),
-          ),
-          middle: Text(
-            widget.stack.displayName,
-            style: TextStyle(
-              fontSize: 25,
-              fontFamily: 'PirataOne',
-              fontWeight: FontWeight.normal,
-            ),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        transitionBetweenRoutes: false,
+        leading: CupertinoNavigationBarBackButton(
+          onPressed: () => Navigator.pop(context),
+        ),
+        middle: Text(
+          widget.stack.displayName,
+          style: TextStyle(
+            fontSize: 25,
+            fontFamily: 'PirataOne',
+            fontWeight: FontWeight.normal,
           ),
         ),
-        child: Container(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(StatsScreen.backgroundImage),
-                  fit: BoxFit.fill),
-            ),
-            child: FutureBuilder(
-              future: Future.delayed(Duration(milliseconds: 300)),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  _fadeAnimationController.forward();
-                  return FadeTransition(
-                    opacity: _fadeAnimation,
-                    child: UnitActionCardList(
-                      defaultStats: widget.defaultStats,
-                      stack: widget.stack,
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            )),
       ),
+      child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(StatsScreen.backgroundImage),
+                fit: BoxFit.fill),
+          ),
+          child: FutureBuilder(
+            future: Future.delayed(Duration(milliseconds: 300)),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                // _fadeAnimationController.forward();
+                return UnitActionCardList(
+                  defaultStats: widget.defaultStats,
+                  stack: widget.stack,
+                );
+              } else {
+                return Container();
+              }
+            },
+          )),
     );
   }
 }

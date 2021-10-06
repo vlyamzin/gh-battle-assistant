@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
@@ -6,19 +5,34 @@ import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 
-class UnitStackProvider with ChangeNotifier {
-  final UnitStack unitStack;
-  final HomeScreenProvider store;
+class UnitStackProvider {
+  UnitStack unitStack;
   final GameData gameData;
+  final HomeScreenProvider store;
   late final StatsByUnitNormalityMap? _defaultStats;
 
   UnitStackProvider({
     required this.unitStack,
-    required this.store,
     required this.gameData,
-  }) : _defaultStats = gameData.getUnitDataById(unitStack.type).getUnitStats();
+    required this.store,
+    required action,
+  }) {
+    _defaultStats = gameData.getUnitDataById(unitStack.type).getUnitStats();
+  }
+
+  void updateStack(UnitStack newStack) {
+    if (newStack.units.length != unitStack.units.length) unitStack = newStack;
+  }
+
+  void endRound(UnitAction action) {
+    applyNegativeEffect();
+    refreshStatsToDefault();
+    _applyChanges(action);
+    store.saveToStorage();
+  }
 
   void applyModifiers(Map<ModifierType, int>? modifiers) {
     if (modifiers != null) {
@@ -64,6 +78,9 @@ class UnitStackProvider with ChangeNotifier {
               break;
             case ModifierType.suffer:
               unit.suffer = modifier.value!;
+              break;
+            case ModifierType.heal:
+              unit.heal = modifier.value!;
               break;
             default:
               break;
@@ -112,9 +129,18 @@ class UnitStackProvider with ChangeNotifier {
   }
 
   void applyNegativeEffect() {
-    unitStack.units
-        .where((unit) => !unit.turnEnded)
-        .forEach((unit) => unit.applyNegativeEffects());
+    unitStack.units.forEach((unit) => unit.applyNegativeEffects());
+  }
+
+  void validateDeath() {
+    unitStack.units.removeWhere((unit) => unit.healthPoint <= 0);
+  }
+
+  void _applyChanges(UnitAction action) {
+    applyModifiers(action.modifiers);
+    applyPerks(action.perks);
+    applyArea(action.area);
+    validateDeath();
   }
 
   Map<ModifierType, int?> get _emptyModifiers => {

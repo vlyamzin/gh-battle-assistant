@@ -13,7 +13,7 @@ import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:gh_battle_assistant/widgets/hero_stack_card/hero_stack_card.dart';
+import 'package:gh_battle_assistant/widgets/stack_card/stack_card.dart';
 import 'package:gh_battle_assistant/screens/add_unit_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -128,7 +128,7 @@ class HomeScreen extends StatelessWidget {
             return GestureDetector(
                 onTap: () =>
                     _navigateToUnitStatsScreen(context, stack, rawData),
-                child: HeroStackCard(
+                child: StackCard(
                   stack: stack,
                   cardWidth: cardWidth,
                   cardHeight: cardHeight,

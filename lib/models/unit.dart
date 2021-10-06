@@ -13,6 +13,7 @@ class Unit {
   late int? range;
   late int? move;
   late int? retaliate;
+  late int heal;
   late int suffer;
   late int pierced;
   @JsonKey(defaultValue: <ActivityType>[])
@@ -35,6 +36,7 @@ class Unit {
     this.range = 0,
     this.move = 0,
     this.retaliate = 0,
+    this.heal = 0,
     this.suffer = 0,
     this.pierced = 0,
     this.elite = false,
@@ -117,6 +119,9 @@ class Unit {
   String toString() => 'Unit$number: $displayName';
 
   void applyNegativeEffects() {
+    if (turnEnded) return;
+
+    applyHeal();
     applyWound();
     applyDisarm();
     applyMuddle();
@@ -129,7 +134,7 @@ class Unit {
   }
 
   void applyWound() {
-    if (negativeEffects?.contains(ActivityType.wound) == true) {
+    if (_hasEffect(ActivityType.wound)) {
       healthPoint -= 1;
     }
   }
@@ -137,6 +142,18 @@ class Unit {
   void applySuffer() {
     healthPoint -= suffer;
     suffer = 0;
+  }
+
+  void applyHeal() {
+    if (heal == 0) return;
+
+    if (_hasEffect(ActivityType.poison))
+      negativeEffects?.remove(ActivityType.poison);
+    else
+      healthPoint += heal;
+
+    negativeEffects?.remove(ActivityType.wound);
+    heal = 0;
   }
 
   void applyStun() => negativeEffects?.remove(ActivityType.stun);
@@ -155,6 +172,8 @@ class Unit {
   }
 
   void applyStrengthen() => negativeEffects?.remove(ActivityType.strengthen);
+
+  bool _hasEffect(ActivityType type) => negativeEffects?.contains(type) == true;
 
   static List<ActivityType>? serializeRawData(List<String>? list) {
     return list?.map((value) {

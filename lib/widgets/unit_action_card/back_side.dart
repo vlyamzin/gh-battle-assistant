@@ -9,12 +9,14 @@ class UnitActionCardBackSide extends StatelessWidget with CardBorderRadius {
   static const imagePath = 'assets/images/ability_back.jpg';
   final VoidCallback backButtonCallback, deleteButtonCallback;
   final String title;
+  final List<BackSideButton>? buttons;
 
   const UnitActionCardBackSide({
     Key? key,
     required this.backButtonCallback,
     required this.deleteButtonCallback,
     required this.title,
+    this.buttons,
   }) : super(key: key);
 
   @override
@@ -72,14 +74,21 @@ class UnitActionCardBackSide extends StatelessWidget with CardBorderRadius {
   }
 
   Widget _actionButtons() {
+    var buttonsWidget = buttons ?? [];
+
     return Center(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           BackSideButton(
-              icon: Icons.arrow_back_rounded, action: backButtonCallback),
+            icon: Icons.arrow_back_rounded,
+            action: backButtonCallback,
+          ),
+          ...buttonsWidget,
           BackSideButton(
-              icon: Icons.delete_rounded, action: deleteButtonCallback),
+            icon: Icons.delete_rounded,
+            action: deleteButtonCallback,
+          ),
         ],
       ),
     );

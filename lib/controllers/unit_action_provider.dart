@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_stack_provider.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:gh_battle_assistant/models/unit_action_list.dart';
@@ -15,34 +14,23 @@ class UnitActionProvider with ChangeNotifier {
   final UnitActionList actions;
   final HomeScreenProvider store;
   final List<UnitRawAction> rawData;
-  final UnitStackProvider stackProvider;
   late StreamSubscription _subscription;
 
   UnitActionProvider({
     required this.actions,
     required this.store,
     required this.rawData,
-    required this.stackProvider,
   }) {
     _setAllActions();
     _subscribeToUpdates();
 
     if (this.actions.currentAction == null) {
-      _setAction();
-      stackProvider.applyModifiers(this.actions.currentAction!.modifiers);
-      stackProvider.applyPerks(this.actions.currentAction!.perks);
-      stackProvider.applyArea(this.actions.currentAction!.area);
       _saveChanges();
     }
   }
 
   void endRound() {
-    stackProvider.applyNegativeEffect();
     _refreshActions();
-    stackProvider.refreshStatsToDefault();
-    stackProvider.applyModifiers(actions.currentAction!.modifiers);
-    stackProvider.applyPerks(actions.currentAction!.perks);
-    stackProvider.applyArea(this.actions.currentAction!.area);
     _saveChanges();
   }
 

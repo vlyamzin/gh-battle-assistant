@@ -42,9 +42,7 @@ class UnitStatsProvider with ChangeNotifier {
       ActivityType.invisible: _invisible,
     };
 
-    this.activeEffects = Set.from(
-        unit.negativeEffects?.map((e) => Effect(e, defaultActivities[e]!)) ??
-            {});
+    _setupActiveEffects();
   }
 
   /// List of all activities that can affect [Unit] stats this round
@@ -173,6 +171,20 @@ class UnitStatsProvider with ChangeNotifier {
     _activityHandlers[selectedActivity.key]!(_counter);
     _counter = 0;
     notifyListeners();
+  }
+
+  void endTurn() {
+    unit.applyNegativeEffects();
+    unit.turnEnded = true;
+    _setupActiveEffects();
+    // TODO mark visually as ended
+    notifyListeners();
+  }
+
+  void _setupActiveEffects() {
+    this.activeEffects = Set.from(
+        unit.negativeEffects?.map((e) => Effect(e, defaultActivities[e]!)) ??
+            {});
   }
 
   /// Regular attack activity.

@@ -1,1 +1,10 @@
-enum ModifierType { attack, range, move, health, shield, retaliate, suffer }
+enum ModifierType {
+  attack,
+  range,
+  move,
+  health,
+  shield,
+  retaliate,
+  suffer,
+  heal,
+}

@@ -8,14 +8,13 @@ import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/unit_action_card.dart';
 import 'package:provider/provider.dart';
 
-/// Creates [Hero] widget with [UnitActionCard] inside of it
 /// Initializes [UnitStackProvider] and [UnitActionProvider] provider
 /// to manipulate with [UnitStack] and [UnitActionList] models
-class HeroStackCard extends StatelessWidget {
+class StackCard extends StatelessWidget {
   final UnitStack stack;
   final double cardWidth;
   final double cardHeight;
-  const HeroStackCard({
+  const StackCard({
     Key? key,
     required this.stack,
     required this.cardWidth,
@@ -24,16 +23,16 @@ class HeroStackCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-        tag: 'stats_${stack.type}',
-        child: _initProviders(
-          context: context,
-          child: UnitActionCard(
-            key: ValueKey(stack.type),
-            width: cardWidth,
-            height: cardHeight,
-          ),
-        ));
+    return Container(
+      child: _initProviders(
+        context: context,
+        child: UnitActionCard(
+          key: ValueKey(stack.type),
+          width: cardWidth,
+          height: cardHeight,
+        ),
+      ),
+    );
   }
 
   Widget _initProviders({
@@ -41,24 +40,36 @@ class HeroStackCard extends StatelessWidget {
     required Widget child,
   }) {
     final store = context.read<HomeScreenProvider>();
-    final gameDataProvider = context.read<GameData>();
-    final unitStackProvider = UnitStackProvider(
-        store: store, unitStack: stack, gameData: gameDataProvider);
+    final gameDataController = context.read<GameData>();
     final List<UnitRawAction> rawData =
-        gameDataProvider.getUnitDataById(stack.type).actions;
+        gameDataController.getUnitDataById(stack.type).actions;
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<UnitStackProvider>.value(
-            value: unitStackProvider),
         ChangeNotifierProvider<UnitActionProvider>(
-          create: (context) {
-            return UnitActionProvider(
-              actions: stack.actions,
-              store: store,
-              rawData: rawData,
-              stackProvider: unitStackProvider,
-            );
+          create: (_) => UnitActionProvider(
+            actions: stack.actions,
+            store: store,
+            rawData: rawData,
+          ),
+        ),
+        ProxyProvider2<UnitActionProvider, HomeScreenProvider,
+            UnitStackProvider>(
+          update: (_, unitActionC, homeScreenC, unitStackC) {
+            var action = unitActionC.actions.currentAction!;
+            var updatedStack = homeScreenC.model.getByType(stack.type);
+
+            if (unitStackC == null) {
+              return UnitStackProvider(
+                gameData: gameDataController,
+                unitStack: stack,
+                store: store,
+                action: action,
+              );
+            } else
+              return unitStackC
+                ..updateStack(updatedStack!)
+                ..endRound(action);
           },
         ),
       ],
