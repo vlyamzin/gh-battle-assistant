@@ -177,10 +177,10 @@ class UnitStatsProvider with ChangeNotifier {
     unit.applyNegativeEffects();
     unit.turnEnded = true;
     _setupActiveEffects();
-    // TODO mark visually as ended
-    notifyListeners();
+    save();
   }
 
+  /// Get a list of negative effects activated on a unit
   void _setupActiveEffects() {
     this.activeEffects = Set.from(
         unit.negativeEffects?.map((e) => Effect(e, defaultActivities[e]!)) ??
