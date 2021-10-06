@@ -20,8 +20,9 @@ class ActiveEffects extends StatelessWidget {
               Center(
                 child: Text(
                   'Active effects',
+                  softWrap: false,
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17,
                     fontFamily: 'Nyala',
                   ),
                 ),

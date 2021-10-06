@@ -56,20 +56,19 @@ class StackCard extends StatelessWidget {
         ProxyProvider2<UnitActionProvider, HomeScreenProvider,
             UnitStackProvider>(
           update: (_, unitActionC, homeScreenC, unitStackC) {
-            var action = unitActionC.actions.currentAction!;
+            var action = unitActionC.actions.currentAction;
             var updatedStack = homeScreenC.model.getByType(stack.type);
 
-            if (unitStackC == null) {
+            if (unitStackC != null && action != null)
+              return unitStackC
+                ..updateStack(updatedStack!)
+                ..endRound(action);
+            else
               return UnitStackProvider(
                 gameData: gameDataController,
                 unitStack: stack,
                 store: store,
-                action: action,
               );
-            } else
-              return unitStackC
-                ..updateStack(updatedStack!)
-                ..endRound(action);
           },
         ),
       ],

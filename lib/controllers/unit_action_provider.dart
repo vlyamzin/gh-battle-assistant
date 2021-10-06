@@ -25,6 +25,7 @@ class UnitActionProvider with ChangeNotifier {
     _subscribeToUpdates();
 
     if (this.actions.currentAction == null) {
+      _setAction();
       _saveChanges();
     }
   }

@@ -18,7 +18,6 @@ class UnitStackProvider {
     required this.unitStack,
     required this.gameData,
     required this.store,
-    required action,
   }) {
     _defaultStats = gameData.getUnitDataById(unitStack.type).getUnitStats();
   }
