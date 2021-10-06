@@ -14,6 +14,9 @@ class UnitNumberInput extends StatelessWidget {
     return CupertinoFormRow(
       child: CupertinoTextFormFieldRow(
         placeholder: 'Number of units',
+        placeholderStyle: TextStyle(
+          color: Color(0xFFD9D9D9),
+        ),
         controller: controller,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
         validator: (value) {

@@ -6,6 +6,7 @@ import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side_button.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card/stats_bar.dart';
@@ -17,7 +18,6 @@ import 'immune_effects.dart';
 import 'button_bar.dart';
 
 class UnitStatsCard extends StatefulWidget {
-  static const backgroundPath = 'assets/images/stats_front.jpg';
   final double width, height;
   final UnitType type;
   final Unit unit;
@@ -69,7 +69,7 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       decoration: BoxDecoration(
           image: DecorationImage(
         fit: BoxFit.cover,
-        image: AssetImage(UnitStatsCard.backgroundPath),
+        image: AssetImage(ImageService.cardBackground),
       )),
       padding: EdgeInsets.all(10.0),
       child: Row(

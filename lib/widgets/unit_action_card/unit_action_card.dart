@@ -20,7 +20,6 @@ class UnitActionCard extends StatefulWidget with CardBorderRadius {
     required this.height,
   }) : super(key: key);
 
-  final backgroundImage = 'assets/images/ability_front_2.jpg';
   final double width, height;
 
   @override
@@ -74,7 +73,7 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
       child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage(widget.backgroundImage),
+          image: AssetImage(ImageService.cardBackground),
           fit: BoxFit.fill,
         )),
         child: Column(

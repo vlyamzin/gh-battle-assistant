@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card_list/unit_stats_card_list.dart';
 
 class StatsScreen extends StatefulWidget {
   final UnitStack stack;
   final Map<UnitNormality, UnitRawStats> defaultStats;
-  static const backgroundImage = 'assets/images/ability_front_2.jpg';
 
   const StatsScreen({
     Key? key,
@@ -37,40 +37,33 @@ class _StatsScreenState extends State<StatsScreen>
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-        transitionBetweenRoutes: false,
+        backgroundColor: Color(0xFF3C4659),
+        // transitionBetweenRoutes: false,
         leading: CupertinoNavigationBarBackButton(
           onPressed: () => Navigator.pop(context),
         ),
         middle: Text(
           widget.stack.displayName,
           style: TextStyle(
+            color: Color(0xFFC2ECF2),
             fontSize: 25,
             fontFamily: 'PirataOne',
             fontWeight: FontWeight.normal,
+            letterSpacing: 2.5,
           ),
         ),
       ),
       child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(StatsScreen.backgroundImage),
-                fit: BoxFit.fill),
-          ),
-          child: FutureBuilder(
-            future: Future.delayed(Duration(milliseconds: 300)),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                // _fadeAnimationController.forward();
-                return UnitActionCardList(
-                  defaultStats: widget.defaultStats,
-                  stack: widget.stack,
-                );
-              } else {
-                return Container();
-              }
-            },
-          )),
+        padding: EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(ImageService.mainBackground), fit: BoxFit.fill),
+        ),
+        child: UnitActionCardList(
+          defaultStats: widget.defaultStats,
+          stack: widget.stack,
+        ),
+      ),
     );
   }
 }

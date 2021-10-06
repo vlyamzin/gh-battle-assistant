@@ -85,15 +85,16 @@ class _AddUnitFormState extends State<AddUnitForm> {
   Widget _unitNumberInput(AddUnitProvider provider) {
     return provider.stack != null
         ? CupertinoFormSection(
-      children: [
-        UnitNumberInput(
-          controller: _unitNumberCtrl,
-          maxValue: provider.getMaxUnitNumberToAdd(),
-        ),
-        EliteNumberInput(
-            controller: _eliteNumberCtrl, maxValue: _unitNumberCtrl.text),
-      ],
-    )
+            decoration: BoxDecoration(color: Color(0xFFFFFFFF)),
+            children: [
+              UnitNumberInput(
+                controller: _unitNumberCtrl,
+                maxValue: provider.getMaxUnitNumberToAdd(),
+              ),
+              EliteNumberInput(
+                  controller: _eliteNumberCtrl, maxValue: _unitNumberCtrl.text),
+            ],
+          )
         : Container();
   }
 

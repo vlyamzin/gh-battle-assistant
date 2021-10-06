@@ -87,6 +87,13 @@ class _ApplicationState extends State<Application> {
       child: CupertinoApp(
         title: 'Gloomhaven Battle Assistant',
         theme: CupertinoThemeData(
+          brightness: Brightness.dark,
+          textTheme: CupertinoTextThemeData(
+            textStyle: TextStyle(
+              color: Color(0xFF000000),
+              fontSize: 17,
+            ),
+          ),
           scaffoldBackgroundColor: Colors.white,
         ),
         home: HomeScreen(),

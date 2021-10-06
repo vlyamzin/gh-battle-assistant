@@ -89,14 +89,14 @@ class HomeScreen extends StatelessWidget {
         rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
 
     if (unitStats != null) {
-      final route = PageRouteBuilder(
-        pageBuilder: (_, __, ___) => StatsScreen(
-          stack: stackModel,
-          defaultStats: unitStats,
+      Navigator.of(context).push(
+        CupertinoPageRoute(
+          builder: (_) => StatsScreen(
+            stack: stackModel,
+            defaultStats: unitStats,
+          ),
         ),
       );
-
-      Navigator.of(context).push(route);
     } else
       throw StateError(
         'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}',
