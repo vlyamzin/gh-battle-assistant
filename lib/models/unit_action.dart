@@ -8,6 +8,7 @@ part 'unit_action.g.dart';
 
 @JsonSerializable()
 class UnitAction {
+  final int id;
   late final int initiative;
   late final List<GHAction> values;
   late final Map<ModifierType, int> modifiers;
@@ -18,6 +19,7 @@ class UnitAction {
   late final List<String> area;
 
   UnitAction({
+    required this.id,
     required this.initiative,
     List<GHAction>? values,
     Map<ModifierType, int>? modifiers,
@@ -36,6 +38,7 @@ class UnitAction {
 
   factory UnitAction.fromRawData(UnitRawAction data) {
     return UnitAction(
+      id: data.id,
       initiative: data.initiative,
       modifiers: data.modifier,
       shouldRefresh: data.shouldRefresh,

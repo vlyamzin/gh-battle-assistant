@@ -8,6 +8,7 @@ part of 'unit_raw_actions.dart';
 
 UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) {
   return UnitRawAction(
+    json['id'] as int,
     json['initiative'] as int,
     json['shouldRefresh'] as bool,
     (json['values'] as List<dynamic>)
@@ -23,6 +24,7 @@ UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$UnitRawActionToJson(UnitRawAction instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'initiative': instance.initiative,
       'shouldRefresh': instance.shouldRefresh,
       'values': instance.values,

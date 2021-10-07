@@ -8,6 +8,7 @@ part of 'unit_action.dart';
 
 UnitAction _$UnitActionFromJson(Map<String, dynamic> json) {
   return UnitAction(
+    id: json['id'] as int,
     initiative: json['initiative'] as int,
     values: (json['values'] as List<dynamic>?)
         ?.map((e) => GHAction.fromJson(e as Map<String, dynamic>))
@@ -27,6 +28,7 @@ UnitAction _$UnitActionFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$UnitActionToJson(UnitAction instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'initiative': instance.initiative,
       'values': instance.values,
       'modifiers': instance.modifiers

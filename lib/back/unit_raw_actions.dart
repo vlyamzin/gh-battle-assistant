@@ -5,6 +5,7 @@ part 'unit_raw_actions.g.dart';
 
 @JsonSerializable()
 class UnitRawAction {
+  final int id;
   final int initiative;
   final bool shouldRefresh;
   final List<RawActionValue> values;
@@ -14,8 +15,8 @@ class UnitRawAction {
   @JsonKey(defaultValue: <String>[])
   final List<String>? area;
 
-  UnitRawAction(this.initiative, this.shouldRefresh, this.values, this.modifier,
-      this.perks, this.area);
+  UnitRawAction(this.id, this.initiative, this.shouldRefresh, this.values,
+      this.modifier, this.perks, this.area);
 
   factory UnitRawAction.fromJson(Map<String, dynamic> json) =>
       _$UnitRawActionFromJson(json);

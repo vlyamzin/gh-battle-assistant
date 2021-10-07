@@ -16,11 +16,13 @@ class UnitStackProvider {
   final GameData gameData;
   final HomeScreenProvider store;
   late final StatsByUnitNormalityMap? _defaultStats;
+  UnitAction? currentAction;
 
   UnitStackProvider({
     required this.unitStack,
     required this.gameData,
     required this.store,
+    this.currentAction,
   }) {
     _defaultStats = gameData
         .getUnitDataById(unitStack.type)
@@ -32,10 +34,13 @@ class UnitStackProvider {
   }
 
   void endRound(UnitAction action) {
-    applyNegativeEffect();
+    if (currentAction != null && currentAction?.id != action.id) {
+      applyNegativeEffect();
+    }
     refreshStatsToDefault();
     _applyChanges(action);
     store.saveToStorage();
+    currentAction = action;
   }
 
   void applyModifiers(Map<ModifierType, int>? modifiers) {
