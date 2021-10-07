@@ -10,11 +10,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 
 import 'package:gh_battle_assistant/main.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(Application(data: null, rawData: GameData([]),));
+    await tester.pumpWidget(Application(
+      data: null,
+      rawData: GameData([]),
+      settingsController: SettingsController(),
+    ));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

@@ -22,10 +22,9 @@ class UnitRawData {
   factory UnitRawData.fromJson(Map<String, dynamic> json) =>
       _$UnitRawDataFromJson(json);
 
-  StatsByUnitNormalityMap? getUnitStats([String difficulty = '1']) =>
-      stats[difficulty];
+  StatsByUnitNormalityMap? getUnitStats(String difficulty) => stats[difficulty];
 
-  UnitRawStats? getUnitStatsByNormality(UnitNormality normality,
-          [String difficulty = '1']) =>
+  UnitRawStats? getUnitStatsByNormality(
+          UnitNormality normality, String difficulty) =>
       stats[difficulty]?[normality];
 }

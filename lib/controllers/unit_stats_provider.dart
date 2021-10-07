@@ -345,7 +345,7 @@ typedef EffectMapEntry = MapEntry<ActivityType, String>;
 class Effect {
   final ActivityType type;
   final String iconShortcut;
-  late final String? label;
+  String label = '';
 
   Effect(this.type, this.iconShortcut) {
     _parseTargetType();

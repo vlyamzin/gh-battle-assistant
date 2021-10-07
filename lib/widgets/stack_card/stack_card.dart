@@ -63,6 +63,15 @@ class StackCard extends StatelessWidget {
               return unitStackC
                 ..updateStack(updatedStack!)
                 ..endRound(action);
+            if (action != null)
+              return UnitStackProvider(
+                gameData: gameDataController,
+                unitStack: stack,
+                store: store,
+              )
+                ..applyModifiers(action.modifiers)
+                ..applyPerks(action.perks)
+                ..applyArea(action.area);
             else
               return UnitStackProvider(
                 gameData: gameDataController,

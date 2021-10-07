@@ -54,9 +54,9 @@ class AttackEffect extends StatelessWidget with TextOutline {
                 Positioned(
                   bottom: 0,
                   right: 0,
-                  child: e != null && e.label != null
+                  child: e != null && e.label.isNotEmpty
                       ? Text(
-                          e.label!,
+                          e.label,
                           style: TextStyle(
                               fontSize: 20,
                               fontFamily: 'Nyala',
