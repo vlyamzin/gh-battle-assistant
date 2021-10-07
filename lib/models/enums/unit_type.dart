@@ -7,49 +7,93 @@ enum UnitType {
   banditArcher,
   @JsonValue(2)
   banditGuard,
+  @JsonValue(3)
   banditLeader,
+  @JsonValue(4)
   blackImp,
+  @JsonValue(5)
   caveBear,
+  @JsonValue(6)
   cityArcher,
+  @JsonValue(7)
   cityGuard,
+  @JsonValue(8)
   cultist,
+  @JsonValue(9)
   darkRider,
+  @JsonValue(10)
   deepTerror,
+  @JsonValue(11)
   earthDemon,
+  @JsonValue(12)
   elderDrake,
+  @JsonValue(13)
   flameDemon,
+  @JsonValue(14)
   forestImp,
+  @JsonValue(15)
   frostDemon,
+  @JsonValue(16)
   giantViper,
+  @JsonValue(17)
   guardCaptain,
+  @JsonValue(18)
   harrowerInfester,
+  @JsonValue(19)
   hound,
+  @JsonValue(20)
   inoxArcher,
+  @JsonValue(21)
   inoxBodyguard,
+  @JsonValue(22)
   inoxGuard,
+  @JsonValue(23)
   inoxShaman,
+  @JsonValue(24)
   jekserah,
+  @JsonValue(25)
   livingBones,
-  livingDead,
+  @JsonValue(26)
+  livingCorpse,
+  @JsonValue(27)
   livingSpirit,
+  @JsonValue(28)
   lurker,
+  @JsonValue(29)
   mercilessOverseer,
+  @JsonValue(30)
   nightDemon,
+  @JsonValue(31)
   ooze,
+  @JsonValue(32)
   primeDemon,
+  @JsonValue(33)
   rendingDrake,
+  @JsonValue(34)
   savassIcestorm,
+  @JsonValue(35)
   savassLavaflow,
+  @JsonValue(36)
   spiritDrake,
+  @JsonValue(37)
   stoneGolem,
+  @JsonValue(38)
   sunDemon,
+  @JsonValue(39)
   bertayer,
+  @JsonValue(40)
   colorless,
+  @JsonValue(41)
   gloom,
+  @JsonValue(42)
   sightlessEye,
+  @JsonValue(43)
   vermlingScout,
+  @JsonValue(44)
   vermlingShaman,
+  @JsonValue(45)
   windDemon,
+  @JsonValue(46)
   wingedHorror,
   @JsonValue(99999)
   aestherAshblade

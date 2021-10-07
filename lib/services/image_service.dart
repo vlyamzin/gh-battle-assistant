@@ -60,7 +60,7 @@ class ImageService {
     UnitType.jekserah: '${ImageService.unitImageBaseUrl}Jekserah-214x300.jpg',
     UnitType.livingBones:
         '${ImageService.unitImageBaseUrl}Skeleton-214x300.jpg',
-    UnitType.livingDead: '${ImageService.unitImageBaseUrl}Zombie-214x300.jpg',
+    UnitType.livingCorpse: '${ImageService.unitImageBaseUrl}Zombie-214x300.jpg',
     UnitType.livingSpirit: '${ImageService.unitImageBaseUrl}Ghost-214x300.jpg',
     UnitType.lurker: '${ImageService.unitImageBaseUrl}Lurker-214x300.jpg',
     UnitType.mercilessOverseer:
@@ -117,6 +117,36 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Bandit_Guard_elite_256.png',
     },
+    UnitType.jekserah: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Jekserah_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Jekserah_boss_256.png',
+    },
+    UnitType.livingBones: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Living_Bones_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Living_Bones_elite_256.png',
+    },
+    UnitType.cultist: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Cultist_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Cultist_elite_256.png',
+    },
+    UnitType.nightDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Night_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Night_Demon_elite_256.png',
+    },
+    UnitType.livingCorpse: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Living_Corpse_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Living_Corpse_elite_256.png',
+    }
     // UnitType.banditArcher: '${ImageService.unitIconBaseUrl}Bandit-Archer-214x300.jpg',
     // UnitType.banditGuard: '${ImageService.unitIconBaseUrl}Bandit-Guard-214x300.jpg',
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
@@ -180,7 +210,7 @@ class ImageService {
     'lt': '$iconsBaseUrl/32/loot_32.png',
     'mv': '$iconsBaseUrl/32/move_32.png',
     'nha': '$iconsBaseUrl/32/neutral_hit_area_32.png',
-    'ndark': '$iconsBaseUrl/32/no_dark.png',
+    'ndark': '$iconsBaseUrl/32/no_dark_32.png',
     'ne': '$iconsBaseUrl/32/no_elements_32.png',
     'nfire': '$iconsBaseUrl/32/no_fire_32.png',
     'nfrost': '$iconsBaseUrl/32/no_frost_32.png',

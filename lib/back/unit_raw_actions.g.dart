@@ -62,7 +62,6 @@ const _$ModifierTypeEnumMap = {
   ModifierType.attack: 'attack',
   ModifierType.range: 'range',
   ModifierType.move: 'move',
-  ModifierType.health: 'health',
   ModifierType.shield: 'shield',
   ModifierType.retaliate: 'retaliate',
   ModifierType.suffer: 'suffer',

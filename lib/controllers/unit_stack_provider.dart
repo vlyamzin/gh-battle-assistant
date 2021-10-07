@@ -50,13 +50,18 @@ class UnitStackProvider {
               }
               if (unit.attack != null)
                 unit.attack = unit.attack! + modifier.value!;
+              else
+                unit.attack = modifier.value!;
               break;
             case ModifierType.move:
               if (modifier.value == null) {
                 unit.move = null;
                 return;
               }
-              if (unit.move != null) unit.move = unit.move! + modifier.value!;
+              if (unit.move != null)
+                unit.move = unit.move! + modifier.value!;
+              else
+                unit.move = modifier.value!;
               break;
             case ModifierType.range:
               if (modifier.value == null) {
@@ -65,6 +70,8 @@ class UnitStackProvider {
               }
               if (unit.range != null)
                 unit.range = unit.range! + modifier.value!;
+              else
+                unit.range = modifier.value!;
               break;
             case ModifierType.shield:
               unit.shield = unit.shield + modifier.value!;

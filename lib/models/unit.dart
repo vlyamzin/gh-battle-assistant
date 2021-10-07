@@ -185,7 +185,7 @@ class Unit {
         case 'wound':
           return ActivityType.wound;
         case 'disarm':
-          return ActivityType.stun;
+          return ActivityType.disarm;
         case 'immobilize':
           return ActivityType.immobilize;
         case 'muddle':

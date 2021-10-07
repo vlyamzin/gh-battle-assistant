@@ -79,6 +79,8 @@ class UnitAction {
           return ActivityType.pull;
         case 'push':
           return ActivityType.push;
+        case 'heal':
+          return ActivityType.heal;
         case 'target_2':
           return ActivityType.target_2;
         case 'target_3':
