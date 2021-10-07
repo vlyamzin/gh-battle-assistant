@@ -345,8 +345,11 @@ typedef EffectMapEntry = MapEntry<ActivityType, String>;
 class Effect {
   final ActivityType type;
   final String iconShortcut;
+  late final String? label;
 
-  Effect(this.type, this.iconShortcut);
+  Effect(this.type, this.iconShortcut) {
+    _parseTargetType();
+  }
 
   @override
   int get hashCode => type.hashCode;
@@ -356,5 +359,16 @@ class Effect {
     if (other is! Effect) return false;
     Effect effect = other;
     return type == effect.type;
+  }
+
+  void _parseTargetType() {
+    if (type == ActivityType.target_2 ||
+        type == ActivityType.target_3 ||
+        type == ActivityType.target_4 ||
+        type == ActivityType.target_all) {
+      var str = type.toString();
+      var list = str.split('_');
+      label = list[1].toUpperCase();
+    }
   }
 }
