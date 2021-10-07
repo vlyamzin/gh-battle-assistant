@@ -16,6 +16,7 @@ class EliteNumberInput extends StatelessWidget {
     return CupertinoFormRow(
       child: CupertinoTextFormFieldRow(
         placeholder: 'Number of elite units',
+        keyboardType: TextInputType.number,
         placeholderStyle: TextStyle(
           color: Color(0xFFD9D9D9),
         ),
