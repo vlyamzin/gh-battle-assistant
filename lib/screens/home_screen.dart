@@ -4,7 +4,7 @@ import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/view/settings_dialog.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
