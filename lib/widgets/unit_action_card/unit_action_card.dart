@@ -34,6 +34,7 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
     stack = context.watch<UnitStackProvider>().unitStack;
 
     return AnimatedFlipCard(
+      key: widget.key,
       animation: animation,
       frontActionCallback: animationForward,
       frontSideChild: _body(),

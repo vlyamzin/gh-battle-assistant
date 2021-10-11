@@ -11,11 +11,12 @@ import 'package:provider/provider.dart';
 /// Initializes [UnitStackProvider] and [UnitActionProvider] provider
 /// to manipulate with [UnitStack] and [UnitActionList] models
 class StackCard extends StatelessWidget {
+  final Key key;
   final UnitStack stack;
   final double cardWidth;
   final double cardHeight;
   const StackCard({
-    Key? key,
+    required this.key,
     required this.stack,
     required this.cardWidth,
     required this.cardHeight,
@@ -27,7 +28,7 @@ class StackCard extends StatelessWidget {
       child: _initProviders(
         context: context,
         child: UnitActionCard(
-          key: ValueKey(stack.type),
+          key: key,
           width: cardWidth,
           height: cardHeight,
         ),
@@ -47,6 +48,7 @@ class StackCard extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UnitActionProvider>(
+          key: key,
           create: (_) => UnitActionProvider(
             actions: stack.actions,
             store: store,
@@ -55,6 +57,7 @@ class StackCard extends StatelessWidget {
         ),
         ProxyProvider2<UnitActionProvider, HomeScreenProvider,
             UnitStackProvider>(
+          key: key,
           update: (_, unitActionC, homeScreenC, unitStackC) {
             var action = unitActionC.actions.currentAction;
             var updatedStack = homeScreenC.model.getByType(stack.type);

@@ -129,6 +129,7 @@ class HomeScreen extends StatelessWidget {
                 onTap: () =>
                     _navigateToUnitStatsScreen(context, stack, rawData),
                 child: StackCard(
+                  key: ValueKey(stack.type),
                   stack: stack,
                   cardWidth: cardWidth,
                   cardHeight: cardHeight,
