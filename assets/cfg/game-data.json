@@ -3006,6 +3006,750 @@
           "area": []
         }
       ]
+    },
+    {
+      "name": "Ooze",
+      "id": 31,
+      "maxNumber": 10,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 4,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 2,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          },
+          "elite": {
+            "health": 8,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 5,
+            "shield": 1,
+            "move": 1,
+            "attack": 2,
+            "range": 2,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          },
+          "elite": {
+            "health": 9,
+            "shield": 1,
+            "move": 1,
+            "attack": 2,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 7,
+            "shield": 1,
+            "move": 1,
+            "attack": 2,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          },
+          "elite": {
+            "health": 11,
+            "shield": 1,
+            "move": 1,
+            "attack": 3,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 8,
+            "shield": 1,
+            "move": 1,
+            "attack": 3,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          },
+          "elite": {
+            "health": 11,
+            "shield": 1,
+            "move": 2,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 9,
+            "shield": 1,
+            "move": 2,
+            "attack": 3,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": []
+          },
+          "elite": {
+            "health": 13,
+            "shield": 1,
+            "move": 2,
+            "attack": 4,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 10,
+            "shield": 1,
+            "move": 2,
+            "attack": 3,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 15,
+            "shield": 1,
+            "move": 3,
+            "attack": 4,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 12,
+            "shield": 1,
+            "move": 2,
+            "attack": 4,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 16,
+            "shield": 2,
+            "move": 3,
+            "attack": 4,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 14,
+            "shield": 1,
+            "move": 2,
+            "attack": 4,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 18,
+            "shield": 2,
+            "move": 3,
+            "attack": 5,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 692,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+1"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 1
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 693,
+          "initiative": 57,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 694,
+          "initiative": 59,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Target |%trgt%|2\nPOISON |%poi%|"
+            }
+          ],
+          "modifier": {
+            "attack": 0
+          },
+          "perks": [
+            "target_2",
+            "poison"
+          ],
+          "area": []
+        },
+        {
+          "id": 695,
+          "initiative": 66,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": 1,
+            "move": -1
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 696,
+          "initiative": 94,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Ooze suffers 2 damage",
+              "subtitle": "Summon normal Ooze with a hit point value equal to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)"
+            }
+          ],
+          "modifier": {
+            "suffer": 2
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 697,
+          "initiative": 94,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Ooze suffers 2 damage",
+              "subtitle": "Summon normal Ooze with a hit point value equal to the summoning Ooze's current hit point value (limited by a normal Ooze's specified maximum hit point value)"
+            }
+          ],
+          "modifier": {
+            "suffer": 2
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 698,
+          "initiative": 66,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1",
+              "subtitle": "Loot |%lt%|1"
+            },
+            {
+              "title": "Heal |%heal%|2",
+              "subtitle": "Self"
+            }
+          ],
+          "modifier": {
+            "move": -1,
+            "heal": 2
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 699,
+          "initiative": 85,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "PUSH |%push%|1 and POISON |%poi%|",
+              "subtitle": "Target all adjacent enemies"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": -1
+          },
+          "perks": [
+            "push",
+            "poison",
+            "target_all"
+          ],
+          "area": []
+        }
+      ]
+    },
+    {
+      "name": "Giant Viper",
+      "id": 16,
+      "maxNumber": 10,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 2,
+            "shield": 0,
+            "move": 2,
+            "attack": 1,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 3,
+            "shield": 0,
+            "move": 2,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 3,
+            "shield": 0,
+            "move": 2,
+            "attack": 1,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 5,
+            "shield": 0,
+            "move": 2,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 4,
+            "shield": 0,
+            "move": 3,
+            "attack": 1,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 7,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 4,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 8,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 6,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 11,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 7,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 13,
+            "shield": 0,
+            "move": 4,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 8,
+            "shield": 0,
+            "move": 4,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 14,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 10,
+            "shield": 0,
+            "move": 4,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          },
+          "elite": {
+            "health": 17,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": []
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 684,
+          "initiative": 32,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Add +2 Attack |%atk%| if the target is adjacent to any of the Giant Viper's allies."
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 685,
+          "initiative": 32,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Add +2 Attack |%atk%| if the target is adjacent to any of the Giant Viper's allies."
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 686,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Shield |%shld%|1"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "shield": 1
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 687,
+          "initiative": 43,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+1",
+              "subtitle": "Jump |%jmp%|"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Target all adjacent enemies"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 1
+          },
+          "perks": [
+            "target_all"
+          ],
+          "area": []
+        },
+        {
+          "id": 688,
+          "initiative": 58,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "move": -1
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 689,
+          "initiative": 58,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+1",
+              "subtitle": "Jump |%jmp%|"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "All attacks targeting Giant Viper this round gain Disadvantage."
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 1
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 690,
+          "initiative": 43,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1",
+              "subtitle": "Jump |%jmp%|"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Target |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": -1
+          },
+          "perks": [
+            "target_2"
+          ],
+          "area": []
+        },
+        {
+          "id": 691,
+          "initiative": 23,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "IMMOBILIZE |%imbz%|"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": -1
+          },
+          "perks": [
+            "immobilize"
+          ],
+          "area": []
+        }
+      ]
     }
   ]
 }
