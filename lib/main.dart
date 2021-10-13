@@ -4,23 +4,27 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/services/store_service.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/screens/home_screen.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: await getTemporaryDirectory(),
+  );
   setupDI();
   late GameData rawData;
-  final _settings = SettingsController();
-  di.registerSingleton<SettingsController>(_settings);
 
   try {
-    await _settings.loadSettings();
     final rawDataString =
         await rootBundle.loadString('assets/cfg/game-data.json');
     rawData = GameData.fromJson(jsonDecode(rawDataString));
@@ -29,7 +33,6 @@ void main() async {
     runApp(Application(
       data: jsonDecode(data),
       rawData: rawData,
-      settingsController: _settings,
     ));
   } on FormatException catch (_) {
     print('Raw data json is not valid');
@@ -37,7 +40,6 @@ void main() async {
     runApp(Application(
       data: null,
       rawData: rawData,
-      settingsController: _settings,
     ));
   }
 }
@@ -45,12 +47,10 @@ void main() async {
 class Application extends StatefulWidget {
   final Map<String, dynamic>? data;
   final GameData rawData;
-  final SettingsController settingsController;
 
   Application({
     required this.data,
     required this.rawData,
-    required this.settingsController,
   });
 
   @override
@@ -68,6 +68,7 @@ class _ApplicationState extends State<Application> {
     else
       _homeScreenProvider = HomeScreenProvider.empty();
     di.registerSingleton<HomeScreenProvider>(_homeScreenProvider);
+    di.registerSingleton<EnemiesRepository>(EnemiesRepository(widget.rawData));
   }
 
   @override
@@ -80,23 +81,31 @@ class _ApplicationState extends State<Application> {
         ChangeNotifierProvider.value(
           value: _homeScreenProvider,
         ),
-        ChangeNotifierProvider.value(
-          value: widget.settingsController,
-        ),
       ],
-      child: CupertinoApp(
-        title: 'Gloomhaven Battle Assistant',
-        theme: CupertinoThemeData(
-          brightness: Brightness.dark,
-          textTheme: CupertinoTextThemeData(
-            textStyle: TextStyle(
-              color: Color(0xFF000000),
-              fontSize: 17,
-            ),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => EnemiesBloc(di<EnemiesRepository>()),
           ),
-          scaffoldBackgroundColor: Colors.white,
+          BlocProvider(
+            lazy: false,
+            create: (_) => SettingsBloc()..add(SettingsLoadE()),
+          ),
+        ],
+        child: CupertinoApp(
+          title: 'Gloomhaven Battle Assistant',
+          theme: CupertinoThemeData(
+            brightness: Brightness.dark,
+            textTheme: CupertinoTextThemeData(
+              textStyle: TextStyle(
+                color: Color(0xFF000000),
+                fontSize: 17,
+              ),
+            ),
+            scaffoldBackgroundColor: Colors.white,
+          ),
+          home: HomeScreen(),
         ),
-        home: HomeScreen(),
       ),
     );
   }

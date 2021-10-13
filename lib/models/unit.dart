@@ -1,11 +1,13 @@
+import 'package:equatable/equatable.dart';
+import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'unit.g.dart';
 
 @JsonSerializable()
-class Unit {
-  int? _number;
+class Unit extends Equatable {
+  final int number;
   late final String displayName;
   late int healthPoint;
   late int shield;
@@ -28,7 +30,7 @@ class Unit {
   late bool turnEnded;
 
   Unit({
-    int? number,
+    required this.number,
     required this.displayName,
     required this.healthPoint,
     this.shield = 0,
@@ -46,7 +48,7 @@ class Unit {
     List<String>? area,
     Set<ActivityType>? negativeEffects,
   }) {
-    if (number != null) this._number = number;
+    // if (number != null) this._number = number;
     if (perks == null)
       this.perks = [];
     else
@@ -63,6 +65,28 @@ class Unit {
         : this.negativeEffects = negativeEffects;
   }
 
+  factory Unit.fromRawData2(
+      String name, int health, UnitRawStats data, int number,
+      [bool elite = false]) {
+    var sPerks = serializeRawData(data.perks);
+    var sImmune = serializeRawData(data.immune);
+
+    return Unit(
+      displayName: name,
+      healthPoint: health,
+      number: number,
+      shield: data.shield ?? 0,
+      attack: data.attack,
+      range: data.range,
+      move: data.move,
+      retaliate: data.retaliate,
+      elite: elite,
+      perks: sPerks,
+      immune: sImmune,
+    );
+  }
+
+  @deprecated
   factory Unit.fromRawData({
     int? number,
     required displayName,
@@ -87,7 +111,7 @@ class Unit {
     return Unit(
       displayName: displayName,
       healthPoint: healthPoint,
-      number: number,
+      number: number ?? 0,
       shield: shield,
       attack: attack,
       range: range,
@@ -107,13 +131,42 @@ class Unit {
 
   Map<String, dynamic> toJson() => _$UnitToJson(this);
 
-  int? get number => _number;
-
-  set number(int? value) {
-    if (_number != null) throw ArgumentError('Number already defined');
-    if (value == null) throw ArgumentError('Number cant be null');
-
-    _number = value;
+  Unit copyWith({
+    int? number,
+    String? displayName,
+    int? healthPoint,
+    int? shield,
+    int? attack,
+    int? range,
+    int? move,
+    int? retaliate,
+    int? heal,
+    int? suffer,
+    int? pierced,
+    bool? elite,
+    bool? turnEnded,
+    List<ActivityType>? perks,
+    List<ActivityType>? immune,
+    List<String>? area,
+    Set<ActivityType>? negativeEffects,
+  }) {
+    return Unit(
+      number: number ?? this.number,
+      displayName: displayName ?? this.displayName,
+      healthPoint: healthPoint ?? this.healthPoint,
+      shield: shield ?? this.shield,
+      attack: attack ?? this.attack,
+      range: range ?? this.range,
+      move: move ?? this.move,
+      retaliate: retaliate ?? this.retaliate,
+      suffer: suffer ?? this.suffer,
+      pierced: pierced ?? this.pierced,
+      elite: elite ?? this.elite,
+      negativeEffects: negativeEffects,
+      perks: perks ?? this.perks,
+      immune: immune ?? this.immune,
+      area: area ?? this.area,
+    );
   }
 
   String toString() => 'Unit$number: $displayName';
@@ -217,4 +270,7 @@ class Unit {
       }
     }).toList();
   }
+
+  @override
+  List<Object?> get props => [number, elite];
 }

@@ -1,4 +1,3 @@
-
 import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -14,7 +13,8 @@ class UnitActionList {
 
   UnitActionList({this.currentAction, this.availableActionIndexes});
 
-  factory UnitActionList.fromJson(Map<String, dynamic> json) => _$UnitActionListFromJson(json);
+  factory UnitActionList.fromJson(Map<String, dynamic> json) =>
+      _$UnitActionListFromJson(json);
 
   Map<String, dynamic> toJson() => _$UnitActionListToJson(this);
 }

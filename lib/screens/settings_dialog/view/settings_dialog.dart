@@ -3,47 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/bloc/settings_bloc.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
 import 'package:provider/provider.dart';
 
 class SettingsDialog extends StatelessWidget {
   const SettingsDialog({Key? key}) : super(key: key);
 
-  Widget _initBlocProvider({Widget? child}) {
-    return BlocProvider(
-      lazy: false,
-      create: (_) => SettingsBloc()..add(SettingsLoadE()),
-      child: child,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return _initBlocProvider(
-      child: Align(
-        alignment: Alignment(0.0, -0.5),
-        child: FractionallySizedBox(
-          widthFactor: 0.6,
-          heightFactor: 0.5,
-          child: Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 15,
-                  spreadRadius: 0.1,
-                  color: Color(0xFF797979),
-                ),
-              ],
-              color: Color(0xFFFFFFFF),
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Column(
-              children: [
-                _HeaderBar(),
-                _Body(),
-              ],
-            ),
+    return Align(
+      alignment: Alignment(0.0, -0.5),
+      child: FractionallySizedBox(
+        widthFactor: 0.6,
+        heightFactor: 0.5,
+        child: Container(
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 15,
+                spreadRadius: 0.1,
+                color: Color(0xFF797979),
+              ),
+            ],
+            color: Color(0xFFFFFFFF),
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Column(
+            children: [
+              _HeaderBar(),
+              _Body(),
+            ],
           ),
         ),
       ),

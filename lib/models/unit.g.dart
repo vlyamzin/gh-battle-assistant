@@ -8,7 +8,7 @@ part of 'unit.dart';
 
 Unit _$UnitFromJson(Map<String, dynamic> json) {
   return Unit(
-    number: json['number'] as int?,
+    number: json['number'] as int,
     displayName: json['displayName'] as String,
     healthPoint: json['healthPoint'] as int,
     shield: json['shield'] as int,
@@ -39,6 +39,7 @@ Unit _$UnitFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
+      'number': instance.number,
       'displayName': instance.displayName,
       'healthPoint': instance.healthPoint,
       'shield': instance.shield,
@@ -57,7 +58,6 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
           .toList(),
       'elite': instance.elite,
       'turnEnded': instance.turnEnded,
-      'number': instance.number,
     };
 
 K _$enumDecode<K, V>(

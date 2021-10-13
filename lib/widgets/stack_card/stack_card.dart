@@ -63,10 +63,9 @@ class StackCard extends StatelessWidget {
             var updatedStack = homeScreenC.model.getByType(stack.type);
 
             // Mid-game. Controllers are initialized, new action or new stack appears
-            if (unitStackC != null && action != null)
-              return unitStackC
-                ..updateStack(updatedStack!)
-                ..endRound(action);
+            if (unitStackC != null && action != null) return unitStackC;
+            // ..updateStack(updatedStack!)
+            // ..endRound(action);
             // Fresh load with data. Action already created but UnitStackController is not initialized yet
             if (action != null)
               return UnitStackProvider(
@@ -74,10 +73,10 @@ class StackCard extends StatelessWidget {
                 unitStack: stack,
                 store: store,
                 currentAction: action,
-              )
-                ..applyModifiers(action.modifiers)
-                ..applyPerks(action.perks)
-                ..applyArea(action.area);
+              );
+            // ..applyModifiers(action.modifiers)
+            // ..applyPerks(action.perks)
+            // ..applyArea(action.area);
             // Backup initializer
             else
               return UnitStackProvider(

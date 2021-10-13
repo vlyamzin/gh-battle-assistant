@@ -14,7 +14,14 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<SettingsLoadE>(_onSettingsLoad);
     on<SettingsSaveE>((_, emit) async {
       var status = await _onSaveToStorage(emit);
-      if (status) emit(SettingsSavedS());
+      if (status) {
+        if (state is SettingsUpdatedS) {
+          var _state = state as SettingsUpdatedS;
+          emit(SettingsSavedS());
+          emit(SettingsUpdatedS(_state.settings.copyWith()));
+        }
+      }
+      ;
     });
     on<SettingsDifficultyIncreaseE>(
         (event, emit) => _onChangeDifficulty(emit, 1));

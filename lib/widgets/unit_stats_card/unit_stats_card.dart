@@ -86,12 +86,14 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        UnitPortrait(
-          unitNumber: widget.unit.number!,
-          type: widget.type,
-          normality: (widget.unit.elite == true)
-              ? UnitNormality.elite
-              : UnitNormality.normal,
+        Expanded(
+          child: UnitPortrait(
+            unitNumber: widget.unit.number,
+            type: widget.type,
+            normality: (widget.unit.elite == true)
+                ? UnitNormality.elite
+                : UnitNormality.normal,
+          ),
         ),
         Flexible(
           flex: 2,

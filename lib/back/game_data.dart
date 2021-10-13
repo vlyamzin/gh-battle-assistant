@@ -6,12 +6,14 @@ part 'game_data.g.dart';
 
 @JsonSerializable()
 class GameData {
-  late final List<UnitRawData> monsters;
+  late final List<UnitRawData> _monsters;
 
-  GameData(this.monsters);
+  GameData(List<UnitRawData> monsters) : this._monsters = monsters;
 
   factory GameData.fromJson(Map<String, dynamic> json) =>
       _$GameDataFromJson(json);
+
+  List<UnitRawData> get monsters => List.unmodifiable(_monsters);
 
   UnitRawData getUnitDataById(UnitType id) =>
       monsters.firstWhere((element) => element.id == id);

@@ -7,9 +7,6 @@ import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/controllers/settings_controller.dart';
-
-import '../di.dart';
 
 class UnitStackProvider {
   UnitStack unitStack;
@@ -24,9 +21,9 @@ class UnitStackProvider {
     required this.store,
     this.currentAction,
   }) {
-    _defaultStats = gameData
-        .getUnitDataById(unitStack.type)
-        .getUnitStats(di<SettingsController>().difficulty.toString());
+    // _defaultStats = gameData
+    //     .getUnitDataById(unitStack.type)
+    //     .getUnitStats(di<SettingsController>().difficulty.toString());
   }
 
   void updateStack(UnitStack newStack) {

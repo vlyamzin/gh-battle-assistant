@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:provider/provider.dart';
 
 import '../../di.dart';
 
@@ -11,18 +9,20 @@ class UnitPortrait extends StatelessWidget {
   final int unitNumber;
   final UnitType type;
   final UnitNormality normality;
+  final bool greyOut;
 
   const UnitPortrait({
     Key? key,
     required this.unitNumber,
     required this.type,
     required this.normality,
+    this.greyOut = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool greyOut = context.select<UnitStatsProvider, bool>(
-        (controller) => controller.unit.turnEnded == true);
+    // bool greyOut = context.select<UnitStatsProvider, bool>(
+    //     (controller) => controller.unit.turnEnded == true);
 
     Widget stack = Stack(
       fit: StackFit.expand,
@@ -60,8 +60,6 @@ class UnitPortrait extends StatelessWidget {
       );
     }
 
-    return Expanded(
-      child: stack,
-    );
+    return stack;
   }
 }
