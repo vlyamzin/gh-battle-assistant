@@ -19,12 +19,11 @@ class AddUnitCubit extends Cubit<AddUnitState> {
     this._enemiesBloc,
     this._settingsBloc,
   ) : super(AddUnitState.initial()) {
-    if (_settingsBloc.state is SettingsUpdatedS) {
-      this.difficulty =
-          (_settingsBloc.state as SettingsUpdatedS).settings.difficulty;
-    } else {
-      this.difficulty = 1;
-    }
+    _settingsBloc.state.maybeWhen(
+        orElse: () => this.difficulty = 1,
+        updated: (Settings settings) {
+          this.difficulty = settings.difficulty;
+        });
   }
 
   Map<UnitType, String> getSuggestion(String query) {

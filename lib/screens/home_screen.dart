@@ -89,25 +89,27 @@ class HomeScreen extends StatelessWidget {
     GameData rawData,
   ) {
     final settingsState = context.read<SettingsBloc>().state;
-    if (settingsState is SettingsUpdatedS) {
-      final difficulty = settingsState.settings.difficulty.toString();
-      final Map<UnitNormality, UnitRawStats>? unitStats =
-          rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
+    settingsState.maybeWhen(
+        updated: (Settings settings) {
+          final difficulty = settings.difficulty.toString();
+          final Map<UnitNormality, UnitRawStats>? unitStats =
+              rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
 
-      if (unitStats != null) {
-        Navigator.of(context).push(
-          CupertinoPageRoute(
-            builder: (_) => StatsScreen(
-              stack: stackModel,
-              defaultStats: unitStats,
-            ),
-          ),
-        );
-      } else
-        throw StateError(
-          'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}',
-        );
-    }
+          if (unitStats != null) {
+            Navigator.of(context).push(
+              CupertinoPageRoute(
+                builder: (_) => StatsScreen(
+                  stack: stackModel,
+                  defaultStats: unitStats,
+                ),
+              ),
+            );
+          } else
+            throw StateError(
+              'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}',
+            );
+        },
+        orElse: () {});
   }
 
   void _showSettings(context) {

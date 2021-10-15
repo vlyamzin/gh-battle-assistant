@@ -1,25 +1,28 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/bloc/settings_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../settings_dialog.dart';
 
 part 'settings_event.dart';
-part 'settings_state.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   static const DIFFICULTY = 'difficulty';
   final _systemPref = SharedPreferences.getInstance();
-  SettingsBloc() : super(SettingsInitialS()) {
+  SettingsBloc() : super(SettingsState.initial()) {
     on<SettingsLoadE>(_onSettingsLoad);
     on<SettingsSaveE>((_, emit) async {
       var status = await _onSaveToStorage(emit);
       if (status) {
-        if (state is SettingsUpdatedS) {
-          var _state = state as SettingsUpdatedS;
-          emit(SettingsSavedS());
-          emit(SettingsUpdatedS(_state.settings.copyWith()));
-        }
+        state.maybeMap(
+          updated: (SettingsUpdatedS state) {
+            var settings = state.settings;
+
+            emit(SettingsState.saved());
+            emit(SettingsState.updated(settings));
+          },
+          orElse: () {},
+        );
       }
       ;
     });
@@ -32,7 +35,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   void _onSettingsLoad(SettingsLoadE event, Emitter<SettingsState> emit) async {
     var prefSnapshot = await _systemPref;
     emit(
-      SettingsUpdatedS(
+      SettingsState.updated(
         Settings(difficulty: prefSnapshot.getInt('difficulty') ?? 1),
       ),
     );
@@ -42,23 +45,27 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     Emitter<SettingsState> emit,
     int value,
   ) {
-    if (state is SettingsUpdatedS) {
-      var oldValue = (state as SettingsUpdatedS).settings.difficulty;
-      var updatedSettings = (state as SettingsUpdatedS)
-          .settings
-          .copyWith(difficulty: oldValue + value);
-      emit(SettingsUpdatedS(updatedSettings));
-    }
+    state.maybeMap(
+        updated: (SettingsUpdatedS state) {
+          var oldValue = state.settings.difficulty;
+
+          emit(
+            SettingsState.updated(
+              state.settings.copyWith(difficulty: oldValue + value),
+            ),
+          );
+        },
+        orElse: () {});
   }
 
   Future<bool> _onSaveToStorage(Emitter<SettingsState> emit) async {
-    if (state is SettingsUpdatedS) {
-      var snapshot = await _systemPref;
-      var difficulty = (state as SettingsUpdatedS).settings.difficulty;
+    return state.maybeWhen<Future<bool>>(
+        updated: (Settings settings) async {
+          var snapshot = await _systemPref;
+          var difficulty = settings.difficulty;
 
-      return snapshot.setInt(SettingsBloc.DIFFICULTY, difficulty);
-    } else {
-      return Future.value(false);
-    }
+          return snapshot.setInt(SettingsBloc.DIFFICULTY, difficulty);
+        },
+        orElse: () => Future.value(false));
   }
 }

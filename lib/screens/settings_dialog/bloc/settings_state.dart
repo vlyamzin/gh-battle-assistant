@@ -1,23 +1,12 @@
-part of 'settings_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 
-@immutable
-abstract class SettingsState extends Equatable {
-  const SettingsState();
+part 'settings_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class SettingsState with _$SettingsState {
+  factory SettingsState.initial() = _SettingsInitialS;
+  factory SettingsState.updated(Settings settings) = SettingsUpdatedS;
+  factory SettingsState.saved() = SettingsSavedS;
+  factory SettingsState.failed() = _SettingsLoadingFailed;
 }
-
-class SettingsInitialS extends SettingsState {}
-
-class SettingsUpdatedS extends SettingsState {
-  final Settings settings;
-  const SettingsUpdatedS(this.settings);
-
-  @override
-  List<Object> get props => [settings];
-}
-
-class SettingsSavedS extends SettingsState {}
-
-class SettingsLoadingFailed extends SettingsState {}

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/bloc/settings_bloc.dart';
+import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:provider/provider.dart';
 
 class SettingsDialog extends StatelessWidget {
@@ -135,17 +135,16 @@ class _DifficultyControl extends StatelessWidget {
             child: Icon(Icons.remove),
             onPressed: () => context.read<SettingsBloc>()
               ..add(SettingsDifficultyDecreaseE()),
-            // onPressed: () => null,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
           ),
           BlocBuilder<SettingsBloc, SettingsState>(
             builder: (context, state) {
-              if (state is SettingsUpdatedS)
-                return Text('${state.settings.difficulty}');
-              else
-                return Container();
+              return state.maybeWhen(
+                updated: (Settings settings) => Text('${settings.difficulty}'),
+                orElse: () => Container(),
+              );
             },
           ),
           Padding(
