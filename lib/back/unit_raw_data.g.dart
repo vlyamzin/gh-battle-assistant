@@ -6,24 +6,22 @@ part of 'unit_raw_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) {
-  return UnitRawData(
-    _$enumDecode(_$UnitTypeEnumMap, json['id']),
-    json['name'] as String,
-    json['maxNumber'] as int,
-    (json['actions'] as List<dynamic>)
-        .map((e) => UnitRawAction.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    (json['stats'] as Map<String, dynamic>).map(
-      (k, e) => MapEntry(
-          k,
-          (e as Map<String, dynamic>).map(
-            (k, e) => MapEntry(_$enumDecode(_$UnitNormalityEnumMap, k),
-                UnitRawStats.fromJson(e as Map<String, dynamic>)),
-          )),
-    ),
-  );
-}
+UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) => UnitRawData(
+      _$enumDecode(_$UnitTypeEnumMap, json['id']),
+      json['name'] as String,
+      json['maxNumber'] as int,
+      (json['actions'] as List<dynamic>)
+          .map((e) => UnitRawAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      (json['stats'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            k,
+            (e as Map<String, dynamic>).map(
+              (k, e) => MapEntry(_$enumDecode(_$UnitNormalityEnumMap, k),
+                  UnitRawStats.fromJson(e as Map<String, dynamic>)),
+            )),
+      ),
+    );
 
 Map<String, dynamic> _$UnitRawDataToJson(UnitRawData instance) =>
     <String, dynamic>{

@@ -1,30 +1,45 @@
-part of 'add_unit_cubit.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
+import 'package:meta/meta.dart';
 
-abstract class AddUnitState extends Equatable {
-  const AddUnitState();
+part 'add_unit_state.freezed.dart';
+// part of 'add_unit_cubit.dart';
 
-  @override
-  List<Object> get props => [];
+@freezed
+abstract class AddUnitState with _$AddUnitState {
+  const factory AddUnitState.initial() = AddUnitInitial;
+  const factory AddUnitState.filteredUnits(UnitSearch matches) = FilteredUnitsS;
+  const factory AddUnitState.selectedUnitType(UnitStack stack) =
+      UnitTypeSelectedS;
+  const factory AddUnitState.unitAdded() = UnitAddedS;
 }
+// abstract class AddUnitState extends Equatable {
+//   const AddUnitState();
 
-class AddUnitInitial extends AddUnitState {}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class FilteredUnitsS extends AddUnitState {
-  final UnitSearch matches;
+// class AddUnitInitial extends AddUnitState {}
 
-  const FilteredUnitsS(this.matches);
+// class FilteredUnitsS extends AddUnitState {
+//   final UnitSearch matches;
 
-  @override
-  List<Object> get props => [matches];
-}
+//   const FilteredUnitsS(this.matches);
 
-class UnitTypeSelectedS extends AddUnitState {
-  final UnitStack stack;
+//   @override
+//   List<Object> get props => [matches];
+// }
 
-  const UnitTypeSelectedS(this.stack);
+// class UnitTypeSelectedS extends AddUnitState {
+//   final UnitStack stack;
 
-  @override
-  List<Object> get props => [stack, stack.units];
-}
+//   const UnitTypeSelectedS(this.stack);
 
-class UnitAddedS extends AddUnitState {}
+//   @override
+//   List<Object> get props => [stack, stack.units];
+// }
+
+// class UnitAddedS extends AddUnitState {}

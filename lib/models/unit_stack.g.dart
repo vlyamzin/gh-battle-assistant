@@ -6,22 +6,20 @@ part of 'unit_stack.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnitStack _$UnitStackFromJson(Map<String, dynamic> json) {
-  return UnitStack(
-    type: _$enumDecode(_$UnitTypeEnumMap, json['type']),
-    displayName: json['displayName'] as String,
-    maxNumber: json['maxNumber'] as int?,
-    units: (json['units'] as List<dynamic>?)
-        ?.map((e) => Unit.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    actions: json['actions'] == null
-        ? null
-        : UnitActionList.fromJson(json['actions'] as Map<String, dynamic>),
-    availableNumbersPull: (json['availableNumbersPull'] as List<dynamic>?)
-        ?.map((e) => e as int)
-        .toList(),
-  );
-}
+UnitStack _$UnitStackFromJson(Map<String, dynamic> json) => UnitStack(
+      type: _$enumDecode(_$UnitTypeEnumMap, json['type']),
+      displayName: json['displayName'] as String,
+      maxNumber: json['maxNumber'] as int? ?? 6,
+      units: (json['units'] as List<dynamic>?)
+          ?.map((e) => Unit.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      actions: json['actions'] == null
+          ? null
+          : UnitActionList.fromJson(json['actions'] as Map<String, dynamic>),
+      availableNumbersPull: (json['availableNumbersPull'] as List<dynamic>?)
+          ?.map((e) => e as int)
+          .toList(),
+    );
 
 Map<String, dynamic> _$UnitStackToJson(UnitStack instance) => <String, dynamic>{
       'type': _$UnitTypeEnumMap[instance.type],

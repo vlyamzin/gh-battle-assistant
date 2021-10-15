@@ -6,37 +6,36 @@ part of 'unit.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Unit _$UnitFromJson(Map<String, dynamic> json) {
-  return Unit(
-    number: json['number'] as int,
-    displayName: json['displayName'] as String,
-    healthPoint: json['healthPoint'] as int,
-    shield: json['shield'] as int,
-    attack: json['attack'] as int?,
-    range: json['range'] as int?,
-    move: json['move'] as int?,
-    retaliate: json['retaliate'] as int?,
-    heal: json['heal'] as int,
-    suffer: json['suffer'] as int,
-    pierced: json['pierced'] as int,
-    elite: json['elite'] as bool,
-    turnEnded: json['turnEnded'] as bool,
-    perks: (json['perks'] as List<dynamic>?)
-            ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
-            .toList() ??
-        [],
-    immune: (json['immune'] as List<dynamic>?)
-            ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
-            .toList() ??
-        [],
-    area: (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-        [],
-    negativeEffects: (json['negativeEffects'] as List<dynamic>?)
-            ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
-            .toSet() ??
-        {},
-  );
-}
+Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
+      number: json['number'] as int,
+      displayName: json['displayName'] as String,
+      healthPoint: json['healthPoint'] as int,
+      shield: json['shield'] as int? ?? 0,
+      attack: json['attack'] as int? ?? 0,
+      range: json['range'] as int? ?? 0,
+      move: json['move'] as int? ?? 0,
+      retaliate: json['retaliate'] as int? ?? 0,
+      heal: json['heal'] as int? ?? 0,
+      suffer: json['suffer'] as int? ?? 0,
+      pierced: json['pierced'] as int? ?? 0,
+      elite: json['elite'] as bool? ?? false,
+      turnEnded: json['turnEnded'] as bool? ?? false,
+      perks: (json['perks'] as List<dynamic>?)
+              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              .toList() ??
+          [],
+      immune: (json['immune'] as List<dynamic>?)
+              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              .toList() ??
+          [],
+      area:
+          (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+      negativeEffects: (json['negativeEffects'] as List<dynamic>?)
+              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              .toSet() ??
+          {},
+    );
 
 Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'number': instance.number,

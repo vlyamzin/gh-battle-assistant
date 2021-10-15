@@ -6,21 +6,20 @@ part of 'unit_raw_actions.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) {
-  return UnitRawAction(
-    json['id'] as int,
-    json['initiative'] as int,
-    json['shouldRefresh'] as bool,
-    (json['values'] as List<dynamic>)
-        .map((e) => RawActionValue.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    (json['modifier'] as Map<String, dynamic>).map(
-      (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
-    ),
-    (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-    (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
-  );
-}
+UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) =>
+    UnitRawAction(
+      json['id'] as int,
+      json['initiative'] as int,
+      json['shouldRefresh'] as bool,
+      (json['values'] as List<dynamic>)
+          .map((e) => RawActionValue.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      (json['modifier'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
+      ),
+      (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+      (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    );
 
 Map<String, dynamic> _$UnitRawActionToJson(UnitRawAction instance) =>
     <String, dynamic>{
@@ -70,13 +69,12 @@ const _$ModifierTypeEnumMap = {
   ModifierType.heal: 'heal',
 };
 
-RawActionValue _$RawActionValueFromJson(Map<String, dynamic> json) {
-  return RawActionValue(
-    json['title'] as String?,
-    json['subtitle'] as String?,
-    json['area'] as String?,
-  );
-}
+RawActionValue _$RawActionValueFromJson(Map<String, dynamic> json) =>
+    RawActionValue(
+      json['title'] as String?,
+      json['subtitle'] as String?,
+      json['area'] as String?,
+    );
 
 Map<String, dynamic> _$RawActionValueToJson(RawActionValue instance) =>
     <String, dynamic>{

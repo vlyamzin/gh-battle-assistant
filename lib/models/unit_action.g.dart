@@ -6,25 +6,24 @@ part of 'unit_action.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnitAction _$UnitActionFromJson(Map<String, dynamic> json) {
-  return UnitAction(
-    id: json['id'] as int,
-    initiative: json['initiative'] as int,
-    values: (json['values'] as List<dynamic>?)
-        ?.map((e) => GHAction.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    modifiers: (json['modifiers'] as Map<String, dynamic>?)?.map(
-      (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
-    ),
-    shouldRefresh: json['shouldRefresh'] as bool?,
-    perks: (json['perks'] as List<dynamic>?)
-            ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
-            .toList() ??
-        [],
-    area: (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-        [],
-  );
-}
+UnitAction _$UnitActionFromJson(Map<String, dynamic> json) => UnitAction(
+      id: json['id'] as int,
+      initiative: json['initiative'] as int,
+      values: (json['values'] as List<dynamic>?)
+          ?.map((e) => GHAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      modifiers: (json['modifiers'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
+      ),
+      shouldRefresh: json['shouldRefresh'] as bool?,
+      perks: (json['perks'] as List<dynamic>?)
+              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              .toList() ??
+          [],
+      area:
+          (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [],
+    );
 
 Map<String, dynamic> _$UnitActionToJson(UnitAction instance) =>
     <String, dynamic>{
@@ -97,13 +96,11 @@ const _$ActivityTypeEnumMap = {
   ActivityType.invisible: 'invisible',
 };
 
-GHAction _$GHActionFromJson(Map<String, dynamic> json) {
-  return GHAction(
-    title: json['title'] as String?,
-    subtitle: json['subtitle'] as String?,
-    area: json['area'] as String?,
-  );
-}
+GHAction _$GHActionFromJson(Map<String, dynamic> json) => GHAction(
+      title: json['title'] as String?,
+      subtitle: json['subtitle'] as String?,
+      area: json['area'] as String?,
+    );
 
 Map<String, dynamic> _$GHActionToJson(GHAction instance) => <String, dynamic>{
       'title': instance.title,
