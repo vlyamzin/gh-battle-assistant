@@ -13,7 +13,6 @@ import 'package:gh_battle_assistant/services/store_service.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:gh_battle_assistant/di.dart';
-import 'package:gh_battle_assistant/screens/home_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
