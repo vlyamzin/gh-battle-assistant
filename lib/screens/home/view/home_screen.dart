@@ -129,27 +129,50 @@ class HomeScreen extends StatelessWidget {
 
     return BlocBuilder<EnemiesBloc, EnemiesState>(
       builder: (context, state) {
-        if (state is EnemiesLoadedS) {
-          return GHSliverGrid(
-            padding: 8.0,
-            landscape: 3,
-            portrait: 2,
-            children: state.enemies.monsters.map((UnitStack stack) {
-              return GestureDetector(
-                  onTap: () =>
-                      _navigateToUnitStatsScreen(context, stack, rawData),
-                  child: StackCard(
-                    key: ValueKey(stack.type),
-                    stack: stack,
-                    cardWidth: cardWidth,
-                    cardHeight: cardHeight,
-                  ));
-            }).toList(),
-            childWidth: cardWidth,
-            childHeight: cardHeight,
-          );
-        }
-        return SliverGrid.count(crossAxisCount: 1);
+        return state.when(
+            initial: () => SliverGrid.count(crossAxisCount: 1),
+            loaded: (Enemies enemies) {
+              return GHSliverGrid(
+                padding: 8.0,
+                landscape: 3,
+                portrait: 2,
+                children: enemies.monsters.map((UnitStack stack) {
+                  return GestureDetector(
+                      onTap: () =>
+                          _navigateToUnitStatsScreen(context, stack, rawData),
+                      child: StackCard(
+                        key: ValueKey(stack.type),
+                        stack: stack,
+                        cardWidth: cardWidth,
+                        cardHeight: cardHeight,
+                      ));
+                }).toList(),
+                childWidth: cardWidth,
+                childHeight: cardHeight,
+              );
+            },
+            gameStarted: () => SliverGrid.count(crossAxisCount: 1));
+        // if (state is EnemiesLoadedS) {
+        //   return GHSliverGrid(
+        //     padding: 8.0,
+        //     landscape: 3,
+        //     portrait: 2,
+        //     children: state.enemies.monsters.map((UnitStack stack) {
+        //       return GestureDetector(
+        //           onTap: () =>
+        //               _navigateToUnitStatsScreen(context, stack, rawData),
+        //           child: StackCard(
+        //             key: ValueKey(stack.type),
+        //             stack: stack,
+        //             cardWidth: cardWidth,
+        //             cardHeight: cardHeight,
+        //           ));
+        //     }).toList(),
+        //     childWidth: cardWidth,
+        //     childHeight: cardHeight,
+        //   );
+        // }
+        // return SliverGrid.count(crossAxisCount: 1);
       },
     );
   }

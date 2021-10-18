@@ -1,39 +1,16 @@
-part of 'enemies_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 
-@immutable
-abstract class EnemiesState extends Equatable {
-  const EnemiesState();
+part 'enemies_state.freezed.dart';
+part 'enemies_state.g.dart';
 
-  @override
-  List<Object> get props => [];
+@freezed
+class EnemiesState with _$EnemiesState {
+  factory EnemiesState.initial() = _EnemiesInitial;
+
+  factory EnemiesState.loaded(Enemies enemies) = EnemiesLoaded;
+  factory EnemiesState.gameStarted() = GameStarted;
+
+  factory EnemiesState.fromJson(Map<String, dynamic> json) =>
+      _$EnemiesStateFromJson(json);
 }
-
-class EnemiesInitialS extends EnemiesState {}
-
-class EnemiesLoadedS extends EnemiesState {
-  final Enemies enemies;
-
-  const EnemiesLoadedS(this.enemies);
-
-  factory EnemiesLoadedS.fromMap(Map<String, dynamic> entity) {
-    return EnemiesLoadedS(Enemies.fromJson(entity['enemies']));
-  }
-
-  Map<String, dynamic> toMap() {
-    return {'enemies': enemies.toJson()};
-  }
-
-  @override
-  List<Object> get props => [enemies];
-}
-
-class GameStartedS extends EnemiesState {
-  final Enemies enemies;
-
-  const GameStartedS(this.enemies);
-
-  @override
-  List<Object> get props => [enemies];
-}
-
-class EnemiesLoadingErrorS extends EnemiesState {}

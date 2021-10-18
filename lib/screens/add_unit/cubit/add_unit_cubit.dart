@@ -37,19 +37,19 @@ class AddUnitCubit extends Cubit<AddUnitState> {
 
     var data = _repository.byName(name);
 
-    // TODO add maybeWhen here
-    if (_enemiesBloc.state is EnemiesLoadedS ||
-        _enemiesBloc.state is GameStartedS) {
-      var enemiesState = _enemiesBloc.state as EnemiesLoadedS;
-      existingStack = enemiesState.enemies.getByType(data.id);
-    }
-    if (existingStack != null) {
-      newStack = existingStack.copyWith();
-    } else {
-      newStack = UnitStack.fromRawData(data);
-    }
+    _enemiesBloc.state.maybeWhen(
+        loaded: (Enemies enemies) {
+          existingStack = enemies.getByType(data.id);
 
-    emit(AddUnitState.selectedUnitType(newStack));
+          if (existingStack != null) {
+            newStack = existingStack!.copyWith();
+          } else {
+            newStack = UnitStack.fromRawData(data);
+          }
+
+          emit(AddUnitState.selectedUnitType(newStack));
+        },
+        orElse: () {});
   }
 
   void selectUnit(int number) {
