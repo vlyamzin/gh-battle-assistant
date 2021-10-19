@@ -62,7 +62,7 @@ class _HeaderBar extends StatelessWidget {
           Text('Settings'),
           BlocListener<SettingsBloc, SettingsState>(
             listener: (context, state) {
-              if (state is SettingsSavedS) Navigator.of(context).pop();
+              if (state is SettingsSaved) Navigator.of(context).pop();
             },
             child: CupertinoButton(
                 child: Text('Save'),
@@ -88,6 +88,11 @@ class _Body extends StatelessWidget {
             label: 'Difficulty',
             control: _DifficultyControl(),
           ),
+          ElevatedButton(
+            onPressed: () =>
+                context.read<SettingsBloc>().add(StartNewGame(true)),
+            child: Text('Start new game'),
+          )
         ],
       ),
     );

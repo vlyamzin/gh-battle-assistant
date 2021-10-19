@@ -23,22 +23,34 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      child: Container(
-        decoration: BoxDecoration(
-          image: const DecorationImage(
-            image: AssetImage(ImageService.mainBackground),
-            fit: BoxFit.fill,
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (context, state) {
+        state.maybeWhen(
+            newGame: (Settings settings) {
+              if (settings.newGame) {
+                context.read<EnemiesBloc>().add(ClearEnemiesList());
+              }
+              context.read<SettingsBloc>().add(SettingsSaveE());
+            },
+            orElse: () {});
+        return CupertinoPageScaffold(
+          child: Container(
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: AssetImage(ImageService.mainBackground),
+                fit: BoxFit.fill,
+              ),
+            ),
+            child: PullToRefresh(
+              onRefresh: () async {
+                await _refreshUnitActions(context);
+              },
+              child: _gridView(context),
+              header: _navBar(context),
+            ),
           ),
-        ),
-        child: PullToRefresh(
-          onRefresh: () async {
-            await _refreshUnitActions(context);
-          },
-          child: _gridView(context),
-          header: _navBar(context),
-        ),
-      ),
+        );
+      },
     );
   }
 

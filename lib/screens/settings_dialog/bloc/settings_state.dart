@@ -5,8 +5,9 @@ part 'settings_state.freezed.dart';
 
 @freezed
 abstract class SettingsState with _$SettingsState {
-  factory SettingsState.initial() = _SettingsInitialS;
-  factory SettingsState.updated(Settings settings) = SettingsUpdatedS;
-  factory SettingsState.saved() = SettingsSavedS;
+  factory SettingsState.initial() = _SettingsInitial;
+  factory SettingsState.updated(Settings settings) = SettingsUpdated;
+  factory SettingsState.saved() = SettingsSaved;
+  factory SettingsState.newGame(Settings settings) = NewGame;
   factory SettingsState.failed() = _SettingsLoadingFailed;
 }

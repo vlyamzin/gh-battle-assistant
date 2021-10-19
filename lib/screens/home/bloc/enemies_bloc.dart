@@ -12,6 +12,7 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
   EnemiesBloc(this.enemiesRepository) : super(EnemiesState.initial()) {
     on<StackAddedE>(_onStackAdded);
     on<StackRemovedE>(_onStackRemoved);
+    on<ClearEnemiesList>(_onClearEnemies);
   }
 
   @override
@@ -41,5 +42,9 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
           emit(EnemiesState.loaded(Enemies(monsters: updatedEnemies)));
         },
         orElse: () {});
+  }
+
+  void _onClearEnemies(_, Emitter<EnemiesState> emit) {
+    emit(EnemiesState.loaded(Enemies(monsters: [])));
   }
 }

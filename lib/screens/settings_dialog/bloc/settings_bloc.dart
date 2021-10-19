@@ -8,35 +8,41 @@ part 'settings_event.dart';
 
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   static const DIFFICULTY = 'difficulty';
+  static const NEW_GAME = 'new_game';
+
   final _systemPref = SharedPreferences.getInstance();
   SettingsBloc() : super(SettingsState.initial()) {
     on<SettingsLoadE>(_onSettingsLoad);
     on<SettingsSaveE>((_, emit) async {
-      var status = await _onSaveToStorage(emit);
-      if (status) {
-        state.maybeMap(
-          updated: (SettingsUpdatedS state) {
-            var settings = state.settings;
+      state.maybeMap(
+        updated: (SettingsUpdated state) async {
+          var snapshot = await _systemPref;
 
-            emit(SettingsState.saved());
-            emit(SettingsState.updated(settings));
-          },
-          orElse: () {},
-        );
-      }
-      ;
+          snapshot.setInt(SettingsBloc.DIFFICULTY, state.settings.difficulty);
+          emit(SettingsState.saved());
+          emit(SettingsState.updated(state.settings));
+        },
+        newGame: (NewGame state) {
+          emit(SettingsState.saved());
+          emit(SettingsState.updated(state.settings));
+        },
+        orElse: () {},
+      );
     });
     on<SettingsDifficultyIncreaseE>(
         (event, emit) => _onChangeDifficulty(emit, 1));
     on<SettingsDifficultyDecreaseE>(
         (event, emit) => _onChangeDifficulty(emit, -1));
+    on<StartNewGame>(_onNewGame);
   }
 
   void _onSettingsLoad(SettingsLoadE event, Emitter<SettingsState> emit) async {
     var prefSnapshot = await _systemPref;
     emit(
       SettingsState.updated(
-        Settings(difficulty: prefSnapshot.getInt('difficulty') ?? 1),
+        Settings(
+            difficulty: prefSnapshot.getInt(DIFFICULTY) ?? 1,
+            newGame: prefSnapshot.getBool(NEW_GAME) ?? true),
       ),
     );
   }
@@ -46,7 +52,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     int value,
   ) {
     state.maybeMap(
-        updated: (SettingsUpdatedS state) {
+        updated: (SettingsUpdated state) {
           var oldValue = state.settings.difficulty;
 
           emit(
@@ -58,14 +64,16 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         orElse: () {});
   }
 
-  Future<bool> _onSaveToStorage(Emitter<SettingsState> emit) async {
-    return state.maybeWhen<Future<bool>>(
-        updated: (Settings settings) async {
-          var snapshot = await _systemPref;
-          var difficulty = settings.difficulty;
+  void _onNewGame(StartNewGame event, Emitter<SettingsState> emit) async {
+    void _update(Settings settings) async {
+      var snapshot = await _systemPref;
+      snapshot.setBool(SettingsBloc.NEW_GAME, event.status);
+      emit(SettingsState.newGame(settings.copyWith(newGame: event.status)));
+    }
 
-          return snapshot.setInt(SettingsBloc.DIFFICULTY, difficulty);
-        },
-        orElse: () => Future.value(false));
+    state.maybeWhen(
+        updated: (Settings settings) => _update(settings),
+        newGame: (Settings settings) => _update(settings),
+        orElse: () {});
   }
 }

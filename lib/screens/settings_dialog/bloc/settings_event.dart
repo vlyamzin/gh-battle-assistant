@@ -14,3 +14,12 @@ class SettingsDifficultyIncreaseE extends SettingsEvent {}
 class SettingsDifficultyDecreaseE extends SettingsEvent {}
 
 class SettingsSaveE extends SettingsEvent {}
+
+class StartNewGame extends SettingsEvent {
+  final bool status;
+
+  StartNewGame(this.status) : super();
+
+  @override
+  List<Object> get props => [status];
+}

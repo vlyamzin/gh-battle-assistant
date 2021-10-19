@@ -26,3 +26,5 @@ class StackRemovedE extends EnemiesEvent {
 }
 
 class NewActionRequested extends EnemiesEvent {}
+
+class ClearEnemiesList extends EnemiesEvent {}

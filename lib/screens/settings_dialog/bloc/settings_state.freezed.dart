@@ -17,18 +17,24 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$SettingsStateTearOff {
   const _$SettingsStateTearOff();
 
-  _SettingsInitialS initial() {
-    return _SettingsInitialS();
+  _SettingsInitial initial() {
+    return _SettingsInitial();
   }
 
-  SettingsUpdatedS updated(Settings settings) {
-    return SettingsUpdatedS(
+  SettingsUpdated updated(Settings settings) {
+    return SettingsUpdated(
       settings,
     );
   }
 
-  SettingsSavedS saved() {
-    return SettingsSavedS();
+  SettingsSaved saved() {
+    return SettingsSaved();
+  }
+
+  NewGame newGame(Settings settings) {
+    return NewGame(
+      settings,
+    );
   }
 
   _SettingsLoadingFailed failed() {
@@ -46,6 +52,7 @@ mixin _$SettingsState {
     required TResult Function() initial,
     required TResult Function(Settings settings) updated,
     required TResult Function() saved,
+    required TResult Function(Settings settings) newGame,
     required TResult Function() failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +61,7 @@ mixin _$SettingsState {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,31 +70,35 @@ mixin _$SettingsState {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SettingsInitialS value) initial,
-    required TResult Function(SettingsUpdatedS value) updated,
-    required TResult Function(SettingsSavedS value) saved,
+    required TResult Function(_SettingsInitial value) initial,
+    required TResult Function(SettingsUpdated value) updated,
+    required TResult Function(SettingsSaved value) saved,
+    required TResult Function(NewGame value) newGame,
     required TResult Function(_SettingsLoadingFailed value) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
     required TResult orElse(),
   }) =>
@@ -111,28 +123,28 @@ class _$SettingsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$SettingsInitialSCopyWith<$Res> {
-  factory _$SettingsInitialSCopyWith(
-          _SettingsInitialS value, $Res Function(_SettingsInitialS) then) =
-      __$SettingsInitialSCopyWithImpl<$Res>;
+abstract class _$SettingsInitialCopyWith<$Res> {
+  factory _$SettingsInitialCopyWith(
+          _SettingsInitial value, $Res Function(_SettingsInitial) then) =
+      __$SettingsInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$SettingsInitialSCopyWithImpl<$Res>
+class __$SettingsInitialCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements _$SettingsInitialSCopyWith<$Res> {
-  __$SettingsInitialSCopyWithImpl(
-      _SettingsInitialS _value, $Res Function(_SettingsInitialS) _then)
-      : super(_value, (v) => _then(v as _SettingsInitialS));
+    implements _$SettingsInitialCopyWith<$Res> {
+  __$SettingsInitialCopyWithImpl(
+      _SettingsInitial _value, $Res Function(_SettingsInitial) _then)
+      : super(_value, (v) => _then(v as _SettingsInitial));
 
   @override
-  _SettingsInitialS get _value => super._value as _SettingsInitialS;
+  _SettingsInitial get _value => super._value as _SettingsInitial;
 }
 
 /// @nodoc
 
-class _$_SettingsInitialS implements _SettingsInitialS {
-  _$_SettingsInitialS();
+class _$_SettingsInitial implements _SettingsInitial {
+  _$_SettingsInitial();
 
   @override
   String toString() {
@@ -142,7 +154,7 @@ class _$_SettingsInitialS implements _SettingsInitialS {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SettingsInitialS);
+        (other.runtimeType == runtimeType && other is _SettingsInitial);
   }
 
   @override
@@ -154,6 +166,7 @@ class _$_SettingsInitialS implements _SettingsInitialS {
     required TResult Function() initial,
     required TResult Function(Settings settings) updated,
     required TResult Function() saved,
+    required TResult Function(Settings settings) newGame,
     required TResult Function() failed,
   }) {
     return initial();
@@ -165,6 +178,7 @@ class _$_SettingsInitialS implements _SettingsInitialS {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
   }) {
     return initial?.call();
@@ -176,6 +190,7 @@ class _$_SettingsInitialS implements _SettingsInitialS {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -188,9 +203,10 @@ class _$_SettingsInitialS implements _SettingsInitialS {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SettingsInitialS value) initial,
-    required TResult Function(SettingsUpdatedS value) updated,
-    required TResult Function(SettingsSavedS value) saved,
+    required TResult Function(_SettingsInitial value) initial,
+    required TResult Function(SettingsUpdated value) updated,
+    required TResult Function(SettingsSaved value) saved,
+    required TResult Function(NewGame value) newGame,
     required TResult Function(_SettingsLoadingFailed value) failed,
   }) {
     return initial(this);
@@ -199,9 +215,10 @@ class _$_SettingsInitialS implements _SettingsInitialS {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
   }) {
     return initial?.call(this);
@@ -210,9 +227,10 @@ class _$_SettingsInitialS implements _SettingsInitialS {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
     required TResult orElse(),
   }) {
@@ -223,34 +241,34 @@ class _$_SettingsInitialS implements _SettingsInitialS {
   }
 }
 
-abstract class _SettingsInitialS implements SettingsState {
-  factory _SettingsInitialS() = _$_SettingsInitialS;
+abstract class _SettingsInitial implements SettingsState {
+  factory _SettingsInitial() = _$_SettingsInitial;
 }
 
 /// @nodoc
-abstract class $SettingsUpdatedSCopyWith<$Res> {
-  factory $SettingsUpdatedSCopyWith(
-          SettingsUpdatedS value, $Res Function(SettingsUpdatedS) then) =
-      _$SettingsUpdatedSCopyWithImpl<$Res>;
+abstract class $SettingsUpdatedCopyWith<$Res> {
+  factory $SettingsUpdatedCopyWith(
+          SettingsUpdated value, $Res Function(SettingsUpdated) then) =
+      _$SettingsUpdatedCopyWithImpl<$Res>;
   $Res call({Settings settings});
 }
 
 /// @nodoc
-class _$SettingsUpdatedSCopyWithImpl<$Res>
+class _$SettingsUpdatedCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements $SettingsUpdatedSCopyWith<$Res> {
-  _$SettingsUpdatedSCopyWithImpl(
-      SettingsUpdatedS _value, $Res Function(SettingsUpdatedS) _then)
-      : super(_value, (v) => _then(v as SettingsUpdatedS));
+    implements $SettingsUpdatedCopyWith<$Res> {
+  _$SettingsUpdatedCopyWithImpl(
+      SettingsUpdated _value, $Res Function(SettingsUpdated) _then)
+      : super(_value, (v) => _then(v as SettingsUpdated));
 
   @override
-  SettingsUpdatedS get _value => super._value as SettingsUpdatedS;
+  SettingsUpdated get _value => super._value as SettingsUpdated;
 
   @override
   $Res call({
     Object? settings = freezed,
   }) {
-    return _then(SettingsUpdatedS(
+    return _then(SettingsUpdated(
       settings == freezed
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
@@ -261,8 +279,8 @@ class _$SettingsUpdatedSCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SettingsUpdatedS implements SettingsUpdatedS {
-  _$SettingsUpdatedS(this.settings);
+class _$SettingsUpdated implements SettingsUpdated {
+  _$SettingsUpdated(this.settings);
 
   @override
   final Settings settings;
@@ -276,7 +294,7 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is SettingsUpdatedS &&
+            other is SettingsUpdated &&
             (identical(other.settings, settings) ||
                 other.settings == settings));
   }
@@ -286,8 +304,8 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
 
   @JsonKey(ignore: true)
   @override
-  $SettingsUpdatedSCopyWith<SettingsUpdatedS> get copyWith =>
-      _$SettingsUpdatedSCopyWithImpl<SettingsUpdatedS>(this, _$identity);
+  $SettingsUpdatedCopyWith<SettingsUpdated> get copyWith =>
+      _$SettingsUpdatedCopyWithImpl<SettingsUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -295,6 +313,7 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
     required TResult Function() initial,
     required TResult Function(Settings settings) updated,
     required TResult Function() saved,
+    required TResult Function(Settings settings) newGame,
     required TResult Function() failed,
   }) {
     return updated(settings);
@@ -306,6 +325,7 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
   }) {
     return updated?.call(settings);
@@ -317,6 +337,7 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -329,9 +350,10 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SettingsInitialS value) initial,
-    required TResult Function(SettingsUpdatedS value) updated,
-    required TResult Function(SettingsSavedS value) saved,
+    required TResult Function(_SettingsInitial value) initial,
+    required TResult Function(SettingsUpdated value) updated,
+    required TResult Function(SettingsSaved value) saved,
+    required TResult Function(NewGame value) newGame,
     required TResult Function(_SettingsLoadingFailed value) failed,
   }) {
     return updated(this);
@@ -340,9 +362,10 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
   }) {
     return updated?.call(this);
@@ -351,9 +374,10 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
     required TResult orElse(),
   }) {
@@ -364,38 +388,38 @@ class _$SettingsUpdatedS implements SettingsUpdatedS {
   }
 }
 
-abstract class SettingsUpdatedS implements SettingsState {
-  factory SettingsUpdatedS(Settings settings) = _$SettingsUpdatedS;
+abstract class SettingsUpdated implements SettingsState {
+  factory SettingsUpdated(Settings settings) = _$SettingsUpdated;
 
   Settings get settings;
   @JsonKey(ignore: true)
-  $SettingsUpdatedSCopyWith<SettingsUpdatedS> get copyWith =>
+  $SettingsUpdatedCopyWith<SettingsUpdated> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SettingsSavedSCopyWith<$Res> {
-  factory $SettingsSavedSCopyWith(
-          SettingsSavedS value, $Res Function(SettingsSavedS) then) =
-      _$SettingsSavedSCopyWithImpl<$Res>;
+abstract class $SettingsSavedCopyWith<$Res> {
+  factory $SettingsSavedCopyWith(
+          SettingsSaved value, $Res Function(SettingsSaved) then) =
+      _$SettingsSavedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SettingsSavedSCopyWithImpl<$Res>
+class _$SettingsSavedCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements $SettingsSavedSCopyWith<$Res> {
-  _$SettingsSavedSCopyWithImpl(
-      SettingsSavedS _value, $Res Function(SettingsSavedS) _then)
-      : super(_value, (v) => _then(v as SettingsSavedS));
+    implements $SettingsSavedCopyWith<$Res> {
+  _$SettingsSavedCopyWithImpl(
+      SettingsSaved _value, $Res Function(SettingsSaved) _then)
+      : super(_value, (v) => _then(v as SettingsSaved));
 
   @override
-  SettingsSavedS get _value => super._value as SettingsSavedS;
+  SettingsSaved get _value => super._value as SettingsSaved;
 }
 
 /// @nodoc
 
-class _$SettingsSavedS implements SettingsSavedS {
-  _$SettingsSavedS();
+class _$SettingsSaved implements SettingsSaved {
+  _$SettingsSaved();
 
   @override
   String toString() {
@@ -405,7 +429,7 @@ class _$SettingsSavedS implements SettingsSavedS {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is SettingsSavedS);
+        (other.runtimeType == runtimeType && other is SettingsSaved);
   }
 
   @override
@@ -417,6 +441,7 @@ class _$SettingsSavedS implements SettingsSavedS {
     required TResult Function() initial,
     required TResult Function(Settings settings) updated,
     required TResult Function() saved,
+    required TResult Function(Settings settings) newGame,
     required TResult Function() failed,
   }) {
     return saved();
@@ -428,6 +453,7 @@ class _$SettingsSavedS implements SettingsSavedS {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
   }) {
     return saved?.call();
@@ -439,6 +465,7 @@ class _$SettingsSavedS implements SettingsSavedS {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -451,9 +478,10 @@ class _$SettingsSavedS implements SettingsSavedS {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SettingsInitialS value) initial,
-    required TResult Function(SettingsUpdatedS value) updated,
-    required TResult Function(SettingsSavedS value) saved,
+    required TResult Function(_SettingsInitial value) initial,
+    required TResult Function(SettingsUpdated value) updated,
+    required TResult Function(SettingsSaved value) saved,
+    required TResult Function(NewGame value) newGame,
     required TResult Function(_SettingsLoadingFailed value) failed,
   }) {
     return saved(this);
@@ -462,9 +490,10 @@ class _$SettingsSavedS implements SettingsSavedS {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
   }) {
     return saved?.call(this);
@@ -473,9 +502,10 @@ class _$SettingsSavedS implements SettingsSavedS {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
     required TResult orElse(),
   }) {
@@ -486,8 +516,156 @@ class _$SettingsSavedS implements SettingsSavedS {
   }
 }
 
-abstract class SettingsSavedS implements SettingsState {
-  factory SettingsSavedS() = _$SettingsSavedS;
+abstract class SettingsSaved implements SettingsState {
+  factory SettingsSaved() = _$SettingsSaved;
+}
+
+/// @nodoc
+abstract class $NewGameCopyWith<$Res> {
+  factory $NewGameCopyWith(NewGame value, $Res Function(NewGame) then) =
+      _$NewGameCopyWithImpl<$Res>;
+  $Res call({Settings settings});
+}
+
+/// @nodoc
+class _$NewGameCopyWithImpl<$Res> extends _$SettingsStateCopyWithImpl<$Res>
+    implements $NewGameCopyWith<$Res> {
+  _$NewGameCopyWithImpl(NewGame _value, $Res Function(NewGame) _then)
+      : super(_value, (v) => _then(v as NewGame));
+
+  @override
+  NewGame get _value => super._value as NewGame;
+
+  @override
+  $Res call({
+    Object? settings = freezed,
+  }) {
+    return _then(NewGame(
+      settings == freezed
+          ? _value.settings
+          : settings // ignore: cast_nullable_to_non_nullable
+              as Settings,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$NewGame implements NewGame {
+  _$NewGame(this.settings);
+
+  @override
+  final Settings settings;
+
+  @override
+  String toString() {
+    return 'SettingsState.newGame(settings: $settings)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is NewGame &&
+            (identical(other.settings, settings) ||
+                other.settings == settings));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, settings);
+
+  @JsonKey(ignore: true)
+  @override
+  $NewGameCopyWith<NewGame> get copyWith =>
+      _$NewGameCopyWithImpl<NewGame>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(Settings settings) updated,
+    required TResult Function() saved,
+    required TResult Function(Settings settings) newGame,
+    required TResult Function() failed,
+  }) {
+    return newGame(settings);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Settings settings)? updated,
+    TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
+    TResult Function()? failed,
+  }) {
+    return newGame?.call(settings);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(Settings settings)? updated,
+    TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
+    TResult Function()? failed,
+    required TResult orElse(),
+  }) {
+    if (newGame != null) {
+      return newGame(settings);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SettingsInitial value) initial,
+    required TResult Function(SettingsUpdated value) updated,
+    required TResult Function(SettingsSaved value) saved,
+    required TResult Function(NewGame value) newGame,
+    required TResult Function(_SettingsLoadingFailed value) failed,
+  }) {
+    return newGame(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
+    TResult Function(_SettingsLoadingFailed value)? failed,
+  }) {
+    return newGame?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
+    TResult Function(_SettingsLoadingFailed value)? failed,
+    required TResult orElse(),
+  }) {
+    if (newGame != null) {
+      return newGame(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NewGame implements SettingsState {
+  factory NewGame(Settings settings) = _$NewGame;
+
+  Settings get settings;
+  @JsonKey(ignore: true)
+  $NewGameCopyWith<NewGame> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -534,6 +712,7 @@ class _$_SettingsLoadingFailed implements _SettingsLoadingFailed {
     required TResult Function() initial,
     required TResult Function(Settings settings) updated,
     required TResult Function() saved,
+    required TResult Function(Settings settings) newGame,
     required TResult Function() failed,
   }) {
     return failed();
@@ -545,6 +724,7 @@ class _$_SettingsLoadingFailed implements _SettingsLoadingFailed {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
   }) {
     return failed?.call();
@@ -556,6 +736,7 @@ class _$_SettingsLoadingFailed implements _SettingsLoadingFailed {
     TResult Function()? initial,
     TResult Function(Settings settings)? updated,
     TResult Function()? saved,
+    TResult Function(Settings settings)? newGame,
     TResult Function()? failed,
     required TResult orElse(),
   }) {
@@ -568,9 +749,10 @@ class _$_SettingsLoadingFailed implements _SettingsLoadingFailed {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SettingsInitialS value) initial,
-    required TResult Function(SettingsUpdatedS value) updated,
-    required TResult Function(SettingsSavedS value) saved,
+    required TResult Function(_SettingsInitial value) initial,
+    required TResult Function(SettingsUpdated value) updated,
+    required TResult Function(SettingsSaved value) saved,
+    required TResult Function(NewGame value) newGame,
     required TResult Function(_SettingsLoadingFailed value) failed,
   }) {
     return failed(this);
@@ -579,9 +761,10 @@ class _$_SettingsLoadingFailed implements _SettingsLoadingFailed {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
   }) {
     return failed?.call(this);
@@ -590,9 +773,10 @@ class _$_SettingsLoadingFailed implements _SettingsLoadingFailed {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SettingsInitialS value)? initial,
-    TResult Function(SettingsUpdatedS value)? updated,
-    TResult Function(SettingsSavedS value)? saved,
+    TResult Function(_SettingsInitial value)? initial,
+    TResult Function(SettingsUpdated value)? updated,
+    TResult Function(SettingsSaved value)? saved,
+    TResult Function(NewGame value)? newGame,
     TResult Function(_SettingsLoadingFailed value)? failed,
     required TResult orElse(),
   }) {
