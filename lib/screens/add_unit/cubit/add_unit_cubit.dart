@@ -7,23 +7,24 @@ import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
+import 'package:gh_battle_assistant/services/logger_service.dart';
+
+import '../../../di.dart';
 
 class AddUnitCubit extends Cubit<AddUnitState> {
   final EnemiesRepository _repository;
   final EnemiesBloc _enemiesBloc;
-  final SettingsBloc _settingsBloc;
   late final int difficulty;
 
   AddUnitCubit(
     this._repository,
     this._enemiesBloc,
-    this._settingsBloc,
   ) : super(AddUnitState.initial()) {
-    _settingsBloc.state.maybeWhen(
-        orElse: () => this.difficulty = 1,
-        updated: (Settings settings) {
-          this.difficulty = settings.difficulty;
-        });
+    try {
+      this.difficulty = di<SettingsRepository>().loadSettings().difficulty;
+    } catch (e) {
+      this.difficulty = 1;
+    }
   }
 
   Map<UnitType, String> getSuggestion(String query) {
@@ -53,8 +54,9 @@ class AddUnitCubit extends Cubit<AddUnitState> {
 
         emit(AddUnitState.selectedUnitType(newStack));
       },
-      orElse: () => print(
-          'AddUnitCubit: selectUnitType: Unhandled state ${_enemiesBloc.state.runtimeType}'),
+      orElse: () => di<LoggerService>().print(
+          'selectUnitType - Unhandled state ${_enemiesBloc.state.runtimeType}',
+          this.runtimeType),
     );
   }
 

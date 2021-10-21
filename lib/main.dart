@@ -69,44 +69,51 @@ class _ApplicationState extends State<Application> {
       _homeScreenProvider = HomeScreenProvider.empty();
     di.registerSingleton<HomeScreenProvider>(_homeScreenProvider);
     di.registerSingleton<EnemiesRepository>(EnemiesRepository(widget.rawData));
+    di.registerSingleton<SettingsRepository>(SettingsRepository());
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<GameData>.value(
-          value: widget.rawData,
-        ),
-        ChangeNotifierProvider.value(
-          value: _homeScreenProvider,
-        ),
-      ],
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => EnemiesBloc(di<EnemiesRepository>()),
-          ),
-          BlocProvider(
-            lazy: false,
-            create: (_) => SettingsBloc()..add(SettingsLoadE()),
-          ),
-        ],
-        child: CupertinoApp(
-          title: 'Gloomhaven Battle Assistant',
-          theme: CupertinoThemeData(
-            brightness: Brightness.dark,
-            textTheme: CupertinoTextThemeData(
-              textStyle: TextStyle(
-                color: Color(0xFF000000),
-                fontSize: 17,
-              ),
+    return RepositoryProvider.value(
+      value: di<SettingsRepository>(),
+      child: Builder(builder: (context) {
+        return MultiProvider(
+          providers: [
+            Provider<GameData>.value(
+              value: widget.rawData,
             ),
-            scaffoldBackgroundColor: Colors.white,
+            ChangeNotifierProvider.value(
+              value: _homeScreenProvider,
+            ),
+          ],
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => EnemiesBloc(di<EnemiesRepository>()),
+              ),
+              BlocProvider(
+                lazy: false,
+                create: (_) => SettingsBloc(context.read<SettingsRepository>())
+                  ..add(SettingsLoadE()),
+              ),
+            ],
+            child: CupertinoApp(
+              title: 'Gloomhaven Battle Assistant',
+              theme: CupertinoThemeData(
+                brightness: Brightness.dark,
+                textTheme: CupertinoTextThemeData(
+                  textStyle: TextStyle(
+                    color: Color(0xFF000000),
+                    fontSize: 17,
+                  ),
+                ),
+                scaffoldBackgroundColor: Colors.white,
+              ),
+              home: HomeScreen(),
+            ),
           ),
-          home: HomeScreen(),
-        ),
-      ),
+        );
+      }),
     );
   }
 }

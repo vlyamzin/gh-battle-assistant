@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
+import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/view/settings_dialog.dart';
@@ -14,6 +15,7 @@ import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
+import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:gh_battle_assistant/widgets/stack_card/stack_card.dart';
 import 'package:gh_battle_assistant/screens/add_unit/view/add_unit_screen.dart';
 import 'package:provider/provider.dart';
@@ -91,7 +93,6 @@ class HomeScreen extends StatelessWidget {
     Navigator.of(context).push(CupertinoPageRoute(
         builder: (_) => AddUnitScreen(
               enemiesBloc: context.read<EnemiesBloc>(),
-              settingsBloc: context.read<SettingsBloc>(),
             )));
   }
 
@@ -100,28 +101,27 @@ class HomeScreen extends StatelessWidget {
     UnitStack stackModel,
     GameData rawData,
   ) {
-    final settingsState = context.read<SettingsBloc>().state;
-    settingsState.maybeWhen(
-        updated: (Settings settings) {
-          final difficulty = settings.difficulty.toString();
-          final Map<UnitNormality, UnitRawStats>? unitStats =
-              rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
+    try {
+      final settings = context.read<SettingsRepository>().loadSettings();
+      final difficulty = settings.difficulty.toString();
+      final Map<UnitNormality, UnitRawStats>? unitStats =
+          rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
 
-          if (unitStats != null) {
-            Navigator.of(context).push(
-              CupertinoPageRoute(
-                builder: (_) => StatsScreen(
-                  stack: stackModel,
-                  defaultStats: unitStats,
-                ),
-              ),
-            );
-          } else
-            throw StateError(
-              'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}',
-            );
-        },
-        orElse: () {});
+      if (unitStats != null) {
+        Navigator.of(context).push(
+          CupertinoPageRoute(
+            builder: (_) => StatsScreen(
+              stack: stackModel,
+              defaultStats: unitStats,
+            ),
+          ),
+        );
+      } else
+        di<LoggerService>().print(
+            'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}');
+    } catch (e) {
+      di<LoggerService>().print(e.toString(), this.runtimeType);
+    }
   }
 
   void _showSettings(context) {

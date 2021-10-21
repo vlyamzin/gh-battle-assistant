@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:gh_battle_assistant/screens/add_unit/view/unit_number_selector.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/screens/add_unit/view/unit_search_input.dart';
 import 'package:provider/provider.dart';
@@ -13,11 +12,9 @@ import '../../../di.dart';
 
 class AddUnitScreen extends StatefulWidget {
   final EnemiesBloc enemiesBloc;
-  final SettingsBloc settingsBloc;
   const AddUnitScreen({
     Key? key,
     required this.enemiesBloc,
-    required this.settingsBloc,
   }) : super(key: key);
 
   @override
@@ -28,8 +25,8 @@ class _AddUnitScreenState extends State<AddUnitScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddUnitCubit(
-          di<EnemiesRepository>(), widget.enemiesBloc, widget.settingsBloc),
+      create: (context) =>
+          AddUnitCubit(di<EnemiesRepository>(), widget.enemiesBloc),
       child: Builder(
         builder: (context) {
           return CupertinoPageScaffold(
