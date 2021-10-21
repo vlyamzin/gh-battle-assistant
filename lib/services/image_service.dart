@@ -164,6 +164,24 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Living_Spirit_elite_256.png',
     },
+    UnitType.caveBear: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Cave_Bear_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Cave_Bear_elite_256.png',
+    },
+    UnitType.frostDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Frost_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Frost_Demon_elite_256.png',
+    },
+    UnitType.harrowerInfester: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Harrower_Infester_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Harrower_Infester_elite_256.png',
+    }
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
     // UnitType.caveBear: '${ImageService.unitIconBaseUrl}Cave-Bear-214x300.jpg',

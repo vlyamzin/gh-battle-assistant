@@ -38,18 +38,24 @@ class AddUnitCubit extends Cubit<AddUnitState> {
     var data = _repository.byName(name);
 
     _enemiesBloc.state.maybeWhen(
-        loaded: (Enemies enemies) {
-          existingStack = enemies.getByType(data.id);
+      initial: () {
+        newStack = UnitStack.fromRawData(data);
+        emit(AddUnitState.selectedUnitType(newStack));
+      },
+      loaded: (Enemies enemies) {
+        existingStack = enemies.getByType(data.id);
 
-          if (existingStack != null) {
-            newStack = existingStack!.copyWith();
-          } else {
-            newStack = UnitStack.fromRawData(data);
-          }
+        if (existingStack != null) {
+          newStack = existingStack!.copyWith();
+        } else {
+          newStack = UnitStack.fromRawData(data);
+        }
 
-          emit(AddUnitState.selectedUnitType(newStack));
-        },
-        orElse: () {});
+        emit(AddUnitState.selectedUnitType(newStack));
+      },
+      orElse: () => print(
+          'AddUnitCubit: selectUnitType: Unhandled state ${_enemiesBloc.state.runtimeType}'),
+    );
   }
 
   void selectUnit(int number) {
