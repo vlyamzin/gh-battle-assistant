@@ -9,7 +9,6 @@ class EnemiesState with _$EnemiesState {
   factory EnemiesState.initial() = _EnemiesInitial;
 
   factory EnemiesState.loaded(Enemies enemies) = EnemiesLoaded;
-  factory EnemiesState.gameStarted() = GameStarted;
 
   factory EnemiesState.fromJson(Map<String, dynamic> json) =>
       _$EnemiesStateFromJson(json);

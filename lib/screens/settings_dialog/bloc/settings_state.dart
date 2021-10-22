@@ -4,7 +4,7 @@ import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart
 part 'settings_state.freezed.dart';
 
 @freezed
-abstract class SettingsState with _$SettingsState {
+class SettingsState with _$SettingsState {
   factory SettingsState.initial() = _SettingsInitial;
   factory SettingsState.updated(Settings settings) = SettingsUpdated;
   factory SettingsState.saved() = SettingsSaved;

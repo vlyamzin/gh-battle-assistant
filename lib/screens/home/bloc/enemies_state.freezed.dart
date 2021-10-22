@@ -19,8 +19,6 @@ EnemiesState _$EnemiesStateFromJson(Map<String, dynamic> json) {
       return _EnemiesInitial.fromJson(json);
     case 'loaded':
       return EnemiesLoaded.fromJson(json);
-    case 'gameStarted':
-      return GameStarted.fromJson(json);
 
     default:
       throw CheckedFromJsonException(json, 'runtimeType', 'EnemiesState',
@@ -42,10 +40,6 @@ class _$EnemiesStateTearOff {
     );
   }
 
-  GameStarted gameStarted() {
-    return GameStarted();
-  }
-
   EnemiesState fromJson(Map<String, Object?> json) {
     return EnemiesState.fromJson(json);
   }
@@ -60,21 +54,18 @@ mixin _$EnemiesState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(Enemies enemies) loaded,
-    required TResult Function() gameStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -82,21 +73,18 @@ mixin _$EnemiesState {
   TResult map<TResult extends Object?>({
     required TResult Function(_EnemiesInitial value) initial,
     required TResult Function(EnemiesLoaded value) loaded,
-    required TResult Function(GameStarted value) gameStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnemiesInitial value)? initial,
     TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnemiesInitial value)? initial,
     TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,7 +153,6 @@ class _$_EnemiesInitial implements _EnemiesInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(Enemies enemies) loaded,
-    required TResult Function() gameStarted,
   }) {
     return initial();
   }
@@ -175,7 +162,6 @@ class _$_EnemiesInitial implements _EnemiesInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
   }) {
     return initial?.call();
   }
@@ -185,7 +171,6 @@ class _$_EnemiesInitial implements _EnemiesInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -199,7 +184,6 @@ class _$_EnemiesInitial implements _EnemiesInitial {
   TResult map<TResult extends Object?>({
     required TResult Function(_EnemiesInitial value) initial,
     required TResult Function(EnemiesLoaded value) loaded,
-    required TResult Function(GameStarted value) gameStarted,
   }) {
     return initial(this);
   }
@@ -209,7 +193,6 @@ class _$_EnemiesInitial implements _EnemiesInitial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnemiesInitial value)? initial,
     TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
   }) {
     return initial?.call(this);
   }
@@ -219,7 +202,6 @@ class _$_EnemiesInitial implements _EnemiesInitial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnemiesInitial value)? initial,
     TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -309,7 +291,6 @@ class _$EnemiesLoaded implements EnemiesLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(Enemies enemies) loaded,
-    required TResult Function() gameStarted,
   }) {
     return loaded(enemies);
   }
@@ -319,7 +300,6 @@ class _$EnemiesLoaded implements EnemiesLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
   }) {
     return loaded?.call(enemies);
   }
@@ -329,7 +309,6 @@ class _$EnemiesLoaded implements EnemiesLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -343,7 +322,6 @@ class _$EnemiesLoaded implements EnemiesLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_EnemiesInitial value) initial,
     required TResult Function(EnemiesLoaded value) loaded,
-    required TResult Function(GameStarted value) gameStarted,
   }) {
     return loaded(this);
   }
@@ -353,7 +331,6 @@ class _$EnemiesLoaded implements EnemiesLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_EnemiesInitial value)? initial,
     TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
   }) {
     return loaded?.call(this);
   }
@@ -363,7 +340,6 @@ class _$EnemiesLoaded implements EnemiesLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_EnemiesInitial value)? initial,
     TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -388,125 +364,4 @@ abstract class EnemiesLoaded implements EnemiesState {
   @JsonKey(ignore: true)
   $EnemiesLoadedCopyWith<EnemiesLoaded> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $GameStartedCopyWith<$Res> {
-  factory $GameStartedCopyWith(
-          GameStarted value, $Res Function(GameStarted) then) =
-      _$GameStartedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GameStartedCopyWithImpl<$Res> extends _$EnemiesStateCopyWithImpl<$Res>
-    implements $GameStartedCopyWith<$Res> {
-  _$GameStartedCopyWithImpl(
-      GameStarted _value, $Res Function(GameStarted) _then)
-      : super(_value, (v) => _then(v as GameStarted));
-
-  @override
-  GameStarted get _value => super._value as GameStarted;
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$GameStarted implements GameStarted {
-  _$GameStarted();
-
-  factory _$GameStarted.fromJson(Map<String, dynamic> json) =>
-      _$$GameStartedFromJson(json);
-
-  @override
-  String toString() {
-    return 'EnemiesState.gameStarted()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is GameStarted);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(Enemies enemies) loaded,
-    required TResult Function() gameStarted,
-  }) {
-    return gameStarted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
-  }) {
-    return gameStarted?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(Enemies enemies)? loaded,
-    TResult Function()? gameStarted,
-    required TResult orElse(),
-  }) {
-    if (gameStarted != null) {
-      return gameStarted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_EnemiesInitial value) initial,
-    required TResult Function(EnemiesLoaded value) loaded,
-    required TResult Function(GameStarted value) gameStarted,
-  }) {
-    return gameStarted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_EnemiesInitial value)? initial,
-    TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
-  }) {
-    return gameStarted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_EnemiesInitial value)? initial,
-    TResult Function(EnemiesLoaded value)? loaded,
-    TResult Function(GameStarted value)? gameStarted,
-    required TResult orElse(),
-  }) {
-    if (gameStarted != null) {
-      return gameStarted(this);
-    }
-    return orElse();
-  }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$GameStartedToJson(this)..['runtimeType'] = 'gameStarted';
-  }
-}
-
-abstract class GameStarted implements EnemiesState {
-  factory GameStarted() = _$GameStarted;
-
-  factory GameStarted.fromJson(Map<String, dynamic> json) =
-      _$GameStarted.fromJson;
 }

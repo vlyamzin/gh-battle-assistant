@@ -1,20 +1,41 @@
+import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/models/unit_action.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 part 'unit_action_list.g.dart';
 
 @JsonSerializable()
-class UnitActionList {
-  UnitAction? currentAction;
-  List<int>? availableActionIndexes;
+@immutable
+class UnitActionList extends Equatable {
+  final UnitAction? currentAction;
+  final List<int>? availableActionIndexes;
+  final List<UnitAction>? allActions;
 
-  @JsonKey(ignore: true)
-  late List<UnitAction> allActions;
-
-  UnitActionList({this.currentAction, this.availableActionIndexes});
+  UnitActionList({
+    this.currentAction,
+    this.availableActionIndexes,
+    this.allActions,
+  });
 
   factory UnitActionList.fromJson(Map<String, dynamic> json) =>
       _$UnitActionListFromJson(json);
 
   Map<String, dynamic> toJson() => _$UnitActionListToJson(this);
+
+  UnitActionList copyWith(
+      {UnitAction? currentAction,
+      List<int>? availableActionIndexes,
+      List<UnitAction>? allActions}) {
+    return UnitActionList(
+      currentAction: currentAction ?? this.currentAction,
+      availableActionIndexes:
+          availableActionIndexes ?? this.availableActionIndexes,
+      allActions: allActions ?? this.allActions,
+    );
+  }
+
+  @override
+  List<Object?> get props =>
+      [currentAction, availableActionIndexes, allActions];
 }

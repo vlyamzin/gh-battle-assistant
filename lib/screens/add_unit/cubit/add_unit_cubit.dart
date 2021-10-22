@@ -54,7 +54,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
 
         emit(AddUnitState.selectedUnitType(newStack));
       },
-      orElse: () => di<LoggerService>().print(
+      orElse: () => di<LoggerService>().log(
           'selectUnitType - Unhandled state ${_enemiesBloc.state.runtimeType}',
           this.runtimeType),
     );

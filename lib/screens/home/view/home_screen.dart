@@ -59,6 +59,17 @@ class HomeScreen extends StatelessWidget {
   Future<void> _refreshUnitActions(BuildContext context) async {
     await Future.delayed(Duration(milliseconds: 1000));
     context.read<HomeScreenProvider>().emit(HomeScreenEvents.NEW_ACTIONS);
+    var enemiesBloc = context.read<EnemiesBloc>()..add(NewActionRequested());
+
+    // update settings.newGame if it was set to 'true'
+    // it means that game is active now and first round begins
+    try {
+      var settings = context.read<SettingsRepository>().loadSettings();
+      if (settings.newGame && enemiesBloc.state is EnemiesLoaded)
+        context.read<SettingsBloc>().add(StartNewGame(false));
+    } catch (e) {
+      di<LoggerService>().log('Settings are not loaded yet', this.runtimeType);
+    }
   }
 
   CupertinoSliverNavigationBar _navBar(BuildContext context) {
@@ -117,10 +128,10 @@ class HomeScreen extends StatelessWidget {
           ),
         );
       } else
-        di<LoggerService>().print(
+        di<LoggerService>().log(
             'Cannot get unit stats for level $difficulty of unit ${stackModel.displayName}');
     } catch (e) {
-      di<LoggerService>().print(e.toString(), this.runtimeType);
+      di<LoggerService>().log(e.toString(), this.runtimeType);
     }
   }
 
@@ -142,49 +153,31 @@ class HomeScreen extends StatelessWidget {
     return BlocBuilder<EnemiesBloc, EnemiesState>(
       builder: (context, state) {
         return state.when(
-            initial: () => SliverGrid.count(crossAxisCount: 1),
-            loaded: (Enemies enemies) {
-              return GHSliverGrid(
-                padding: 8.0,
-                landscape: 3,
-                portrait: 2,
-                children: enemies.monsters.map((UnitStack stack) {
-                  return GestureDetector(
-                      onTap: () =>
-                          _navigateToUnitStatsScreen(context, stack, rawData),
+          initial: () => SliverGrid.count(crossAxisCount: 1),
+          loaded: (Enemies enemies) {
+            return GHSliverGrid(
+              padding: 8.0,
+              landscape: 3,
+              portrait: 2,
+              children: enemies.monsters.map((UnitStack stack) {
+                return GestureDetector(
+                    onTap: () =>
+                        _navigateToUnitStatsScreen(context, stack, rawData),
+                    child: Provider<UnitStack>.value(
+                      value: stack,
                       child: StackCard(
                         key: ValueKey(stack.type),
                         stack: stack,
                         cardWidth: cardWidth,
                         cardHeight: cardHeight,
-                      ));
-                }).toList(),
-                childWidth: cardWidth,
-                childHeight: cardHeight,
-              );
-            },
-            gameStarted: () => SliverGrid.count(crossAxisCount: 1));
-        // if (state is EnemiesLoadedS) {
-        //   return GHSliverGrid(
-        //     padding: 8.0,
-        //     landscape: 3,
-        //     portrait: 2,
-        //     children: state.enemies.monsters.map((UnitStack stack) {
-        //       return GestureDetector(
-        //           onTap: () =>
-        //               _navigateToUnitStatsScreen(context, stack, rawData),
-        //           child: StackCard(
-        //             key: ValueKey(stack.type),
-        //             stack: stack,
-        //             cardWidth: cardWidth,
-        //             cardHeight: cardHeight,
-        //           ));
-        //     }).toList(),
-        //     childWidth: cardWidth,
-        //     childHeight: cardHeight,
-        //   );
-        // }
-        // return SliverGrid.count(crossAxisCount: 1);
+                      ),
+                    ));
+              }).toList(),
+              childWidth: cardWidth,
+              childHeight: cardHeight,
+            );
+          },
+        );
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
@@ -8,8 +9,6 @@ import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/unit_action_card.dart';
 import 'package:provider/provider.dart';
 
-/// Initializes [UnitStackProvider] and [UnitActionProvider] provider
-/// to manipulate with [UnitStack] and [UnitActionList] models
 class StackCard extends StatelessWidget {
   final Key key;
   final UnitStack stack;
@@ -47,14 +46,6 @@ class StackCard extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<UnitActionProvider>(
-          key: key,
-          create: (_) => UnitActionProvider(
-            actions: stack.actions,
-            store: store,
-            rawData: rawData,
-          ),
-        ),
         ProxyProvider2<UnitActionProvider, HomeScreenProvider,
             UnitStackProvider>(
           key: key,

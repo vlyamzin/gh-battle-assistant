@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
-import 'package:gh_battle_assistant/controllers/unit_stack_provider.dart';
 import 'package:gh_battle_assistant/di.dart';
+import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
@@ -27,38 +27,35 @@ class UnitActionCard extends StatefulWidget with CardBorderRadius {
 }
 
 class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
-  late UnitStack stack;
-
   @override
   Widget build(BuildContext context) {
-    stack = context.watch<UnitStackProvider>().unitStack;
-
-    return AnimatedFlipCard(
-      key: widget.key,
-      animation: animation,
-      frontActionCallback: animationForward,
-      frontSideChild: _body(),
-      backSideChild: UnitActionCardBackSide(
-        title: stack.displayName,
-        backButtonCallback: animationBackward,
-        deleteButtonCallback: () {
-          context.read<EnemiesBloc>().add(StackRemovedE(stack));
-        },
+    return Consumer<UnitStack>(
+      builder: (context, stack, __) => AnimatedFlipCard(
+        key: widget.key,
+        animation: animation,
+        frontActionCallback: animationForward,
+        frontSideChild: _body(stack),
+        backSideChild: UnitActionCardBackSide(
+          title: stack.displayName,
+          backButtonCallback: animationBackward,
+          deleteButtonCallback: () {
+            context.read<EnemiesBloc>().add(StackRemovedE(stack));
+          },
+        ),
       ),
     );
   }
 
-  Widget _body() {
+  Widget _body(UnitStack stack) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_leftSide(), _rightSide()],
+      children: [_leftSide(stack.type), _rightSide(stack.displayName)],
     );
   }
 
   /// Left side of the card
-  Widget _leftSide() {
-    var type = stack.type;
+  Widget _leftSide(UnitType type) {
     var imagePath = di<ImageService>().getUnitImageByType(type);
 
     return Expanded(
@@ -68,7 +65,7 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
   }
 
   /// Right side of the card
-  Widget _rightSide() {
+  Widget _rightSide(String displayName) {
     return Expanded(
       flex: 2,
       child: Container(
@@ -81,7 +78,7 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             CardTitle(
-              title: stack.displayName,
+              title: displayName,
             ),
             Flexible(
               flex: 1,

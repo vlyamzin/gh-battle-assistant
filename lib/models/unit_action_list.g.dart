@@ -14,10 +14,14 @@ UnitActionList _$UnitActionListFromJson(Map<String, dynamic> json) =>
       availableActionIndexes: (json['availableActionIndexes'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
+      allActions: (json['allActions'] as List<dynamic>?)
+          ?.map((e) => UnitAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UnitActionListToJson(UnitActionList instance) =>
     <String, dynamic>{
       'currentAction': instance.currentAction,
       'availableActionIndexes': instance.availableActionIndexes,
+      'allActions': instance.allActions,
     };

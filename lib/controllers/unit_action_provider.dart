@@ -12,73 +12,71 @@ import '../di.dart';
 
 class UnitActionProvider with ChangeNotifier {
   final UnitActionList actions;
-  final HomeScreenProvider store;
-  final List<UnitRawAction> rawData;
-  late StreamSubscription _subscription;
+  // final HomeScreenProvider store;
+  // final List<UnitRawAction> rawData;
+  // late StreamSubscription _subscription;
 
   UnitActionProvider({
     required this.actions,
-    required this.store,
-    required this.rawData,
   }) {
-    _setAllActions();
-    _subscribeToUpdates();
+    // _setAllActions();
+    // _subscribeToUpdates();
 
-    if (this.actions.currentAction == null) {
-      _setAction();
-      _saveChanges();
-    }
+    // if (this.actions.currentAction == null) {
+    //   _setAction();
+    //   _saveChanges();
+    // }
   }
 
-  void endRound() {
-    _refreshActions();
-    _saveChanges();
-  }
+  // void endRound() {
+  //   _refreshActions();
+  //   _saveChanges();
+  // }
 
-  void _refreshActions() {
-    if (actions.currentAction != null &&
-        actions.currentAction!.shouldRefresh == true) {
-      _initAvailableIndexes();
-      actions.availableActionIndexes!.shuffle();
-    }
+  // void _refreshActions() {
+  //   if (actions.currentAction != null &&
+  //       actions.currentAction!.shouldRefresh == true) {
+  //     _initAvailableIndexes();
+  //     actions.availableActionIndexes!.shuffle();
+  //   }
 
-    _setAction();
-  }
+  //   _setAction();
+  // }
 
-  void _subscribeToUpdates() {
-    _subscription = this.store.event$.listen((event) {
-      if (event == HomeScreenEvents.NEW_ACTIONS) {
-        endRound();
-      }
-    });
-  }
+  // void _subscribeToUpdates() {
+  //   _subscription = this.store.event$.listen((event) {
+  //     if (event == HomeScreenEvents.NEW_ACTIONS) {
+  //       endRound();
+  //     }
+  //   });
+  // }
 
-  void _setAction() {
-    final rnd =
-        di<UtilService>().randomize(actions.availableActionIndexes!.length);
-    final index = actions.availableActionIndexes!.removeAt(rnd);
+  // void _setAction() {
+  //   final rnd =
+  //       di<UtilService>().randomize(actions.availableActionIndexes!.length);
+  //   final index = actions.availableActionIndexes!.removeAt(rnd);
 
-    actions.currentAction = actions.allActions[index];
-  }
+  //   actions.currentAction = actions.allActions[index];
+  // }
 
-  void _setAllActions() {
-    actions.allActions = rawData.map((e) => UnitAction.fromRawData(e)).toList();
-    if (actions.availableActionIndexes == null) _initAvailableIndexes();
-  }
+  // void _setAllActions() {
+  //   actions.allActions = rawData.map((e) => UnitAction.fromRawData(e)).toList();
+  //   if (actions.availableActionIndexes == null) _initAvailableIndexes();
+  // }
 
-  void _saveChanges() {
-    notifyListeners();
-    store.saveToStorage();
-  }
+  // void _saveChanges() {
+  //   notifyListeners();
+  //   store.saveToStorage();
+  // }
 
-  void _initAvailableIndexes() {
-    actions.availableActionIndexes =
-        actions.allActions.asMap().entries.map((e) => e.key).toList();
-  }
+  // void _initAvailableIndexes() {
+  //   actions.availableActionIndexes =
+  //       actions.allActions.asMap().entries.map((e) => e.key).toList();
+  // }
 
-  @override
-  void dispose() {
-    _subscription.cancel();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _subscription.cancel();
+  //   super.dispose();
+  // }
 }

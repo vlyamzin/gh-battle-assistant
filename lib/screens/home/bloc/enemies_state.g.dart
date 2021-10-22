@@ -21,9 +21,3 @@ Map<String, dynamic> _$$EnemiesLoadedToJson(_$EnemiesLoaded instance) =>
     <String, dynamic>{
       'enemies': instance.enemies,
     };
-
-_$GameStarted _$$GameStartedFromJson(Map<String, dynamic> json) =>
-    _$GameStarted();
-
-Map<String, dynamic> _$$GameStartedToJson(_$GameStarted instance) =>
-    <String, dynamic>{};

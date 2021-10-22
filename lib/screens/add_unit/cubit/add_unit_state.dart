@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 part 'add_unit_state.freezed.dart';
 
 @freezed
-abstract class AddUnitState with _$AddUnitState {
+class AddUnitState with _$AddUnitState {
   const factory AddUnitState.initial() = AddUnitInitial;
   const factory AddUnitState.filteredUnits(UnitSearch matches) = FilteredUnitsS;
   const factory AddUnitState.selectedUnitType(UnitStack stack) =

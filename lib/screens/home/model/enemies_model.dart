@@ -18,6 +18,10 @@ class Enemies extends Equatable {
 
   Map<String, dynamic> toJson() => _$EnemiesToJson(this);
 
+  Enemies copyWith({List<UnitStack>? monsters}) {
+    return Enemies(monsters: monsters ?? this.monsters);
+  }
+
   UnitStack? getByType(UnitType type) {
     try {
       return monsters.firstWhere((element) => element.type == type);
