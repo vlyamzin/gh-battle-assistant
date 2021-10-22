@@ -1,12 +1,13 @@
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
+import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
-import 'package:gh_battle_assistant/models/unit_action.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
+import 'package:gh_battle_assistant/services/logger_service.dart';
 
 class UnitStackProvider {
   UnitStack unitStack;
@@ -136,7 +137,9 @@ class UnitStackProvider {
             Unit.serializeRawData(_defaultStats![normality]?.perks) ?? []);
         unit.turnEnded = false;
       } catch (error) {
-        print('Unit Stack Provider: Default stats error $error');
+        di<LoggerService>().log(
+            'Unit Stack Provider: Default stats error $error',
+            this.runtimeType);
       }
     });
   }

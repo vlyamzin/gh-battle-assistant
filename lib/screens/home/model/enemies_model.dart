@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 

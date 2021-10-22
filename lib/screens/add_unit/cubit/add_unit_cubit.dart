@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
@@ -66,7 +65,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
           var selectionType = _toggleSelectionType(state.stack, number);
 
           if (selectionType == UnitSelectionType.none) {
-            var updatedStack = state.stack.removeUnitImmutable(number);
+            var updatedStack = state.stack.removeUnit(number);
             emit(state.copyWith(stack: updatedStack));
           } else {
             var data = _repository.byId(state.stack.type);
@@ -85,9 +84,9 @@ class AddUnitCubit extends Cubit<AddUnitState> {
             );
             var updatedStack;
             if (selectionType == UnitSelectionType.elite)
-              updatedStack = state.stack.updateUnitImmutable(unit);
+              updatedStack = state.stack.updateUnit(unit);
             else
-              updatedStack = state.stack.addUnitImmutable(unit);
+              updatedStack = state.stack.addUnit(unit);
 
             emit(state.copyWith(stack: updatedStack));
           }

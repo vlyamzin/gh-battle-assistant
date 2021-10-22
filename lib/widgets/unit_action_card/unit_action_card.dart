@@ -4,7 +4,6 @@ import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart'
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';

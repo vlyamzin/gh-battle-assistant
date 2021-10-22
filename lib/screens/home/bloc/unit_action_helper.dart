@@ -30,7 +30,6 @@ class UnitActionHelper {
       final rnd =
           di<UtilService>().randomize(actions.availableActionIndexes!.length);
       final index = actions.availableActionIndexes![rnd];
-      print(index);
       var updatedIndexes =
           actions.availableActionIndexes!.where((i) => i != index);
       var curAction = actions.allActions![index];

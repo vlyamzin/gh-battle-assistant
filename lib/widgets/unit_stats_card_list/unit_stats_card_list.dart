@@ -5,7 +5,7 @@ import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card/unit_stats_card.dart';
 import 'package:provider/provider.dart';
 
@@ -63,7 +63,7 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
 
               return tooltip!
                   .copyWith(activityType: activityType, counter: counter)
-                    ..toggleTooltip();
+                ..toggleTooltip();
             },
           ),
         ],
@@ -83,7 +83,7 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
     assert(unitNumber != null);
     final homeController = di<HomeScreenProvider>();
 
-    widget.stack.removeUnit(unitNumber!);
+    widget.stack.removeUnitOld(unitNumber!);
 
     if (widget.stack.isEmpty) {
       homeController.removeMonsterStack(widget.stack.type);

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:meta/meta.dart';
 

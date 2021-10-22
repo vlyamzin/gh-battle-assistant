@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';

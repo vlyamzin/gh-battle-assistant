@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
-import 'package:gh_battle_assistant/models/unit_action_list.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -42,17 +40,6 @@ class UnitStack extends Equatable {
     this.actions = actions ?? UnitActionList();
   }
 
-  /// Creates [UnitStack] object from another [UnitStack]
-  @deprecated
-  UnitStack.copy(UnitStack stack)
-      : this(
-            type: stack.type,
-            displayName: stack.displayName,
-            maxNumber: stack.maxNumber,
-            units: stack.units.toList(),
-            actions: stack.actions,
-            availableNumbersPull: stack.availableNumbersPull.toList());
-
   /// Creates [UnitStack] object from json data
   factory UnitStack.fromJson(Map<String, dynamic> json) =>
       _$UnitStackFromJson(json);
@@ -88,10 +75,7 @@ class UnitStack extends Equatable {
   /// Convert [UnitStack] object to json
   Map<String, dynamic> toJson() => _$UnitStackToJson(this);
 
-  @override
-  List<Object?> get props =>
-      [type, displayName, units, actions, availableNumbersPull];
-
+  /// Stack is empty in case it does not have any [Unit] object inside
   bool get isEmpty => units.isEmpty;
 
   Unit getUnitByNumber(int number) {
@@ -102,22 +86,13 @@ class UnitStack extends Equatable {
   }
 
   /// Adds [Unit] object to the list of [units]
-  /// Decreases the maximum unit number
-  @deprecated
-  void addUnit(Unit newUnit) {
-    var randomIndex = Random().nextInt(availableNumbersPull.length);
-    // newUnit.number = availableNumbersPull.removeAt(randomIndex);
-    units.add(newUnit);
-    maxNumber = maxNumber! - 1;
-  }
-
-  UnitStack addUnitImmutable(Unit newUnit) {
+  UnitStack addUnit(Unit newUnit) {
     return copyWith(
       units: [...units, newUnit],
     );
   }
 
-  UnitStack updateUnitImmutable(Unit newUnit) {
+  UnitStack updateUnit(Unit newUnit) {
     return copyWith(
         units: units
             .map((unit) => unit.number == newUnit.number ? newUnit : unit)
@@ -128,13 +103,14 @@ class UnitStack extends Equatable {
   /// Return number back into [availableNumbersPull]
   /// Increases the maximum unit number
   @deprecated
-  void removeUnit(int number) {
+  void removeUnitOld(int number) {
     units.removeWhere((element) => element.number == number);
     availableNumbersPull.add(number);
     maxNumber = maxNumber! + 1;
   }
 
-  UnitStack removeUnitImmutable(int number) {
+  /// Removes [Unit] object from the list of [units]
+  UnitStack removeUnit(int number) {
     var updatedList = [...units]
       ..removeWhere((element) => element.number == number);
     return copyWith(
@@ -146,4 +122,8 @@ class UnitStack extends Equatable {
   List<int> _getAvailableNumbersPull(int n) {
     return List.generate(n, (index) => index + 1);
   }
+
+  @override
+  List<Object?> get props =>
+      [type, displayName, units, actions, availableNumbersPull];
 }

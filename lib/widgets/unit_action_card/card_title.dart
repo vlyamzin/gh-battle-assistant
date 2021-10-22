@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:provider/provider.dart';
 
 class CardTitle extends StatelessWidget with TextOutline {

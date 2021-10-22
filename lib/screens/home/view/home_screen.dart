@@ -12,12 +12,11 @@ import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:gh_battle_assistant/widgets/stack_card/stack_card.dart';
-import 'package:gh_battle_assistant/screens/add_unit/view/add_unit_screen.dart';
+import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {

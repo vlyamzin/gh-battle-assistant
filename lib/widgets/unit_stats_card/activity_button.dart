@@ -44,7 +44,6 @@ class ActivityButton extends StatelessWidget {
                   ),
                 ),
                 onTap: () => provider.applyActivity(),
-                onLongPress: () => print('LOng press'),
               ),
             ),
           ),

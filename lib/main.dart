@@ -9,6 +9,7 @@ import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
+import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:gh_battle_assistant/services/store_service.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ void main() async {
       rawData: rawData,
     ));
   } on FormatException catch (_) {
-    print('Raw data json is not valid');
+    di<LoggerService>().log('Raw data json is not valid');
   } on FileSystemException catch (_) {
     runApp(Application(
       data: null,

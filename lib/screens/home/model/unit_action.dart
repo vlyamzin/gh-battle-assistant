@@ -2,7 +2,7 @@ import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'enums/activity_type.dart';
+import '../../../models/enums/activity_type.dart';
 
 part 'unit_action.g.dart';
 

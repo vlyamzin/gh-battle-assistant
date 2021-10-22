@@ -5,7 +5,7 @@ import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/home.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/store_service.dart';
 
 class HomeScreenProvider with ChangeNotifier {

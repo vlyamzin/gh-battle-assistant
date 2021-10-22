@@ -1,9 +1,10 @@
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/unit_stack.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'home.g.dart';
 
+@deprecated
 @JsonSerializable(explicitToJson: true)
 class Home {
   List<UnitStack> _monsters;
@@ -32,8 +33,9 @@ class Home {
     _monsters.removeWhere((element) => element.type == id);
   }
 
+  @deprecated
   void update(UnitStack data) {
-    var index = _monsters.indexWhere((m) => m.type == data.type);
-    _monsters[index] = UnitStack.copy(data);
+    // var index = _monsters.indexWhere((m) => m.type == data.type);
+    // _monsters[index] = UnitStack.copy(data);
   }
 }
