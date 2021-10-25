@@ -1,33 +1,38 @@
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
+import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta/meta.dart';
 
 part 'unit.g.dart';
 
 @JsonSerializable()
+@immutable
 class Unit extends Equatable {
   final int number;
-  late final String displayName;
-  late int healthPoint;
-  late int shield;
-  late int? attack;
-  late int? range;
-  late int? move;
-  late int? retaliate;
-  late int heal;
-  late int suffer;
-  late int pierced;
+  final String displayName;
+  final int healthPoint;
+  final int shield;
+  final int? attack;
+  final int? range;
+  final int? move;
+  final int retaliate;
+  final int heal;
+  final int suffer;
+  final int pierced;
   @JsonKey(defaultValue: <ActivityType>[])
-  late final List<ActivityType>? perks;
+  final List<ActivityType> perks;
   @JsonKey(defaultValue: <ActivityType>[])
-  late final List<ActivityType>? immune;
+  final List<ActivityType> immune;
   @JsonKey(defaultValue: <String>[])
-  late final List<String> area;
+  final List<String> area;
   @JsonKey(defaultValue: <ActivityType>{})
-  late final Set<ActivityType>? negativeEffects;
-  late final bool elite;
-  late bool turnEnded;
+  final Set<ActivityType> negativeEffects;
+  final bool elite;
+  final bool turnEnded;
 
   Unit({
     required this.number,
@@ -43,29 +48,13 @@ class Unit extends Equatable {
     this.pierced = 0,
     this.elite = false,
     this.turnEnded = false,
-    List<ActivityType>? perks,
-    List<ActivityType>? immune,
-    List<String>? area,
-    Set<ActivityType>? negativeEffects,
-  }) {
-    // if (number != null) this._number = number;
-    if (perks == null)
-      this.perks = [];
-    else
-      this.perks = perks;
-    if (immune == null)
-      this.immune = <ActivityType>[];
-    else
-      this.immune = immune;
+    this.perks = const [],
+    this.immune = const [],
+    this.area = const [],
+    this.negativeEffects = const {},
+  });
 
-    this.area = area ?? <String>[];
-
-    negativeEffects == null
-        ? this.negativeEffects = <ActivityType>{}
-        : this.negativeEffects = negativeEffects;
-  }
-
-  factory Unit.fromRawData2(
+  factory Unit.fromRawData(
       String name, int health, UnitRawStats data, int number,
       [bool elite = false]) {
     var sPerks = serializeRawData(data.perks);
@@ -75,55 +64,14 @@ class Unit extends Equatable {
       displayName: name,
       healthPoint: health,
       number: number,
-      shield: data.shield ?? 0,
+      shield: data.shield,
       attack: data.attack,
       range: data.range,
       move: data.move,
       retaliate: data.retaliate,
       elite: elite,
-      perks: sPerks,
-      immune: sImmune,
-    );
-  }
-
-  @deprecated
-  factory Unit.fromRawData({
-    int? number,
-    required displayName,
-    required healthPoint,
-    shield = 0,
-    attack = 0,
-    range = 0,
-    move = 0,
-    retaliate = 0,
-    suffer = 0,
-    pierced = 0,
-    elite = false,
-    turnEnded = false,
-    List<String>? perks,
-    List<String>? immune,
-    List<String>? area,
-    Set<ActivityType>? negativeEffects,
-  }) {
-    var sPerks = serializeRawData(perks);
-    var sImmune = serializeRawData(immune);
-
-    return Unit(
-      displayName: displayName,
-      healthPoint: healthPoint,
-      number: number ?? 0,
-      shield: shield,
-      attack: attack,
-      range: range,
-      move: move,
-      retaliate: retaliate,
-      suffer: suffer,
-      pierced: pierced,
-      elite: elite,
-      negativeEffects: negativeEffects,
-      perks: sPerks,
-      immune: sImmune,
-      area: area,
+      perks: sPerks ?? [],
+      immune: sImmune ?? [],
     );
   }
 
@@ -162,7 +110,7 @@ class Unit extends Equatable {
       suffer: suffer ?? this.suffer,
       pierced: pierced ?? this.pierced,
       elite: elite ?? this.elite,
-      negativeEffects: negativeEffects,
+      negativeEffects: negativeEffects ?? this.negativeEffects,
       perks: perks ?? this.perks,
       immune: immune ?? this.immune,
       area: area ?? this.area,
@@ -171,62 +119,109 @@ class Unit extends Equatable {
 
   String toString() => 'Unit$number: $displayName';
 
-  void applyNegativeEffects() {
-    if (turnEnded) return;
+  /// Apply negative effects consequences,
+  /// remove effects from the set and return updated [Unit]
+  Unit applyNegativeEffects() {
+    if (turnEnded) return this;
 
-    applyHeal();
-    applyWound();
-    applyDisarm();
-    applyMuddle();
-    applyPeirce();
-    applyStrengthen();
-    applyStun();
-    applySuffer();
-    applyInvisible();
-    applyImmobilize();
+    var updatedEffects = _removeNegativeEffect(negativeEffects, {
+      ActivityType.disarm,
+      ActivityType.muddle,
+      ActivityType.pierce,
+      ActivityType.strengthen,
+      ActivityType.stun,
+      ActivityType.invisible,
+      ActivityType.immobilize,
+    });
+
+    var updated = _applyHeal()
+        ._applySuffer()
+        .copyWith(negativeEffects: updatedEffects, pierced: 0);
+
+    return updated;
   }
 
-  void applyWound() {
-    if (_hasEffect(ActivityType.wound)) {
-      healthPoint -= 1;
-    }
+  Unit refreshStatsToDefault(StatsByUnitNormalityMap stats) {
+    final normality = elite ? UnitNormality.elite : UnitNormality.normal;
+
+    return copyWith(
+      attack: stats[normality]?.attack,
+      range: stats[normality]?.range,
+      move: stats[normality]?.move,
+      shield: stats[normality]?.shield,
+      retaliate: stats[normality]?.retaliate,
+      perks: serializeRawData(stats[normality]?.perks) ?? [],
+    );
   }
 
-  void applySuffer() {
-    healthPoint -= suffer;
-    suffer = 0;
+  Unit applyAction(Map<ModifierType, int> modifiers,
+      List<ActivityType> newPerks, List<String> newArea) {
+    return copyWith(
+      attack: _applyMandatoryModifier(modifiers[ModifierType.attack], attack),
+      move: _applyMandatoryModifier(modifiers[ModifierType.move], move),
+      range: _applyMandatoryModifier(modifiers[ModifierType.range], range),
+      shield: modifiers.containsKey(ModifierType.shield)
+          ? modifiers[ModifierType.shield]! + shield
+          : shield,
+      retaliate: modifiers.containsKey(ModifierType.retaliate)
+          ? modifiers[ModifierType.retaliate]! + retaliate
+          : retaliate,
+      suffer: modifiers[ModifierType.suffer],
+      heal: modifiers[ModifierType.heal],
+      perks: perks + newPerks,
+      area: area + newArea,
+    );
   }
 
-  void applyHeal() {
-    if (heal == 0) return;
+  Unit _applyWound() {
+    if (_hasEffect(ActivityType.wound))
+      return copyWith(healthPoint: healthPoint - 1);
+    else
+      return this;
+  }
+
+  Unit _applySuffer() {
+    return copyWith(healthPoint: healthPoint - suffer, suffer: 0);
+  }
+
+  Unit _applyHeal() {
+    if (heal == 0) return this;
 
     if (_hasEffect(ActivityType.poison))
-      negativeEffects?.remove(ActivityType.poison);
+      return copyWith(
+        negativeEffects: _removeNegativeEffect(
+            negativeEffects, {ActivityType.poison, ActivityType.wound}),
+        heal: 0,
+      );
     else
-      healthPoint += heal;
-
-    negativeEffects?.remove(ActivityType.wound);
-    heal = 0;
+      return copyWith(
+        healthPoint: healthPoint + heal,
+        heal: 0,
+        negativeEffects:
+            _removeNegativeEffect(negativeEffects, {ActivityType.wound}),
+      );
   }
 
-  void applyStun() => negativeEffects?.remove(ActivityType.stun);
-
-  void applyInvisible() => negativeEffects?.remove(ActivityType.invisible);
-
-  void applyImmobilize() => negativeEffects?.remove(ActivityType.immobilize);
-
-  void applyMuddle() => negativeEffects?.remove(ActivityType.muddle);
-
-  void applyDisarm() => negativeEffects?.remove(ActivityType.disarm);
-
-  void applyPeirce() {
-    negativeEffects?.remove(ActivityType.pierce);
-    pierced = 0;
+  Set<ActivityType> _removeNegativeEffect(
+      Set<ActivityType> original, Set<ActivityType> toRemove) {
+    return original.difference(toRemove);
   }
 
-  void applyStrengthen() => negativeEffects?.remove(ActivityType.strengthen);
+  bool _hasEffect(ActivityType type) => negativeEffects.contains(type) == true;
 
-  bool _hasEffect(ActivityType type) => negativeEffects?.contains(type) == true;
+  /// Make special calculation for mandatory stats such as attack, move, range
+  /// If one of mentioned stats is null then it means that the whole related action
+  /// will be skipped for the turn
+  ///
+  /// Ex. if unit has attack = 3 but action card does not have attack modifier,
+  /// than attack will be null this round
+  int? _applyMandatoryModifier(int? newValue, int? prevValue) {
+    if (newValue == null) return null;
+    if (prevValue != null)
+      return prevValue + newValue;
+    else
+      return newValue;
+  }
 
   static List<ActivityType>? serializeRawData(List<String>? list) {
     return list?.map((value) {
@@ -272,5 +267,23 @@ class Unit extends Equatable {
   }
 
   @override
-  List<Object?> get props => [number, elite];
+  List<Object?> get props => [
+        number,
+        elite,
+        displayName,
+        healthPoint,
+        shield,
+        attack,
+        range,
+        move,
+        retaliate,
+        heal,
+        suffer,
+        pierced,
+        perks,
+        immune,
+        area,
+        negativeEffects,
+        turnEnded,
+      ];
 }

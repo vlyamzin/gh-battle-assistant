@@ -15,7 +15,6 @@ import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/stats_screen.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
-import 'package:gh_battle_assistant/widgets/stack_card/stack_card.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:provider/provider.dart';
 
@@ -164,11 +163,10 @@ class HomeScreen extends StatelessWidget {
                         _navigateToUnitStatsScreen(context, stack, rawData),
                     child: Provider<UnitStack>.value(
                       value: stack,
-                      child: StackCard(
-                        key: ValueKey(stack.type),
-                        stack: stack,
-                        cardWidth: cardWidth,
-                        cardHeight: cardHeight,
+                      child: UnitActionCard(
+                        key: key,
+                        width: cardWidth,
+                        height: cardHeight,
                       ),
                     ));
               }).toList(),

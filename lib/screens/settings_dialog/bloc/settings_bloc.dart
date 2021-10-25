@@ -71,6 +71,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       var newSettings = settings.copyWith(newGame: event.status);
 
       snapshot.setBool(SettingsBloc.NEW_GAME, event.status);
+      snapshot.setInt(SettingsBloc.DIFFICULTY, newSettings.difficulty);
       _settingsRepository.settings = newSettings;
       emit(SettingsState.newGame(newSettings));
     }

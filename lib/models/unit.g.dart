@@ -49,11 +49,11 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'heal': instance.heal,
       'suffer': instance.suffer,
       'pierced': instance.pierced,
-      'perks': instance.perks?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
-      'immune': instance.immune?.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'perks': instance.perks.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'immune': instance.immune.map((e) => _$ActivityTypeEnumMap[e]).toList(),
       'area': instance.area,
       'negativeEffects': instance.negativeEffects
-          ?.map((e) => _$ActivityTypeEnumMap[e])
+          .map((e) => _$ActivityTypeEnumMap[e])
           .toList(),
       'elite': instance.elite,
       'turnEnded': instance.turnEnded,

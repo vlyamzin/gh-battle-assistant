@@ -8,16 +8,20 @@
         "0": {
           "normal": {
             "health": 8,
+            "shield": 0,
             "move": 3,
             "attack": 2,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
             "health": 12,
+            "shield": 0,
             "move": 3,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -26,16 +30,20 @@
         "1": {
           "normal": {
             "health": 9,
+            "shield": 0,
             "move": 3,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
             "health": 14,
+            "shield": 0,
             "move": 4,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -44,16 +52,20 @@
         "2": {
           "normal": {
             "health": 13,
+            "shield": 0,
             "move": 3,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
             "health": 16,
+            "shield": 0,
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -62,18 +74,22 @@
         "3": {
           "normal": {
             "health": 15,
+            "shield": 0,
             "move": 3,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
           },
           "elite": {
             "health": 18,
+            "shield": 0,
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison",
               "disadvantage"
@@ -83,18 +99,22 @@
         "4": {
           "normal": {
             "health": 15,
+            "shield": 0,
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
           },
           "elite": {
             "health": 21,
+            "shield": 0,
             "move": 4,
             "attack": 5,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison",
               "disadvantage"
@@ -104,18 +124,22 @@
         "5": {
           "normal": {
             "health": 18,
+            "shield": 0,
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
           },
           "elite": {
             "health": 25,
+            "shield": 0,
             "move": 4,
             "attack": 5,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison",
               "disadvantage"
@@ -125,18 +149,22 @@
         "6": {
           "normal": {
             "health": 21,
+            "shield": 0,
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
           },
           "elite": {
             "health": 28,
+            "shield": 0,
             "move": 4,
             "attack": 6,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison",
               "disadvantage"
@@ -146,18 +174,22 @@
         "7": {
           "normal": {
             "health": 24,
+            "shield": 0,
             "move": 4,
             "attack": 5,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
           },
           "elite": {
             "health": 32,
+            "shield": 0,
             "move": 5,
             "attack": 6,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "poison",
               "disadvantage"
@@ -179,6 +211,7 @@
             "move": null,
             "attack": 2,
             "range": 4,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -187,6 +220,7 @@
             "move": null,
             "attack": 3,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -197,6 +231,7 @@
             "move": null,
             "attack": 2,
             "range": 4,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -205,6 +240,7 @@
             "move": null,
             "attack": 3,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -215,6 +251,7 @@
             "move": null,
             "attack": 2,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -223,6 +260,7 @@
             "move": null,
             "attack": 3,
             "range": 6,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -233,6 +271,7 @@
             "move": null,
             "attack": 3,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -241,6 +280,7 @@
             "move": null,
             "attack": 4,
             "range": 6,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -251,6 +291,7 @@
             "move": null,
             "attack": 4,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -259,6 +300,7 @@
             "move": null,
             "attack": 4,
             "range": 6,
+            "retaliate": 0,
             "perks": [
               "target_2"
             ]
@@ -271,6 +313,7 @@
             "move": null,
             "attack": 4,
             "range": 6,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -279,6 +322,7 @@
             "move": null,
             "attack": 4,
             "range": 7,
+            "retaliate": 0,
             "perks": [
               "target_2"
             ]
@@ -291,6 +335,7 @@
             "move": null,
             "attack": 4,
             "range": 6,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -299,6 +344,7 @@
             "move": null,
             "attack": 5,
             "range": 7,
+            "retaliate": 0,
             "perks": [
               "target_2"
             ]
@@ -311,6 +357,7 @@
             "move": null,
             "attack": 4,
             "range": 7,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -319,6 +366,7 @@
             "move": null,
             "attack": 5,
             "range": 7,
+            "retaliate": 0,
             "perks": [
               "target_2"
             ]
@@ -493,6 +541,7 @@
             "move": 2,
             "attack": 2,
             "range": 3,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -501,6 +550,7 @@
             "move": 2,
             "attack": 3,
             "range": 3,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -511,6 +561,7 @@
             "move": 2,
             "attack": 2,
             "range": 4,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -519,6 +570,7 @@
             "move": 2,
             "attack": 3,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -529,6 +581,7 @@
             "move": 3,
             "attack": 2,
             "range": 4,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -537,6 +590,7 @@
             "move": 3,
             "attack": 3,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -547,6 +601,7 @@
             "move": 3,
             "attack": 3,
             "range": 4,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -555,6 +610,7 @@
             "move": 3,
             "attack": 4,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -565,6 +621,7 @@
             "move": 3,
             "attack": 3,
             "range": 4,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -573,6 +630,7 @@
             "move": 3,
             "attack": 4,
             "range": 6,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -585,6 +643,7 @@
             "move": 3,
             "attack": 3,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -593,6 +652,7 @@
             "move": 4,
             "attack": 4,
             "range": 6,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -605,6 +665,7 @@
             "move": 3,
             "attack": 4,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -613,6 +674,7 @@
             "move": 4,
             "attack": 5,
             "range": 6,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -625,6 +687,7 @@
             "move": 3,
             "attack": 4,
             "range": 5,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -633,6 +696,7 @@
             "move": 4,
             "attack": 5,
             "range": 6,
+            "retaliate": 0,
             "perks": [
               "poison"
             ]
@@ -796,6 +860,7 @@
             "move": 2,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -804,6 +869,7 @@
             "move": 2,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -814,6 +880,7 @@
             "move": 3,
             "attack": 2,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -822,6 +889,7 @@
             "move": 2,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -832,6 +900,7 @@
             "move": 3,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -840,6 +909,7 @@
             "move": 2,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -850,6 +920,7 @@
             "move": 3,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -858,6 +929,7 @@
             "move": 3,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": []
           }
         },
@@ -868,6 +940,7 @@
             "move": 4,
             "attack": 3,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -876,6 +949,7 @@
             "move": 3,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "muddle"
             ]
@@ -888,6 +962,7 @@
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -896,6 +971,7 @@
             "move": 3,
             "attack": 5,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "muddle"
             ]
@@ -908,6 +984,7 @@
             "move": 4,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -916,6 +993,7 @@
             "move": 3,
             "attack": 5,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "muddle"
             ]
@@ -928,6 +1006,7 @@
             "move": 5,
             "attack": 4,
             "range": null,
+            "retaliate": 0,
             "perks": []
           },
           "elite": {
@@ -936,6 +1015,7 @@
             "move": 3,
             "attack": 5,
             "range": null,
+            "retaliate": 0,
             "perks": [
               "muddle"
             ]

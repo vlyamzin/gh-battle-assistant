@@ -8,11 +8,11 @@ part of 'unit_raw_stats.dart';
 
 UnitRawStats _$UnitRawStatsFromJson(Map<String, dynamic> json) => UnitRawStats(
       json['health'] as int,
-      json['shield'] as int?,
+      json['shield'] as int,
       json['move'] as int?,
       json['attack'] as int?,
       json['range'] as int?,
-      json['retaliate'] as int?,
+      json['retaliate'] as int,
       (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       (json['immune'] as List<dynamic>?)?.map((e) => e as String).toList() ??
           [],

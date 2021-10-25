@@ -75,7 +75,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
                   : UnitNormality.elite,
               difficulty.toString(),
             );
-            var unit = Unit.fromRawData2(
+            var unit = Unit.fromRawData(
               data.name,
               unitStats!.health,
               unitStats,

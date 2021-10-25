@@ -95,7 +95,7 @@ class UnitStatsProvider with ChangeNotifier {
     ];
     return defaultActivities.entries.where(
       (activity) =>
-          !unit.immune!.contains(activity.key) &&
+          !unit.immune.contains(activity.key) &&
           !exclude.contains(activity.key),
     );
   }
@@ -103,17 +103,13 @@ class UnitStatsProvider with ChangeNotifier {
   /// Return List of immune [Effect]
   /// This list is rendered in 'Immune to' section of [UnitStatsCard]
   List<Effect?> get immuneEffects {
-    return unit.immune != null
-        ? unit.immune!.map((e) => Effect(e, defaultActivities[e]!)).toList()
-        : [];
+    return unit.immune.map((e) => Effect(e, defaultActivities[e]!)).toList();
   }
 
   /// Return List of attack [Effect]
   /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
   List<Effect?> get attackEffects {
-    return unit.perks != null
-        ? unit.perks!.map((p) => Effect(p, defaultActivities[p]!)).toList()
-        : [];
+    return unit.perks.map((p) => Effect(p, defaultActivities[p]!)).toList();
   }
 
   /// Return List of area images as path to assets
@@ -128,12 +124,10 @@ class UnitStatsProvider with ChangeNotifier {
   bool get isUnitDead => unit.healthPoint <= 0;
 
   /// Check if unit has Poison [ActivityType]
-  bool get isPoisoned =>
-      unit.negativeEffects?.contains(ActivityType.poison) ?? false;
+  bool get isPoisoned => unit.negativeEffects.contains(ActivityType.poison);
 
   /// Check if unit has Wound [ActivityType]
-  bool get isWounded =>
-      unit.negativeEffects?.contains(ActivityType.wound) ?? false;
+  bool get isWounded => unit.negativeEffects.contains(ActivityType.wound);
 
   /// Check if unit has Pierce [ActivityType]
   bool get isPierced => unit.pierced > 0;
@@ -175,7 +169,7 @@ class UnitStatsProvider with ChangeNotifier {
 
   void endTurn() {
     unit.applyNegativeEffects();
-    unit.turnEnded = true;
+    // unit.turnEnded = true;
     _setupActiveEffects();
     save();
   }
@@ -183,8 +177,7 @@ class UnitStatsProvider with ChangeNotifier {
   /// Get a list of negative effects activated on a unit
   void _setupActiveEffects() {
     this.activeEffects = Set.from(
-        unit.negativeEffects?.map((e) => Effect(e, defaultActivities[e]!)) ??
-            {});
+        unit.negativeEffects.map((e) => Effect(e, defaultActivities[e]!)));
   }
 
   /// Regular attack activity.
@@ -228,37 +221,37 @@ class UnitStatsProvider with ChangeNotifier {
   ///   damage = 3 + 0 - (1 - 2) = 4
   ///   healthPoint = 5 - 4 = 1
   void _attack(int value) {
-    var damagedShield = unit.shield - unit.pierced;
+    // var damagedShield = unit.shield - unit.pierced;
 
-    while (damagedShield > 0 && value > 0) {
-      damagedShield--;
-      value--;
-    }
+    // while (damagedShield > 0 && value > 0) {
+    //   damagedShield--;
+    //   value--;
+    // }
 
-    if (damagedShield >= 0)
-      unit.shield = damagedShield + unit.pierced;
-    else
-      value += -damagedShield;
+    // if (damagedShield >= 0)
+    //   unit.shield = damagedShield + unit.pierced;
+    // else
+    //   value += -damagedShield;
 
-    unit.healthPoint -= value;
-    unit.pierced = 0;
+    // unit.healthPoint -= value;
+    // unit.pierced = 0;
 
-    save();
+    // save();
   }
 
   /// Heal activity
   /// Works opposite to suffer damage activity
   /// Increases the number of [Unit] health point
   void _heal(int value) {
-    _toggleEffect(-1, ActivityType.wound);
+    // _toggleEffect(-1, ActivityType.wound);
 
-    if (isPoisoned) {
-      _toggleEffect(-1, ActivityType.poison);
-      return;
-    }
+    // if (isPoisoned) {
+    //   _toggleEffect(-1, ActivityType.poison);
+    //   return;
+    // }
 
-    unit.healthPoint += value;
-    save();
+    // unit.healthPoint += value;
+    // save();
   }
 
   /// Suffer damage activity
@@ -266,8 +259,8 @@ class UnitStatsProvider with ChangeNotifier {
   /// Decreases the number of [Unit] health point
   /// Ignores [Unit] shield
   void _sufferDamage(int value) {
-    if (!isUnitDead) unit.healthPoint -= value;
-    save();
+    // if (!isUnitDead) unit.healthPoint -= value;
+    // save();
   }
 
   /// Piece attack activity
@@ -276,10 +269,10 @@ class UnitStatsProvider with ChangeNotifier {
   /// Refreshes after the end of round
   void _pierceAttack(int value) {
     // unit.negativeEffects?.add(ActivityType.pierce);
-    unit.pierced = value;
+    // unit.pierced = value;
     // if (unit.shield != null && unit.shield! > 0)
     //   unit.shield = unit.shield! - value;
-    save();
+    // save();
   }
 
   void _poisonAttack(int value) => _toggleEffect(value, ActivityType.poison);
@@ -287,26 +280,26 @@ class UnitStatsProvider with ChangeNotifier {
   void _woundAttack(int value) => _toggleEffect(value, ActivityType.wound);
 
   void _disarm(int value) {
-    if (value > 0) {
-      unit.attack = 0;
-    } else {
-      if (defaultStats.attack != null) {
-        unit.attack =
-            defaultStats.attack! + (modifiers[ModifierType.attack] ?? 0);
-      }
-    }
-    _toggleEffect(value, ActivityType.disarm);
+    // if (value > 0) {
+    //   unit.attack = 0;
+    // } else {
+    //   if (defaultStats.attack != null) {
+    //     unit.attack =
+    //         defaultStats.attack! + (modifiers[ModifierType.attack] ?? 0);
+    //   }
+    // }
+    // _toggleEffect(value, ActivityType.disarm);
   }
 
   void _immobilize(int value) {
-    if (value > 0) {
-      unit.move = 0;
-    } else {
-      if (defaultStats.move != null) {
-        unit.move = defaultStats.move! + (modifiers[ModifierType.move] ?? 0);
-      }
-    }
-    _toggleEffect(value, ActivityType.immobilize);
+    // if (value > 0) {
+    //   unit.move = 0;
+    // } else {
+    //   if (defaultStats.move != null) {
+    //     unit.move = defaultStats.move! + (modifiers[ModifierType.move] ?? 0);
+    //   }
+    // }
+    // _toggleEffect(value, ActivityType.immobilize);
   }
 
   void _stun(int value) => _toggleEffect(value, ActivityType.stun);
@@ -323,14 +316,14 @@ class UnitStatsProvider with ChangeNotifier {
         ...activeEffects,
         Effect(effectType, defaultActivities[effectType]!)
       };
-      unit.negativeEffects?.add(effectType);
+      unit.negativeEffects.add(effectType);
     } else if (value < 0) {
       // hack for Provider.Selector
       activeEffects = {...activeEffects};
       activeEffects.remove(
         Effect(effectType, defaultActivities[effectType]!),
       );
-      unit.negativeEffects?.remove(effectType);
+      unit.negativeEffects.remove(effectType);
     }
 
     save();

@@ -53,7 +53,7 @@ class _Stats extends StatelessWidget {
               _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
               _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
               _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
-              _StatsRecord(text: 'Retaliate: ${unit.retaliate ?? '0'}'),
+              _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
             ],
           );
         },

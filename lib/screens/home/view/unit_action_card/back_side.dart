@@ -1,9 +1,4 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/back_side_button.dart';
+part of 'unit_action_card.dart';
 
 class UnitActionCardBackSide extends StatelessWidget with CardBorderRadius {
   static const imagePath = 'assets/images/ability_back.jpg';

@@ -10,13 +10,16 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 part 'enemies_event.dart';
 part 'unit_action_helper.dart';
+part 'unit_stack_helper.dart';
 
 class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
   final EnemiesRepository enemiesRepository;
   late final UnitActionHelper _actionHelper;
+  late final UnitStackHelper _stackHelper;
 
   EnemiesBloc(this.enemiesRepository) : super(EnemiesState.initial()) {
     _actionHelper = UnitActionHelper(enemiesRepository);
+    _stackHelper = UnitStackHelper(enemiesRepository);
     on<StackAddedE>(_onStackAdded);
     on<StackRemovedE>(_onStackRemoved);
     on<ClearEnemiesList>(_onClearEnemies);
@@ -73,6 +76,7 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
         loaded: (Enemies enemies) {
           var updatedMonsters = enemies.monsters.map((UnitStack stack) {
             UnitActionList? updatedActions;
+            UnitStack updatedStack;
 
             if (di<SettingsRepository>().loadSettings().newGame == true) {
               updatedActions = _actionHelper.initActions(stack);
@@ -80,7 +84,14 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
 
             updatedActions =
                 _actionHelper.refreshAction(updatedActions ?? stack.actions);
-            return stack.copyWith(actions: updatedActions);
+            try {
+              updatedStack =
+                  _stackHelper.endRound(stack, updatedActions.currentAction);
+            } catch (e) {
+              di<LoggerService>().log(e.toString(), this.runtimeType);
+              updatedStack = stack;
+            }
+            return updatedStack.copyWith(actions: updatedActions);
           });
 
           emit(EnemiesState.loaded(

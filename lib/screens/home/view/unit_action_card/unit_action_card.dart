@@ -1,16 +1,21 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
+import 'package:gh_battle_assistant/common/back_side_button.dart';
 import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
+import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/card_detail.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/card_image.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/card_title.dart';
 import 'package:provider/provider.dart';
+
+part 'back_side.dart';
+part 'card_detail.dart';
+part 'card_image.dart';
+part 'card_title.dart';
+part 'unit_action_record.dart';
 
 class UnitActionCard extends StatefulWidget with CardBorderRadius {
   const UnitActionCard({

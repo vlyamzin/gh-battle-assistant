@@ -5,11 +5,11 @@ part 'unit_raw_stats.g.dart';
 @JsonSerializable()
 class UnitRawStats {
   final int health;
-  final int? shield;
+  final int shield;
   final int? move;
   final int? attack;
   final int? range;
-  final int? retaliate;
+  final int retaliate;
   @JsonKey(defaultValue: <String>[])
   final List<String>? perks;
   @JsonKey(defaultValue: <String>[])

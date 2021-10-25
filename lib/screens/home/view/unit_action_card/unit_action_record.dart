@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:gh_battle_assistant/screens/home/model/unit_action.dart';
-import 'package:gh_battle_assistant/services/image_service.dart';
-
-import '../../di.dart';
+part of 'unit_action_card.dart';
 
 class UnitActionRecord extends StatelessWidget {
   final GHAction record;
