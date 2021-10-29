@@ -15,6 +15,7 @@ class Unit extends Equatable {
   final int number;
   final String displayName;
   final int healthPoint;
+  late final int maxHealthPoint;
   final int shield;
   final int? attack;
   final int? range;
@@ -38,6 +39,7 @@ class Unit extends Equatable {
     required this.number,
     required this.displayName,
     required this.healthPoint,
+    maxHealthPoint,
     this.shield = 0,
     this.attack = 0,
     this.range = 0,
@@ -52,7 +54,7 @@ class Unit extends Equatable {
     this.immune = const [],
     this.area = const [],
     this.negativeEffects = const {},
-  });
+  }) : maxHealthPoint = maxHealthPoint ?? healthPoint;
 
   factory Unit.fromRawData(
       String name, int health, UnitRawStats data, int number,
@@ -63,6 +65,7 @@ class Unit extends Equatable {
     return Unit(
       displayName: name,
       healthPoint: health,
+      maxHealthPoint: health,
       number: number,
       shield: data.shield,
       attack: data.attack,
@@ -83,6 +86,7 @@ class Unit extends Equatable {
     int? number,
     String? displayName,
     int? healthPoint,
+    int? maxHealthPoint,
     int? shield,
     int? attack,
     int? range,
@@ -102,11 +106,13 @@ class Unit extends Equatable {
       number: number ?? this.number,
       displayName: displayName ?? this.displayName,
       healthPoint: healthPoint ?? this.healthPoint,
+      maxHealthPoint: maxHealthPoint ?? this.maxHealthPoint,
       shield: shield ?? this.shield,
       attack: attack ?? this.attack,
       range: range ?? this.range,
       move: move ?? this.move,
       retaliate: retaliate ?? this.retaliate,
+      heal: heal ?? this.heal,
       suffer: suffer ?? this.suffer,
       pierced: pierced ?? this.pierced,
       elite: elite ?? this.elite,
@@ -121,7 +127,7 @@ class Unit extends Equatable {
 
   /// Apply negative effects consequences,
   /// remove effects from the set and return updated [Unit]
-  Unit applyNegativeEffects() {
+  Unit applyOldActionEffects() {
     if (turnEnded) return this;
 
     var updatedEffects = _removeNegativeEffect(negativeEffects, {
@@ -134,8 +140,8 @@ class Unit extends Equatable {
       ActivityType.immobilize,
     });
 
-    var updated = _applyHeal()
-        ._applySuffer()
+    var updated = _applySuffer()
+        ._applyHeal()
         .copyWith(negativeEffects: updatedEffects, pierced: 0);
 
     return updated;
@@ -193,13 +199,16 @@ class Unit extends Equatable {
             negativeEffects, {ActivityType.poison, ActivityType.wound}),
         heal: 0,
       );
-    else
+    else {
+      var updatedHealth = healthPoint + heal;
       return copyWith(
-        healthPoint: healthPoint + heal,
+        healthPoint:
+            updatedHealth > maxHealthPoint ? maxHealthPoint : updatedHealth,
         heal: 0,
         negativeEffects:
             _removeNegativeEffect(negativeEffects, {ActivityType.wound}),
       );
+    }
   }
 
   Set<ActivityType> _removeNegativeEffect(
@@ -216,7 +225,7 @@ class Unit extends Equatable {
   /// Ex. if unit has attack = 3 but action card does not have attack modifier,
   /// than attack will be null this round
   int? _applyMandatoryModifier(int? newValue, int? prevValue) {
-    if (newValue == null) return null;
+    if (newValue == null) return 0;
     if (prevValue != null)
       return prevValue + newValue;
     else

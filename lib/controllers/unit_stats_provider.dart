@@ -168,7 +168,7 @@ class UnitStatsProvider with ChangeNotifier {
   }
 
   void endTurn() {
-    unit.applyNegativeEffects();
+    unit.applyOldActionEffects();
     // unit.turnEnded = true;
     _setupActiveEffects();
     save();

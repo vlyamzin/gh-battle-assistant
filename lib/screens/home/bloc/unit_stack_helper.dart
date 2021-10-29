@@ -15,7 +15,7 @@ class UnitStackHelper {
 
     var updatedUnits = stack.units.map((unit) {
       var newUnit = unit
-          .applyNegativeEffects()
+          .applyOldActionEffects()
           .refreshStatsToDefault(stats)
           .applyAction(action.modifiers, action.perks, action.area);
       return newUnit;

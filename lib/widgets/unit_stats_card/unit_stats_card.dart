@@ -7,8 +7,6 @@ import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/models/unit.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/back_side.dart';
-import 'package:gh_battle_assistant/widgets/unit_action_card/back_side_button.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card/stats_bar.dart';
 import 'package:gh_battle_assistant/widgets/unit_stats_card/unit_portrait.dart';
 import 'package:provider/provider.dart';
@@ -47,19 +45,20 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
         key: widget.key,
         frontSideChild: _body(),
         frontActionCallback: super.animationForward,
-        backSideChild: UnitActionCardBackSide(
-          title: '${widget.unit.displayName} ${widget.unit.number}',
-          backButtonCallback: super.animationBackward,
-          deleteButtonCallback: () => widget.onRemove(),
-          buttons: [
-            BackSideButton(
-                action: () {
-                  controller.endTurn();
-                  super.animationBackward();
-                },
-                icon: Icons.check),
-          ],
-        ),
+        // TODO add backside widget
+        // backSideChild: UnitActionCardBackSide(
+        //   title: '${widget.unit.displayName} ${widget.unit.number}',
+        //   backButtonCallback: super.animationBackward,
+        //   deleteButtonCallback: () => widget.onRemove(),
+        //   buttons: [
+        //     BackSideButton(
+        //         action: () {
+        //           controller.endTurn();
+        //           super.animationBackward();
+        //         },
+        //         icon: Icons.check),
+        //   ],
+        // ),
       ),
     );
   }
