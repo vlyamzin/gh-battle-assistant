@@ -92,10 +92,16 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
               updatedStack = stack;
             }
             return updatedStack.copyWith(actions: updatedActions);
+          }).toList();
+
+          updatedMonsters.sort((a, b) {
+            return a.actions.currentAction!.initiative -
+                b.actions.currentAction!.initiative;
           });
 
-          emit(EnemiesState.loaded(
-              enemies.copyWith(monsters: updatedMonsters.toList())));
+          emit(
+            EnemiesState.loaded(enemies.copyWith(monsters: updatedMonsters)),
+          );
         },
         orElse: () => di<LoggerService>().log(
             'selectUnitType - Unhandled state ${state.runtimeType}',

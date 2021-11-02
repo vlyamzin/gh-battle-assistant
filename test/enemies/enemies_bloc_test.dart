@@ -208,6 +208,9 @@ void main() {
               .thenReturn(Settings(difficulty: 1, newGame: false));
         });
 
+        blocTest('and sort stacks by its initiative in this round',
+            build: () => EnemiesBloc(enemiesRepository), expect: () => [false]);
+
         blocTest<EnemiesBloc, EnemiesState>(
           'and refresh available actions list if currentActions has shouldRefresh:true',
           setUp: () {

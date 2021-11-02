@@ -164,7 +164,7 @@ class HomeScreen extends StatelessWidget {
                     child: Provider<UnitStack>.value(
                       value: stack,
                       child: UnitActionCard(
-                        key: key,
+                        key: ValueKey(stack.type),
                         width: cardWidth,
                         height: cardHeight,
                       ),

@@ -157,6 +157,7 @@ class Unit extends Equatable {
       shield: stats[normality]?.shield,
       retaliate: stats[normality]?.retaliate,
       perks: serializeRawData(stats[normality]?.perks) ?? [],
+      area: [],
     );
   }
 
