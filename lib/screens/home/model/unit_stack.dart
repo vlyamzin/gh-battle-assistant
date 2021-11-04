@@ -11,12 +11,11 @@ part 'unit_stack.g.dart';
 @JsonSerializable()
 @immutable
 class UnitStack extends Equatable {
-  late final UnitType type;
-  late final String displayName;
+  final UnitType type;
+  final String displayName;
   late final List<Unit> units;
   late final UnitActionList actions;
-  late final int? maxNumber;
-
+  final int? maxNumber;
   late final List<int> availableNumbersPull;
 
   /// Creates [UnitStack] object with predefined data
@@ -106,7 +105,7 @@ class UnitStack extends Equatable {
   void removeUnitOld(int number) {
     units.removeWhere((element) => element.number == number);
     availableNumbersPull.add(number);
-    maxNumber = maxNumber! + 1;
+    // maxNumber = maxNumber! + 1;
   }
 
   /// Removes [Unit] object from the list of [units]

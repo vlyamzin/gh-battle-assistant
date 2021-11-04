@@ -1,7 +1,11 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
+import 'package:gh_battle_assistant/common/mixins/action_type_serializer_mixin.dart';
+import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
+import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../models/enums/activity_type.dart';
@@ -10,7 +14,7 @@ part 'unit_action.g.dart';
 
 @JsonSerializable()
 @immutable
-class UnitAction extends Equatable {
+class UnitAction extends Equatable with ActionTypeSerializer {
   final int id;
   late final int initiative;
   late final List<GHAction> values;
@@ -18,6 +22,8 @@ class UnitAction extends Equatable {
   late final bool? shouldRefresh;
   @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType> perks;
+  @JsonKey(defaultValue: <ActivityType, String>{})
+  late final Map<ActivityType, String> perkValue;
   @JsonKey(defaultValue: <String>[])
   late final List<String> area;
 
@@ -28,11 +34,13 @@ class UnitAction extends Equatable {
     Map<ModifierType, int>? modifiers,
     this.shouldRefresh,
     List<ActivityType>? perks,
+    Map<ActivityType, String>? perkValue,
     List<String>? area,
   }) {
     this.values = values ?? [];
     this.modifiers = modifiers ?? <ModifierType, int>{};
     this.perks = perks ?? [];
+    this.perkValue = perkValue ?? <ActivityType, String>{};
     this.area = area ?? [];
   }
 
@@ -40,6 +48,15 @@ class UnitAction extends Equatable {
       _$UnitActionFromJson(json);
 
   factory UnitAction.fromRawData(UnitRawAction data) {
+    var sPerks, sPerkValue;
+
+    try {
+      sPerks = ActionTypeSerializer.serializeRawData(data.perks);
+      sPerkValue = ActionTypeSerializer.serializeRawPerkValue(data.perkValue);
+    } catch (e) {
+      di<LoggerService>().log(e.toString());
+    }
+
     return UnitAction(
       id: data.id,
       initiative: data.initiative,
@@ -49,7 +66,8 @@ class UnitAction extends Equatable {
           .map((e) =>
               GHAction(title: e.title, subtitle: e.subtitle, area: e.area))
           .toList(),
-      perks: UnitAction.serializeRawData(data.perks),
+      perks: sPerks,
+      perkValue: sPerkValue,
       area: data.area,
     );
   }
@@ -74,51 +92,6 @@ class UnitAction extends Equatable {
       perks: perks ?? this.perks,
       area: area ?? this.area,
     );
-  }
-
-  static List<ActivityType>? serializeRawData(List<String>? list) {
-    return list?.map((value) {
-      switch (value) {
-        case 'pierce':
-          return ActivityType.pierce;
-        case 'poison':
-          return ActivityType.poison;
-        case 'wound':
-          return ActivityType.wound;
-        case 'disarm':
-          return ActivityType.stun;
-        case 'immobilize':
-          return ActivityType.immobilize;
-        case 'muddle':
-          return ActivityType.muddle;
-        case 'curse':
-          return ActivityType.curse;
-        case 'bless':
-          return ActivityType.bless;
-        case 'stun':
-          return ActivityType.stun;
-        case 'invisible':
-          return ActivityType.invisible;
-        case 'strengthen':
-          return ActivityType.strengthen;
-        case 'pull':
-          return ActivityType.pull;
-        case 'push':
-          return ActivityType.push;
-        case 'heal':
-          return ActivityType.heal;
-        case 'target_2':
-          return ActivityType.target_2;
-        case 'target_3':
-          return ActivityType.target_3;
-        case 'target_4':
-          return ActivityType.target_4;
-        case 'target_all':
-          return ActivityType.target_all;
-        default:
-          throw Exception('Serialize raw data exception');
-      }
-    }).toList();
   }
 
   @override

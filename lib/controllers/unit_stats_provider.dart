@@ -88,10 +88,7 @@ class UnitStatsProvider with ChangeNotifier {
       ActivityType.push,
       ActivityType.bless,
       ActivityType.curse,
-      ActivityType.target_2,
-      ActivityType.target_3,
-      ActivityType.target_4,
-      ActivityType.target_all,
+      ActivityType.target,
     ];
     return defaultActivities.entries.where(
       (activity) =>
@@ -109,7 +106,10 @@ class UnitStatsProvider with ChangeNotifier {
   /// Return List of attack [Effect]
   /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
   List<Effect?> get attackEffects {
-    return unit.perks.map((p) => Effect(p, defaultActivities[p]!)).toList();
+    return unit.perks.map((p) {
+      var perkValue = unit.perkValue.containsKey(p) ? unit.perkValue[p] : null;
+      Effect(p, defaultActivities[p]!, perkValue);
+    }).toList();
   }
 
   /// Return List of area images as path to assets
@@ -338,11 +338,9 @@ typedef EffectMapEntry = MapEntry<ActivityType, String>;
 class Effect {
   final ActivityType type;
   final String iconShortcut;
-  String label = '';
+  late final String? label;
 
-  Effect(this.type, this.iconShortcut) {
-    _parseTargetType();
-  }
+  Effect(this.type, this.iconShortcut, [this.label = '']);
 
   @override
   int get hashCode => type.hashCode;
@@ -352,16 +350,5 @@ class Effect {
     if (other is! Effect) return false;
     Effect effect = other;
     return type == effect.type;
-  }
-
-  void _parseTargetType() {
-    if (type == ActivityType.target_2 ||
-        type == ActivityType.target_3 ||
-        type == ActivityType.target_4 ||
-        type == ActivityType.target_all) {
-      var str = type.toString();
-      var list = str.split('_');
-      label = list[1].toUpperCase();
-    }
   }
 }

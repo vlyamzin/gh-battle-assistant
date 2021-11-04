@@ -21,12 +21,14 @@ UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) => UnitRawData(
                   UnitRawStats.fromJson(e as Map<String, dynamic>)),
             )),
       ),
+      json['flying'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$UnitRawDataToJson(UnitRawData instance) =>
     <String, dynamic>{
       'id': _$UnitTypeEnumMap[instance.id],
       'name': instance.name,
+      'flying': instance.flying,
       'maxNumber': instance.maxNumber,
       'stats': instance.stats.map((k, e) =>
           MapEntry(k, e.map((k, e) => MapEntry(_$UnitNormalityEnumMap[k], e)))),

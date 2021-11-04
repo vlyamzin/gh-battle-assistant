@@ -18,6 +18,10 @@ UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) =>
         (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
       ),
       (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+      (json['perkValue'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          {},
       (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
     );
 
@@ -30,6 +34,7 @@ Map<String, dynamic> _$UnitRawActionToJson(UnitRawAction instance) =>
       'modifier': instance.modifier
           .map((k, e) => MapEntry(_$ModifierTypeEnumMap[k], e)),
       'perks': instance.perks,
+      'perkValue': instance.perkValue,
       'area': instance.area,
     };
 

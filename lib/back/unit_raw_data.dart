@@ -13,11 +13,19 @@ typedef UnitRawStatsMap = Map<String, StatsByUnitNormalityMap>;
 class UnitRawData {
   final UnitType id;
   final String name;
+  final bool flying;
   final int maxNumber;
   final UnitRawStatsMap stats;
   final List<UnitRawAction> actions;
 
-  UnitRawData(this.id, this.name, this.maxNumber, this.actions, this.stats);
+  UnitRawData(
+    this.id,
+    this.name,
+    this.maxNumber,
+    this.actions,
+    this.stats, [
+    this.flying = false,
+  ]);
 
   factory UnitRawData.fromJson(Map<String, dynamic> json) =>
       _$UnitRawDataFromJson(json);

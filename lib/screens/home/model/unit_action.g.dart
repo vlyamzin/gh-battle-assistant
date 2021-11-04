@@ -20,6 +20,11 @@ UnitAction _$UnitActionFromJson(Map<String, dynamic> json) => UnitAction(
               ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
               .toList() ??
           [],
+      perkValue: (json['perkValue'] as Map<String, dynamic>?)?.map(
+            (k, e) =>
+                MapEntry(_$enumDecode(_$ActivityTypeEnumMap, k), e as String),
+          ) ??
+          {},
       area:
           (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               [],
@@ -34,6 +39,8 @@ Map<String, dynamic> _$UnitActionToJson(UnitAction instance) =>
           .map((k, e) => MapEntry(_$ModifierTypeEnumMap[k], e)),
       'shouldRefresh': instance.shouldRefresh,
       'perks': instance.perks.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'perkValue': instance.perkValue
+          .map((k, e) => MapEntry(_$ActivityTypeEnumMap[k], e)),
       'area': instance.area,
     };
 
@@ -89,11 +96,10 @@ const _$ActivityTypeEnumMap = {
   ActivityType.strengthen: 'strengthen',
   ActivityType.pull: 'pull',
   ActivityType.push: 'push',
-  ActivityType.target_2: 'target_2',
-  ActivityType.target_3: 'target_3',
-  ActivityType.target_4: 'target_4',
-  ActivityType.target_all: 'target_all',
+  ActivityType.target: 'target',
   ActivityType.invisible: 'invisible',
+  ActivityType.advantage: 'advantage',
+  ActivityType.disadvantage: 'disadvantage',
 };
 
 GHAction _$GHActionFromJson(Map<String, dynamic> json) => GHAction(

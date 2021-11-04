@@ -81,6 +81,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
               unitStats,
               number,
               selectionType == UnitSelectionType.elite,
+              data.flying,
             );
             var updatedStack;
             if (selectionType == UnitSelectionType.elite)

@@ -17,7 +17,8 @@ class UnitStackHelper {
       var newUnit = unit
           .applyOldActionEffects()
           .refreshStatsToDefault(stats)
-          .applyAction(action.modifiers, action.perks, action.area);
+          .applyAction(
+              action.modifiers, action.perks, action.area, action.perkValue);
       return newUnit;
     }).toList();
 

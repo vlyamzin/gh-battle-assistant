@@ -10,12 +10,14 @@ Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
       number: json['number'] as int,
       displayName: json['displayName'] as String,
       healthPoint: json['healthPoint'] as int,
+      flying: json['flying'] as bool? ?? false,
       maxHealthPoint: json['maxHealthPoint'],
       shield: json['shield'] as int? ?? 0,
       attack: json['attack'] as int? ?? 0,
       range: json['range'] as int? ?? 0,
       move: json['move'] as int? ?? 0,
       retaliate: json['retaliate'] as int? ?? 0,
+      retaliateRange: json['retaliateRange'],
       heal: json['heal'] as int? ?? 0,
       suffer: json['suffer'] as int? ?? 0,
       pierced: json['pierced'] as int? ?? 0,
@@ -25,6 +27,11 @@ Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
               ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
               .toList() ??
           [],
+      perkValue: (json['perkValue'] as Map<String, dynamic>?)?.map(
+            (k, e) =>
+                MapEntry(_$enumDecode(_$ActivityTypeEnumMap, k), e as String),
+          ) ??
+          {},
       immune: (json['immune'] as List<dynamic>?)
               ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
               .toList() ??
@@ -41,6 +48,7 @@ Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
 Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'number': instance.number,
       'displayName': instance.displayName,
+      'flying': instance.flying,
       'healthPoint': instance.healthPoint,
       'maxHealthPoint': instance.maxHealthPoint,
       'shield': instance.shield,
@@ -48,10 +56,13 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'range': instance.range,
       'move': instance.move,
       'retaliate': instance.retaliate,
+      'retaliateRange': instance.retaliateRange,
       'heal': instance.heal,
       'suffer': instance.suffer,
       'pierced': instance.pierced,
       'perks': instance.perks.map((e) => _$ActivityTypeEnumMap[e]).toList(),
+      'perkValue': instance.perkValue
+          .map((k, e) => MapEntry(_$ActivityTypeEnumMap[k], e)),
       'immune': instance.immune.map((e) => _$ActivityTypeEnumMap[e]).toList(),
       'area': instance.area,
       'negativeEffects': instance.negativeEffects
@@ -103,9 +114,8 @@ const _$ActivityTypeEnumMap = {
   ActivityType.strengthen: 'strengthen',
   ActivityType.pull: 'pull',
   ActivityType.push: 'push',
-  ActivityType.target_2: 'target_2',
-  ActivityType.target_3: 'target_3',
-  ActivityType.target_4: 'target_4',
-  ActivityType.target_all: 'target_all',
+  ActivityType.target: 'target',
   ActivityType.invisible: 'invisible',
+  ActivityType.advantage: 'advantage',
+  ActivityType.disadvantage: 'disadvantage',
 };

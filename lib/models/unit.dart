@@ -1,9 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
+import 'package:gh_battle_assistant/common/mixins/action_type_serializer_mixin.dart';
+import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
+import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -11,9 +14,10 @@ part 'unit.g.dart';
 
 @JsonSerializable()
 @immutable
-class Unit extends Equatable {
+class Unit extends Equatable with ActionTypeSerializer {
   final int number;
   final String displayName;
+  final bool? flying;
   final int healthPoint;
   late final int maxHealthPoint;
   final int shield;
@@ -21,16 +25,19 @@ class Unit extends Equatable {
   final int? range;
   final int? move;
   final int retaliate;
+  late final int retaliateRange;
   final int heal;
   final int suffer;
   final int pierced;
-  @JsonKey(defaultValue: <ActivityType>[])
+  @JsonKey(defaultValue: const <ActivityType>[])
   final List<ActivityType> perks;
-  @JsonKey(defaultValue: <ActivityType>[])
+  @JsonKey(defaultValue: const <ActivityType, String>{})
+  final Map<ActivityType, String> perkValue;
+  @JsonKey(defaultValue: const <ActivityType>[])
   final List<ActivityType> immune;
-  @JsonKey(defaultValue: <String>[])
+  @JsonKey(defaultValue: const <String>[])
   final List<String> area;
-  @JsonKey(defaultValue: <ActivityType>{})
+  @JsonKey(defaultValue: const <ActivityType>{})
   final Set<ActivityType> negativeEffects;
   final bool elite;
   final bool turnEnded;
@@ -39,31 +46,42 @@ class Unit extends Equatable {
     required this.number,
     required this.displayName,
     required this.healthPoint,
+    this.flying = false,
     maxHealthPoint,
     this.shield = 0,
     this.attack = 0,
     this.range = 0,
     this.move = 0,
     this.retaliate = 0,
+    retaliateRange,
     this.heal = 0,
     this.suffer = 0,
     this.pierced = 0,
     this.elite = false,
     this.turnEnded = false,
     this.perks = const [],
+    this.perkValue = const {},
     this.immune = const [],
     this.area = const [],
     this.negativeEffects = const {},
-  }) : maxHealthPoint = maxHealthPoint ?? healthPoint;
+  })  : maxHealthPoint = maxHealthPoint ?? healthPoint,
+        retaliateRange = (retaliate > 0) ? (retaliateRange ?? 1) : 0;
 
   factory Unit.fromRawData(
       String name, int health, UnitRawStats data, int number,
-      [bool elite = false]) {
-    var sPerks = serializeRawData(data.perks);
-    var sImmune = serializeRawData(data.immune);
+      [bool elite = false, bool flying = false]) {
+    var sPerks, sImmune, sPerkValue;
+    try {
+      sPerks = ActionTypeSerializer.serializeRawData(data.perks);
+      sImmune = ActionTypeSerializer.serializeRawData(data.immune);
+      sPerkValue = ActionTypeSerializer.serializeRawPerkValue(data.perkValue);
+    } catch (e) {
+      di<LoggerService>().log(e.toString());
+    }
 
     return Unit(
       displayName: name,
+      flying: flying,
       healthPoint: health,
       maxHealthPoint: health,
       number: number,
@@ -72,9 +90,11 @@ class Unit extends Equatable {
       range: data.range,
       move: data.move,
       retaliate: data.retaliate,
+      retaliateRange: data.retaliateRange,
       elite: elite,
-      perks: sPerks ?? [],
-      immune: sImmune ?? [],
+      perks: sPerks ?? const [],
+      perkValue: sPerkValue ?? const {},
+      immune: sImmune ?? const [],
     );
   }
 
@@ -85,6 +105,7 @@ class Unit extends Equatable {
   Unit copyWith({
     int? number,
     String? displayName,
+    bool? flying,
     int? healthPoint,
     int? maxHealthPoint,
     int? shield,
@@ -92,12 +113,14 @@ class Unit extends Equatable {
     int? range,
     int? move,
     int? retaliate,
+    int? retaliateRange,
     int? heal,
     int? suffer,
     int? pierced,
     bool? elite,
     bool? turnEnded,
     List<ActivityType>? perks,
+    Map<ActivityType, String>? perkValue,
     List<ActivityType>? immune,
     List<String>? area,
     Set<ActivityType>? negativeEffects,
@@ -105,6 +128,7 @@ class Unit extends Equatable {
     return Unit(
       number: number ?? this.number,
       displayName: displayName ?? this.displayName,
+      flying: flying ?? this.flying,
       healthPoint: healthPoint ?? this.healthPoint,
       maxHealthPoint: maxHealthPoint ?? this.maxHealthPoint,
       shield: shield ?? this.shield,
@@ -112,12 +136,14 @@ class Unit extends Equatable {
       range: range ?? this.range,
       move: move ?? this.move,
       retaliate: retaliate ?? this.retaliate,
+      retaliateRange: retaliateRange ?? this.retaliateRange,
       heal: heal ?? this.heal,
       suffer: suffer ?? this.suffer,
       pierced: pierced ?? this.pierced,
       elite: elite ?? this.elite,
       negativeEffects: negativeEffects ?? this.negativeEffects,
       perks: perks ?? this.perks,
+      perkValue: perkValue ?? this.perkValue,
       immune: immune ?? this.immune,
       area: area ?? this.area,
     );
@@ -152,21 +178,26 @@ class Unit extends Equatable {
 
     return copyWith(
       attack: stats[normality]?.attack,
-      range: stats[normality]?.range,
+      range: stats[normality]?.range ?? 0,
       move: stats[normality]?.move,
       shield: stats[normality]?.shield,
       retaliate: stats[normality]?.retaliate,
-      perks: serializeRawData(stats[normality]?.perks) ?? [],
+      perks:
+          ActionTypeSerializer.serializeRawData(stats[normality]?.perks) ?? [],
       area: [],
     );
   }
 
-  Unit applyAction(Map<ModifierType, int> modifiers,
-      List<ActivityType> newPerks, List<String> newArea) {
+  Unit applyAction(
+      Map<ModifierType, int> modifiers,
+      List<ActivityType> newPerks,
+      List<String> newArea,
+      Map<ActivityType, String> newPerkValue) {
     return copyWith(
       attack: _applyMandatoryModifier(modifiers[ModifierType.attack], attack),
       move: _applyMandatoryModifier(modifiers[ModifierType.move], move),
-      range: _applyMandatoryModifier(modifiers[ModifierType.range], range),
+      // range: _applyMandatoryModifier(modifiers[ModifierType.range], range),
+      range: _modifyRange(modifiers[ModifierType.range], range),
       shield: modifiers.containsKey(ModifierType.shield)
           ? modifiers[ModifierType.shield]! + shield
           : shield,
@@ -176,6 +207,7 @@ class Unit extends Equatable {
       suffer: modifiers[ModifierType.suffer],
       heal: modifiers[ModifierType.heal],
       perks: perks + newPerks,
+      perkValue: {...perkValue, ...newPerkValue},
       area: area + newArea,
     );
   }
@@ -219,7 +251,7 @@ class Unit extends Equatable {
 
   bool _hasEffect(ActivityType type) => negativeEffects.contains(type) == true;
 
-  /// Make special calculation for mandatory stats such as attack, move, range
+  /// Make special calculation for mandatory stats such as attack and move,
   /// If one of mentioned stats is null then it means that the whole related action
   /// will be skipped for the turn
   ///
@@ -233,47 +265,15 @@ class Unit extends Equatable {
       return newValue;
   }
 
-  static List<ActivityType>? serializeRawData(List<String>? list) {
-    return list?.map((value) {
-      switch (value) {
-        case 'pierce':
-          return ActivityType.pierce;
-        case 'poison':
-          return ActivityType.poison;
-        case 'wound':
-          return ActivityType.wound;
-        case 'disarm':
-          return ActivityType.disarm;
-        case 'immobilize':
-          return ActivityType.immobilize;
-        case 'muddle':
-          return ActivityType.muddle;
-        case 'curse':
-          return ActivityType.curse;
-        case 'bless':
-          return ActivityType.bless;
-        case 'stun':
-          return ActivityType.stun;
-        case 'invisible':
-          return ActivityType.invisible;
-        case 'strengthen':
-          return ActivityType.strengthen;
-        case 'pull':
-          return ActivityType.pull;
-        case 'push':
-          return ActivityType.push;
-        case 'target_2':
-          return ActivityType.target_2;
-        case 'target_3':
-          return ActivityType.target_3;
-        case 'target_4':
-          return ActivityType.target_4;
-        case 'target_all':
-          return ActivityType.target_all;
-        default:
-          throw Exception('Serialize raw data exception');
-      }
-    }).toList();
+  /// Range behaves almost the same as mandatory stats (attack or move),
+  /// with only one difference - if unit has default range other than null
+  /// then it means it's all attacks are ranged even if action does not say it
+  int? _modifyRange(int? newValue, int? prevValue) {
+    if (newValue == null) return prevValue;
+    if (prevValue != null)
+      return prevValue + newValue;
+    else
+      return newValue;
   }
 
   @override

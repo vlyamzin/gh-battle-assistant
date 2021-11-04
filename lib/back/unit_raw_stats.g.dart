@@ -16,6 +16,11 @@ UnitRawStats _$UnitRawStatsFromJson(Map<String, dynamic> json) => UnitRawStats(
       (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       (json['immune'] as List<dynamic>?)?.map((e) => e as String).toList() ??
           [],
+      (json['perkValue'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          {},
+      json['retaliateRange'] as int?,
     );
 
 Map<String, dynamic> _$UnitRawStatsToJson(UnitRawStats instance) =>
@@ -26,6 +31,8 @@ Map<String, dynamic> _$UnitRawStatsToJson(UnitRawStats instance) =>
       'attack': instance.attack,
       'range': instance.range,
       'retaliate': instance.retaliate,
+      'retaliateRange': instance.retaliateRange,
       'perks': instance.perks,
       'immune': instance.immune,
+      'perkValue': instance.perkValue,
     };

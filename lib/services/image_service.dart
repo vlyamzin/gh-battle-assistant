@@ -181,7 +181,90 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}Harrower_Infester_normal_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Harrower_Infester_elite_256.png',
-    }
+    },
+    UnitType.cityGuard: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}City_Guard_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}City_Guard_elite_256.png',
+    },
+    UnitType.cityArcher: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}City_Archer_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}City_Archer_elite_256.png',
+    },
+    UnitType.inoxGuard: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Guard_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Guard_elite_256.png',
+    },
+    UnitType.inoxArcher: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Archer_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Archer_elite_256.png',
+    },
+    UnitType.vermlingScout: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Vermling_Scout_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Vermling_Scout_elite_256.png',
+    },
+    UnitType.vermlingShaman: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Vermling_Shaman_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Vermling_Shaman_elite_256.png',
+    },
+    UnitType.flameDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Flame_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Flame_Demon_elite_256.png',
+    },
+    UnitType.earthDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Earth_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Earth_Demon_elite_256.png',
+    },
+    UnitType.windDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Wind_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Wind_Demon_elite_256.png',
+    },
+    UnitType.sunDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Sun_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Sun_Demon_elite_256.png',
+    },
+    UnitType.forestImp: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Forest_Imp_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Forest_Imp_elite_256.png',
+    },
+    UnitType.hound: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Hound_normal_256.png',
+      UnitNormality.elite: '${ImageService.unitIconBaseUrl}Hound_elite_256.png',
+    },
+    UnitType.stoneGolem: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Stone_Golem_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Stone_Golem_elite_256.png',
+    },
+    UnitType.rendingDrake: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Rending_Drake_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Rending_Drake_elite_256.png',
+    },
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
     // UnitType.caveBear: '${ImageService.unitIconBaseUrl}Cave-Bear-214x300.jpg',
@@ -368,10 +451,7 @@ class ImageService {
     ActivityType.invisible: ImageService._iconsMap32['inv']!,
     ActivityType.pull: ImageService._iconsMap32['pull']!,
     ActivityType.push: ImageService._iconsMap32['push']!,
-    ActivityType.target_2: ImageService._iconsMap32['trgt']!,
-    ActivityType.target_3: ImageService._iconsMap32['trgt']!,
-    ActivityType.target_4: ImageService._iconsMap32['trgt']!,
-    ActivityType.target_all: ImageService._iconsMap32['trgt']!,
+    ActivityType.target: ImageService._iconsMap32['trgt']!,
   };
 
   final _attackEffects64 = {
@@ -391,10 +471,7 @@ class ImageService {
     ActivityType.invisible: ImageService._iconsMap64['inv']!,
     ActivityType.pull: ImageService._iconsMap64['pull']!,
     ActivityType.push: ImageService._iconsMap64['push']!,
-    ActivityType.target_2: ImageService._iconsMap64['trgt']!,
-    ActivityType.target_3: ImageService._iconsMap64['trgt']!,
-    ActivityType.target_4: ImageService._iconsMap64['trgt']!,
-    ActivityType.target_all: ImageService._iconsMap64['trgt']!,
+    ActivityType.target: ImageService._iconsMap64['trgt']!,
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';

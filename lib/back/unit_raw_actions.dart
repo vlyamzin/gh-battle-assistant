@@ -12,11 +12,13 @@ class UnitRawAction {
   final Map<ModifierType, int> modifier;
   @JsonKey(defaultValue: <String>[])
   final List<String>? perks;
+  @JsonKey(defaultValue: <String, String>{})
+  final Map<String, String> perkValue;
   @JsonKey(defaultValue: <String>[])
   final List<String>? area;
 
   UnitRawAction(this.id, this.initiative, this.shouldRefresh, this.values,
-      this.modifier, this.perks, this.area);
+      this.modifier, this.perks, this.perkValue, this.area);
 
   factory UnitRawAction.fromJson(Map<String, dynamic> json) =>
       _$UnitRawActionFromJson(json);

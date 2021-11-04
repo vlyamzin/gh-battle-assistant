@@ -14,9 +14,8 @@ enum ActivityType {
   strengthen,
   pull,
   push,
-  target_2,
-  target_3,
-  target_4,
-  target_all,
+  target,
   invisible,
+  advantage,
+  disadvantage
 }
