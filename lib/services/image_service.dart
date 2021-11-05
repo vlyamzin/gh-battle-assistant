@@ -11,6 +11,10 @@ class ImageService {
   static const mainBackground = 'assets/images/home_bg.png';
   static const headerBackground = 'assets/images/header_bg.jpg';
   static const cardBackground = 'assets/images/ability_front_2.jpg';
+  static const actionCardBackground = 'assets/images/action_front.png';
+  static const actionCardBackgroundLeftPart =
+      'assets/images/action_front_left_part.png';
+  static const initiativeBackground = 'assets/images/initiative_bg.png';
 
   static final _unitImageMap = <UnitType, String>{
     UnitType.ancientArtillery:

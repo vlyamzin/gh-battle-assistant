@@ -13,7 +13,7 @@ class CardDetail extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(5, 5, 5, 35),
+              padding: const EdgeInsets.fromLTRB(0, 5, 0, 35),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
