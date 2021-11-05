@@ -8,6 +8,7 @@ import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
+import 'package:gh_battle_assistant/screens/home/view/unit_action_card/initiative.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:provider/provider.dart';
 
@@ -51,10 +52,32 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
   }
 
   Widget _body(UnitStack stack) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [_leftSide(stack.type), _rightSide(stack.displayName)],
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topRight: widget.getRadius(),
+          bottomRight: widget.getRadius(),
+        ),
+        image: DecorationImage(
+          image: AssetImage(ImageService.actionCardBackground),
+          fit: BoxFit.fill,
+        ),
+      ),
+      child: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [_leftSide(stack.type), _rightSide(stack.displayName)],
+          ),
+          Container(
+            alignment: FractionalOffset(.26, 0.525),
+            child: Initiative(
+              value: stack.actions.currentAction?.initiative,
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -64,7 +87,20 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
 
     return Expanded(
       flex: 1,
-      child: CardImage(heightConstrain: widget.height, imagePath: imagePath),
+      child: Stack(
+        children: [
+          CardImage(heightConstrain: widget.height, imagePath: imagePath),
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                alignment: Alignment.centerRight,
+                image: AssetImage(ImageService.actionCardBackgroundLeftPart),
+                fit: BoxFit.fitHeight,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -73,11 +109,14 @@ class _UnitActionCardState extends AnimatedFlipBaseState<UnitActionCard> {
     return Expanded(
       flex: 2,
       child: Container(
+        padding: EdgeInsets.only(left: 15, right: 3),
         decoration: BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage(ImageService.cardBackground),
-          fit: BoxFit.fill,
-        )),
+          image: DecorationImage(
+            image: AssetImage(ImageService.actionCardBackground),
+            alignment: Alignment.centerLeft,
+            fit: BoxFit.fitHeight,
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
