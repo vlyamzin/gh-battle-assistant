@@ -41,7 +41,9 @@ class StatsScreen extends StatelessWidget {
             letterSpacing: 2.5,
           ),
         ),
-        trailing: _turnActionButton(),
+        trailing: Builder(
+          builder: (context) => _turnActionButton(context),
+        ),
       ),
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 10),
@@ -107,38 +109,37 @@ class StatsScreen extends StatelessWidget {
         .toList();
   }
 
-  Widget _turnActionButton() {
-    return BlocBuilder<StatsCubit, StatsState>(builder: (context, state) {
-      final cubit = context.read<StatsCubit>();
-      return state.when(
-        initial: (_) {
-          return Container(
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () => cubit.startTurn(),
-              child: Text('Start Turn'),
-            ),
-          );
-        },
-        turnStarted: (_) {
-          return Container(
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () => cubit.endTurn(),
-              child: Text('End Turn'),
-            ),
-          );
-        },
-        turnEnded: (_) {
-          return Container(
-            child: CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () => null,
-              child: Text('Turn Ended'),
-            ),
-          );
-        },
-      );
-    });
+  Widget _turnActionButton(BuildContext context) {
+    try {
+      final cubit = context.watch<StatsCubit>();
+
+      return cubit.state.when(initial: (_) {
+        return Container(
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () => cubit.startTurn(),
+            child: Text('Start Turn'),
+          ),
+        );
+      }, turnStarted: (_) {
+        return Container(
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () => cubit.endTurn(),
+            child: Text('End Turn'),
+          ),
+        );
+      }, turnEnded: (_) {
+        return Container(
+          child: CupertinoButton(
+            padding: EdgeInsets.zero,
+            onPressed: () => null,
+            child: Text('Turn Ended'),
+          ),
+        );
+      });
+    } catch (_) {
+      return Container();
+    }
   }
 }
