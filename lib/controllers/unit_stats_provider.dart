@@ -3,7 +3,8 @@ import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
-import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 
 import '../di.dart';
@@ -328,27 +329,5 @@ class UnitStatsProvider with ChangeNotifier {
 
     save();
     notifyListeners();
-  }
-}
-
-// TODO Move into a separate file in model/ folder [069640eea5965a350fea04bebaceedb9]
-typedef EffectMap = Map<ActivityType, String>;
-typedef EffectMapEntry = MapEntry<ActivityType, String>;
-
-class Effect {
-  final ActivityType type;
-  final String iconShortcut;
-  late final String? label;
-
-  Effect(this.type, this.iconShortcut, [this.label = '']);
-
-  @override
-  int get hashCode => type.hashCode;
-
-  @override
-  bool operator ==(dynamic other) {
-    if (other is! Effect) return false;
-    Effect effect = other;
-    return type == effect.type;
   }
 }

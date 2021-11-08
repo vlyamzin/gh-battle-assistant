@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';

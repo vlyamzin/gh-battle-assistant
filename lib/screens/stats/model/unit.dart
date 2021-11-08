@@ -209,15 +209,17 @@ class Unit extends Equatable with ActionTypeSerializer {
       perks: perks + newPerks,
       perkValue: {...perkValue, ...newPerkValue},
       area: area + newArea,
+      healthPoint:
+          _hasEffect(ActivityType.wound) ? (healthPoint - 1) : healthPoint,
     );
   }
 
-  Unit _applyWound() {
-    if (_hasEffect(ActivityType.wound))
-      return copyWith(healthPoint: healthPoint - 1);
-    else
-      return this;
-  }
+  // Unit _applyWound() {
+  //   if (_hasEffect(ActivityType.wound))
+  //     return copyWith(healthPoint: healthPoint - 1);
+  //   else
+  //     return this;
+  // }
 
   Unit _applySuffer() {
     return copyWith(healthPoint: healthPoint - suffer, suffer: 0);

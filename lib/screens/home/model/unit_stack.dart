@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
+import 'package:gh_battle_assistant/models/enums/turn_state.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
@@ -17,6 +18,7 @@ class UnitStack extends Equatable {
   late final UnitActionList actions;
   final int? maxNumber;
   late final List<int> availableNumbersPull;
+  final TurnState turnState;
 
   /// Creates [UnitStack] object with predefined data
   /// [maxNumber] defines the maximum amount of units in the stack.
@@ -32,6 +34,7 @@ class UnitStack extends Equatable {
     List<Unit>? units,
     UnitActionList? actions,
     List<int>? availableNumbersPull,
+    this.turnState = TurnState.idle,
   }) {
     this.availableNumbersPull =
         availableNumbersPull ?? _getAvailableNumbersPull(this.maxNumber!);
@@ -59,7 +62,8 @@ class UnitStack extends Equatable {
       int? maxNumber,
       List<Unit>? units,
       UnitActionList? actions,
-      List<int>? availableNumbersPull}) {
+      List<int>? availableNumbersPull,
+      TurnState? turnState}) {
     return UnitStack(
       type: type ?? this.type,
       displayName: displayName ?? this.displayName,
@@ -68,6 +72,7 @@ class UnitStack extends Equatable {
       actions: actions ?? this.actions,
       availableNumbersPull:
           availableNumbersPull ?? this.availableNumbersPull.toList(),
+      turnState: turnState ?? this.turnState,
     );
   }
 
@@ -124,5 +129,5 @@ class UnitStack extends Equatable {
 
   @override
   List<Object?> get props =>
-      [type, displayName, units, actions, availableNumbersPull];
+      [type, displayName, units, actions, availableNumbersPull, turnState];
 }

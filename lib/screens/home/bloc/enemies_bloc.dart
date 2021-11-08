@@ -2,8 +2,10 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/di.dart';
+import 'package:gh_battle_assistant/models/enums/turn_state.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:gh_battle_assistant/services/util_service.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -22,6 +24,7 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
     _stackHelper = UnitStackHelper(enemiesRepository);
     on<StackAddedE>(_onStackAdded);
     on<StackRemovedE>(_onStackRemoved);
+    on<StackUpdatedE>(_onStackUpdated);
     on<ClearEnemiesList>(_onClearEnemies);
     on<NewActionRequested>(_onNewAction);
   }
@@ -65,6 +68,16 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
           emit(EnemiesState.loaded(Enemies(monsters: updatedEnemies)));
         },
         orElse: () {});
+  }
+
+  void _onStackUpdated(StackUpdatedE event, Emitter<EnemiesState> emit) {
+    state.maybeMap(loaded: (EnemiesLoaded state) {
+      var updatedEnemies = state.enemies.update(event.unitStack);
+      emit(EnemiesState.loaded(Enemies(monsters: updatedEnemies)));
+    }, orElse: () {
+      di<LoggerService>()
+          .log('onStackUpdated - Unhandled state ${state.runtimeType}');
+    });
   }
 
   void _onClearEnemies(_, Emitter<EnemiesState> emit) {

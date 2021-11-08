@@ -19,6 +19,8 @@ UnitStack _$UnitStackFromJson(Map<String, dynamic> json) => UnitStack(
       availableNumbersPull: (json['availableNumbersPull'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
+      turnState: _$enumDecodeNullable(_$TurnStateEnumMap, json['turnState']) ??
+          TurnState.idle,
     );
 
 Map<String, dynamic> _$UnitStackToJson(UnitStack instance) => <String, dynamic>{
@@ -28,6 +30,7 @@ Map<String, dynamic> _$UnitStackToJson(UnitStack instance) => <String, dynamic>{
       'actions': instance.actions,
       'maxNumber': instance.maxNumber,
       'availableNumbersPull': instance.availableNumbersPull,
+      'turnState': _$TurnStateEnumMap[instance.turnState],
     };
 
 K _$enumDecode<K, V>(
@@ -105,4 +108,21 @@ const _$UnitTypeEnumMap = {
   UnitType.windDemon: 45,
   UnitType.wingedHorror: 46,
   UnitType.aestherAshblade: 99999,
+};
+
+K? _$enumDecodeNullable<K, V>(
+  Map<K, V> enumValues,
+  dynamic source, {
+  K? unknownValue,
+}) {
+  if (source == null) {
+    return null;
+  }
+  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
+}
+
+const _$TurnStateEnumMap = {
+  TurnState.idle: 0,
+  TurnState.started: 1,
+  TurnState.ended: 2,
 };

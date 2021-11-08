@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/model/settings.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/repository/settings_repository.dart';

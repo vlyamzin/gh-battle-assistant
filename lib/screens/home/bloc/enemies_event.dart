@@ -25,6 +25,15 @@ class StackRemovedE extends EnemiesEvent {
   List<Object> get props => [unitStack];
 }
 
+class StackUpdatedE extends EnemiesEvent {
+  final UnitStack unitStack;
+
+  const StackUpdatedE(this.unitStack);
+
+  @override
+  List<Object> get props => [unitStack];
+}
+
 class NewActionRequested extends EnemiesEvent {}
 
 class ClearEnemiesList extends EnemiesEvent {}

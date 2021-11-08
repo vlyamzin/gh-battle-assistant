@@ -6,11 +6,12 @@ import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
-import 'package:gh_battle_assistant/widgets/unit_stats_card/unit_stats_card.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:provider/provider.dart';
 
-import '../../di.dart';
+import '../../../di.dart';
 
+@deprecated
 class UnitActionCardList extends StatefulWidget {
   const UnitActionCardList({
     Key? key,

@@ -3,7 +3,7 @@ import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 
-import '../../di.dart';
+import '../di.dart';
 
 class UnitPortrait extends StatelessWidget {
   final int unitNumber;

@@ -12,7 +12,7 @@ import 'package:gh_battle_assistant/common/sliver_grid.dart';
 import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
-import 'package:gh_battle_assistant/screens/stats_screen.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
@@ -120,6 +120,7 @@ class HomeScreen extends StatelessWidget {
         Navigator.of(context).push(
           CupertinoPageRoute(
             builder: (_) => StatsScreen(
+              enemiesBloc: context.read<EnemiesBloc>(),
               stack: stackModel,
               defaultStats: unitStats,
             ),

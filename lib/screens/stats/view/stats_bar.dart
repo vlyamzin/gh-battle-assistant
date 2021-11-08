@@ -5,7 +5,7 @@ import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:provider/provider.dart';
 
-import '../../di.dart';
+import '../../../di.dart';
 import 'attack_effects.dart';
 
 class StatsBar extends StatelessWidget {
