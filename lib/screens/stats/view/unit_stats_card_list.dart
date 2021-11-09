@@ -72,7 +72,6 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
           key: ValueKey(unit.number),
           width: 500,
           height: 400,
-          unit: unit,
           type: widget.stack.type,
           onRemove: () => _removeUnitFromStack(unit.number, context),
         ),

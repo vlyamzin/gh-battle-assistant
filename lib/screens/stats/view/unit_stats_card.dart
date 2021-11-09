@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' hide ButtonBar;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/animation/animated_flip_card.dart';
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/common/unit_portrait.dart';
-import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
-import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:provider/provider.dart';
 
 import 'active_effects.dart';
 import 'immune_effects.dart';
@@ -18,14 +16,12 @@ import 'button_bar.dart';
 class UnitStatsCard extends StatefulWidget {
   final double width, height;
   final UnitType type;
-  final Unit unit;
   final VoidCallback onRemove;
 
   const UnitStatsCard({
     Key? key,
     required this.width,
     required this.height,
-    required this.unit,
     required this.type,
     required this.onRemove,
   }) : super(key: key);
@@ -84,12 +80,18 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
-          child: UnitPortrait(
-            unitNumber: widget.unit.number,
-            type: widget.type,
-            normality: (widget.unit.elite == true)
-                ? UnitNormality.elite
-                : UnitNormality.normal,
+          child: BlocBuilder<UnitCubit, UnitState>(
+            builder: (context, state) {
+              return state.when(ready: (unit) {
+                return UnitPortrait(
+                  unitNumber: unit.number,
+                  type: widget.type,
+                  normality: (unit.elite == true)
+                      ? UnitNormality.elite
+                      : UnitNormality.normal,
+                );
+              });
+            },
           ),
         ),
         Flexible(
@@ -111,8 +113,13 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
   Widget _rightSide() {
     return Column(
       children: [
-        // Expanded(child: StatsBar()),
-        // ButtonBar(),
+        Expanded(
+            child: StatsBar(
+          key: widget.key,
+        )),
+        ButtonBar(
+          key: widget.key,
+        ),
       ],
     );
   }

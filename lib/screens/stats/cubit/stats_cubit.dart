@@ -53,4 +53,15 @@ class StatsCubit extends Cubit<StatsState> {
       turnEnded: (_) {},
     );
   }
+
+  void unitChanged(Unit unit) {
+    var handler = (UnitStack stack) {
+      var updatedUnits =
+          stack.units.map((u) => u.number == unit.number ? unit : u).toList();
+      var updatedStack = stack.copyWith(units: updatedUnits);
+      enemiesBloc.add(StackUpdatedE(updatedStack));
+    };
+
+    state.when(initial: handler, turnStarted: handler, turnEnded: handler);
+  }
 }

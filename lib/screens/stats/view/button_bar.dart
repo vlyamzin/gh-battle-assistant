@@ -18,7 +18,7 @@ class ButtonBar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ActivitySelector(),
+            // ActivitySelector(),
             Container(
               width: 1,
               decoration: BoxDecoration(

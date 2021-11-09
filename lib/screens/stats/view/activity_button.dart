@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
+// import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:provider/provider.dart';
 import 'package:simple_tooltip/simple_tooltip.dart';
 
@@ -11,7 +12,8 @@ class ActivityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<UnitStatsProvider>();
+    // final provider = context.read<UnitStatsProvider>();
+    final cubit = context.read<UnitCubit>();
 
     return SizedBox(
       width: 160,
@@ -27,26 +29,26 @@ class ActivityButton extends StatelessWidget {
                 size: 35,
                 color: Color(0xFF000000),
               ),
-              onPressed: () => provider.minusActivity(),
+              onPressed: () => cubit.minusActivity(),
             ),
           ),
-          Flexible(
-            flex: 1,
-            child: _Activity(
-              child: GestureDetector(
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  child: Selector<UnitStatsProvider,
-                      MapEntry<ActivityType, String>>(
-                    builder: (_, activity, __) =>
-                        Image(image: AssetImage(activity.value)),
-                    selector: (_, provider) => provider.selectedActivity,
-                  ),
-                ),
-                onTap: () => provider.applyActivity(),
-              ),
-            ),
-          ),
+          // Flexible(
+          //   flex: 1,
+          //   child: _Activity(
+          //     child: GestureDetector(
+          //       child: Container(
+          //         padding: EdgeInsets.all(0),
+          //         // child: Selector<UnitStatsProvider,
+          //         //     MapEntry<ActivityType, String>>(
+          //         //   builder: (_, activity, __) =>
+          //         //       Image(image: AssetImage(activity.value)),
+          //         //   selector: (_, provider) => provider.selectedActivity,
+          //         // ),
+          //       ),
+          //       onTap: () => cubit.applyActivity(),
+          //     ),
+          //   ),
+          // ),
           Flexible(
             flex: 1,
             child: CupertinoButton(
@@ -56,7 +58,7 @@ class ActivityButton extends StatelessWidget {
                 size: 35,
                 color: Color(0xFF000000),
               ),
-              onPressed: () => provider.plusActivity(),
+              onPressed: () => cubit.plusActivity(),
             ),
           ),
         ],

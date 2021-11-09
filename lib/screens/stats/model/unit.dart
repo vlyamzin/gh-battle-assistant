@@ -151,6 +151,9 @@ class Unit extends Equatable with ActionTypeSerializer {
 
   String toString() => 'Unit$number: $displayName';
 
+  /// Check if unit has Pierce [ActivityType]
+  bool get isPierced => pierced > 0;
+
   /// Apply negative effects consequences,
   /// remove effects from the set and return updated [Unit]
   Unit applyOldActionEffects() {

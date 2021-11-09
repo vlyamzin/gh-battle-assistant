@@ -77,33 +77,39 @@ class StatsScreen extends StatelessWidget {
   }
 
   Widget _grid() {
-    var widget = (stack) => Grid(
+    var widget = (context, stack) => Grid(
           landscape: 2,
           portrait: 1,
-          children: _cards(stack.units),
+          children: _cards(context, stack.units),
         );
 
     return Builder(builder: (context) {
       return BlocBuilder<StatsCubit, StatsState>(builder: (_, state) {
         return state.when(
-          initial: (stack) => widget(stack),
-          turnStarted: (stack) => widget(stack),
-          turnEnded: (stack) => widget(stack),
+          initial: (stack) => widget(context, stack),
+          turnStarted: (stack) => widget(context, stack),
+          turnEnded: (stack) => widget(context, stack),
         );
       });
     });
   }
 
-  List<Widget> _cards(List<Unit> units) {
+  List<Widget> _cards(BuildContext context, List<Unit> units) {
     return units
         .map(
-          (unit) => UnitStatsCard(
-            key: ValueKey(unit.number),
-            width: 500,
-            height: 400,
-            unit: unit,
-            type: stack.type,
-            onRemove: () => null,
+          (unit) => BlocProvider<UnitCubit>(
+            create: (context) => UnitCubit(
+              unit: unit,
+              onStateChanged: (newUnit) =>
+                  context.read<StatsCubit>().unitChanged(newUnit),
+            ),
+            child: UnitStatsCard(
+              key: ValueKey(unit.number),
+              width: 500,
+              height: 400,
+              type: stack.type,
+              onRemove: () => null,
+            ),
           ),
         )
         .toList();

@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
-import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
+// import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:provider/provider.dart';
 
 import '../../../di.dart';
 import 'attack_effects.dart';
@@ -17,8 +18,18 @@ class StatsBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Expanded(flex: 2, child: _Stats()),
-        Flexible(flex: 1, child: AttackEffect()),
+        Expanded(
+          flex: 2,
+          child: _Stats(
+            key: key,
+          ),
+        ),
+        // Flexible(
+        //   flex: 1,
+        //   child: AttackEffect(
+        //     key: key,
+        //   ),
+        // ),
       ],
     );
   }
@@ -31,31 +42,34 @@ class _Stats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
-      child: Consumer<UnitStatsProvider>(
-        builder: (_, controller, __) {
-          var unit = controller.unit;
+      child: BlocBuilder<UnitCubit, UnitState>(
+        builder: (context, state) {
+          // var unit = controller.unit;
 
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _StatsRecord(
-                text: 'Health: ${unit.healthPoint > 0 ? unit.healthPoint : 0}',
-              ),
-              controller.isPierced
-                  ? _StatsRecordWithIcon(
-                      label: 'Shield: ',
-                      iconPath: di<ImageService>()
-                          .getAttackEffect(IconSize.s32)[ActivityType.pierce]!,
-                      value: unit.shield.toString(),
-                    )
-                  : _StatsRecord(text: 'Shield: ${unit.shield}'),
-              _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
-              _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
-              _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
-              _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
-            ],
-          );
+          return state.when(ready: (unit) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _StatsRecord(
+                  text:
+                      'Health: ${unit.healthPoint > 0 ? unit.healthPoint : 0}',
+                ),
+                unit.isPierced
+                    ? _StatsRecordWithIcon(
+                        label: 'Shield: ',
+                        iconPath: di<ImageService>().getAttackEffect(
+                            IconSize.s32)[ActivityType.pierce]!,
+                        value: unit.shield.toString(),
+                      )
+                    : _StatsRecord(text: 'Shield: ${unit.shield}'),
+                _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
+                _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
+                _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
+                _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
+              ],
+            );
+          });
         },
       ),
     );

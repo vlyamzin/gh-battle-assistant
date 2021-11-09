@@ -11,3 +11,5 @@ export 'model/unit.dart';
 export 'model/effect.dart';
 export 'cubit/stats_cubit.dart';
 export 'cubit/stats_state.dart';
+export 'cubit/unit_state.dart';
+export 'cubit/unit_cubit.dart';
