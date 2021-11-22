@@ -36,7 +36,7 @@ class AnimatedFlipCard extends AnimatedWidget with CardBorderRadius {
     return GestureDetector(
       child: child,
       behavior: HitTestBehavior.opaque,
-      onLongPress: frontActionCallback,
+      onDoubleTap: frontActionCallback,
     );
   }
 

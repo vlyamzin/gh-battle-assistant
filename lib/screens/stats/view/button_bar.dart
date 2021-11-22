@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:gh_battle_assistant/screens/stats/view/direct_activity_selector.dart';
 
 import 'activity_button.dart';
 import 'activity_selector.dart';
@@ -19,6 +20,7 @@ class ButtonBar extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // ActivitySelector(),
+            Expanded(child: DirectActivitySelector()),
             Container(
               width: 1,
               decoration: BoxDecoration(
