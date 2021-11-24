@@ -95,6 +95,30 @@ class AddUnitCubit extends Cubit<AddUnitState> {
         orElse: () {});
   }
 
+  void shuffleUnits() {
+    state.maybeMap(
+      selectedUnitType: (UnitTypeSelectedS state) {
+        var newUnits = <Unit>[];
+        var exitingUnits = <Unit>[];
+        state.stack.units.forEach((unit) {
+          if (state.stack.availableNumbersPull.contains(unit.number))
+            newUnits.add(unit);
+          else
+            exitingUnits.add(unit);
+        });
+        newUnits = state.stack.shuffleUnits(newUnits);
+        var updatedStack = state.stack.copyWith(
+          units: [...exitingUnits, ...newUnits],
+        );
+        emit(state.copyWith(stack: updatedStack));
+      },
+      orElse: () {
+        di<LoggerService>()
+            .log('onShuffleUnits - Unhandled state ${state.runtimeType}');
+      },
+    );
+  }
+
   void saveSelection() {
     state.maybeMap(
         selectedUnitType: (UnitTypeSelectedS state) {

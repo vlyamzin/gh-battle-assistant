@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
 import 'package:gh_battle_assistant/models/enums/turn_state.dart';
@@ -120,6 +122,21 @@ class UnitStack extends Equatable {
     return copyWith(
       units: updatedList,
     );
+  }
+
+  List<Unit> shuffleUnits(List<Unit> units) {
+    var pulledNumbers = <int>{};
+
+    return [...units].map((unit) {
+      var randomIndex = new Random().nextInt(availableNumbersPull.length);
+
+      while (pulledNumbers.contains(randomIndex)) {
+        randomIndex = new Random().nextInt(availableNumbersPull.length);
+      }
+
+      pulledNumbers.add(randomIndex);
+      return unit.copyWith(number: availableNumbersPull[randomIndex]);
+    }).toList();
   }
 
   /// Returns the list of numbers started from 1 till the [n]

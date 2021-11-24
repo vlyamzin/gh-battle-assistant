@@ -71,7 +71,9 @@ class _AddUnitScreenState extends State<AddUnitScreen> {
                               bottom: 10,
                               right: 10,
                               child: ElevatedButton(
-                                  onPressed: () => null,
+                                  onPressed: () => context
+                                      .read<AddUnitCubit>()
+                                      .shuffleUnits(),
                                   child: const Text('randomize')),
                             ),
                           ],
