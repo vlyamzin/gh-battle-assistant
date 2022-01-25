@@ -5397,7 +5397,7 @@
           },
           "perks": [],
           "area": [
-            "%4lgv2%"
+            "4lgv2"
           ]
         },
         {
@@ -11457,6 +11457,386 @@
           "perks": [
             "strengthen",
             "muddle"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Deep Terror",
+      "id": 10,
+      "maxNumber": 10,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 3,
+            "shield": 0,
+            "move": null,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 5,
+            "shield": 0,
+            "move": null,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 4,
+            "shield": 0,
+            "move": null,
+            "attack": 2,
+            "range": null,
+            "retaliate": 1,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 6,
+            "shield": 0,
+            "move": null,
+            "attack": 3,
+            "range": null,
+            "retaliate": 1,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 4,
+            "shield": 0,
+            "move": null,
+            "attack": 3,
+            "range": null,
+            "retaliate": 1,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 7,
+            "shield": 0,
+            "move": null,
+            "attack": 4,
+            "range": null,
+            "retaliate": 1,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 5,
+            "shield": 0,
+            "move": null,
+            "attack": 3,
+            "range": null,
+            "retaliate": 2,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 8,
+            "shield": 0,
+            "move": null,
+            "attack": 4,
+            "range": null,
+            "retaliate": 2,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 6,
+            "shield": 0,
+            "move": null,
+            "attack": 4,
+            "range": null,
+            "retaliate": 2,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 9,
+            "shield": 0,
+            "move": null,
+            "attack": 5,
+            "range": null,
+            "retaliate": 2,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 7,
+            "shield": 0,
+            "move": null,
+            "attack": 4,
+            "range": null,
+            "retaliate": 3,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 11,
+            "shield": 0,
+            "move": null,
+            "attack": 5,
+            "range": null,
+            "retaliate": 3,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 8,
+            "shield": 0,
+            "move": null,
+            "attack": 5,
+            "range": null,
+            "retaliate": 3,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 13,
+            "shield": 0,
+            "move": null,
+            "attack": 6,
+            "range": null,
+            "retaliate": 3,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 9,
+            "shield": 0,
+            "move": null,
+            "attack": 5,
+            "range": null,
+            "retaliate": 4,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 15,
+            "shield": 0,
+            "move": null,
+            "attack": 6,
+            "range": null,
+            "retaliate": 4,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 732,
+          "initiative": 65,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2\nCURSE |%crs%|"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "range": 3
+          },
+          "perks": [
+            "curse",
+            "target"
+          ],
+          "perkValue": {
+            "target": "3"
+          }
+        },
+        {
+          "id": 733,
+          "initiative": 60,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "PIERCE |%prc%|3",
+              "area": "%6lg%"
+            }
+          ],
+          "modifier": {
+            "attack": 0
+          },
+          "perks": [
+            "pierce"
+          ],
+          "perkValue": {
+            "pierce": "3"
+          },
+          "area": [
+            "6lg"
+          ]
+        },
+        {
+          "id": 734,
+          "initiative": 60,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "PIERCE |%prc%|3",
+              "area": "%6lg%"
+            }
+          ],
+          "modifier": {
+            "attack": 0
+          },
+          "perks": [
+            "pierce"
+          ],
+          "perkValue": {
+            "pierce": "3"
+          },
+          "area": [
+            "6lg"
+          ]
+        },
+        {
+          "id": 735,
+          "initiative": 84,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Target all adjacent enemies"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Range |%rng%|4\nWOUND |%wnd%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 4
+          },
+          "perks": [
+            "wound"
+          ]
+        },
+        {
+          "id": 736,
+          "initiative": 75,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "POISON |%poi%|"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|5\nIMMOBILIZE |%imbz%|"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "range": 5
+          },
+          "perks": [
+            "poison",
+            "immobilize"
+          ]
+        },
+        {
+          "id": 737,
+          "initiative": 75,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|-2",
+              "subtitle": "Target all adjacent enemies\nDISARM |%darm%|"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -2,
+            "range": 3
+          },
+          "perks": [
+            "disarm",
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        },
+        {
+          "id": 738,
+          "initiative": 96,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|-2",
+              "subtitle": "Range |%rng%|6\nSummon normal Deep Terror in a hex adjacent to the target"
+            }
+          ],
+          "modifier": {
+            "attack": -2,
+            "range": 6
+          }
+        },
+        {
+          "id": 739,
+          "initiative": 54,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "WOUND |%wnd%| and POISON |%poi%|",
+              "subtitle": "Target all adjacent enemies"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Range |%rng%|4"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "range": 4
+          },
+          "perks": [
+            "wound",
+            "poison"
           ]
         }
       ]
