@@ -11059,6 +11059,407 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Black Imp",
+      "id": 4,
+      "maxNumber": 10,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 3,
+            "shield": 0,
+            "move": 1,
+            "attack": 1,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 4,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 4,
+            "shield": 0,
+            "move": 1,
+            "attack": 1,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 6,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 5,
+            "shield": 0,
+            "move": 1,
+            "attack": 1,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 8,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 5,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 8,
+            "shield": 0,
+            "move": 1,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "disadvantage"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 7,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 11,
+            "shield": 0,
+            "move": 1,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "disadvantage"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 9,
+            "shield": 0,
+            "move": 1,
+            "attack": 2,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 12,
+            "shield": 0,
+            "move": 1,
+            "attack": 3,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "disadvantage"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 10,
+            "shield": 0,
+            "move": 1,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 14,
+            "shield": 0,
+            "move": 1,
+            "attack": 4,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "disadvantage"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 12,
+            "shield": 0,
+            "move": 1,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 17,
+            "shield": 0,
+            "move": 1,
+            "attack": 4,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "disadvantage"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 676,
+          "initiative": 5,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Shield |%shld%|5"
+            },
+            {
+              "title": "Heal |%heal%|1",
+              "subtitle": "Self"
+            }
+          ],
+          "modifier": {
+            "heal": 1,
+            "shield": 5
+          }
+        },
+        {
+          "id": 677,
+          "initiative": 37,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 678,
+          "initiative": 37,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 679,
+          "initiative": 42,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+1"
+            },
+            {
+              "title": "Heal |%heal%|2",
+              "subtitle": "Range |%rng%|3"
+            }
+          ],
+          "modifier": {
+            "range": 3,
+            "move": 1
+          },
+          "perks": [
+            "heal"
+          ],
+          "perkValue": {
+            "heal": "2"
+          }
+        },
+        {
+          "id": 680,
+          "initiative": 43,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Target |%trgt%|2\nPOISON |%poi%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 0
+          },
+          "perks": [
+            "poison",
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        },
+        {
+          "id": 681,
+          "initiative": 76,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "move": -1
+          }
+        },
+        {
+          "id": 682,
+          "initiative": 43,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Target |%trgt%|2\nCURSE |%crs%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 0
+          },
+          "perks": [
+            "curse",
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        },
+        {
+          "id": 683,
+          "initiative": 24,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "STRENGTHEN |%str%|",
+              "subtitle": "Affect all allies within Range|%rng%|2"
+            },
+            {
+              "title": "MUDDLE |%mud%|",
+              "subtitle": "Target all enemies within Range|%rng%|2"
+            }
+          ],
+          "modifier": {
+            "range": 2
+          },
+          "perks": [
+            "strengthen",
+            "muddle"
+          ]
+        }
+      ]
     }
   ]
 }

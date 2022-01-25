@@ -269,6 +269,12 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Rending_Drake_elite_256.png',
     },
+    UnitType.blackImp: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Black_Imp_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Black_Imp_elite_256.png',
+    },
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
     // UnitType.caveBear: '${ImageService.unitIconBaseUrl}Cave-Bear-214x300.jpg',
