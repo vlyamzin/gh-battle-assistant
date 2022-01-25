@@ -19,9 +19,10 @@ import 'package:path_provider/path_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  HydratedBloc.storage = await HydratedStorage.build(
+  final storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
+
   setupDI();
   late GameData rawData;
 
@@ -31,18 +32,26 @@ void main() async {
     rawData = GameData.fromJson(jsonDecode(rawDataString));
     final data = await di<StoreService>().read();
 
-    runApp(Application(
-      data: jsonDecode(data),
-      rawData: rawData,
-    ));
+    init(storage, data, rawData);
   } on FormatException catch (_) {
     di<LoggerService>().log('Raw data json is not valid');
   } on FileSystemException catch (_) {
-    runApp(Application(
-      data: null,
-      rawData: rawData,
-    ));
+    init(storage, null, rawData);
   }
+}
+
+void init(
+  HydratedStorage storage,
+  String? data,
+  GameData rawData,
+) {
+  HydratedBlocOverrides.runZoned(
+    () => runApp(Application(
+      data: data != null ? jsonDecode(data) : null,
+      rawData: rawData,
+    )),
+    storage: storage,
+  );
 }
 
 class Application extends StatefulWidget {

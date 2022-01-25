@@ -35,7 +35,7 @@ void main() {
 
     setUpAll(() {
       initHydratedBloc();
-      registerFallbackValue<UnitType>(UnitType.aestherAshblade);
+      registerFallbackValue(UnitType.aestherAshblade);
       di = GetIt.instance;
       settingsRepository = MockSettingsRepository();
       utilService = MockUtilService();
