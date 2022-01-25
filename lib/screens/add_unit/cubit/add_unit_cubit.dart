@@ -13,6 +13,7 @@ import '../../../di.dart';
 class AddUnitCubit extends Cubit<AddUnitState> {
   final EnemiesRepository _repository;
   final EnemiesBloc _enemiesBloc;
+  final unitLevels = List.generate(7, (index) => index);
   late final int difficulty;
 
   AddUnitCubit(
@@ -40,7 +41,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
     _enemiesBloc.state.maybeWhen(
       initial: () {
         newStack = UnitStack.fromRawData(data);
-        emit(AddUnitState.selectedUnitType(newStack));
+        emit(AddUnitState.selectedUnitType(newStack, difficulty));
       },
       loaded: (Enemies enemies) {
         existingStack = enemies.getByType(data.id);
@@ -51,7 +52,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
           newStack = UnitStack.fromRawData(data);
         }
 
-        emit(AddUnitState.selectedUnitType(newStack));
+        emit(AddUnitState.selectedUnitType(newStack, difficulty));
       },
       orElse: () => di<LoggerService>().log(
           'selectUnitType - Unhandled state ${_enemiesBloc.state.runtimeType}',
@@ -73,7 +74,7 @@ class AddUnitCubit extends Cubit<AddUnitState> {
               selectionType == UnitSelectionType.normal
                   ? UnitNormality.normal
                   : UnitNormality.elite,
-              difficulty.toString(),
+              state.unitLevel.toString(),
             );
             var unit = Unit.fromRawData(
               data.name,
@@ -136,6 +137,52 @@ class AddUnitCubit extends Cubit<AddUnitState> {
           emit(AddUnitState.unitAdded());
         },
         orElse: () {});
+  }
+
+  void changeUnitLevel(int value) {
+    state.maybeMap(
+      selectedUnitType: (UnitTypeSelectedS state) {
+        var updatedUnits = _updateUnitStats(
+          state.stack.units,
+          state.stack.type,
+          value,
+        );
+        emit(
+          state.copyWith(
+            unitLevel: value,
+            stack: state.stack.copyWith(units: updatedUnits),
+          ),
+        );
+      },
+      orElse: () {},
+    );
+  }
+
+  List<Unit> _updateUnitStats(List<Unit> units, UnitType type, int unitLevel) {
+    var data = _repository.byId(type);
+    var unitStats = data.getUnitStats(
+      unitLevel.toString(),
+    );
+
+    if (unitStats != null) {
+      return units.map((unit) {
+        var normality = unit.elite ? UnitNormality.elite : UnitNormality.normal;
+        return Unit.fromRawData(
+          unit.displayName,
+          unitStats[normality]!.health,
+          unitStats[normality]!,
+          unit.number,
+          unit.elite,
+          unit.flying,
+        );
+      }).toList();
+    } else {
+      return units;
+    }
+  }
+
+  bool displayLevelSelector(UnitStack stack) {
+    return stack.units.isEmpty ? true : false;
   }
 
   UnitSelectionType _toggleSelectionType(UnitStack stack, int number) {

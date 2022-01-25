@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gh_battle_assistant/common/direct_select/widget.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 import 'package:gh_battle_assistant/screens/add_unit/view/unit_number_selector.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
@@ -47,6 +48,17 @@ class _AddUnitScreenState extends State<AddUnitScreen> {
                     }
                   },
                   builder: (context, state) {
+                    Widget levelSelector = Container();
+
+                    if (state is UnitTypeSelectedS) {
+                      var showLevelSelector = context
+                          .read<AddUnitCubit>()
+                          .displayLevelSelector(state.stack);
+                      levelSelector = showLevelSelector
+                          ? _unitLevelSelector(context)
+                          : Container();
+                    }
+
                     if (state is AddUnitInitial || state is FilteredUnitsS) {
                       return Align(
                         alignment: Alignment.topLeft,
@@ -70,11 +82,21 @@ class _AddUnitScreenState extends State<AddUnitScreen> {
                             Positioned(
                               bottom: 10,
                               right: 10,
-                              child: ElevatedButton(
-                                  onPressed: () => context
-                                      .read<AddUnitCubit>()
-                                      .shuffleUnits(),
-                                  child: const Text('randomize')),
+                              child: SizedBox(
+                                width: 120,
+                                height: 150,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    levelSelector,
+                                    ElevatedButton(
+                                        onPressed: () => context
+                                            .read<AddUnitCubit>()
+                                            .shuffleUnits(),
+                                        child: const Text('randomize')),
+                                  ],
+                                ),
+                              ),
                             ),
                           ],
                         );
@@ -100,6 +122,62 @@ class _AddUnitScreenState extends State<AddUnitScreen> {
           padding: EdgeInsets.all(0),
           onPressed: () => context.read<AddUnitCubit>().saveSelection(),
           child: Text('Add')),
+    );
+  }
+
+  Widget _unitLevelSelector(BuildContext context) {
+    final unitLevels = context.read<AddUnitCubit>().unitLevels;
+
+    return Container(
+      child: BlocSelector<AddUnitCubit, AddUnitState, int?>(
+        selector: (state) {
+          return state.maybeWhen(
+              selectedUnitType: (_, int unitLevel) {
+                return unitLevel;
+              },
+              orElse: () => null);
+        },
+        builder: (context, level) {
+          if (level == null) return Container();
+
+          return DirectSelect(
+            width: 120,
+            height: 250,
+            child: SizedBox(
+              height: 60,
+              child: Container(
+                padding: EdgeInsets.all(10),
+                alignment: Alignment.center,
+                child: FittedBox(
+                  child: Text('Level ${level.toString()}'),
+                ),
+              ),
+            ),
+            items: unitLevels.map((l) {
+              return SizedBox(
+                height: 60,
+                child: Container(
+                  padding: EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  child: FittedBox(
+                    child: Text(
+                      'Level ${l.toString()}',
+                      style: TextStyle(color: Color(0xFF000000)),
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+            selectedIndex: unitLevels[level],
+            onSelectedItemChanged: (int? item) {
+              if (item != null)
+                context.read<AddUnitCubit>().changeUnitLevel(item);
+            },
+            itemExtent: 35,
+          );
+        },
+      ),
     );
   }
 }

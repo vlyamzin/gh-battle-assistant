@@ -27,9 +27,10 @@ class _$AddUnitStateTearOff {
     );
   }
 
-  UnitTypeSelectedS selectedUnitType(UnitStack stack) {
+  UnitTypeSelectedS selectedUnitType(UnitStack stack, int unitLevel) {
     return UnitTypeSelectedS(
       stack,
+      unitLevel,
     );
   }
 
@@ -47,7 +48,7 @@ mixin _$AddUnitState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(UnitSearch matches) filteredUnits,
-    required TResult Function(UnitStack stack) selectedUnitType,
+    required TResult Function(UnitStack stack, int unitLevel) selectedUnitType,
     required TResult Function() unitAdded,
   }) =>
       throw _privateConstructorUsedError;
@@ -55,7 +56,7 @@ mixin _$AddUnitState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
   }) =>
       throw _privateConstructorUsedError;
@@ -63,7 +64,7 @@ mixin _$AddUnitState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
     required TResult orElse(),
   }) =>
@@ -160,7 +161,7 @@ class _$AddUnitInitial with DiagnosticableTreeMixin implements AddUnitInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(UnitSearch matches) filteredUnits,
-    required TResult Function(UnitStack stack) selectedUnitType,
+    required TResult Function(UnitStack stack, int unitLevel) selectedUnitType,
     required TResult Function() unitAdded,
   }) {
     return initial();
@@ -171,7 +172,7 @@ class _$AddUnitInitial with DiagnosticableTreeMixin implements AddUnitInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
   }) {
     return initial?.call();
@@ -182,7 +183,7 @@ class _$AddUnitInitial with DiagnosticableTreeMixin implements AddUnitInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
     required TResult orElse(),
   }) {
@@ -308,7 +309,7 @@ class _$FilteredUnitsS with DiagnosticableTreeMixin implements FilteredUnitsS {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(UnitSearch matches) filteredUnits,
-    required TResult Function(UnitStack stack) selectedUnitType,
+    required TResult Function(UnitStack stack, int unitLevel) selectedUnitType,
     required TResult Function() unitAdded,
   }) {
     return filteredUnits(matches);
@@ -319,7 +320,7 @@ class _$FilteredUnitsS with DiagnosticableTreeMixin implements FilteredUnitsS {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
   }) {
     return filteredUnits?.call(matches);
@@ -330,7 +331,7 @@ class _$FilteredUnitsS with DiagnosticableTreeMixin implements FilteredUnitsS {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
     required TResult orElse(),
   }) {
@@ -392,7 +393,7 @@ abstract class $UnitTypeSelectedSCopyWith<$Res> {
   factory $UnitTypeSelectedSCopyWith(
           UnitTypeSelectedS value, $Res Function(UnitTypeSelectedS) then) =
       _$UnitTypeSelectedSCopyWithImpl<$Res>;
-  $Res call({UnitStack stack});
+  $Res call({UnitStack stack, int unitLevel});
 }
 
 /// @nodoc
@@ -409,12 +410,17 @@ class _$UnitTypeSelectedSCopyWithImpl<$Res>
   @override
   $Res call({
     Object? stack = freezed,
+    Object? unitLevel = freezed,
   }) {
     return _then(UnitTypeSelectedS(
       stack == freezed
           ? _value.stack
           : stack // ignore: cast_nullable_to_non_nullable
               as UnitStack,
+      unitLevel == freezed
+          ? _value.unitLevel
+          : unitLevel // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -424,14 +430,16 @@ class _$UnitTypeSelectedSCopyWithImpl<$Res>
 class _$UnitTypeSelectedS
     with DiagnosticableTreeMixin
     implements UnitTypeSelectedS {
-  const _$UnitTypeSelectedS(this.stack);
+  const _$UnitTypeSelectedS(this.stack, this.unitLevel);
 
   @override
   final UnitStack stack;
+  @override
+  final int unitLevel;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AddUnitState.selectedUnitType(stack: $stack)';
+    return 'AddUnitState.selectedUnitType(stack: $stack, unitLevel: $unitLevel)';
   }
 
   @override
@@ -439,7 +447,8 @@ class _$UnitTypeSelectedS
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'AddUnitState.selectedUnitType'))
-      ..add(DiagnosticsProperty('stack', stack));
+      ..add(DiagnosticsProperty('stack', stack))
+      ..add(DiagnosticsProperty('unitLevel', unitLevel));
   }
 
   @override
@@ -447,11 +456,13 @@ class _$UnitTypeSelectedS
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UnitTypeSelectedS &&
-            (identical(other.stack, stack) || other.stack == stack));
+            (identical(other.stack, stack) || other.stack == stack) &&
+            (identical(other.unitLevel, unitLevel) ||
+                other.unitLevel == unitLevel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stack);
+  int get hashCode => Object.hash(runtimeType, stack, unitLevel);
 
   @JsonKey(ignore: true)
   @override
@@ -463,10 +474,10 @@ class _$UnitTypeSelectedS
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(UnitSearch matches) filteredUnits,
-    required TResult Function(UnitStack stack) selectedUnitType,
+    required TResult Function(UnitStack stack, int unitLevel) selectedUnitType,
     required TResult Function() unitAdded,
   }) {
-    return selectedUnitType(stack);
+    return selectedUnitType(stack, unitLevel);
   }
 
   @override
@@ -474,10 +485,10 @@ class _$UnitTypeSelectedS
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
   }) {
-    return selectedUnitType?.call(stack);
+    return selectedUnitType?.call(stack, unitLevel);
   }
 
   @override
@@ -485,12 +496,12 @@ class _$UnitTypeSelectedS
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
     required TResult orElse(),
   }) {
     if (selectedUnitType != null) {
-      return selectedUnitType(stack);
+      return selectedUnitType(stack, unitLevel);
     }
     return orElse();
   }
@@ -534,9 +545,11 @@ class _$UnitTypeSelectedS
 }
 
 abstract class UnitTypeSelectedS implements AddUnitState {
-  const factory UnitTypeSelectedS(UnitStack stack) = _$UnitTypeSelectedS;
+  const factory UnitTypeSelectedS(UnitStack stack, int unitLevel) =
+      _$UnitTypeSelectedS;
 
   UnitStack get stack;
+  int get unitLevel;
   @JsonKey(ignore: true)
   $UnitTypeSelectedSCopyWith<UnitTypeSelectedS> get copyWith =>
       throw _privateConstructorUsedError;
@@ -589,7 +602,7 @@ class _$UnitAddedS with DiagnosticableTreeMixin implements UnitAddedS {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(UnitSearch matches) filteredUnits,
-    required TResult Function(UnitStack stack) selectedUnitType,
+    required TResult Function(UnitStack stack, int unitLevel) selectedUnitType,
     required TResult Function() unitAdded,
   }) {
     return unitAdded();
@@ -600,7 +613,7 @@ class _$UnitAddedS with DiagnosticableTreeMixin implements UnitAddedS {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
   }) {
     return unitAdded?.call();
@@ -611,7 +624,7 @@ class _$UnitAddedS with DiagnosticableTreeMixin implements UnitAddedS {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(UnitSearch matches)? filteredUnits,
-    TResult Function(UnitStack stack)? selectedUnitType,
+    TResult Function(UnitStack stack, int unitLevel)? selectedUnitType,
     TResult Function()? unitAdded,
     required TResult orElse(),
   }) {

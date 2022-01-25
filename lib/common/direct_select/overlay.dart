@@ -54,37 +54,39 @@ class MySelectionOverlayState extends State<MySelectionOverlay>
     return Positioned(
       top: widget.top,
       left: widget.left,
-      child: SizedBox(
-        width: widget.width,
-        height: widget.height,
-        child: Stack(
-          children: <Widget>[
-            Positioned.fill(
-              child: ClipRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: FadeTransition(
-                    opacity: Tween(begin: 0.0, end: 1.0).animate(_controller),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        color: widget.backgroundColor,
+      child: ClipRect(
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: Stack(
+            children: <Widget>[
+              Positioned.fill(
+                child: ClipRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: FadeTransition(
+                      opacity: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          color: widget.backgroundColor,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              child: ScaleTransition(
-                scale: Tween(begin: 1.0, end: 1.12).animate(_controller),
-                child: FadeTransition(
-                  child: widget.child,
-                  opacity: Tween(begin: 0.0, end: 1.0).animate(_controller),
+              Positioned(
+                child: ScaleTransition(
+                  scale: Tween(begin: 1.0, end: 1.12).animate(_controller),
+                  child: FadeTransition(
+                    child: widget.child,
+                    opacity: Tween(begin: 0.0, end: 1.0).animate(_controller),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

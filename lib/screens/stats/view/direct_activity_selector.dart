@@ -35,7 +35,6 @@ class _DirectActivitySelectorState extends State<DirectActivitySelector> {
             ),
           )
           .toList(),
-      backgroundColor: Color(0x50FFFFFF),
       selectedIndex: index,
       onSelectedItemChanged: (i) {
         setState(() {

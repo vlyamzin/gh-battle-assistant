@@ -55,9 +55,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   ) {
     state.maybeMap(
         updated: (SettingsUpdated state) {
-          var oldValue = state.settings.difficulty;
-          var newSettings =
-              state.settings.copyWith(difficulty: oldValue + value);
+          var newValue = state.settings.difficulty + value;
+          if (newValue < 0 || newValue > 7) return;
+
+          var newSettings = state.settings.copyWith(difficulty: newValue);
 
           _settingsRepository.settings = newSettings;
           emit(SettingsState.updated(newSettings));

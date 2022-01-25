@@ -69,7 +69,7 @@ class Unit extends Equatable with ActionTypeSerializer {
 
   factory Unit.fromRawData(
       String name, int health, UnitRawStats data, int number,
-      [bool elite = false, bool flying = false]) {
+      [bool elite = false, bool? flying = false]) {
     var sPerks, sImmune, sPerkValue;
     try {
       sPerks = ActionTypeSerializer.serializeRawData(data.perks);

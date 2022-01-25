@@ -44,7 +44,7 @@ class DirectSelect extends StatefulWidget {
     required this.itemExtent,
     this.itemMagnification = 1.15,
     this.selectedIndex = 0,
-    this.backgroundColor = const Color(0xFFFFFFFF),
+    this.backgroundColor = const Color(0x50FFFFFF),
     this.selectionColor = const Color(0x50000000),
     this.fullScreenOverlay = true,
     this.width = 200,
@@ -116,14 +116,16 @@ class DirectSelectState<T extends DirectSelect> extends State<T> {
   Widget overlayWidget([Key? key]) {
     final RenderBox box = _key.currentContext!.findRenderObject() as RenderBox;
     final position = box.localToGlobal(Offset.zero);
-    final posY = position.dy + (box.size.height / 2) - 150;
-    final posX = position.dx + (box.size.width / 2) - 100;
+    final posY = position.dy + (box.size.height / 2) - (widget.height / 2);
+    final posX = position.dx + (box.size.width / 2) - (widget.width / 2);
 
     return MySelectionOverlay(
       key: key,
       // top: resultY + widget.itemExtent! * widget.itemMagnification!,
       top: posY,
       left: posX,
+      width: widget.width,
+      height: widget.height,
       backgroundColor: widget.backgroundColor,
       child: MySelectionList(
         itemExtent: widget.itemExtent,
