@@ -11840,6 +11840,452 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Lurker",
+      "id": 28,
+      "maxNumber": 6,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 5,
+            "shield": 0,
+            "move": 2,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 7,
+            "shield": 1,
+            "move": 2,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "target": "2"
+            }
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 7,
+            "shield": 0,
+            "move": 2,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "1",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 9,
+            "shield": 1,
+            "move": 2,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "1",
+              "target": "2"
+            }
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 9,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "1",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 12,
+            "shield": 1,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "2",
+              "target": "2"
+            }
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 10,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "2",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 14,
+            "shield": 1,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "2",
+              "target": "2"
+            }
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 10,
+            "shield": 1,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "2",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 14,
+            "shield": 2,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3",
+              "target": "2"
+            }
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 111,
+            "shield": 1,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "2",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 15,
+            "shield": 2,
+            "move": 3,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3",
+              "target": "2"
+            }
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 12,
+            "shield": 1,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 16,
+            "shield": 2,
+            "move": 4,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "4",
+              "target": "2"
+            }
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 14,
+            "shield": 1,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3",
+              "target": "2"
+            }
+          },
+          "elite": {
+            "health": 18,
+            "shield": 2,
+            "move": 4,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "pierce",
+              "target"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "4",
+              "target": "2"
+            }
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 612,
+          "initiative": 11,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Shield |%shld%|1",
+              "subtitle": "|%nfrost%|: Shield|%shld%|2 instead"
+            },
+            {
+              "title": "WOUND |%wnd%|",
+              "subtitle": "Target all adjacent enemies"
+            }
+          ],
+          "modifier": {
+            "shield": 1
+          },
+          "perks": [
+            "wound"
+          ]
+        },
+        {
+          "id": 613,
+          "initiative": 28,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+1"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 1
+          }
+        },
+        {
+          "id": 614,
+          "initiative": 38,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 615,
+          "initiative": 38,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "Target one enemy with all attacks"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 616,
+          "initiative": 61,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "move": -1
+          }
+        },
+        {
+          "id": 617,
+          "initiative": 64,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Target all adjacent enemies"
+            }
+          ],
+          "modifier": {
+            "attack": 1
+          }
+        },
+        {
+          "id": 618,
+          "initiative": 41,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "|%nfrost%|: STRENGTHEN |%str%|",
+              "subtitle": "Self"
+            },
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "WOUND |%wnd%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 0
+          },
+          "perks": [
+            "wound"
+          ]
+        },
+        {
+          "id": 619,
+          "initiative": 23,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Shield |%shld%|1"
+            },
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            },
+            {
+              "title": "|%frost%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 0,
+            "shield": 1
+          }
+        }
+      ]
     }
   ]
 }
