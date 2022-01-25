@@ -12286,6 +12286,449 @@
           }
         }
       ]
+    },
+    {
+      "name": "Savvas Icestorm",
+      "id": 34,
+      "maxNumber": 4,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 7,
+            "shield": 0,
+            "move": 2,
+            "attack": 2,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 12,
+            "shield": 0,
+            "move": 2,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 10,
+            "shield": 0,
+            "move": 2,
+            "attack": 2,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 12,
+            "shield": 1,
+            "move": 2,
+            "attack": 3,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 12,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 15,
+            "shield": 1,
+            "move": 3,
+            "attack": 3,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 12,
+            "shield": 1,
+            "move": 3,
+            "attack": 3,
+            "range": 4,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 18,
+            "shield": 1,
+            "move": 3,
+            "attack": 4,
+            "range": 6,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 14,
+            "shield": 1,
+            "move": 3,
+            "attack": 3,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 19,
+            "shield": 2,
+            "move": 4,
+            "attack": 4,
+            "range": 6,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 16,
+            "shield": 1,
+            "move": 3,
+            "attack": 4,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 21,
+            "shield": 2,
+            "move": 4,
+            "attack": 5,
+            "range": 6,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 16,
+            "shield": 2,
+            "move": 3,
+            "attack": 4,
+            "range": 5,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 23,
+            "shield": 2,
+            "move": 4,
+            "attack": 6,
+            "range": 6,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 17,
+            "shield": 2,
+            "move": 4,
+            "attack": 4,
+            "range": 6,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          },
+          "elite": {
+            "health": 24,
+            "shield": 3,
+            "move": 4,
+            "attack": 6,
+            "range": 6,
+            "retaliate": 0,
+            "perks": [
+              "pierce"
+            ],
+            "immune": [],
+            "perkValue": {
+              "pierce": "3"
+            }
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 708,
+          "initiative": 70,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "PUSH |%push%|2",
+              "subtitle": "Target all adjacent enemies\n|%nwind%|: PUSH |%push%|4 instead"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": 1
+          },
+          "perks": [
+            "push"
+          ],
+          "perkValue": {
+            "push": "2"
+          }
+        },
+        {
+          "id": 709,
+          "initiative": 98,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon normal Wind Demon"
+            },
+            {
+              "title": "|%wind%|"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 710,
+          "initiative": 98,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon normal Frost Demon"
+            },
+            {
+              "title": "|%frost%|"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 711,
+          "initiative": 19,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|-1"
+            },
+            {
+              "title": "Shield |%shld%|1",
+              "subtitle": "Affect self and all allies within Range |%rng%|2"
+            },
+            {
+              "title": "|%frost%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": -1,
+            "move": 0,
+            "shield": 1
+          }
+        },
+        {
+          "id": 712,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "subtitle": "|%nfrost%|: +2 Attack|%atk%|, IMMOBILIZE |%imbz%|"
+            },
+            {
+              "title": "Retaliate |%rtlt%|2"
+            },
+            {
+              "title": "|%wind%|"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "retaliate": 2
+          }
+        },
+        {
+          "id": 713,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Shield |%shld%|4"
+            },
+            {
+              "title": "Heal |%heal%|2",
+              "subtitle": "Range |%rng%|3\n|%nfrost%|: +3 Heal|%heal%|\n|%nwind%|: Attack|%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "range": 3,
+            "heal": 2,
+            "shield": 4
+          },
+          "perks": [
+            "heal"
+          ],
+          "perkValue": {
+            "heal": "2"
+          }
+        },
+        {
+          "id": 714,
+          "initiative": 47,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "DISARM |%darm%|",
+              "subtitle": "Target all adjacent enemies"
+            },
+            {
+              "title": "Move |%mv%|+0",
+              "subtitle": "Target all adjacent enemies"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            },
+            {
+              "title": "|%wind%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 0
+          },
+          "perks": [
+            "disarm"
+          ]
+        },
+        {
+          "id": 715,
+          "initiative": 35,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "area": "%6pg%"
+            },
+            {
+              "title": "|%frost%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": -1
+          },
+          "area": [
+            "6pg"
+          ]
+        }
+      ]
     }
   ]
 }
