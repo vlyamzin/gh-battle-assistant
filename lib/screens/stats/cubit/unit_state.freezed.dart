@@ -155,11 +155,12 @@ class _$_$UnitReady with DiagnosticableTreeMixin implements _$UnitReady {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UnitReady &&
-            (identical(other.unit, unit) || other.unit == unit));
+            const DeepCollectionEquality().equals(other.unit, unit));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, unit);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(unit));
 
   @JsonKey(ignore: true)
   @override

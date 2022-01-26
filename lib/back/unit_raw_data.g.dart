@@ -7,7 +7,7 @@ part of 'unit_raw_data.dart';
 // **************************************************************************
 
 UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) => UnitRawData(
-      _$enumDecode(_$UnitTypeEnumMap, json['id']),
+      $enumDecode(_$UnitTypeEnumMap, json['id']),
       json['name'] as String,
       json['maxNumber'] as int,
       (json['actions'] as List<dynamic>)
@@ -17,7 +17,7 @@ UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) => UnitRawData(
         (k, e) => MapEntry(
             k,
             (e as Map<String, dynamic>).map(
-              (k, e) => MapEntry(_$enumDecode(_$UnitNormalityEnumMap, k),
+              (k, e) => MapEntry($enumDecode(_$UnitNormalityEnumMap, k),
                   UnitRawStats.fromJson(e as Map<String, dynamic>)),
             )),
       ),
@@ -34,32 +34,6 @@ Map<String, dynamic> _$UnitRawDataToJson(UnitRawData instance) =>
           MapEntry(k, e.map((k, e) => MapEntry(_$UnitNormalityEnumMap[k], e)))),
       'actions': instance.actions,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$UnitTypeEnumMap = {
   UnitType.ancientArtillery: 0,
@@ -98,7 +72,7 @@ const _$UnitTypeEnumMap = {
   UnitType.rendingDrake: 33,
   UnitType.savassIcestorm: 34,
   UnitType.savassLavaflow: 35,
-  UnitType.spiritDrake: 36,
+  UnitType.spittingDrake: 36,
   UnitType.stoneGolem: 37,
   UnitType.sunDemon: 38,
   UnitType.bertayer: 39,

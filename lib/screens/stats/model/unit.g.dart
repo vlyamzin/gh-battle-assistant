@@ -24,23 +24,23 @@ Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
       elite: json['elite'] as bool? ?? false,
       turnEnded: json['turnEnded'] as bool? ?? false,
       perks: (json['perks'] as List<dynamic>?)
-              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$ActivityTypeEnumMap, e))
               .toList() ??
           [],
       perkValue: (json['perkValue'] as Map<String, dynamic>?)?.map(
             (k, e) =>
-                MapEntry(_$enumDecode(_$ActivityTypeEnumMap, k), e as String),
+                MapEntry($enumDecode(_$ActivityTypeEnumMap, k), e as String),
           ) ??
           {},
       immune: (json['immune'] as List<dynamic>?)
-              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$ActivityTypeEnumMap, e))
               .toList() ??
           [],
       area:
           (json['area'] as List<dynamic>?)?.map((e) => e as String).toList() ??
               [],
       negativeEffects: (json['negativeEffects'] as List<dynamic>?)
-              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$ActivityTypeEnumMap, e))
               .toSet() ??
           {},
     );
@@ -71,32 +71,6 @@ Map<String, dynamic> _$UnitToJson(Unit instance) => <String, dynamic>{
       'elite': instance.elite,
       'turnEnded': instance.turnEnded,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$ActivityTypeEnumMap = {
   ActivityType.attack: 'attack',

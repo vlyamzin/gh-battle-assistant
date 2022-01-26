@@ -15,7 +15,7 @@ UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) =>
           .map((e) => RawActionValue.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['modifier'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
+        (k, e) => MapEntry($enumDecode(_$ModifierTypeEnumMap, k), e as int),
       ),
       (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       (json['perkValue'] as Map<String, dynamic>?)?.map(
@@ -37,32 +37,6 @@ Map<String, dynamic> _$UnitRawActionToJson(UnitRawAction instance) =>
       'perkValue': instance.perkValue,
       'area': instance.area,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$ModifierTypeEnumMap = {
   ModifierType.attack: 'attack',

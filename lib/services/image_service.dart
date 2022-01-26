@@ -80,7 +80,7 @@ class ImageService {
         '${ImageService.unitImageBaseUrl}Savvas-Icestorm-214x300.jpg',
     UnitType.savassLavaflow:
         '${ImageService.unitImageBaseUrl}Savvas-Lavaflow-214x300.jpg',
-    UnitType.spiritDrake:
+    UnitType.spittingDrake:
         '${ImageService.unitImageBaseUrl}Spitting-Drake-214x300.jpg',
     UnitType.stoneGolem:
         '${ImageService.unitImageBaseUrl}Stone-Golem-214x300.jpg',
@@ -298,6 +298,12 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}Savvas_Lavaflow_normal_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Savvas_Lavaflow_elite_256.png',
+    },
+    UnitType.spittingDrake: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Spitting_Drake_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Spitting_Drake_elite_256.png',
     },
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',

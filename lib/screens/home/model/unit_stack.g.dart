@@ -7,7 +7,7 @@ part of 'unit_stack.dart';
 // **************************************************************************
 
 UnitStack _$UnitStackFromJson(Map<String, dynamic> json) => UnitStack(
-      type: _$enumDecode(_$UnitTypeEnumMap, json['type']),
+      type: $enumDecode(_$UnitTypeEnumMap, json['type']),
       displayName: json['displayName'] as String,
       maxNumber: json['maxNumber'] as int? ?? 6,
       units: (json['units'] as List<dynamic>?)
@@ -19,7 +19,7 @@ UnitStack _$UnitStackFromJson(Map<String, dynamic> json) => UnitStack(
       availableNumbersPull: (json['availableNumbersPull'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
-      turnState: _$enumDecodeNullable(_$TurnStateEnumMap, json['turnState']) ??
+      turnState: $enumDecodeNullable(_$TurnStateEnumMap, json['turnState']) ??
           TurnState.idle,
     );
 
@@ -32,32 +32,6 @@ Map<String, dynamic> _$UnitStackToJson(UnitStack instance) => <String, dynamic>{
       'availableNumbersPull': instance.availableNumbersPull,
       'turnState': _$TurnStateEnumMap[instance.turnState],
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$UnitTypeEnumMap = {
   UnitType.ancientArtillery: 0,
@@ -96,7 +70,7 @@ const _$UnitTypeEnumMap = {
   UnitType.rendingDrake: 33,
   UnitType.savassIcestorm: 34,
   UnitType.savassLavaflow: 35,
-  UnitType.spiritDrake: 36,
+  UnitType.spittingDrake: 36,
   UnitType.stoneGolem: 37,
   UnitType.sunDemon: 38,
   UnitType.bertayer: 39,
@@ -109,17 +83,6 @@ const _$UnitTypeEnumMap = {
   UnitType.wingedHorror: 46,
   UnitType.aestherAshblade: 99999,
 };
-
-K? _$enumDecodeNullable<K, V>(
-  Map<K, V> enumValues,
-  dynamic source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<K, V>(enumValues, source, unknownValue: unknownValue);
-}
 
 const _$TurnStateEnumMap = {
   TurnState.idle: 0,

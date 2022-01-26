@@ -293,11 +293,12 @@ class _$FilteredUnitsS with DiagnosticableTreeMixin implements FilteredUnitsS {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is FilteredUnitsS &&
-            (identical(other.matches, matches) || other.matches == matches));
+            const DeepCollectionEquality().equals(other.matches, matches));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, matches);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(matches));
 
   @JsonKey(ignore: true)
   @override
@@ -456,13 +457,15 @@ class _$UnitTypeSelectedS
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is UnitTypeSelectedS &&
-            (identical(other.stack, stack) || other.stack == stack) &&
-            (identical(other.unitLevel, unitLevel) ||
-                other.unitLevel == unitLevel));
+            const DeepCollectionEquality().equals(other.stack, stack) &&
+            const DeepCollectionEquality().equals(other.unitLevel, unitLevel));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stack, unitLevel);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(stack),
+      const DeepCollectionEquality().hash(unitLevel));
 
   @JsonKey(ignore: true)
   @override

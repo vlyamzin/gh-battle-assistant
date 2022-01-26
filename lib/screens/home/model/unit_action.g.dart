@@ -13,16 +13,16 @@ UnitAction _$UnitActionFromJson(Map<String, dynamic> json) => UnitAction(
           ?.map((e) => GHAction.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifiers: (json['modifiers'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(_$enumDecode(_$ModifierTypeEnumMap, k), e as int),
+        (k, e) => MapEntry($enumDecode(_$ModifierTypeEnumMap, k), e as int),
       ),
       shouldRefresh: json['shouldRefresh'] as bool?,
       perks: (json['perks'] as List<dynamic>?)
-              ?.map((e) => _$enumDecode(_$ActivityTypeEnumMap, e))
+              ?.map((e) => $enumDecode(_$ActivityTypeEnumMap, e))
               .toList() ??
           [],
       perkValue: (json['perkValue'] as Map<String, dynamic>?)?.map(
             (k, e) =>
-                MapEntry(_$enumDecode(_$ActivityTypeEnumMap, k), e as String),
+                MapEntry($enumDecode(_$ActivityTypeEnumMap, k), e as String),
           ) ??
           {},
       area:
@@ -43,32 +43,6 @@ Map<String, dynamic> _$UnitActionToJson(UnitAction instance) =>
           .map((k, e) => MapEntry(_$ActivityTypeEnumMap[k], e)),
       'area': instance.area,
     };
-
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
 
 const _$ModifierTypeEnumMap = {
   ModifierType.attack: 'attack',

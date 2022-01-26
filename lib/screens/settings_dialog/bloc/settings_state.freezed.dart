@@ -295,12 +295,12 @@ class _$SettingsUpdated implements SettingsUpdated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is SettingsUpdated &&
-            (identical(other.settings, settings) ||
-                other.settings == settings));
+            const DeepCollectionEquality().equals(other.settings, settings));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, settings);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(settings));
 
   @JsonKey(ignore: true)
   @override
@@ -567,12 +567,12 @@ class _$NewGame implements NewGame {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is NewGame &&
-            (identical(other.settings, settings) ||
-                other.settings == settings));
+            const DeepCollectionEquality().equals(other.settings, settings));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, settings);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(settings));
 
   @JsonKey(ignore: true)
   @override

@@ -181,11 +181,12 @@ class _$_StatsInitial with DiagnosticableTreeMixin implements _StatsInitial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _StatsInitial &&
-            (identical(other.stack, stack) || other.stack == stack));
+            const DeepCollectionEquality().equals(other.stack, stack));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stack);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(stack));
 
   @JsonKey(ignore: true)
   @override
@@ -331,11 +332,12 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TurnStarted &&
-            (identical(other.stack, stack) || other.stack == stack));
+            const DeepCollectionEquality().equals(other.stack, stack));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stack);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(stack));
 
   @JsonKey(ignore: true)
   @override
@@ -479,11 +481,12 @@ class _$_TurnEnded with DiagnosticableTreeMixin implements _TurnEnded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _TurnEnded &&
-            (identical(other.stack, stack) || other.stack == stack));
+            const DeepCollectionEquality().equals(other.stack, stack));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, stack);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(stack));
 
   @JsonKey(ignore: true)
   @override

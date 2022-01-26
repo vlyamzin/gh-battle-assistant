@@ -14,7 +14,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 EnemiesState _$EnemiesStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType'] as String?) {
+  switch (json['runtimeType']) {
     case 'initial':
       return _EnemiesInitial.fromJson(json);
     case 'loaded':
@@ -129,10 +129,13 @@ class __$EnemiesInitialCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_EnemiesInitial implements _EnemiesInitial {
-  _$_EnemiesInitial();
+  _$_EnemiesInitial({String? $type}) : $type = $type ?? 'initial';
 
   factory _$_EnemiesInitial.fromJson(Map<String, dynamic> json) =>
       _$$_EnemiesInitialFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -212,7 +215,7 @@ class _$_EnemiesInitial implements _EnemiesInitial {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_EnemiesInitialToJson(this)..['runtimeType'] = 'initial';
+    return _$$_EnemiesInitialToJson(this);
   }
 }
 
@@ -257,13 +260,16 @@ class _$EnemiesLoadedCopyWithImpl<$Res> extends _$EnemiesStateCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$EnemiesLoaded implements EnemiesLoaded {
-  _$EnemiesLoaded(this.enemies);
+  _$EnemiesLoaded(this.enemies, {String? $type}) : $type = $type ?? 'loaded';
 
   factory _$EnemiesLoaded.fromJson(Map<String, dynamic> json) =>
       _$$EnemiesLoadedFromJson(json);
 
   @override
   final Enemies enemies;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
 
   @override
   String toString() {
@@ -275,11 +281,12 @@ class _$EnemiesLoaded implements EnemiesLoaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is EnemiesLoaded &&
-            (identical(other.enemies, enemies) || other.enemies == enemies));
+            const DeepCollectionEquality().equals(other.enemies, enemies));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, enemies);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(enemies));
 
   @JsonKey(ignore: true)
   @override
@@ -350,7 +357,7 @@ class _$EnemiesLoaded implements EnemiesLoaded {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$EnemiesLoadedToJson(this)..['runtimeType'] = 'loaded';
+    return _$$EnemiesLoadedToJson(this);
   }
 }
 

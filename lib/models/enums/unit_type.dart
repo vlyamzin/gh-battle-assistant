@@ -74,7 +74,7 @@ enum UnitType {
   @JsonValue(35)
   savassLavaflow,
   @JsonValue(36)
-  spiritDrake,
+  spittingDrake,
   @JsonValue(37)
   stoneGolem,
   @JsonValue(38)
