@@ -13882,6 +13882,395 @@
           }
         }
       ]
+    },
+    {
+      "name": "Merciless Overseer",
+      "id": 29,
+      "maxNumber": 1,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 24,
+            "shield": 0,
+            "move": 2,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 24,
+            "shield": 0,
+            "move": 2,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 32,
+            "shield": 0,
+            "move": 2,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 32,
+            "shield": 0,
+            "move": 2,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 36,
+            "shield": 0,
+            "move": 3,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 36,
+            "shield": 0,
+            "move": 3,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 44,
+            "shield": 0,
+            "move": 3,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 44,
+            "shield": 0,
+            "move": 3,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 48,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 48,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 56,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 56,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 64,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 64,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 76,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 76,
+            "shield": 0,
+            "move": 4,
+            "attack": 0,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "stun",
+              "wound",
+              "disarm",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 572,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon Vermling Scouts"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 573,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon Vermling Scouts"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 574,
+          "initiative": 17,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Summon Vermling Scouts"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 575,
+          "initiative": 85,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "All Scouts act again"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 576,
+          "initiative": 79,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "All Scouts act again"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 577,
+          "initiative": 73,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "All Scouts act again"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 578,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 579,
+          "initiative": 52,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        }
+      ]
     }
   ]
 }
