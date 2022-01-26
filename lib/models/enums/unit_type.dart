@@ -8,7 +8,7 @@ enum UnitType {
   @JsonValue(2)
   banditGuard,
   @JsonValue(3)
-  banditLeader,
+  banditCommander,
   @JsonValue(4)
   blackImp,
   @JsonValue(5)

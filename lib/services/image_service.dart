@@ -23,7 +23,7 @@ class ImageService {
         '${ImageService.unitImageBaseUrl}Bandit-Archer-214x300.jpg',
     UnitType.banditGuard:
         '${ImageService.unitImageBaseUrl}Bandit-Guard-214x300.jpg',
-    UnitType.banditLeader:
+    UnitType.banditCommander:
         '${ImageService.unitImageBaseUrl}Bandit-Leader-214x300.jpg',
     UnitType.blackImp: '${ImageService.unitImageBaseUrl}Black-Imp-214x300.jpg',
     UnitType.caveBear: '${ImageService.unitImageBaseUrl}Cave-Bear-214x300.jpg',
@@ -304,6 +304,12 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}Spitting_Drake_normal_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Spitting_Drake_elite_256.png',
+    },
+    UnitType.banditCommander: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Bandit_Commander_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Bandit_Commander_boss_256.png',
     },
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',

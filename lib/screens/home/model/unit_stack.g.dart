@@ -37,7 +37,7 @@ const _$UnitTypeEnumMap = {
   UnitType.ancientArtillery: 0,
   UnitType.banditArcher: 1,
   UnitType.banditGuard: 2,
-  UnitType.banditLeader: 3,
+  UnitType.banditCommander: 3,
   UnitType.blackImp: 4,
   UnitType.caveBear: 5,
   UnitType.cityArcher: 6,
