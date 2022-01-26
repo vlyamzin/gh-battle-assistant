@@ -12729,6 +12729,394 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Savvas Lavaflow",
+      "id": 35,
+      "maxNumber": 4,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 8,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 13,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 9,
+            "shield": 0,
+            "move": 3,
+            "attack": 2,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 15,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 11,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 18,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 14,
+            "shield": 0,
+            "move": 3,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 21,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 16,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 24,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 18,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 27,
+            "shield": 0,
+            "move": 4,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 20,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 30,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 24,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 35,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [
+              "poison",
+              "wound"
+            ],
+            "immune": [],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 716,
+          "initiative": 97,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon normal Flame Demon"
+            },
+            {
+              "title": "|%fire%|"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 717,
+          "initiative": 97,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon normal Earth Demon"
+            },
+            {
+              "title": "|%leaf%|"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 718,
+          "initiative": 22,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Target all adjacent enemies\n|%nfire%|: Retaliate |%rtlt%|3"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 1
+          }
+        },
+        {
+          "id": 719,
+          "initiative": 68,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|3\nAll allies and enemies adjacent to the target suffer 2 damage"
+            },
+            {
+              "title": "|%leaf%|"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": 3,
+            "move": -1
+          }
+        },
+        {
+          "id": 720,
+          "initiative": 41,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "|%nleaf%|: +2 Attack|%atk%|, IMMOBILIZE |%imbz%|",
+              "area": "%4lgv2%"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 0
+          },
+          "area": [
+            "4lgv2"
+          ]
+        },
+        {
+          "id": 721,
+          "initiative": 51,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "All enemies suffer 2 damage",
+              "subtitle": "|%nfire%|: WOUND|%wnd%| all enemies\n|%nleaf%|: DISARM|%darm%| all enemies"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 722,
+          "initiative": 31,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Heal |%heal%|4",
+              "subtitle": "Range |%rng%|3\n|%nleaf%|: Target |%trgt%|3"
+            }
+          ],
+          "modifier": {
+            "range": 3
+          },
+          "perks": [
+            "heal"
+          ],
+          "perkValue": {
+            "heal": "3"
+          }
+        },
+        {
+          "id": 723,
+          "initiative": 68,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            },
+            {
+              "title": "|%fire%|"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        }
+      ]
     }
   ]
 }

@@ -293,6 +293,12 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Savvas_Icestorm_elite_256.png',
     },
+    UnitType.savassLavaflow: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Savvas_Lavaflow_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Savvas_Lavaflow_elite_256.png',
+    },
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
     // UnitType.caveBear: '${ImageService.unitIconBaseUrl}Cave-Bear-214x300.jpg',
