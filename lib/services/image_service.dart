@@ -322,6 +322,12 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}Inox_Bodyguard_boss_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Inox_Bodyguard_boss_256.png',
+    },
+    UnitType.guardCaptain: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Guard_Captain_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Guard_Captain_boss_256.png',
     }
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',

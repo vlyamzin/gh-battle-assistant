@@ -14720,6 +14720,439 @@
           }
         }
       ]
+    },
+    {
+      "name": "Captain of the Guard",
+      "id": 17,
+      "maxNumber": 1,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 28,
+            "shield": 0,
+            "move": 2,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 28,
+            "shield": 0,
+            "move": 2,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 36,
+            "shield": 0,
+            "move": 2,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 36,
+            "shield": 0,
+            "move": 2,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 44,
+            "shield": 0,
+            "move": 2,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 44,
+            "shield": 0,
+            "move": 2,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 56,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 56,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 64,
+            "shield": 0,
+            "move": 3,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 64,
+            "shield": 0,
+            "move": 3,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 80,
+            "shield": 0,
+            "move": 3,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 80,
+            "shield": 0,
+            "move": 3,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 84,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 84,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 100,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 100,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "wound",
+              "stun",
+              "muddle",
+              "disarm"
+            ],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 572,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "All allies add +1 Attack|%atk%| to all attacks this round"
+            },
+            {
+              "title": "Attack |%atk%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1
+          }
+        },
+        {
+          "id": 573,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "All allies add +1 Attack|%atk%| to all attacks this round"
+            },
+            {
+              "title": "Attack |%atk%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1
+          }
+        },
+        {
+          "id": 574,
+          "initiative": 17,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "All allies add +1 Attack|%atk%| to all attacks this round"
+            },
+            {
+              "title": "Attack |%atk%|+1"
+            }
+          ],
+          "modifier": {
+            "attack": 1
+          }
+        },
+        {
+          "id": 575,
+          "initiative": 85,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Heal |%heal%|2",
+              "subtitle": "Affect self and all allies"
+            }
+          ],
+          "modifier": {
+            "heal": 2
+          },
+          "perks": [
+            "heal"
+          ],
+          "perkValue": {
+            "heal": "2"
+          }
+        },
+        {
+          "id": 576,
+          "initiative": 79,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Heal |%heal%|2",
+              "subtitle": "Affect self and all allies"
+            }
+          ],
+          "modifier": {
+            "heal": 2
+          },
+          "perks": [
+            "heal"
+          ],
+          "perkValue": {
+            "heal": "2"
+          }
+        },
+        {
+          "id": 577,
+          "initiative": 73,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Heal |%heal%|2",
+              "subtitle": "Affect self and all allies"
+            }
+          ],
+          "modifier": {
+            "heal": 2
+          },
+          "perks": [
+            "heal"
+          ],
+          "perkValue": {
+            "heal": "2"
+          }
+        },
+        {
+          "id": 578,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 579,
+          "initiative": 52,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        }
+      ]
     }
   ]
 }
