@@ -317,6 +317,12 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Merciless_Overseer_boss_256.png',
     },
+    UnitType.inoxBodyguard: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Bodyguard_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Bodyguard_boss_256.png',
+    }
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
     // UnitType.caveBear: '${ImageService.unitIconBaseUrl}Cave-Bear-214x300.jpg',
