@@ -364,6 +364,12 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}Dark_Rider_boss_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Dark_Rider_boss_256.png',
+    },
+    UnitType.wingedHorror: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Winged_Horror_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Winged_Horror_boss_256.png',
     }
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
