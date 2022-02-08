@@ -18345,6 +18345,497 @@
           }
         }
       ]
+    },
+    {
+      "name": "The Gloom",
+      "id": 41,
+      "maxNumber": 1,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 80,
+            "shield": 0,
+            "move": 2,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 80,
+            "shield": 0,
+            "move": 2,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 100,
+            "shield": 0,
+            "move": 2,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 100,
+            "shield": 0,
+            "move": 2,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 116,
+            "shield": 0,
+            "move": 2,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 116,
+            "shield": 0,
+            "move": 2,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 140,
+            "shield": 0,
+            "move": 2,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 140,
+            "shield": 0,
+            "move": 2,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 156,
+            "shield": 0,
+            "move": 3,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 156,
+            "shield": 0,
+            "move": 3,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 184,
+            "shield": 0,
+            "move": 3,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 184,
+            "shield": 0,
+            "move": 3,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 200,
+            "shield": 0,
+            "move": 3,
+            "attack": 8,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 80,
+            "shield": 0,
+            "move": 3,
+            "attack": 8,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 224,
+            "shield": 0,
+            "move": 3,
+            "attack": 9,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 224,
+            "shield": 0,
+            "move": 3,
+            "attack": 9,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "stun",
+              "muddle",
+              "curse"
+            ],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 572,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Teleport"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|5\nPOISON |%poi%|\nWOUND |%wnd%|\nSTUN |%stn%|"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": 5
+          },
+          "perks": [
+            "poison",
+            "wound",
+            "stun"
+          ]
+        },
+        {
+          "id": 573,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Teleport"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|5\nPOISON |%poi%|\nWOUND |%wnd%|\nSTUN |%stn%|"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": 5
+          },
+          "perks": [
+            "poison",
+            "wound",
+            "stun"
+          ]
+        },
+        {
+          "id": 574,
+          "initiative": 17,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Teleport"
+            },
+            {
+              "title": "Attack |%atk%|+1",
+              "subtitle": "Range |%rng%|5\nPOISON |%poi%|\nWOUND |%wnd%|\nSTUN |%stn%|"
+            }
+          ],
+          "modifier": {
+            "attack": 1,
+            "range": 5
+          },
+          "perks": [
+            "poison",
+            "wound",
+            "stun"
+          ]
+        },
+        {
+          "id": 575,
+          "initiative": 85,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%|+9"
+            },
+            {
+              "title": "Attack |%atk%|+9"
+            }
+          ],
+          "modifier": {
+            "attack": 9,
+            "move": 9
+          }
+        },
+        {
+          "id": 576,
+          "initiative": 79,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+9"
+            },
+            {
+              "title": "Attack |%atk%|+9"
+            }
+          ],
+          "modifier": {
+            "attack": 9,
+            "move": 9
+          }
+        },
+        {
+          "id": 577,
+          "initiative": 73,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+9"
+            },
+            {
+              "title": "Attack |%atk%|+9"
+            }
+          ],
+          "modifier": {
+            "attack": 9,
+            "move": 9
+          }
+        },
+        {
+          "id": 578,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 579,
+          "initiative": 52,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        }
+      ]
     }
   ]
 }
