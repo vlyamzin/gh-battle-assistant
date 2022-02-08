@@ -15647,7 +15647,7 @@
           "normal": {
             "health": 44,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 3,
             "range": null,
             "retaliate": 0,
@@ -15666,7 +15666,7 @@
           "elite": {
             "health": 44,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 3,
             "range": null,
             "retaliate": 0,
@@ -15687,7 +15687,7 @@
           "normal": {
             "health": 48,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 4,
             "range": null,
             "retaliate": 0,
@@ -15706,7 +15706,7 @@
           "elite": {
             "health": 12,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 48,
             "range": null,
             "retaliate": 0,
@@ -15727,7 +15727,7 @@
           "normal": {
             "health": 60,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 4,
             "range": null,
             "retaliate": 0,
@@ -15746,7 +15746,7 @@
           "elite": {
             "health": 60,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 4,
             "range": null,
             "retaliate": 0,
@@ -15767,7 +15767,7 @@
           "normal": {
             "health": 64,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 5,
             "range": null,
             "retaliate": 0,
@@ -15786,7 +15786,7 @@
           "elite": {
             "health": 64,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 5,
             "range": null,
             "retaliate": 0,
@@ -15807,7 +15807,7 @@
           "normal": {
             "health": 80,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 5,
             "range": null,
             "retaliate": 0,
@@ -15826,7 +15826,7 @@
           "elite": {
             "health": 80,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 5,
             "range": null,
             "retaliate": 0,
@@ -15847,7 +15847,7 @@
           "normal": {
             "health": 88,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 6,
             "range": null,
             "retaliate": 0,
@@ -15866,7 +15866,7 @@
           "elite": {
             "health": 88,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 6,
             "range": null,
             "retaliate": 0,
@@ -15887,7 +15887,7 @@
           "normal": {
             "health": 108,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 6,
             "range": null,
             "retaliate": 0,
@@ -15906,7 +15906,7 @@
           "elite": {
             "health": 108,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 6,
             "range": null,
             "retaliate": 0,
@@ -15927,7 +15927,7 @@
           "normal": {
             "health": 116,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 7,
             "range": null,
             "retaliate": 0,
@@ -15946,7 +15946,7 @@
           "elite": {
             "health": 116,
             "shield": 0,
-            "move": 0,
+            "move": null,
             "attack": 7,
             "range": null,
             "retaliate": 0,
@@ -16908,6 +16908,481 @@
           "modifier": {},
           "perks": [
             "invisible"
+          ]
+        },
+        {
+          "id": 578,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 579,
+          "initiative": 52,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        }
+      ]
+    },
+    {
+      "name": "The Sightless Eye",
+      "id": 42,
+      "maxNumber": 1,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 28,
+            "shield": 0,
+            "move": null,
+            "attack": 5,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 28,
+            "shield": 0,
+            "move": null,
+            "attack": 5,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 32,
+            "shield": 0,
+            "move": null,
+            "attack": 6,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 32,
+            "shield": 0,
+            "move": null,
+            "attack": 6,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 40,
+            "shield": 0,
+            "move": null,
+            "attack": 6,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 40,
+            "shield": 0,
+            "move": null,
+            "attack": 6,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 44,
+            "shield": 0,
+            "move": null,
+            "attack": 7,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 44,
+            "shield": 0,
+            "move": null,
+            "attack": 7,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 56,
+            "shield": 0,
+            "move": null,
+            "attack": 7,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 56,
+            "shield": 0,
+            "move": null,
+            "attack": 7,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 60,
+            "shield": 0,
+            "move": null,
+            "attack": 8,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 60,
+            "shield": 0,
+            "move": null,
+            "attack": 8,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 72,
+            "shield": 0,
+            "move": null,
+            "attack": 8,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 72,
+            "shield": 0,
+            "move": null,
+            "attack": 8,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 80,
+            "shield": 0,
+            "move": null,
+            "attack": 9,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 80,
+            "shield": 0,
+            "move": null,
+            "attack": 9,
+            "range": 3,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "disarm",
+              "stun",
+              "muddle",
+              "curse",
+              "push",
+              "pull"
+            ],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 572,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon Deep Terror"
+            },
+            {
+              "title": "Attack |%atk%|-2",
+              "area": "%10pv2%"
+            }
+          ],
+          "modifier": {
+            "attack": -2
+          },
+          "area": [
+            "10pv2"
+          ]
+        },
+        {
+          "id": 573,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon Deep Terror"
+            },
+            {
+              "title": "Attack |%atk%|-2",
+              "area": "%10pv2%"
+            }
+          ],
+          "modifier": {
+            "attack": -2
+          },
+          "area": [
+            "10pv2"
+          ]
+        },
+        {
+          "id": 574,
+          "initiative": 17,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Summon Deep Terror"
+            },
+            {
+              "title": "Attack |%atk%|-2",
+              "area": "%10pv2%"
+            }
+          ],
+          "modifier": {
+            "attack": -2
+          },
+          "area": [
+            "10pv2"
+          ]
+        },
+        {
+          "id": 575,
+          "initiative": 85,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Summon Deep Terror"
+            },
+            {
+              "title": "Attack |%atk%|-3",
+              "area": "%16p%"
+            }
+          ],
+          "modifier": {
+            "attack": -3
+          },
+          "area": [
+            "16p"
+          ]
+        },
+        {
+          "id": 576,
+          "initiative": 79,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon Deep Terror"
+            },
+            {
+              "title": "Attack |%atk%|-3",
+              "area": "%16p%"
+            }
+          ],
+          "modifier": {
+            "attack": -3
+          },
+          "area": [
+            "16p"
+          ]
+        },
+        {
+          "id": 577,
+          "initiative": 73,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Summon Deep Terror"
+            },
+            {
+              "title": "Attack |%atk%|-3",
+              "area": "%16p%"
+            }
+          ],
+          "modifier": {
+            "attack": -3
+          },
+          "area": [
+            "16p"
           ]
         },
         {

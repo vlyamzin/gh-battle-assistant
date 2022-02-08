@@ -352,6 +352,12 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}The_Colorless_boss_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}The_Colorless_boss_256.png',
+    },
+    UnitType.sightlessEye: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}The_Sightless_Eye_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}The_Sightless_Eye_boss_256.png',
     }
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
@@ -449,6 +455,8 @@ class ImageService {
     '6lg': '$iconsBaseUrl/area/6_line_grey.png',
     '6pg': '$iconsBaseUrl/area/6_points_grey.png',
     '10p': '$iconsBaseUrl/area/10_points.png',
+    '10pv2': '$iconsBaseUrl/area/10_points_v2.png',
+    '16p': '$iconsBaseUrl/area/16_points.png',
   };
 
   static final _iconsMap64 = <String, String>{
