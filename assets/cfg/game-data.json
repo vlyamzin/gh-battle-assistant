@@ -15637,6 +15637,461 @@
           "area": []
         }
       ]
+    },
+    {
+      "name": "Elder Drake",
+      "id": 12,
+      "maxNumber": 1,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 44,
+            "shield": 0,
+            "move": 0,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 44,
+            "shield": 0,
+            "move": 0,
+            "attack": 3,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 48,
+            "shield": 0,
+            "move": 0,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 12,
+            "shield": 0,
+            "move": 0,
+            "attack": 48,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 60,
+            "shield": 0,
+            "move": 0,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 60,
+            "shield": 0,
+            "move": 0,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 64,
+            "shield": 0,
+            "move": 0,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 64,
+            "shield": 0,
+            "move": 0,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 80,
+            "shield": 0,
+            "move": 0,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 80,
+            "shield": 0,
+            "move": 0,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 88,
+            "shield": 0,
+            "move": 0,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 88,
+            "shield": 0,
+            "move": 0,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 108,
+            "shield": 0,
+            "move": 0,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 108,
+            "shield": 0,
+            "move": 0,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 116,
+            "shield": 0,
+            "move": 0,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 116,
+            "shield": 0,
+            "move": 0,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "wound",
+              "immobilize",
+              "disarm",
+              "pull",
+              "push",
+              "stun"
+            ],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 572,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%| and summon 2 Zephyrs"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 573,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%| and summon 2 Zephyrs"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 574,
+          "initiative": 17,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Move |%mv%| and summon 2 Zephyrs"
+            }
+          ],
+          "modifier": {}
+        },
+        {
+          "id": 575,
+          "initiative": 85,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "area": "%10p%"
+            }
+          ],
+          "modifier": {
+            "attack": 0
+          },
+          "area": [
+            "10p"
+          ]
+        },
+        {
+          "id": 576,
+          "initiative": 79,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "area": "%10p%"
+            }
+          ],
+          "modifier": {
+            "attack": 0
+          },
+          "area": [
+            "10p"
+          ]
+        },
+        {
+          "id": 577,
+          "initiative": 73,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Attack |%atk%|+0",
+              "area": "%10p%"
+            }
+          ],
+          "modifier": {
+            "attack": 0
+          },
+          "area": [
+            "10p"
+          ]
+        },
+        {
+          "id": 578,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          }
+        },
+        {
+          "id": 579,
+          "initiative": 52,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          }
+        }
+      ]
     }
   ]
 }
