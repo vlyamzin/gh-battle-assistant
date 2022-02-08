@@ -85,7 +85,7 @@ class ImageService {
     UnitType.stoneGolem:
         '${ImageService.unitImageBaseUrl}Stone-Golem-214x300.jpg',
     UnitType.sunDemon: '${ImageService.unitImageBaseUrl}Sun-Demon-214x300.jpg',
-    UnitType.bertayer:
+    UnitType.betrayer:
         '${ImageService.unitImageBaseUrl}The-Bertayer-214x300.jpg',
     UnitType.colorless:
         '${ImageService.unitImageBaseUrl}The-Colorless-214x300.jpg',
@@ -340,6 +340,12 @@ class ImageService {
           '${ImageService.unitIconBaseUrl}Elder_Drake_boss_256.png',
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Elder_Drake_boss_256.png',
+    },
+    UnitType.betrayer: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}The_Betrayer_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}The_Betrayer_boss_256.png',
     }
     // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
     // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',

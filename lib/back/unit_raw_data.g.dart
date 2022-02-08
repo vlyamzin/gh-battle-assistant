@@ -75,7 +75,7 @@ const _$UnitTypeEnumMap = {
   UnitType.spittingDrake: 36,
   UnitType.stoneGolem: 37,
   UnitType.sunDemon: 38,
-  UnitType.bertayer: 39,
+  UnitType.betrayer: 39,
   UnitType.colorless: 40,
   UnitType.gloom: 41,
   UnitType.sightlessEye: 42,

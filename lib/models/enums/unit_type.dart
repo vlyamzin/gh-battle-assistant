@@ -80,7 +80,7 @@ enum UnitType {
   @JsonValue(38)
   sunDemon,
   @JsonValue(39)
-  bertayer,
+  betrayer,
   @JsonValue(40)
   colorless,
   @JsonValue(41)
