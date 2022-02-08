@@ -15153,6 +15153,490 @@
           }
         }
       ]
+    },
+    {
+      "name": "Prime Demon",
+      "id": 32,
+      "maxNumber": 1,
+      "stats": {
+        "0": {
+          "normal": {
+            "health": 32,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 32,
+            "shield": 0,
+            "move": 3,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "1": {
+          "normal": {
+            "health": 36,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 36,
+            "shield": 0,
+            "move": 4,
+            "attack": 4,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "2": {
+          "normal": {
+            "health": 40,
+            "shield": 0,
+            "move": 4,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 40,
+            "shield": 0,
+            "move": 4,
+            "attack": 5,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "3": {
+          "normal": {
+            "health": 48,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 48,
+            "shield": 0,
+            "move": 4,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "4": {
+          "normal": {
+            "health": 56,
+            "shield": 0,
+            "move": 5,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 56,
+            "shield": 0,
+            "move": 5,
+            "attack": 6,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "5": {
+          "normal": {
+            "health": 64,
+            "shield": 0,
+            "move": 5,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 64,
+            "shield": 0,
+            "move": 5,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "6": {
+          "normal": {
+            "health": 80,
+            "shield": 0,
+            "move": 5,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 80,
+            "shield": 0,
+            "move": 5,
+            "attack": 7,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        },
+        "7": {
+          "normal": {
+            "health": 88,
+            "shield": 0,
+            "move": 5,
+            "attack": 8,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          },
+          "elite": {
+            "health": 88,
+            "shield": 0,
+            "move": 5,
+            "attack": 8,
+            "range": null,
+            "retaliate": 0,
+            "perks": [],
+            "immune": [
+              "poison",
+              "immobilize",
+              "stun",
+              "muddle",
+              "disarm",
+              "wound"
+            ],
+            "perkValue": {}
+          }
+        }
+      },
+      "actions": [
+        {
+          "id": 572,
+          "initiative": 11,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Throne moves",
+              "subtitle": "Summon Demon"
+            },
+            {
+              "title": "Move |%mv%|+2"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 2
+          }
+        },
+        {
+          "id": 573,
+          "initiative": 14,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Throne moves",
+              "subtitle": "Summon Demon"
+            },
+            {
+              "title": "Move |%mv%|+2"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 2
+          }
+        },
+        {
+          "id": 574,
+          "initiative": 17,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Throne moves",
+              "subtitle": "Summon Demon"
+            },
+            {
+              "title": "Move |%mv%|+2"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 2
+          }
+        },
+        {
+          "id": 575,
+          "initiative": 85,
+          "shouldRefresh": true,
+          "values": [
+            {
+              "title": "Throne moves",
+              "subtitle": "Summon Demon"
+            },
+            {
+              "title": "Move |%mv%|+2"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 2
+          }
+        },
+        {
+          "id": 576,
+          "initiative": 79,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Throne moves",
+              "subtitle": "Summon Demon"
+            },
+            {
+              "title": "Move |%mv%|+2"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 2
+          }
+        },
+        {
+          "id": 577,
+          "initiative": 73,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Throne moves",
+              "subtitle": "Summon Demon"
+            },
+            {
+              "title": "Move |%mv%|+2"
+            },
+            {
+              "title": "Attack |%atk%|-1"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "move": 2
+          }
+        },
+        {
+          "id": 578,
+          "initiative": 36,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|+0"
+            },
+            {
+              "title": "Attack |%atk%|+0"
+            }
+          ],
+          "modifier": {
+            "attack": 0,
+            "move": 0
+          },
+          "perks": [],
+          "area": []
+        },
+        {
+          "id": 579,
+          "initiative": 52,
+          "shouldRefresh": false,
+          "values": [
+            {
+              "title": "Move |%mv%|-1"
+            },
+            {
+              "title": "Attack |%atk%|-1",
+              "subtitle": "Range |%rng%|3\nTarget |%trgt%|2"
+            }
+          ],
+          "modifier": {
+            "attack": -1,
+            "range": 3,
+            "move": -1
+          },
+          "perks": [
+            "target"
+          ],
+          "perkValue": {
+            "target": "2"
+          },
+          "area": []
+        }
+      ]
     }
   ]
 }
