@@ -15,6 +15,14 @@ class ActivityButton extends StatelessWidget {
     // final provider = context.read<UnitStatsProvider>();
     final cubit = context.read<UnitCubit>();
 
+    var withGestureDetector =
+        ({required Widget child, required Function action}) {
+      return GestureDetector(
+        onDoubleTap: () => action(),
+        child: child,
+      );
+    };
+
     return SizedBox(
       width: 160,
       child: Row(
@@ -22,14 +30,17 @@ class ActivityButton extends StatelessWidget {
         children: [
           Flexible(
             flex: 1,
-            child: CupertinoButton(
-              padding: EdgeInsets.all(0),
-              child: Icon(
-                Icons.remove,
-                size: 35,
-                color: Color(0xFF000000),
+            child: withGestureDetector(
+              action: () => cubit.minusActivity(),
+              child: CupertinoButton(
+                padding: EdgeInsets.all(0),
+                child: Icon(
+                  Icons.remove,
+                  size: 35,
+                  color: Color(0xFF000000),
+                ),
+                onPressed: () => cubit.minusActivity(),
               ),
-              onPressed: () => cubit.minusActivity(),
             ),
           ),
           // Flexible(
@@ -51,14 +62,17 @@ class ActivityButton extends StatelessWidget {
           // ),
           Flexible(
             flex: 1,
-            child: CupertinoButton(
-              padding: EdgeInsets.all(0),
-              child: Icon(
-                Icons.add,
-                size: 35,
-                color: Color(0xFF000000),
+            child: withGestureDetector(
+              action: () => cubit.plusActivity(),
+              child: CupertinoButton(
+                padding: EdgeInsets.all(0),
+                child: Icon(
+                  Icons.add,
+                  size: 35,
+                  color: Color(0xFF000000),
+                ),
+                onPressed: () => cubit.plusActivity(),
               ),
-              onPressed: () => cubit.plusActivity(),
             ),
           ),
         ],

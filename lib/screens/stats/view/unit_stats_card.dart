@@ -6,8 +6,10 @@ import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/common/unit_portrait.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
+import 'package:provider/provider.dart';
 
 import 'active_effects.dart';
 import 'immune_effects.dart';
@@ -16,14 +18,12 @@ import 'button_bar.dart';
 class UnitStatsCard extends StatefulWidget {
   final double width, height;
   final UnitType type;
-  final VoidCallback onRemove;
 
   const UnitStatsCard({
     Key? key,
     required this.width,
     required this.height,
     required this.type,
-    required this.onRemove,
   }) : super(key: key);
 
   @override
@@ -33,27 +33,26 @@ class UnitStatsCard extends StatefulWidget {
 class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
   @override
   Widget build(BuildContext context) {
-    // var controller = context.read<UnitStatsProvider>();
-
-    return AnimatedFlipCard(
-      animation: super.animation,
-      key: widget.key,
-      frontSideChild: _body(),
-      frontActionCallback: super.animationForward,
-      // TODO add backside widget
-      // backSideChild: UnitActionCardBackSide(
-      //   title: '${widget.unit.displayName} ${widget.unit.number}',
-      //   backButtonCallback: super.animationBackward,
-      //   deleteButtonCallback: () => widget.onRemove(),
-      //   buttons: [
-      //     BackSideButton(
-      //         action: () {
-      //           controller.endTurn();
-      //           super.animationBackward();
-      //         },
-      //         icon: Icons.check),
-      //   ],
-      // ),
+    return BlocBuilder<UnitCubit, UnitState>(
+      builder: (context, state) {
+        return state.when(ready: (Unit unit) {
+          return AnimatedFlipCard(
+            animation: super.animation,
+            key: widget.key,
+            frontSideChild: Provider<Unit>.value(
+              value: unit,
+              child: _body(),
+            ),
+            frontActionCallback: super.animationForward,
+            backSideChild: UnitActionCardBackSide(
+              title: '${unit.displayName} ${unit.number}',
+              backButtonCallback: super.animationBackward,
+              deleteButtonCallback: () =>
+                  context.read<StatsCubit>().unitRemoved(unit.number),
+            ),
+          );
+        });
+      },
     );
   }
 
@@ -80,17 +79,15 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
-          child: BlocBuilder<UnitCubit, UnitState>(
-            builder: (context, state) {
-              return state.when(ready: (unit) {
-                return UnitPortrait(
-                  unitNumber: unit.number,
-                  type: widget.type,
-                  normality: (unit.elite == true)
-                      ? UnitNormality.elite
-                      : UnitNormality.normal,
-                );
-              });
+          child: Consumer<Unit>(
+            builder: (_, unit, __) {
+              return UnitPortrait(
+                unitNumber: unit.number,
+                type: widget.type,
+                normality: (unit.elite == true)
+                    ? UnitNormality.elite
+                    : UnitNormality.normal,
+              );
             },
           ),
         ),

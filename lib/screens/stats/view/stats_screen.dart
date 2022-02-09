@@ -77,7 +77,7 @@ class StatsScreen extends StatelessWidget {
   }
 
   Widget _grid() {
-    var widget = (context, stack) => Grid(
+    var createWidget = (context, stack) => Grid(
           landscape: 2,
           portrait: 1,
           children: _cards(context, stack.units),
@@ -86,9 +86,13 @@ class StatsScreen extends StatelessWidget {
     return Builder(builder: (context) {
       return BlocBuilder<StatsCubit, StatsState>(builder: (_, state) {
         return state.when(
-          initial: (stack) => widget(context, stack),
-          turnStarted: (stack) => widget(context, stack),
-          turnEnded: (stack) => widget(context, stack),
+          initial: (stack) => createWidget(context, stack),
+          turnStarted: (stack) => createWidget(context, stack),
+          turnEnded: (stack) => createWidget(context, stack),
+          navigateBack: () {
+            Navigator.pop(context);
+            return Container();
+          },
         );
       });
     });
@@ -98,52 +102,56 @@ class StatsScreen extends StatelessWidget {
     return units
         .map(
           (unit) => BlocProvider<UnitCubit>(
-            create: (context) => UnitCubit(
-              unit: unit,
-              onStateChanged: (newUnit) =>
-                  context.read<StatsCubit>().unitChanged(newUnit),
-            ),
-            child: UnitStatsCard(
-              key: ValueKey(unit.number),
-              width: 500,
-              height: 400,
-              type: stack.type,
-              onRemove: () => null,
-            ),
+            key: ValueKey(unit.number),
+            create: (context) {
+              return UnitCubit(
+                unit: unit,
+                onStateChanged: (newUnit) =>
+                    context.read<StatsCubit>().unitChanged(newUnit),
+                onUnitRemoved: (unitNumber) =>
+                    context.read<StatsCubit>().unitRemoved(unitNumber),
+              );
+            },
+            child: Builder(builder: (context) {
+              return UnitStatsCard(
+                width: 500,
+                height: 400,
+                type: stack.type,
+              );
+            }),
           ),
         )
         .toList();
   }
 
   Widget _turnActionButton(BuildContext context) {
+    final createButton = (Function? action, String label) {
+      return Container(
+        child: CupertinoButton(
+          padding: EdgeInsets.zero,
+          onPressed: () => action != null ? action() : null,
+          child: Text(label),
+        ),
+      );
+    };
+
     try {
       final cubit = context.watch<StatsCubit>();
 
-      return cubit.state.when(initial: (_) {
-        return Container(
-          child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => cubit.startTurn(),
-            child: Text('Start Turn'),
-          ),
-        );
-      }, turnStarted: (_) {
-        return Container(
-          child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => cubit.endTurn(),
-            child: Text('End Turn'),
-          ),
-        );
-      }, turnEnded: (_) {
-        return Container(
-          child: CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: () => null,
-            child: Text('Turn Ended'),
-          ),
-        );
-      });
+      return cubit.state.when(
+        initial: (_) {
+          return createButton(cubit.startTurn, 'Start Turn');
+        },
+        turnStarted: (_) {
+          return createButton(cubit.endTurn, 'End Turn');
+        },
+        turnEnded: (_) {
+          return createButton(null, 'Turn Ended');
+        },
+        navigateBack: () {
+          return Container();
+        },
+      );
     } catch (_) {
       return Container();
     }

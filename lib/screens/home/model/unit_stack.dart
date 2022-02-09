@@ -106,21 +106,16 @@ class UnitStack extends Equatable {
   }
 
   /// Removes [Unit] object from the list of [units]
-  /// Return number back into [availableNumbersPull]
+  /// /// Return number back into [availableNumbersPull]
   /// Increases the maximum unit number
-  @deprecated
-  void removeUnitOld(int number) {
-    units.removeWhere((element) => element.number == number);
-    availableNumbersPull.add(number);
-    // maxNumber = maxNumber! + 1;
-  }
-
-  /// Removes [Unit] object from the list of [units]
   UnitStack removeUnit(int number) {
     var updatedList = [...units]
       ..removeWhere((element) => element.number == number);
+    availableNumbersPull.add(number);
+    availableNumbersPull.sort((a, b) => a - b);
     return copyWith(
       units: updatedList,
+      availableNumbersPull: [...availableNumbersPull],
     );
   }
 

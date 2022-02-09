@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 
 import '../../../di.dart';
 
+// TODO REMOVE
 @deprecated
 class UnitActionCardList extends StatefulWidget {
   const UnitActionCardList({
@@ -73,7 +74,6 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
           width: 500,
           height: 400,
           type: widget.stack.type,
-          onRemove: () => _removeUnitFromStack(unit.number, context),
         ),
       );
     }).toList();
@@ -83,7 +83,7 @@ class _UnitActionCardListState extends State<UnitActionCardList> {
     assert(unitNumber != null);
     final homeController = di<HomeScreenProvider>();
 
-    widget.stack.removeUnitOld(unitNumber!);
+    // widget.stack.removeUnitOld(unitNumber!);
 
     if (widget.stack.isEmpty) {
       homeController.removeMonsterStack(widget.stack.type);

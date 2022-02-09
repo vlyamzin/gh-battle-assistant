@@ -34,6 +34,7 @@ class StatsCubit extends Cubit<StatsState> {
       },
       turnStarted: (_) {},
       turnEnded: (_) {},
+      navigateBack: () {},
     );
   }
 
@@ -51,6 +52,7 @@ class StatsCubit extends Cubit<StatsState> {
       },
       initial: (_) {},
       turnEnded: (_) {},
+      navigateBack: () {},
     );
   }
 
@@ -62,6 +64,44 @@ class StatsCubit extends Cubit<StatsState> {
       enemiesBloc.add(StackUpdatedE(updatedStack));
     };
 
-    state.when(initial: handler, turnStarted: handler, turnEnded: handler);
+    state.when(
+      initial: handler,
+      turnStarted: handler,
+      turnEnded: handler,
+      navigateBack: () {},
+    );
+  }
+
+  void unitRemoved(int unitNumber) {
+    UnitStack? handler(UnitStack stack) {
+      var updatedStack = stack.removeUnit(unitNumber);
+
+      if (updatedStack.units.length > 0) {
+        enemiesBloc.add(StackUpdatedE(updatedStack));
+        return updatedStack;
+      } else {
+        enemiesBloc.add(StackRemovedE(updatedStack));
+        emit(StatsState.navigateBack());
+        return null;
+      }
+    }
+
+    state.when(
+      initial: (stack) {
+        var updatedStack = handler(stack);
+        updatedStack != null ? emit(StatsState.initial(updatedStack)) : null;
+      },
+      turnStarted: (stack) {
+        var updatedStack = handler(stack);
+        updatedStack != null
+            ? emit(StatsState.turnStarted(updatedStack))
+            : null;
+      },
+      turnEnded: (stack) {
+        var updatedStack = handler(stack);
+        updatedStack != null ? emit(StatsState.turnEnded(updatedStack)) : null;
+      },
+      navigateBack: () {},
+    );
   }
 }
