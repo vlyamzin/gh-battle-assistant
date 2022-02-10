@@ -11,10 +11,6 @@ import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:provider/provider.dart';
 
-import 'active_effects.dart';
-import 'immune_effects.dart';
-import 'button_bar.dart';
-
 class UnitStatsCard extends StatefulWidget {
   final double width, height;
   final UnitType type;
@@ -97,8 +93,8 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
             decoration: BoxDecoration(border: Border.all()),
             child: Column(
               children: [
-                // ActiveEffects(),
-                // ImmuneEffects(),
+                ActiveEffects(),
+                ImmuneEffects(),
               ],
             ),
           ),
@@ -120,15 +116,4 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       ],
     );
   }
-
-  // Widget _unitDeadListener({Widget? child}) {
-  //   return Selector<UnitStatsProvider, bool>(
-  //     builder: (_, shouldRemove, child) {
-  //       if (shouldRemove) widget.onRemove();
-  //       return child ?? Container();
-  //     },
-  //     selector: (_, controller) => controller.isUnitDead,
-  //     child: child,
-  //   );
-  // }
 }

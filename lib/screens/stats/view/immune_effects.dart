@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:provider/provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 
 class ImmuneEffects extends StatelessWidget {
   const ImmuneEffects({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final immuneList = context.read<UnitStatsProvider>().immuneEffects;
+    final immuneList = context.read<UnitCubit>().immuneEffects;
 
     return Container(
       padding: EdgeInsets.all(8.0),
