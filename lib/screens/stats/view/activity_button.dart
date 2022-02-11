@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/controllers/activity_tooltip_provider.dart';
-// import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:provider/provider.dart';
@@ -12,11 +11,12 @@ class ActivityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final provider = context.read<UnitStatsProvider>();
     final cubit = context.read<UnitCubit>();
 
-    var withGestureDetector =
-        ({required Widget child, required Function action}) {
+    var withGestureDetector = ({
+      required Widget child,
+      required Function action,
+    }) {
       return GestureDetector(
         onDoubleTap: () => action(),
         child: child,

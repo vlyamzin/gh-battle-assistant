@@ -32,15 +32,9 @@ class ImmuneEffects extends StatelessWidget {
 
   List<Widget> _list(List<Effect?> immuneList) {
     return immuneList
-        .map((e) => SizedBox(
-              width: 40,
-              height: 40,
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: e != null
-                    ? Image(image: AssetImage(e.iconShortcut))
-                    : Container(),
-              ),
+        .map((e) => EffectIcon(
+              key: ValueKey(e?.type),
+              effect: e,
             ))
         .toList();
   }

@@ -41,15 +41,9 @@ class AttackEffect extends StatelessWidget with TextOutline {
     return attackEffectList
         .map((e) => Stack(
               children: [
-                SizedBox(
-                  width: 40,
-                  height: 40,
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: e != null
-                        ? Image(image: AssetImage(e.iconShortcut))
-                        : Container(),
-                  ),
+                EffectIcon(
+                  key: ValueKey(e?.type),
+                  effect: e,
                 ),
                 Positioned(
                   bottom: 0,

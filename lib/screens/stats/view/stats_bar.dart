@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/di.dart';
-// import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
@@ -42,7 +41,7 @@ class _Stats extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: BlocBuilder<UnitCubit, UnitState>(
         builder: (context, state) {
-          return state.when(ready: (unit) {
+          return state.when(ready: (unit, _) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.stretch,

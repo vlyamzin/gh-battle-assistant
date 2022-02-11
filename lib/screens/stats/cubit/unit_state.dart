@@ -6,5 +6,6 @@ part 'unit_state.freezed.dart';
 
 @freezed
 class UnitState with _$UnitState {
-  const factory UnitState.ready(Unit unit) = _$UnitReady;
+  const factory UnitState.ready(Unit unit, [Effect? selectedActivity]) =
+      _$UnitReady;
 }

@@ -7,6 +7,7 @@ export 'view/button_bar.dart';
 export 'view/immune_effects.dart';
 export 'view/attack_effects.dart';
 export 'view/stats_bar.dart';
+export 'view/effect_icon.dart';
 export 'model/unit.dart';
 export 'model/effect.dart';
 export 'cubit/stats_cubit.dart';

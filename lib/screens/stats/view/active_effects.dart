@@ -26,16 +26,9 @@ class ActiveEffects extends StatelessWidget {
               ),
             ),
             ...negativeEffects
-                .map((Effect e) => SizedBox(
+                .map((Effect e) => EffectIcon(
                       key: ValueKey(e.type),
-                      width: 40,
-                      height: 40,
-                      child: Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: Image(
-                          image: AssetImage(e.iconShortcut),
-                        ),
-                      ),
+                      effect: e,
                     ))
                 .toList(),
           ],
