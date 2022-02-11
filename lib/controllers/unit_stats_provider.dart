@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
-import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
-import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 
@@ -13,7 +11,9 @@ typedef DefaultStats = UnitRawStats;
 
 /// Controller that is responsible for [StatsScreen] business logic and other manipulations
 /// Implements [ChangeNotifier] Provider
-class UnitStatsProvider with ChangeNotifier {
+/// This class is deprecated and left only for reference
+@deprecated
+class UnitStatsProvider {
   final Unit unit;
   final DefaultStats defaultStats;
   final Map<ModifierType, int> modifiers;
@@ -74,10 +74,9 @@ class UnitStatsProvider with ChangeNotifier {
   MapEntry<ActivityType, String> selectedActivity = defaultActivities.entries
       .firstWhere((activity) => activity.key == ActivityType.attack);
 
-  /// Store files locally via [HomeScreenProvider]
   /// and notify listeners of Provider about changes
   void save() {
-    di<HomeScreenProvider>().saveToStorage().then((_) => notifyListeners());
+    // di<HomeScreenProvider>().saveToStorage().then((_) => notifyListeners());
   }
 
   /// Return List of activities that are not blocked by unit immunity
@@ -137,7 +136,7 @@ class UnitStatsProvider with ChangeNotifier {
   void selectActivity(MapEntry<ActivityType, String> activity) {
     selectedActivity = activity;
     _counter = 0;
-    notifyListeners();
+    // notifyListeners();
   }
 
   /// Increase activity status
@@ -148,7 +147,7 @@ class UnitStatsProvider with ChangeNotifier {
     } else {
       _counter = 1;
     }
-    notifyListeners();
+    // notifyListeners();
   }
 
   /// Decrease activity status
@@ -158,14 +157,14 @@ class UnitStatsProvider with ChangeNotifier {
     } else {
       _counter = -1;
     }
-    notifyListeners();
+    // notifyListeners();
   }
 
   /// Apply [_counter] value for selected activity
   void applyActivity() {
     _activityHandlers[selectedActivity.key]!(_counter);
     _counter = 0;
-    notifyListeners();
+    // notifyListeners();
   }
 
   void endTurn() {
@@ -328,6 +327,6 @@ class UnitStatsProvider with ChangeNotifier {
     }
 
     save();
-    notifyListeners();
+    // notifyListeners();
   }
 }

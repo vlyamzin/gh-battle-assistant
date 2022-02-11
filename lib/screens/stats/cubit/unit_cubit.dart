@@ -42,6 +42,8 @@ class UnitCubit extends Cubit<UnitState> {
 
   void applyActivity() {}
 
+  Unit get unitInstance => state.unit;
+
   /// Get a list of negative effects activated on a unit
   Set<Effect> get negativeEffects {
     return Set.from(
@@ -52,6 +54,21 @@ class UnitCubit extends Cubit<UnitState> {
   /// Return List of immune [Effect]
   /// This list is rendered in 'Immune to' section of [UnitStatsCard]
   List<Effect?> get immuneEffects {
-    return unit.immune.map((e) => Effect(e, effectIcons[e]!)).toList();
+    return state.unit.immune.map((e) => Effect(e, effectIcons[e]!)).toList();
+  }
+
+  /// Return List of attack [Effect] aka perks
+  /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
+  List<Effect?> get attackEffects {
+    return state.unit.perks.map((p) {
+      var perkValue =
+          state.unit.perkValue.containsKey(p) ? state.unit.perkValue[p] : null;
+      return Effect(p, effectIcons[p]!, perkValue);
+    }).toList();
+  }
+
+  /// Return List of area images as path to assets
+  List<String> get areaEffects {
+    return unit.area.map((i) => di<ImageService>().getIcon(i)).toList();
   }
 }

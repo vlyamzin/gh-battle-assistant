@@ -7,10 +7,7 @@ import 'package:gh_battle_assistant/common/pull_to_refresh.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/view/settings_dialog.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
-import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
-import 'package:gh_battle_assistant/models/enums/home_screen_events.dart';
 import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
@@ -56,7 +53,6 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> _refreshUnitActions(BuildContext context) async {
     await Future.delayed(Duration(milliseconds: 1000));
-    context.read<HomeScreenProvider>().emit(HomeScreenEvents.NEW_ACTIONS);
     var enemiesBloc = context.read<EnemiesBloc>()..add(NewActionRequested());
 
     // update settings.newGame if it was set to 'true'

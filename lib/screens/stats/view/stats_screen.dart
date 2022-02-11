@@ -84,17 +84,26 @@ class StatsScreen extends StatelessWidget {
         );
 
     return Builder(builder: (context) {
-      return BlocBuilder<StatsCubit, StatsState>(builder: (_, state) {
-        return state.when(
-          initial: (stack) => createWidget(context, stack),
-          turnStarted: (stack) => createWidget(context, stack),
-          turnEnded: (stack) => createWidget(context, stack),
-          navigateBack: () {
-            Navigator.pop(context);
-            return Container();
-          },
-        );
-      });
+      return BlocListener<StatsCubit, StatsState>(
+        // Navigate back to the Home screen when state changed to 'navigateBack'
+        // It happens when there are no units left in the stack
+        listener: (context, state) {
+          state.maybeWhen(
+            navigateBack: () {
+              Navigator.pop(context);
+            },
+            orElse: () {},
+          );
+        },
+        child: BlocBuilder<StatsCubit, StatsState>(builder: (_, state) {
+          return state.when(
+            initial: (stack) => createWidget(context, stack),
+            turnStarted: (stack) => createWidget(context, stack),
+            turnEnded: (stack) => createWidget(context, stack),
+            navigateBack: () => Container(),
+          );
+        }),
+      );
     });
   }
 

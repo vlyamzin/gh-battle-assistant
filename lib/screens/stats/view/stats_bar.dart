@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
+import 'package:gh_battle_assistant/di.dart';
 // import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 import 'package:gh_battle_assistant/models/enums/activity_type.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-
-import '../../../di.dart';
-import 'attack_effects.dart';
 
 class StatsBar extends StatelessWidget {
   const StatsBar({Key? key}) : super(key: key);
@@ -24,12 +22,12 @@ class StatsBar extends StatelessWidget {
             key: key,
           ),
         ),
-        // Flexible(
-        //   flex: 1,
-        //   child: AttackEffect(
-        //     key: key,
-        //   ),
-        // ),
+        Flexible(
+          flex: 1,
+          child: AttackEffect(
+            key: key,
+          ),
+        ),
       ],
     );
   }
@@ -44,8 +42,6 @@ class _Stats extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: BlocBuilder<UnitCubit, UnitState>(
         builder: (context, state) {
-          // var unit = controller.unit;
-
           return state.when(ready: (unit) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

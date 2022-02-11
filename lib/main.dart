@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
-import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
@@ -14,7 +13,6 @@ import 'package:gh_battle_assistant/services/store_service.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:gh_battle_assistant/di.dart';
-import 'package:gh_battle_assistant/screens/home/view/home_screen.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -68,16 +66,9 @@ class Application extends StatefulWidget {
 }
 
 class _ApplicationState extends State<Application> {
-  late HomeScreenProvider _homeScreenProvider;
-
   @override
   void initState() {
     super.initState();
-    if (widget.data != null)
-      _homeScreenProvider = HomeScreenProvider.fromJson(widget.data!);
-    else
-      _homeScreenProvider = HomeScreenProvider.empty();
-    di.registerSingleton<HomeScreenProvider>(_homeScreenProvider);
     di.registerSingleton<EnemiesRepository>(EnemiesRepository(widget.rawData));
     di.registerSingleton<SettingsRepository>(SettingsRepository());
   }
@@ -87,15 +78,8 @@ class _ApplicationState extends State<Application> {
     return RepositoryProvider.value(
       value: di<SettingsRepository>(),
       child: Builder(builder: (context) {
-        return MultiProvider(
-          providers: [
-            Provider<GameData>.value(
-              value: widget.rawData,
-            ),
-            ChangeNotifierProvider.value(
-              value: _homeScreenProvider,
-            ),
-          ],
+        return Provider<GameData>.value(
+          value: widget.rawData,
           child: MultiBlocProvider(
             providers: [
               BlocProvider(

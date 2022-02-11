@@ -2,16 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:provider/provider.dart';
-import 'package:gh_battle_assistant/controllers/unit_stats_provider.dart';
 
 class AttackEffect extends StatelessWidget with TextOutline {
   const AttackEffect({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = context.read<UnitStatsProvider>();
-    final attackEffectList = controller.attackEffects;
-    final areaEffectList = controller.areaEffects;
+    final unitCubit = context.read<UnitCubit>();
+    final attackEffectList = unitCubit.attackEffects;
+    final areaEffectList = unitCubit.areaEffects;
 
     return Container(
       padding: EdgeInsets.all(8.0),

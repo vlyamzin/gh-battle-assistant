@@ -9,7 +9,6 @@ import 'package:gh_battle_assistant/models/enums/unit_type.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:provider/provider.dart';
 
 class UnitStatsCard extends StatefulWidget {
   final double width, height;
@@ -29,26 +28,19 @@ class UnitStatsCard extends StatefulWidget {
 class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UnitCubit, UnitState>(
-      builder: (context, state) {
-        return state.when(ready: (Unit unit) {
-          return AnimatedFlipCard(
-            animation: super.animation,
-            key: widget.key,
-            frontSideChild: Provider<Unit>.value(
-              value: unit,
-              child: _body(),
-            ),
-            frontActionCallback: super.animationForward,
-            backSideChild: UnitActionCardBackSide(
-              title: '${unit.displayName} ${unit.number}',
-              backButtonCallback: super.animationBackward,
-              deleteButtonCallback: () =>
-                  context.read<StatsCubit>().unitRemoved(unit.number),
-            ),
-          );
-        });
-      },
+    final unit = context.read<UnitCubit>().unit;
+
+    return AnimatedFlipCard(
+      animation: super.animation,
+      key: widget.key,
+      frontSideChild: _body(),
+      frontActionCallback: super.animationForward,
+      backSideChild: UnitActionCardBackSide(
+        title: '${unit.displayName} ${unit.number}',
+        backButtonCallback: super.animationBackward,
+        deleteButtonCallback: () =>
+            context.read<StatsCubit>().unitRemoved(unit.number),
+      ),
     );
   }
 
@@ -75,12 +67,19 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Expanded(
-          child: Consumer<Unit>(
-            builder: (_, unit, __) {
+          child: BlocBuilder<UnitCubit, UnitState>(
+            buildWhen: (prevState, state) {
+              final prevUnit = prevState.unit;
+              final unit = state.unit;
+
+              return prevUnit.number != unit.number ||
+                  prevUnit.elite != unit.elite;
+            },
+            builder: (context, state) {
               return UnitPortrait(
-                unitNumber: unit.number,
+                unitNumber: state.unit.number,
                 type: widget.type,
-                normality: (unit.elite == true)
+                normality: (state.unit.elite == true)
                     ? UnitNormality.elite
                     : UnitNormality.normal,
               );
@@ -107,9 +106,10 @@ class _UnitStatsCardState extends AnimatedFlipBaseState<UnitStatsCard> {
     return Column(
       children: [
         Expanded(
-            child: StatsBar(
-          key: widget.key,
-        )),
+          child: StatsBar(
+            key: widget.key,
+          ),
+        ),
         ButtonBar(
           key: widget.key,
         ),
