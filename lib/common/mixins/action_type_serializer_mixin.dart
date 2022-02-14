@@ -1,4 +1,4 @@
-import 'package:gh_battle_assistant/models/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
 
 mixin ActionTypeSerializer {
   static Map<ActivityType, String>? serializeRawPerkValue(

@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/direct_select/widget.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
-import 'package:gh_battle_assistant/screens/add_unit/view/unit_number_selector.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
-import 'package:gh_battle_assistant/screens/add_unit/view/unit_search_input.dart';
-import 'package:provider/provider.dart';
 
 import '../../../di.dart';
 

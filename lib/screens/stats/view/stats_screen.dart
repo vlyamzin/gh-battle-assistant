@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
-import 'package:gh_battle_assistant/models/enums/turn_state.dart';
-import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/common/enums/turn_state.dart';
+import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
@@ -11,14 +10,11 @@ import 'package:gh_battle_assistant/screens/stats/stats.dart';
 class StatsScreen extends StatelessWidget {
   final UnitStack stack;
   final EnemiesBloc enemiesBloc;
-  @deprecated
-  final Map<UnitNormality, UnitRawStats> defaultStats;
 
   const StatsScreen({
     Key? key,
     required this.enemiesBloc,
     required this.stack,
-    required this.defaultStats,
   }) : super(key: key);
 
   @override
@@ -51,10 +47,6 @@ class StatsScreen extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage(ImageService.mainBackground), fit: BoxFit.fill),
         ),
-        // child: UnitActionCardList(
-        //   defaultStats: defaultStats,
-        //   stack: stack,
-        // ),
         child: _grid(),
       ),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
-import 'package:gh_battle_assistant/models/enums/activity_type.dart';
-import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/modifier_type.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 

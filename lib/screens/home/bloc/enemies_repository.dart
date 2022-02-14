@@ -1,6 +1,6 @@
 import 'package:gh_battle_assistant/back/game_data.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 
 class EnemiesRepository {
   final GameData data;

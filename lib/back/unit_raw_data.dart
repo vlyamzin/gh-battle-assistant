@@ -1,7 +1,7 @@
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
-import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'unit_raw_data.g.dart';

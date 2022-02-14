@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
-import 'package:provider/provider.dart';
 
 class UnitSearchInput extends StatefulWidget {
   UnitSearchInput({Key? key}) : super(key: key);
@@ -15,7 +13,7 @@ class UnitSearchInput extends StatefulWidget {
 
 class _UnitSearchInputState extends State<UnitSearchInput> {
   final _controller = CupertinoSuggestionsBoxController();
-  final _typeaheedController = TextEditingController();
+  final _typeaheadController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class _UnitSearchInputState extends State<UnitSearchInput> {
           },
           suggestionsBoxController: _controller,
           textFieldConfiguration: CupertinoTextFieldConfiguration(
-              controller: _typeaheedController,
+              controller: _typeaheadController,
               placeholder: 'Search',
               prefixMode: OverlayVisibilityMode.always,
               clearButtonMode: OverlayVisibilityMode.editing,
@@ -62,7 +60,7 @@ class _UnitSearchInputState extends State<UnitSearchInput> {
 
   void _initControllerText(AddUnitState state) {
     if (state is UnitTypeSelectedS) {
-      _typeaheedController.text = state.stack.displayName;
+      _typeaheadController.text = state.stack.displayName;
     }
   }
 }

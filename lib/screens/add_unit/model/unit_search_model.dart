@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/game_data.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 import 'package:meta/meta.dart';
 
 @immutable

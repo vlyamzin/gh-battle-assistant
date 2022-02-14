@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/unit_portrait.dart';
-import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/add_unit/add_unit.dart';
 

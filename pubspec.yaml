@@ -36,7 +36,6 @@ dependencies:
   freezed: ^1.1.0
   equatable: ^2.0.3
   meta: ^1.7.0
-  simple_tooltip: ^1.0.0 #remove 
 
 
   # The following adds the Cupertino Icons font to your application.

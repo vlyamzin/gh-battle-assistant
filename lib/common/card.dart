@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart';
 
 class Card extends StatelessWidget with CardBorderRadius {

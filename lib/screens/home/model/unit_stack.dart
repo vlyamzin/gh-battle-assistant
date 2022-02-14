@@ -2,8 +2,8 @@ import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
-import 'package:gh_battle_assistant/models/enums/turn_state.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/turn_state.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:json_annotation/json_annotation.dart';

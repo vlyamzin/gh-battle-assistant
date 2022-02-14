@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:gh_battle_assistant/screens/settings_dialog/bloc/settings_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../settings_dialog.dart';
 

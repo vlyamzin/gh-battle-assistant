@@ -1,4 +1,4 @@
-import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/common/enums/modifier_type.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'unit_raw_actions.g.dart';

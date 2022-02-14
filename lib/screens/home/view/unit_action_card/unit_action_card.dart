@@ -6,7 +6,7 @@ import 'package:gh_battle_assistant/common/mixins/card_border_radius_mixin.dart'
 import 'package:gh_battle_assistant/common/animated_flip_base.dart';
 import 'package:gh_battle_assistant/common/mixins/text_outline_mixin.dart';
 import 'package:gh_battle_assistant/di.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/home/view/unit_action_card/initiative.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';

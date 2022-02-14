@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/common/mixins/action_type_serializer_mixin.dart';
 import 'package:gh_battle_assistant/di.dart';
-import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
-import 'package:gh_battle_assistant/screens/home/home.dart';
+import 'package:gh_battle_assistant/common/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
 import 'package:json_annotation/json_annotation.dart';
-
-import '../../../models/enums/activity_type.dart';
 
 part 'unit_action.g.dart';
 

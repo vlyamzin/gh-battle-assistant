@@ -1,8 +1,8 @@
-import 'package:gh_battle_assistant/models/enums/activity_type.dart';
-import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 
-enum IconSize { s32, s64, s128 }
+enum IconSize { s32, s64 }
 
 class ImageService {
   static const unitImageBaseUrl = 'assets/unit_images/';
@@ -482,34 +482,6 @@ class ImageService {
     'xp': '$iconsBaseUrl/64/xp_64.png',
   };
 
-  // TODO remove as unused [99a4863a801df53df73aa20aa2fcab52]
-  final _iconsMap128 = <String, String>{
-    'ae': '$iconsBaseUrl/128/all_elements_128.png',
-    'atk': '$iconsBaseUrl/128/attack_128.png',
-    'dark': '$iconsBaseUrl/128/dark_128.png',
-    'fire': '$iconsBaseUrl/128/fire_128.png',
-    'frost': '$iconsBaseUrl/128/frost_128.png',
-    'heal': '$iconsBaseUrl/128/heal_128.png',
-    'ha': '$iconsBaseUrl/128/hit_area_128.png',
-    'jmp': '$iconsBaseUrl/128/jump_128.png',
-    'leaf': '$iconsBaseUrl/128/leaf_128.png',
-    'light': '$iconsBaseUrl/128/light_128.png',
-    'lt': '$iconsBaseUrl/128/loot_128.png',
-    'mv': '$iconsBaseUrl/128/move_128.png',
-    'nha': '$iconsBaseUrl/128/neutral_hit_area_128.png',
-    'ndark': '$iconsBaseUrl/128/no_dark.png',
-    'ne': '$iconsBaseUrl/128/no_elements_128.png',
-    'nfire': '$iconsBaseUrl/128/no_fire_128.png',
-    'nfrost': '$iconsBaseUrl/128/no_frost_128.png',
-    'nleaf': '$iconsBaseUrl/128/no_leaf_128.png',
-    'nlight': '$iconsBaseUrl/128/no_light_128.png',
-    'nwind': '$iconsBaseUrl/128/no_wind_128.png',
-    'rng': '$iconsBaseUrl/128/range_128.png',
-    'rtlt': '$iconsBaseUrl/128/retaliate_128.png',
-    'shld': '$iconsBaseUrl/128/shield_128.png',
-    'wind': '$iconsBaseUrl/128/wind_128.png',
-  };
-
   final _attackEffects32 = {
     ActivityType.attack: ImageService._iconsMap32['atk']!,
     ActivityType.heal: ImageService._iconsMap32['heal']!,
@@ -571,10 +543,6 @@ class ImageService {
       case IconSize.s64:
         {
           return _iconsMap64[key] ?? '';
-        }
-      case IconSize.s128:
-        {
-          return _iconsMap128[key] ?? '';
         }
     }
   }

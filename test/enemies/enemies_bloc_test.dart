@@ -3,8 +3,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gh_battle_assistant/back/unit_raw_data.dart';
-import 'package:gh_battle_assistant/models/enums/activity_type.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 import 'package:gh_battle_assistant/screens/stats/model/unit.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/model/settings.dart';
@@ -34,7 +34,7 @@ void main() {
     late GetIt di;
 
     setUpAll(() {
-      initHydratedBloc();
+      // mockHydratedStorage(() {});
       registerFallbackValue(UnitType.aestherAshblade);
       di = GetIt.instance;
       settingsRepository = MockSettingsRepository();
@@ -56,14 +56,18 @@ void main() {
     });
 
     test('initial state is correct', () {
-      final bloc = EnemiesBloc(enemiesRepository);
-      expect(bloc.state, EnemiesState.initial());
+      mockHydratedStorage(() {
+        final bloc = EnemiesBloc(enemiesRepository);
+        expect(bloc.state, EnemiesState.initial());
+      });
     });
 
     group('toJson/fromJson', () {
       test('work properly', () {
-        final bloc = EnemiesBloc(enemiesRepository);
-        expect(bloc.fromJson(bloc.toJson(bloc.state)!), bloc.state);
+        mockHydratedStorage(() {
+          final bloc = EnemiesBloc(enemiesRepository);
+          expect(bloc.fromJson(bloc.toJson(bloc.state)!), bloc.state);
+        });
       });
     });
 
@@ -82,7 +86,7 @@ void main() {
 
       blocTest<EnemiesBloc, EnemiesState>(
         'to the empty state',
-        build: () => EnemiesBloc(enemiesRepository),
+        build: () => mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
         act: (bloc) => bloc.add(StackAddedE(newStack)),
         expect: () => [
           EnemiesState.loaded(Enemies(monsters: [newStack])),
@@ -91,7 +95,7 @@ void main() {
 
       blocTest<EnemiesBloc, EnemiesState>(
         'to the existing state as a new one',
-        build: () => EnemiesBloc(enemiesRepository),
+        build: () => mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
         seed: () => EnemiesState.loaded(Enemies(monsters: [newStack])),
         act: (bloc) => bloc.add(StackAddedE(newStack2)),
         expect: () => [
@@ -101,7 +105,7 @@ void main() {
 
       blocTest<EnemiesBloc, EnemiesState>(
         'to the existing stack with new units',
-        build: () => EnemiesBloc(enemiesRepository),
+        build: () => mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
         seed: () => EnemiesState.loaded(Enemies(monsters: [newStack])),
         act: (bloc) {
           final updatedStack = newStack.copyWith(units: [
@@ -129,7 +133,8 @@ void main() {
             when(() => settingsRepository.loadSettings())
                 .thenReturn(Settings(difficulty: 1, newGame: false));
           },
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () => EnemiesState.loaded(Enemies(monsters: [newStack])),
           act: (bloc) => bloc.add(StackAddedE(newStack2)),
           expect: () => [
@@ -157,7 +162,8 @@ void main() {
       final stack = enemies.monsters[0];
 
       blocTest<EnemiesBloc, EnemiesState>('from the existing state',
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () => EnemiesState.loaded(enemies),
           act: (bloc) => bloc.add(StackRemovedE(stack)),
           expect: () => [EnemiesState.loaded(Enemies(monsters: []))]);
@@ -166,7 +172,7 @@ void main() {
     group('clear enemies', () {
       blocTest<EnemiesBloc, EnemiesState>(
         'and start new game',
-        build: () => EnemiesBloc(enemiesRepository),
+        build: () => mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
         seed: () => EnemiesState.loaded(enemies),
         act: (bloc) => bloc.add(ClearEnemiesList()),
         expect: () => [
@@ -178,7 +184,7 @@ void main() {
     group('draw new action', () {
       blocTest<EnemiesBloc, EnemiesState>(
         'and init actions list if new game started',
-        build: () => EnemiesBloc(enemiesRepository),
+        build: () => mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
         seed: () => EnemiesState.loaded(enemies),
         act: (bloc) => bloc.add(NewActionRequested()),
         wait: Duration(milliseconds: 0),
@@ -203,20 +209,28 @@ void main() {
         final action2 =
             action1.copyWith(id: 2, initiative: 2, shouldRefresh: false);
 
+        final unitUpdateMock = UnitUpdateTest();
+
         setUp(() {
           when(() => settingsRepository.loadSettings())
               .thenReturn(Settings(difficulty: 1, newGame: false));
         });
 
-        blocTest('and sort stacks by its initiative in this round',
-            build: () => EnemiesBloc(enemiesRepository), expect: () => [false]);
+        // TODO add test
+        blocTest(
+          'and sort stacks by its initiative in this round',
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
+          expect: () => [],
+        );
 
         blocTest<EnemiesBloc, EnemiesState>(
           'and refresh available actions list if currentActions has shouldRefresh:true',
           setUp: () {
             when(() => utilService.randomize(any())).thenReturn(0);
           },
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () {
             final stack = UnitStack(
                 displayName: '',
@@ -241,39 +255,47 @@ void main() {
 
         blocTest<EnemiesBloc, EnemiesState>(
           'and update unit stats',
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () {
-            final mock = UnitUpdateTest();
-            return EnemiesState.loaded(Enemies(monsters: [mock.stack]));
+            return EnemiesState.loaded(
+                Enemies(monsters: [unitUpdateMock.stack]));
           },
           act: (bloc) => bloc.add(NewActionRequested()),
-          expect: () => [
-            isA<EnemiesLoaded>().having(
-              (state) => state.enemies.monsters[0].units[0],
-              'unit',
-              isA<Unit>()
-                  .having(
-                    (unit) => unit.healthPoint,
-                    'unit.healthPoint',
-                    9,
-                  )
-                  .having((unit) => unit.shield, 'shield', 1)
-                  .having((unit) => unit.attack, 'attack', 3)
-                  .having((unit) => unit.range, 'range', 1)
-                  .having((unit) => unit.move, 'move', 4)
-                  .having((unit) => unit.retaliate, 'retaliate', 1)
-                  .having((unit) => unit.pierced, 'pierced', 0)
-                  .having((unit) => unit.suffer, 'suffer', 3)
-                  .having((unit) => unit.heal, 'heal', 3)
-                  .having((unit) => unit.negativeEffects, 'negativeEffects',
-                      isEmpty),
-            )
-          ],
+          expect: () {
+            return [
+              EnemiesState.loaded(Enemies(monsters: [unitUpdateMock.stack])),
+              isA<EnemiesLoaded>().having(
+                (state) {
+                  print(state);
+                  return state.enemies.monsters[0].units[0];
+                },
+                'unit',
+                isA<Unit>()
+                    .having(
+                      (unit) => unit.healthPoint,
+                      'unit.healthPoint',
+                      9,
+                    )
+                    .having((unit) => unit.shield, 'shield', 1)
+                    .having((unit) => unit.attack, 'attack', 3)
+                    .having((unit) => unit.range, 'range', 1)
+                    .having((unit) => unit.move, 'move', 4)
+                    .having((unit) => unit.retaliate, 'retaliate', 1)
+                    .having((unit) => unit.pierced, 'pierced', 0)
+                    .having((unit) => unit.suffer, 'suffer', 3)
+                    .having((unit) => unit.heal, 'heal', 3)
+                    .having((unit) => unit.negativeEffects, 'negativeEffects',
+                        isEmpty),
+              )
+            ];
+          },
         );
 
         blocTest<EnemiesBloc, EnemiesState>(
           'and cannot be healed if poisoned',
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () {
             final mock = UnitUpdateTest();
             mock.stack.units[0].negativeEffects.add(ActivityType.poison);
@@ -291,7 +313,8 @@ void main() {
 
         blocTest<EnemiesBloc, EnemiesState>(
           'and cannot overheal',
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () {
             final mock = UnitUpdateTest();
             mock.stack.units[0] = mock.stack.units[0].copyWith(heal: 40);
@@ -308,7 +331,8 @@ void main() {
         );
         blocTest<EnemiesBloc, EnemiesState>(
           'and does not have attack, move and range values',
-          build: () => EnemiesBloc(enemiesRepository),
+          build: () =>
+              mockHydratedStorage(() => EnemiesBloc(enemiesRepository)),
           seed: () {
             final mock = UnitUpdateTest();
             final stack = mock.stack.copyWith(
@@ -329,7 +353,7 @@ void main() {
             return EnemiesState.loaded(Enemies(monsters: [stack]));
           },
           act: (bloc) => bloc.add(NewActionRequested()),
-          expect: () => [
+          expect: () => <Matcher>[
             isA<EnemiesLoaded>().having(
               (state) => state.enemies.monsters[0].units[0],
               'unit',

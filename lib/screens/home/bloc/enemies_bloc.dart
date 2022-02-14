@@ -1,8 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gh_battle_assistant/back/unit_raw_actions.dart';
 import 'package:gh_battle_assistant/di.dart';
-import 'package:gh_battle_assistant/models/enums/turn_state.dart';
+import 'package:gh_battle_assistant/common/enums/turn_state.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';

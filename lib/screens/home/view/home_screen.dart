@@ -8,7 +8,7 @@ import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/screens/settings_dialog/settings_dialog.dart';
 import 'package:gh_battle_assistant/common/sliver_grid.dart';
-import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/services/logger_service.dart';
@@ -109,6 +109,7 @@ class HomeScreen extends StatelessWidget {
     try {
       final settings = context.read<SettingsRepository>().loadSettings();
       final difficulty = settings.difficulty.toString();
+      // TODO possibly unused variable
       final Map<UnitNormality, UnitRawStats>? unitStats =
           rawData.getUnitDataById(stackModel.type).getUnitStats(difficulty);
 
@@ -118,7 +119,6 @@ class HomeScreen extends StatelessWidget {
             builder: (_) => StatsScreen(
               enemiesBloc: context.read<EnemiesBloc>(),
               stack: stackModel,
-              defaultStats: unitStats,
             ),
           ),
         );
