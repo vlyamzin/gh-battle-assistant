@@ -6,66 +6,40 @@ part of 'unit_raw_data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) {
-  return UnitRawData(
-    _$enumDecode(_$UnitTypeEnumMap, json['id']),
-    json['name'] as String,
-    json['maxNumber'] as int,
-    (json['actions'] as List<dynamic>)
-        .map((e) => UnitRawAction.fromJson(e as Map<String, dynamic>))
-        .toList(),
-    (json['stats'] as Map<String, dynamic>).map(
-      (k, e) => MapEntry(
-          k,
-          (e as Map<String, dynamic>).map(
-            (k, e) => MapEntry(_$enumDecode(_$UnitNormalityEnumMap, k),
-                UnitRawStats.fromJson(e as Map<String, dynamic>)),
-          )),
-    ),
-  );
-}
+UnitRawData _$UnitRawDataFromJson(Map<String, dynamic> json) => UnitRawData(
+      $enumDecode(_$UnitTypeEnumMap, json['id']),
+      json['name'] as String,
+      json['maxNumber'] as int,
+      (json['actions'] as List<dynamic>)
+          .map((e) => UnitRawAction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      (json['stats'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            k,
+            (e as Map<String, dynamic>).map(
+              (k, e) => MapEntry($enumDecode(_$UnitNormalityEnumMap, k),
+                  UnitRawStats.fromJson(e as Map<String, dynamic>)),
+            )),
+      ),
+      json['flying'] as bool? ?? false,
+    );
 
 Map<String, dynamic> _$UnitRawDataToJson(UnitRawData instance) =>
     <String, dynamic>{
       'id': _$UnitTypeEnumMap[instance.id],
       'name': instance.name,
+      'flying': instance.flying,
       'maxNumber': instance.maxNumber,
       'stats': instance.stats.map((k, e) =>
           MapEntry(k, e.map((k, e) => MapEntry(_$UnitNormalityEnumMap[k], e)))),
       'actions': instance.actions,
     };
 
-K _$enumDecode<K, V>(
-  Map<K, V> enumValues,
-  Object? source, {
-  K? unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError(
-      'A value must be provided. Supported values: '
-      '${enumValues.values.join(', ')}',
-    );
-  }
-
-  return enumValues.entries.singleWhere(
-    (e) => e.value == source,
-    orElse: () {
-      if (unknownValue == null) {
-        throw ArgumentError(
-          '`$source` is not one of the supported values: '
-          '${enumValues.values.join(', ')}',
-        );
-      }
-      return MapEntry(unknownValue, enumValues.values.first);
-    },
-  ).key;
-}
-
 const _$UnitTypeEnumMap = {
   UnitType.ancientArtillery: 0,
   UnitType.banditArcher: 1,
   UnitType.banditGuard: 2,
-  UnitType.banditLeader: 3,
+  UnitType.banditCommander: 3,
   UnitType.blackImp: 4,
   UnitType.caveBear: 5,
   UnitType.cityArcher: 6,
@@ -98,10 +72,10 @@ const _$UnitTypeEnumMap = {
   UnitType.rendingDrake: 33,
   UnitType.savassIcestorm: 34,
   UnitType.savassLavaflow: 35,
-  UnitType.spiritDrake: 36,
+  UnitType.spittingDrake: 36,
   UnitType.stoneGolem: 37,
   UnitType.sunDemon: 38,
-  UnitType.bertayer: 39,
+  UnitType.betrayer: 39,
   UnitType.colorless: 40,
   UnitType.gloom: 41,
   UnitType.sightlessEye: 42,

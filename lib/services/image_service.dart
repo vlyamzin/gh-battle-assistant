@@ -1,8 +1,8 @@
-import 'package:gh_battle_assistant/models/enums/activity_type.dart';
-import 'package:gh_battle_assistant/models/enums/unit_normality.dart';
-import 'package:gh_battle_assistant/models/enums/unit_type.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
+import 'package:gh_battle_assistant/common/enums/unit_type.dart';
 
-enum IconSize { s32, s64, s128 }
+enum IconSize { s32, s64 }
 
 class ImageService {
   static const unitImageBaseUrl = 'assets/unit_images/';
@@ -11,6 +11,10 @@ class ImageService {
   static const mainBackground = 'assets/images/home_bg.png';
   static const headerBackground = 'assets/images/header_bg.jpg';
   static const cardBackground = 'assets/images/ability_front_2.jpg';
+  static const actionCardBackground = 'assets/images/action_front.png';
+  static const actionCardBackgroundLeftPart =
+      'assets/images/action_front_left_part.png';
+  static const initiativeBackground = 'assets/images/initiative_bg.png';
 
   static final _unitImageMap = <UnitType, String>{
     UnitType.ancientArtillery:
@@ -19,7 +23,7 @@ class ImageService {
         '${ImageService.unitImageBaseUrl}Bandit-Archer-214x300.jpg',
     UnitType.banditGuard:
         '${ImageService.unitImageBaseUrl}Bandit-Guard-214x300.jpg',
-    UnitType.banditLeader:
+    UnitType.banditCommander:
         '${ImageService.unitImageBaseUrl}Bandit-Leader-214x300.jpg',
     UnitType.blackImp: '${ImageService.unitImageBaseUrl}Black-Imp-214x300.jpg',
     UnitType.caveBear: '${ImageService.unitImageBaseUrl}Cave-Bear-214x300.jpg',
@@ -76,12 +80,12 @@ class ImageService {
         '${ImageService.unitImageBaseUrl}Savvas-Icestorm-214x300.jpg',
     UnitType.savassLavaflow:
         '${ImageService.unitImageBaseUrl}Savvas-Lavaflow-214x300.jpg',
-    UnitType.spiritDrake:
+    UnitType.spittingDrake:
         '${ImageService.unitImageBaseUrl}Spitting-Drake-214x300.jpg',
     UnitType.stoneGolem:
         '${ImageService.unitImageBaseUrl}Stone-Golem-214x300.jpg',
     UnitType.sunDemon: '${ImageService.unitImageBaseUrl}Sun-Demon-214x300.jpg',
-    UnitType.bertayer:
+    UnitType.betrayer:
         '${ImageService.unitImageBaseUrl}The-Bertayer-214x300.jpg',
     UnitType.colorless:
         '${ImageService.unitImageBaseUrl}The-Colorless-214x300.jpg',
@@ -164,45 +168,215 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Living_Spirit_elite_256.png',
     },
-    // UnitType.banditLeader: '${ImageService.unitIconBaseUrl}Bandit-Leader-214x300.jpg',
-    // UnitType.blackImp: '${ImageService.unitIconBaseUrl}Black-Imp-214x300.jpg',
-    // UnitType.caveBear: '${ImageService.unitIconBaseUrl}Cave-Bear-214x300.jpg',
-    // UnitType.cityArcher: '${ImageService.unitIconBaseUrl}City-Archer-214x300.jpg',
-    // UnitType.cityGuard: '${ImageService.unitIconBaseUrl}City-Guard-214x300.jpg',
-    // UnitType.darkRider: '${ImageService.unitIconBaseUrl}Dark-Rider-small-214x300.jpg',
-    // UnitType.deepTerror: '${ImageService.unitIconBaseUrl}Deep-Terror-214x300.jpg',
-    // UnitType.earthDemon: '${ImageService.unitIconBaseUrl}Earth-Demon-214x300.jpg',
-    // UnitType.elderDrake: '${ImageService.unitIconBaseUrl}Elder-Drake-214x300.jpg',
-    // UnitType.flameDemon: '${ImageService.unitIconBaseUrl}Flame-Demon-214x300.jpg',
-    // UnitType.forestImp: '${ImageService.unitIconBaseUrl}Forest-Sprite-214x300.jpg',
-    // UnitType.frostDemon: '${ImageService.unitIconBaseUrl}Frost-Demon-214x300.jpg',
-    // UnitType.giantViper: '${ImageService.unitIconBaseUrl}Giant-Viper-214x300.jpg',
-    // UnitType.guardCaptain: '${ImageService.unitIconBaseUrl}Guard-Captain-214x300.jpg',
-    // UnitType.harrowerInfester: '${ImageService.unitIconBaseUrl}Harrower-Infester-214x300.jpg',
-    // UnitType.hound: '${ImageService.unitIconBaseUrl}Hound-214x300.jpg',
-    // UnitType.inoxArcher: '${ImageService.unitIconBaseUrl}Inox-Archer-214x300.jpg',
-    // UnitType.inoxBodyguard: '${ImageService.unitIconBaseUrl}Inox-Bodyguard-214x300.jpg',
-    // UnitType.inoxGuard: '${ImageService.unitIconBaseUrl}Inox-Guard-214x300.jpg',
-    // UnitType.inoxShaman: '${ImageService.unitIconBaseUrl}Inox-Shaman-214x300.jpg',
-    // UnitType.livingSpirit: '${ImageService.unitIconBaseUrl}Ghost-214x300.jpg',
-    // UnitType.lurker: '${ImageService.unitIconBaseUrl}Lurker-214x300.jpg',
-    // UnitType.mercilessOverseer: '${ImageService.unitIconBaseUrl}Merciless-Overseer-214x300.jpg',
-    // UnitType.ooze: '${ImageService.unitIconBaseUrl}Ooze-214x300.jpg',
-    // UnitType.primeDemon: '${ImageService.unitIconBaseUrl}Prime-Demon-214x300.jpg',
-    // UnitType.rendingDrake: '${ImageService.unitIconBaseUrl}Vicious-Drake-214x300.jpg',
-    // UnitType.savassIcestorm: '${ImageService.unitIconBaseUrl}Savvas-Icestorm-214x300.jpg',
-    // UnitType.savassLavaflow: '${ImageService.unitIconBaseUrl}Savvas-Lavaflow-214x300.jpg',
-    // UnitType.spiritDrake: '${ImageService.unitIconBaseUrl}Spitting-Drake-214x300.jpg',
-    // UnitType.stoneGolem: '${ImageService.unitIconBaseUrl}Stone-Golem-214x300.jpg',
-    // UnitType.sunDemon: '${ImageService.unitIconBaseUrl}Sun-Demon-214x300.jpg',
-    // UnitType.bertayer: '${ImageService.unitIconBaseUrl}The-Bertayer-214x300.jpg',
-    // UnitType.colorless: '${ImageService.unitIconBaseUrl}The-Colorless-214x300.jpg',
-    // UnitType.gloom: '${ImageService.unitIconBaseUrl}The-Gloom-214x300.jpg',
-    // UnitType.sightlessEye: '${ImageService.unitIconBaseUrl}The-Sightless-Eye-214x300.jpg',
-    // UnitType.vermlingScout: '${ImageService.unitIconBaseUrl}Vermling-Scout-214x300.jpg',
-    // UnitType.vermlingShaman: '${ImageService.unitIconBaseUrl}Vermling-Shaman-214x300.jpg',
-    // UnitType.windDemon: '${ImageService.unitIconBaseUrl}Wind-Demon-214x300.jpg',
-    // UnitType.wingedHorror: '${ImageService.unitIconBaseUrl}Winged-Horror-214x300.jpg',
+    UnitType.caveBear: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Cave_Bear_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Cave_Bear_elite_256.png',
+    },
+    UnitType.frostDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Frost_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Frost_Demon_elite_256.png',
+    },
+    UnitType.harrowerInfester: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Harrower_Infester_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Harrower_Infester_elite_256.png',
+    },
+    UnitType.cityGuard: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}City_Guard_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}City_Guard_elite_256.png',
+    },
+    UnitType.cityArcher: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}City_Archer_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}City_Archer_elite_256.png',
+    },
+    UnitType.inoxGuard: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Guard_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Guard_elite_256.png',
+    },
+    UnitType.inoxArcher: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Archer_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Archer_elite_256.png',
+    },
+    UnitType.vermlingScout: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Vermling_Scout_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Vermling_Scout_elite_256.png',
+    },
+    UnitType.vermlingShaman: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Vermling_Shaman_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Vermling_Shaman_elite_256.png',
+    },
+    UnitType.flameDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Flame_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Flame_Demon_elite_256.png',
+    },
+    UnitType.earthDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Earth_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Earth_Demon_elite_256.png',
+    },
+    UnitType.windDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Wind_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Wind_Demon_elite_256.png',
+    },
+    UnitType.sunDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Sun_Demon_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Sun_Demon_elite_256.png',
+    },
+    UnitType.forestImp: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Forest_Imp_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Forest_Imp_elite_256.png',
+    },
+    UnitType.hound: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Hound_normal_256.png',
+      UnitNormality.elite: '${ImageService.unitIconBaseUrl}Hound_elite_256.png',
+    },
+    UnitType.stoneGolem: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Stone_Golem_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Stone_Golem_elite_256.png',
+    },
+    UnitType.rendingDrake: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Rending_Drake_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Rending_Drake_elite_256.png',
+    },
+    UnitType.blackImp: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Black_Imp_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Black_Imp_elite_256.png',
+    },
+    UnitType.deepTerror: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Deep_Terror_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Deep_Terror_elite_256.png',
+    },
+    UnitType.lurker: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Lurker_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Lurker_elite_256.png',
+    },
+    UnitType.savassIcestorm: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Savvas_Icestorm_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Savvas_Icestorm_elite_256.png',
+    },
+    UnitType.savassLavaflow: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Savvas_Lavaflow_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Savvas_Lavaflow_elite_256.png',
+    },
+    UnitType.spittingDrake: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Spitting_Drake_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Spitting_Drake_elite_256.png',
+    },
+    UnitType.banditCommander: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Bandit_Commander_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Bandit_Commander_boss_256.png',
+    },
+    UnitType.mercilessOverseer: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Merciless_Overseer_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Merciless_Overseer_boss_256.png',
+    },
+    UnitType.inoxBodyguard: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Bodyguard_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Bodyguard_boss_256.png',
+    },
+    UnitType.guardCaptain: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Guard_Captain_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Guard_Captain_boss_256.png',
+    },
+    UnitType.primeDemon: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Prime_Demon_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Prime_Demon_boss_256.png',
+    },
+    UnitType.elderDrake: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Elder_Drake_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Elder_Drake_boss_256.png',
+    },
+    UnitType.betrayer: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}The_Betrayer_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}The_Betrayer_boss_256.png',
+    },
+    UnitType.colorless: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}The_Colorless_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}The_Colorless_boss_256.png',
+    },
+    UnitType.sightlessEye: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}The_Sightless_Eye_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}The_Sightless_Eye_boss_256.png',
+    },
+    UnitType.darkRider: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Dark_Rider_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Dark_Rider_boss_256.png',
+    },
+    UnitType.wingedHorror: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Winged_Horror_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Winged_Horror_boss_256.png',
+    },
+    UnitType.gloom: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}The_Gloom_boss_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}The_Gloom_boss_256.png',
+    }
   };
 
   static final _iconsMap32 = <String, String>{
@@ -259,6 +433,9 @@ class ImageService {
     '4pgv2': '$iconsBaseUrl/area/4_points_grey_v2.png',
     '6lg': '$iconsBaseUrl/area/6_line_grey.png',
     '6pg': '$iconsBaseUrl/area/6_points_grey.png',
+    '10p': '$iconsBaseUrl/area/10_points.png',
+    '10pv2': '$iconsBaseUrl/area/10_points_v2.png',
+    '16p': '$iconsBaseUrl/area/16_points.png',
   };
 
   static final _iconsMap64 = <String, String>{
@@ -305,34 +482,6 @@ class ImageService {
     'xp': '$iconsBaseUrl/64/xp_64.png',
   };
 
-  // TODO remove as unused [99a4863a801df53df73aa20aa2fcab52]
-  final _iconsMap128 = <String, String>{
-    'ae': '$iconsBaseUrl/128/all_elements_128.png',
-    'atk': '$iconsBaseUrl/128/attack_128.png',
-    'dark': '$iconsBaseUrl/128/dark_128.png',
-    'fire': '$iconsBaseUrl/128/fire_128.png',
-    'frost': '$iconsBaseUrl/128/frost_128.png',
-    'heal': '$iconsBaseUrl/128/heal_128.png',
-    'ha': '$iconsBaseUrl/128/hit_area_128.png',
-    'jmp': '$iconsBaseUrl/128/jump_128.png',
-    'leaf': '$iconsBaseUrl/128/leaf_128.png',
-    'light': '$iconsBaseUrl/128/light_128.png',
-    'lt': '$iconsBaseUrl/128/loot_128.png',
-    'mv': '$iconsBaseUrl/128/move_128.png',
-    'nha': '$iconsBaseUrl/128/neutral_hit_area_128.png',
-    'ndark': '$iconsBaseUrl/128/no_dark.png',
-    'ne': '$iconsBaseUrl/128/no_elements_128.png',
-    'nfire': '$iconsBaseUrl/128/no_fire_128.png',
-    'nfrost': '$iconsBaseUrl/128/no_frost_128.png',
-    'nleaf': '$iconsBaseUrl/128/no_leaf_128.png',
-    'nlight': '$iconsBaseUrl/128/no_light_128.png',
-    'nwind': '$iconsBaseUrl/128/no_wind_128.png',
-    'rng': '$iconsBaseUrl/128/range_128.png',
-    'rtlt': '$iconsBaseUrl/128/retaliate_128.png',
-    'shld': '$iconsBaseUrl/128/shield_128.png',
-    'wind': '$iconsBaseUrl/128/wind_128.png',
-  };
-
   final _attackEffects32 = {
     ActivityType.attack: ImageService._iconsMap32['atk']!,
     ActivityType.heal: ImageService._iconsMap32['heal']!,
@@ -350,10 +499,7 @@ class ImageService {
     ActivityType.invisible: ImageService._iconsMap32['inv']!,
     ActivityType.pull: ImageService._iconsMap32['pull']!,
     ActivityType.push: ImageService._iconsMap32['push']!,
-    ActivityType.target_2: ImageService._iconsMap32['trgt']!,
-    ActivityType.target_3: ImageService._iconsMap32['trgt']!,
-    ActivityType.target_4: ImageService._iconsMap32['trgt']!,
-    ActivityType.target_all: ImageService._iconsMap32['trgt']!,
+    ActivityType.target: ImageService._iconsMap32['trgt']!,
   };
 
   final _attackEffects64 = {
@@ -373,10 +519,7 @@ class ImageService {
     ActivityType.invisible: ImageService._iconsMap64['inv']!,
     ActivityType.pull: ImageService._iconsMap64['pull']!,
     ActivityType.push: ImageService._iconsMap64['push']!,
-    ActivityType.target_2: ImageService._iconsMap64['trgt']!,
-    ActivityType.target_3: ImageService._iconsMap64['trgt']!,
-    ActivityType.target_4: ImageService._iconsMap64['trgt']!,
-    ActivityType.target_all: ImageService._iconsMap64['trgt']!,
+    ActivityType.target: ImageService._iconsMap64['trgt']!,
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';
@@ -400,10 +543,6 @@ class ImageService {
       case IconSize.s64:
         {
           return _iconsMap64[key] ?? '';
-        }
-      case IconSize.s128:
-        {
-          return _iconsMap128[key] ?? '';
         }
     }
   }

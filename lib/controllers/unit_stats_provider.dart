@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:gh_battle_assistant/back/unit_raw_stats.dart';
-import 'package:gh_battle_assistant/controllers/home_screen_provider.dart';
-import 'package:gh_battle_assistant/models/enums/activity_type.dart';
-import 'package:gh_battle_assistant/models/enums/modifier_type.dart';
-import 'package:gh_battle_assistant/models/unit.dart';
+import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/modifier_type.dart';
+import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 
 import '../di.dart';
@@ -12,7 +11,9 @@ typedef DefaultStats = UnitRawStats;
 
 /// Controller that is responsible for [StatsScreen] business logic and other manipulations
 /// Implements [ChangeNotifier] Provider
-class UnitStatsProvider with ChangeNotifier {
+/// This class is deprecated and left only for reference
+@deprecated
+class UnitStatsProvider {
   final Unit unit;
   final DefaultStats defaultStats;
   final Map<ModifierType, int> modifiers;
@@ -73,10 +74,9 @@ class UnitStatsProvider with ChangeNotifier {
   MapEntry<ActivityType, String> selectedActivity = defaultActivities.entries
       .firstWhere((activity) => activity.key == ActivityType.attack);
 
-  /// Store files locally via [HomeScreenProvider]
   /// and notify listeners of Provider about changes
   void save() {
-    di<HomeScreenProvider>().saveToStorage().then((_) => notifyListeners());
+    // di<HomeScreenProvider>().saveToStorage().then((_) => notifyListeners());
   }
 
   /// Return List of activities that are not blocked by unit immunity
@@ -88,14 +88,11 @@ class UnitStatsProvider with ChangeNotifier {
       ActivityType.push,
       ActivityType.bless,
       ActivityType.curse,
-      ActivityType.target_2,
-      ActivityType.target_3,
-      ActivityType.target_4,
-      ActivityType.target_all,
+      ActivityType.target,
     ];
     return defaultActivities.entries.where(
       (activity) =>
-          !unit.immune!.contains(activity.key) &&
+          !unit.immune.contains(activity.key) &&
           !exclude.contains(activity.key),
     );
   }
@@ -103,17 +100,16 @@ class UnitStatsProvider with ChangeNotifier {
   /// Return List of immune [Effect]
   /// This list is rendered in 'Immune to' section of [UnitStatsCard]
   List<Effect?> get immuneEffects {
-    return unit.immune != null
-        ? unit.immune!.map((e) => Effect(e, defaultActivities[e]!)).toList()
-        : [];
+    return unit.immune.map((e) => Effect(e, defaultActivities[e]!)).toList();
   }
 
   /// Return List of attack [Effect]
   /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
   List<Effect?> get attackEffects {
-    return unit.perks != null
-        ? unit.perks!.map((p) => Effect(p, defaultActivities[p]!)).toList()
-        : [];
+    return unit.perks.map((p) {
+      var perkValue = unit.perkValue.containsKey(p) ? unit.perkValue[p] : null;
+      Effect(p, defaultActivities[p]!, perkValue);
+    }).toList();
   }
 
   /// Return List of area images as path to assets
@@ -128,12 +124,10 @@ class UnitStatsProvider with ChangeNotifier {
   bool get isUnitDead => unit.healthPoint <= 0;
 
   /// Check if unit has Poison [ActivityType]
-  bool get isPoisoned =>
-      unit.negativeEffects?.contains(ActivityType.poison) ?? false;
+  bool get isPoisoned => unit.negativeEffects.contains(ActivityType.poison);
 
   /// Check if unit has Wound [ActivityType]
-  bool get isWounded =>
-      unit.negativeEffects?.contains(ActivityType.wound) ?? false;
+  bool get isWounded => unit.negativeEffects.contains(ActivityType.wound);
 
   /// Check if unit has Pierce [ActivityType]
   bool get isPierced => unit.pierced > 0;
@@ -142,7 +136,7 @@ class UnitStatsProvider with ChangeNotifier {
   void selectActivity(MapEntry<ActivityType, String> activity) {
     selectedActivity = activity;
     _counter = 0;
-    notifyListeners();
+    // notifyListeners();
   }
 
   /// Increase activity status
@@ -153,7 +147,7 @@ class UnitStatsProvider with ChangeNotifier {
     } else {
       _counter = 1;
     }
-    notifyListeners();
+    // notifyListeners();
   }
 
   /// Decrease activity status
@@ -163,19 +157,19 @@ class UnitStatsProvider with ChangeNotifier {
     } else {
       _counter = -1;
     }
-    notifyListeners();
+    // notifyListeners();
   }
 
   /// Apply [_counter] value for selected activity
   void applyActivity() {
     _activityHandlers[selectedActivity.key]!(_counter);
     _counter = 0;
-    notifyListeners();
+    // notifyListeners();
   }
 
   void endTurn() {
-    unit.applyNegativeEffects();
-    unit.turnEnded = true;
+    unit.applyOldActionEffects();
+    // unit.turnEnded = true;
     _setupActiveEffects();
     save();
   }
@@ -183,8 +177,7 @@ class UnitStatsProvider with ChangeNotifier {
   /// Get a list of negative effects activated on a unit
   void _setupActiveEffects() {
     this.activeEffects = Set.from(
-        unit.negativeEffects?.map((e) => Effect(e, defaultActivities[e]!)) ??
-            {});
+        unit.negativeEffects.map((e) => Effect(e, defaultActivities[e]!)));
   }
 
   /// Regular attack activity.
@@ -228,37 +221,37 @@ class UnitStatsProvider with ChangeNotifier {
   ///   damage = 3 + 0 - (1 - 2) = 4
   ///   healthPoint = 5 - 4 = 1
   void _attack(int value) {
-    var damagedShield = unit.shield - unit.pierced;
+    // var damagedShield = unit.shield - unit.pierced;
 
-    while (damagedShield > 0 && value > 0) {
-      damagedShield--;
-      value--;
-    }
+    // while (damagedShield > 0 && value > 0) {
+    //   damagedShield--;
+    //   value--;
+    // }
 
-    if (damagedShield >= 0)
-      unit.shield = damagedShield + unit.pierced;
-    else
-      value += -damagedShield;
+    // if (damagedShield >= 0)
+    //   unit.shield = damagedShield + unit.pierced;
+    // else
+    //   value += -damagedShield;
 
-    unit.healthPoint -= value;
-    unit.pierced = 0;
+    // unit.healthPoint -= value;
+    // unit.pierced = 0;
 
-    save();
+    // save();
   }
 
   /// Heal activity
   /// Works opposite to suffer damage activity
   /// Increases the number of [Unit] health point
   void _heal(int value) {
-    _toggleEffect(-1, ActivityType.wound);
+    // _toggleEffect(-1, ActivityType.wound);
 
-    if (isPoisoned) {
-      _toggleEffect(-1, ActivityType.poison);
-      return;
-    }
+    // if (isPoisoned) {
+    //   _toggleEffect(-1, ActivityType.poison);
+    //   return;
+    // }
 
-    unit.healthPoint += value;
-    save();
+    // unit.healthPoint += value;
+    // save();
   }
 
   /// Suffer damage activity
@@ -266,8 +259,8 @@ class UnitStatsProvider with ChangeNotifier {
   /// Decreases the number of [Unit] health point
   /// Ignores [Unit] shield
   void _sufferDamage(int value) {
-    if (!isUnitDead) unit.healthPoint -= value;
-    save();
+    // if (!isUnitDead) unit.healthPoint -= value;
+    // save();
   }
 
   /// Piece attack activity
@@ -276,10 +269,10 @@ class UnitStatsProvider with ChangeNotifier {
   /// Refreshes after the end of round
   void _pierceAttack(int value) {
     // unit.negativeEffects?.add(ActivityType.pierce);
-    unit.pierced = value;
+    // unit.pierced = value;
     // if (unit.shield != null && unit.shield! > 0)
     //   unit.shield = unit.shield! - value;
-    save();
+    // save();
   }
 
   void _poisonAttack(int value) => _toggleEffect(value, ActivityType.poison);
@@ -287,26 +280,26 @@ class UnitStatsProvider with ChangeNotifier {
   void _woundAttack(int value) => _toggleEffect(value, ActivityType.wound);
 
   void _disarm(int value) {
-    if (value > 0) {
-      unit.attack = 0;
-    } else {
-      if (defaultStats.attack != null) {
-        unit.attack =
-            defaultStats.attack! + (modifiers[ModifierType.attack] ?? 0);
-      }
-    }
-    _toggleEffect(value, ActivityType.disarm);
+    // if (value > 0) {
+    //   unit.attack = 0;
+    // } else {
+    //   if (defaultStats.attack != null) {
+    //     unit.attack =
+    //         defaultStats.attack! + (modifiers[ModifierType.attack] ?? 0);
+    //   }
+    // }
+    // _toggleEffect(value, ActivityType.disarm);
   }
 
   void _immobilize(int value) {
-    if (value > 0) {
-      unit.move = 0;
-    } else {
-      if (defaultStats.move != null) {
-        unit.move = defaultStats.move! + (modifiers[ModifierType.move] ?? 0);
-      }
-    }
-    _toggleEffect(value, ActivityType.immobilize);
+    // if (value > 0) {
+    //   unit.move = 0;
+    // } else {
+    //   if (defaultStats.move != null) {
+    //     unit.move = defaultStats.move! + (modifiers[ModifierType.move] ?? 0);
+    //   }
+    // }
+    // _toggleEffect(value, ActivityType.immobilize);
   }
 
   void _stun(int value) => _toggleEffect(value, ActivityType.stun);
@@ -323,52 +316,17 @@ class UnitStatsProvider with ChangeNotifier {
         ...activeEffects,
         Effect(effectType, defaultActivities[effectType]!)
       };
-      unit.negativeEffects?.add(effectType);
+      unit.negativeEffects.add(effectType);
     } else if (value < 0) {
       // hack for Provider.Selector
       activeEffects = {...activeEffects};
       activeEffects.remove(
         Effect(effectType, defaultActivities[effectType]!),
       );
-      unit.negativeEffects?.remove(effectType);
+      unit.negativeEffects.remove(effectType);
     }
 
     save();
-    notifyListeners();
-  }
-}
-
-// TODO Move into a separate file in model/ folder [069640eea5965a350fea04bebaceedb9]
-typedef EffectMap = Map<ActivityType, String>;
-typedef EffectMapEntry = MapEntry<ActivityType, String>;
-
-class Effect {
-  final ActivityType type;
-  final String iconShortcut;
-  String label = '';
-
-  Effect(this.type, this.iconShortcut) {
-    _parseTargetType();
-  }
-
-  @override
-  int get hashCode => type.hashCode;
-
-  @override
-  bool operator ==(dynamic other) {
-    if (other is! Effect) return false;
-    Effect effect = other;
-    return type == effect.type;
-  }
-
-  void _parseTargetType() {
-    if (type == ActivityType.target_2 ||
-        type == ActivityType.target_3 ||
-        type == ActivityType.target_4 ||
-        type == ActivityType.target_all) {
-      var str = type.toString();
-      var list = str.split('_');
-      label = list[1].toUpperCase();
-    }
+    // notifyListeners();
   }
 }

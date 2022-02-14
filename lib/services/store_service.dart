@@ -18,8 +18,6 @@ class StoreService {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
-    // print('Store path: ${directory.path}');
-
     return directory.path;
   }
 
