@@ -500,6 +500,7 @@ class ImageService {
     ActivityType.pull: ImageService._iconsMap32['pull']!,
     ActivityType.push: ImageService._iconsMap32['push']!,
     ActivityType.target: ImageService._iconsMap32['trgt']!,
+    ActivityType.shield: ImageService._iconsMap32['shld']!,
   };
 
   final _attackEffects64 = {
@@ -520,6 +521,7 @@ class ImageService {
     ActivityType.pull: ImageService._iconsMap64['pull']!,
     ActivityType.push: ImageService._iconsMap64['push']!,
     ActivityType.target: ImageService._iconsMap64['trgt']!,
+    ActivityType.shield: ImageService._iconsMap64['shld']!,
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';

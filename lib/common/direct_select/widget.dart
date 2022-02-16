@@ -150,8 +150,12 @@ class DirectSelectState<T extends DirectSelect> extends State<T> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onVerticalDragStart: (_) => createOverlay(),
+      behavior: HitTestBehavior.opaque,
+      onDoubleTap: () => null,
+      onTapDown: (_) => createOverlay(),
+      onTapUp: (_) => removeOverlay(),
       onVerticalDragEnd: (_) => removeOverlay(),
+      onHorizontalDragEnd: (_) => removeOverlay(),
       onVerticalDragUpdate: (details) => _controller!.hasScrollPositions
           ? _controller!.jumpTo(_controller!.offset - details.primaryDelta!)
           : null,

@@ -170,7 +170,7 @@ class Unit extends Equatable with ActionTypeSerializer {
     });
 
     var updated = _applySuffer()
-        ._applyHeal()
+        ._healedFromAction()
         .copyWith(negativeEffects: updatedEffects, pierced: 0);
 
     return updated;
@@ -213,9 +213,86 @@ class Unit extends Equatable with ActionTypeSerializer {
       perkValue: {...perkValue, ...newPerkValue},
       area: area + newArea,
       healthPoint:
-          _hasEffect(ActivityType.wound) ? (healthPoint - 1) : healthPoint,
+          hasEffect(ActivityType.wound) ? (healthPoint - 1) : healthPoint,
     );
   }
+
+  /// Apply the amount of damage from the user action via [ActivitySelector]
+  Unit applyDamage(int value) {
+    if (shield > 0) {
+      if (pierced > shield) {
+        return copyWith(healthPoint: _changeHealth(value), pierced: 0);
+      } else {
+        var brokenShield = shield - pierced;
+        var pureDamage = value - brokenShield;
+        return copyWith(healthPoint: _changeHealth(pureDamage), pierced: 0);
+      }
+    } else {
+      return copyWith(healthPoint: _changeHealth(value), pierced: 0);
+    }
+  }
+
+  /// Apply the amount of heal from the user action via [ActivitySelector]
+  Unit applyHeal(int value) {
+    return copyWith(
+      negativeEffects: _removeNegativeEffect(
+          negativeEffects, {ActivityType.poison, ActivityType.wound}),
+      healthPoint: _changeHealth(-value),
+    );
+  }
+
+  /// Apply the amount of pure damage (ignoring shield) from the user action via [ActivitySelector]
+  Unit applySuffer(int value) {
+    return copyWith(
+      healthPoint: _changeHealth(value),
+    );
+  }
+
+  /// Apply the amount of damage to the shield from the user action via [ActivitySelector]
+  Unit applyPierce(int value) {
+    return copyWith(
+      pierced: _positiveSubtraction(pierced, -value),
+    );
+  }
+
+  /// Add the value to the shield parameter from the user action via [ActivitySelector]
+  Unit applyShield(int value) {
+    return copyWith(shield: shield + value);
+  }
+
+  /// Toggle poison effect from the user action via [ActivitySelector]
+  Unit addPoison(bool status) =>
+      _toggleNegativeEffect(ActivityType.poison, status);
+
+  /// Toggle wound effect from the user action via [ActivitySelector]
+  Unit addWound(bool status) =>
+      _toggleNegativeEffect(ActivityType.wound, status);
+
+  /// Toggle disarm effect from the user action via [ActivitySelector]
+  Unit addDisarm(bool status) =>
+      _toggleNegativeEffect(ActivityType.disarm, status);
+
+  /// Toggle stun effect from the user action via [ActivitySelector]
+  Unit addStun(bool status) => _toggleNegativeEffect(ActivityType.stun, status);
+
+  /// Toggle muddle effect from the user action via [ActivitySelector]
+  Unit addMuddle(bool status) =>
+      _toggleNegativeEffect(ActivityType.muddle, status);
+
+  /// Toggle strengthen effect from the user action via [ActivitySelector]
+  Unit addStrengthen(bool status) =>
+      _toggleNegativeEffect(ActivityType.strengthen, status);
+
+  /// Toggle immobilize effect from the user action via [ActivitySelector]
+  Unit addImmobilize(bool status) =>
+      _toggleNegativeEffect(ActivityType.immobilize, status);
+
+  /// Toggle invisible effect from the user action via [ActivitySelector]
+  Unit addInvisible(bool status) =>
+      _toggleNegativeEffect(ActivityType.invisible, status);
+
+  /// Check if unit has active negative effect
+  bool hasEffect(ActivityType type) => negativeEffects.contains(type) == true;
 
   // Unit _applyWound() {
   //   if (_hasEffect(ActivityType.wound))
@@ -228,10 +305,11 @@ class Unit extends Equatable with ActionTypeSerializer {
     return copyWith(healthPoint: healthPoint - suffer, suffer: 0);
   }
 
-  Unit _applyHeal() {
+  /// Apply heal if it was present in [UnitAction] card
+  Unit _healedFromAction() {
     if (heal == 0) return this;
 
-    if (_hasEffect(ActivityType.poison))
+    if (hasEffect(ActivityType.poison))
       return copyWith(
         negativeEffects: _removeNegativeEffect(
             negativeEffects, {ActivityType.poison, ActivityType.wound}),
@@ -249,12 +327,15 @@ class Unit extends Equatable with ActionTypeSerializer {
     }
   }
 
-  Set<ActivityType> _removeNegativeEffect(
+  static Set<ActivityType> _addNegativeEffect(
+      Set<ActivityType> original, Set<ActivityType> toAdd) {
+    return original.union(toAdd);
+  }
+
+  static Set<ActivityType> _removeNegativeEffect(
       Set<ActivityType> original, Set<ActivityType> toRemove) {
     return original.difference(toRemove);
   }
-
-  bool _hasEffect(ActivityType type) => negativeEffects.contains(type) == true;
 
   /// Make special calculation for mandatory stats such as attack and move,
   /// If one of mentioned stats is null then it means that the whole related action
@@ -279,6 +360,23 @@ class Unit extends Equatable with ActionTypeSerializer {
       return prevValue + newValue;
     else
       return newValue;
+  }
+
+  /// Health points can not be bigger than the maximum value
+  /// This method validate this rule
+  int _changeHealth(int value) {
+    final newValue = _positiveSubtraction(healthPoint, value);
+    return newValue > maxHealthPoint ? maxHealthPoint : newValue;
+  }
+
+  int _positiveSubtraction(int a, int b) => a - b < 0 ? 0 : a - b;
+
+  Unit _toggleNegativeEffect(ActivityType type, bool status) {
+    return copyWith(
+      negativeEffects: status
+          ? _addNegativeEffect(negativeEffects, {type})
+          : _removeNegativeEffect(negativeEffects, {type}),
+    );
   }
 
   @override

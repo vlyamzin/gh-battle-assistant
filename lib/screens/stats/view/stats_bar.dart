@@ -40,6 +40,9 @@ class _Stats extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: BlocBuilder<UnitCubit, UnitState>(
+        buildWhen: (prevState, curState) {
+          return prevState.unit != curState.unit;
+        },
         builder: (context, state) {
           return state.when(ready: (unit, _) {
             return Column(

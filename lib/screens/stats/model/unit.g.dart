@@ -92,4 +92,5 @@ const _$ActivityTypeEnumMap = {
   ActivityType.invisible: 'invisible',
   ActivityType.advantage: 'advantage',
   ActivityType.disadvantage: 'disadvantage',
+  ActivityType.shield: 'shield',
 };

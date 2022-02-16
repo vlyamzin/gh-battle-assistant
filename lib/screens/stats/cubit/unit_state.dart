@@ -1,11 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:gh_battle_assistant/screens/stats/model/user_action.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 
 part 'unit_state.freezed.dart';
 
 @freezed
 class UnitState with _$UnitState {
-  const factory UnitState.ready(Unit unit, [Effect? selectedActivity]) =
-      _$UnitReady;
+  const factory UnitState.ready(Unit unit, UserAction userAction) = _$UnitReady;
 }

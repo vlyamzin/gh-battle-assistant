@@ -3,6 +3,7 @@ export 'view/unit_stats_card.dart';
 export 'view/active_effects.dart';
 export 'view/activity_button.dart';
 export 'view/activity_selector.dart';
+export 'view/value_selector.dart';
 export 'view/button_bar.dart';
 export 'view/immune_effects.dart';
 export 'view/attack_effects.dart';

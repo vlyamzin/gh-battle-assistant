@@ -74,6 +74,7 @@ const _$ActivityTypeEnumMap = {
   ActivityType.invisible: 'invisible',
   ActivityType.advantage: 'advantage',
   ActivityType.disadvantage: 'disadvantage',
+  ActivityType.shield: 'shield',
 };
 
 GHAction _$GHActionFromJson(Map<String, dynamic> json) => GHAction(

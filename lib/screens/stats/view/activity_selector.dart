@@ -12,8 +12,11 @@ class ActivitySelector extends StatelessWidget {
     final activityEffects = cubit.activityEffects;
 
     return BlocBuilder<UnitCubit, UnitState>(
+      buildWhen: (prev, cur) {
+        return prev.userAction != cur.userAction;
+      },
       builder: (_, state) {
-        return state.when(ready: (unit, selectedActivity) {
+        return state.when(ready: (unit, userAction) {
           return DirectSelect(
             items: activityEffects
                 .map(
@@ -35,7 +38,7 @@ class ActivitySelector extends StatelessWidget {
                   ),
                 )
                 .toList(),
-            selectedIndex: selectedActivity != null ? selectedActivity.id : 0,
+            selectedIndex: userAction.actionType.id,
             onSelectedItemChanged: (i) {
               i = i ?? 0;
               cubit.selectActivityType(activityEffects[i]);
@@ -50,7 +53,7 @@ class ActivitySelector extends StatelessWidget {
                 child: FittedBox(
                   child: Builder(builder: (context) {
                     return EffectIcon(
-                      effect: cubit.selectedActivity,
+                      effect: state.userAction.actionType,
                     );
                   }),
                 ),
