@@ -234,6 +234,11 @@ class Unit extends Equatable with ActionTypeSerializer {
 
   /// Apply the amount of heal from the user action via [ActivitySelector]
   Unit applyHeal(int value) {
+    // poisoned unit health does not change on heal
+    if (hasEffect(ActivityType.poison)) {
+      value = 0;
+    }
+
     return copyWith(
       negativeEffects: _removeNegativeEffect(
           negativeEffects, {ActivityType.poison, ActivityType.wound}),

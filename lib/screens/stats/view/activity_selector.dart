@@ -43,7 +43,9 @@ class ActivitySelector extends StatelessWidget {
               i = i ?? 0;
               cubit.selectActivityType(activityEffects[i]);
             },
-            itemExtent: 35.0,
+            itemExtent: 50.0,
+            height: 170,
+            itemMagnification: 1.25,
             child: SizedBox(
               height: 60,
               child: Container(

@@ -93,7 +93,14 @@ class UnitCubit extends Cubit<UnitState> {
       var type = userAction.actionType.type;
       var value = userAction.value;
       var updatedUnit = _activityHandlers[type]!(value, unit);
-      emit(UnitState.ready(updatedUnit, userAction));
+      var updatedUserAction;
+
+      // swap boolean value for better UX
+      if (value is bool) {
+        updatedUserAction = userAction.copyWith(value: !value);
+      }
+
+      emit(UnitState.ready(updatedUnit, updatedUserAction ?? userAction));
       updatedUnit.healthPoint == 0
           ? onUnitRemoved(unit.number)
           : onStateChanged(updatedUnit);

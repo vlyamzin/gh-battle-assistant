@@ -11,6 +11,7 @@ class ValueSelector extends StatelessWidget {
   static final textStyle = TextStyle(
     color: Colors.black,
     fontFamily: 'Nyala',
+    fontSize: 30,
   );
   const ValueSelector({Key? key}) : super(key: key);
 
@@ -46,7 +47,9 @@ class ValueSelector extends StatelessWidget {
                 cubit.selectActivityValue(i == 0);
               }
             },
-            itemExtent: 35.0,
+            itemExtent: 40.0,
+            height: 170,
+            itemMagnification: 1.25,
             selectedIndex: _getIndex(userAction.value),
           );
         });
@@ -83,7 +86,10 @@ class ValueSelector extends StatelessWidget {
 
   Widget _getValue(dynamic value) {
     if (value is int) {
-      return Text(value.toString());
+      return Text(
+        value.toString(),
+        style: textStyle,
+      );
     } else {
       return value
           ? Text(
