@@ -3975,6 +3975,7 @@
     {
       "name": "Living Spirit",
       "id": 27,
+      "flying": true,
       "maxNumber": 6,
       "stats": {
         "0": {

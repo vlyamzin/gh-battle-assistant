@@ -17,7 +17,7 @@ part 'unit.g.dart';
 class Unit extends Equatable with ActionTypeSerializer {
   final int number;
   final String displayName;
-  final bool? flying;
+  final bool flying;
   final int healthPoint;
   late final int maxHealthPoint;
   final int shield;
@@ -81,7 +81,7 @@ class Unit extends Equatable with ActionTypeSerializer {
 
     return Unit(
       displayName: name,
-      flying: flying,
+      flying: flying ?? false,
       healthPoint: health,
       maxHealthPoint: health,
       number: number,

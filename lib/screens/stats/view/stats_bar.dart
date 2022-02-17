@@ -61,7 +61,12 @@ class _Stats extends StatelessWidget {
                         value: unit.shield.toString(),
                       )
                     : _StatsRecord(text: 'Shield: ${unit.shield}'),
-                _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
+                unit.flying
+                    ? _StatsRecordWithIcon(
+                        label: 'Move: ',
+                        iconPath: di<ImageService>().getIcon('fl'),
+                        value: unit.move.toString())
+                    : _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
                 _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
                 _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
                 _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
