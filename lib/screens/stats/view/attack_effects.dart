@@ -37,7 +37,7 @@ class AttackEffect extends StatelessWidget with TextOutline {
     );
   }
 
-  List<Widget> _attackList(List<Effect?> attackEffectList) {
+  List<Widget> _attackList(Set<Effect?> attackEffectList) {
     return attackEffectList
         .map((e) => Stack(
               children: [

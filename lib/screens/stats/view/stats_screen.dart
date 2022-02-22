@@ -102,10 +102,11 @@ class StatsScreen extends StatelessWidget {
   List<Widget> _cards(BuildContext context, List<Unit> units) {
     return units
         .map(
-          (unit) => BlocProvider<UnitCubit>.value(
+          (unit) => BlocProvider<UnitCubit>(
             key: ValueKey(unit.number),
-            value: UnitCubit(
+            create: (_) => UnitCubit(
               unit: unit,
+              statsCubit: context.read<StatsCubit>(),
               onStateChanged: (newUnit) =>
                   context.read<StatsCubit>().unitChanged(newUnit),
               onUnitRemoved: (unitNumber) =>

@@ -62,12 +62,22 @@ class StatsCubit extends Cubit<StatsState> {
           stack.units.map((u) => u.number == unit.number ? unit : u).toList();
       var updatedStack = stack.copyWith(units: updatedUnits);
       enemiesBloc.add(StackUpdatedE(updatedStack));
+      return updatedStack;
     };
 
     state.when(
-      initial: handler,
-      turnStarted: handler,
-      turnEnded: handler,
+      initial: (stack) {
+        var updatedStack = handler(stack);
+        emit(StatsState.initial(updatedStack));
+      },
+      turnStarted: (stack) {
+        var updatedStack = handler(stack);
+        emit(StatsState.turnStarted(updatedStack));
+      },
+      turnEnded: (stack) {
+        var updatedStack = handler(stack);
+        emit(StatsState.turnEnded(updatedStack));
+      },
       navigateBack: () {},
     );
   }

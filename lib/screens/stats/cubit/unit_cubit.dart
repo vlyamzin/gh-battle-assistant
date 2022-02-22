@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/common/enums/activity_type.dart';
@@ -40,12 +42,15 @@ class UnitCubit extends Cubit<UnitState> {
     ActivityType.shield: _shieldU
   };
   final Unit unit;
+  final StatsCubit statsCubit;
   final Function(Unit unit) onStateChanged;
   final Function(int number) onUnitRemoved;
   late final List<Effect> activityEffects = _initActivityTypes();
+  late final StreamSubscription subscription;
 
   UnitCubit({
     required this.unit,
+    required this.statsCubit,
     required this.onStateChanged,
     required this.onUnitRemoved,
   }) : super(
@@ -57,7 +62,28 @@ class UnitCubit extends Cubit<UnitState> {
               value: 1,
             ),
           ),
-        );
+        ) {
+    subscription = statsCubit.stream.listen((state) {
+      state.maybeWhen(
+          orElse: () {},
+          turnEnded: (stack) {
+            var updatedUnit =
+                stack.units.firstWhere((u) => u.number == unit.number);
+            emit(UnitState.ready(updatedUnit, this.state.userAction));
+          },
+          turnStarted: (stack) {
+            var updatedUnit =
+                stack.units.firstWhere((u) => u.number == unit.number);
+            emit(UnitState.ready(updatedUnit, this.state.userAction));
+          });
+    });
+  }
+
+  @override
+  Future<void> close() {
+    subscription.cancel();
+    return super.close();
+  }
 
   void selectActivityType(Effect newActivity) {
     state.when(ready: (unit, userAction) {
@@ -141,12 +167,12 @@ class UnitCubit extends Cubit<UnitState> {
 
   /// Return List of attack [Effect] aka perks
   /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
-  List<Effect?> get attackEffects {
+  Set<Effect?> get attackEffects {
     return state.unit.perks.map((p) {
       var perkValue =
           state.unit.perkValue.containsKey(p) ? state.unit.perkValue[p] : null;
       return Effect(p, effectIcons[p]!, perkValue);
-    }).toList();
+    }).toSet();
   }
 
   /// Return List of area images as path to assets

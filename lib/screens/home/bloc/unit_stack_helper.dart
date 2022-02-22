@@ -14,16 +14,25 @@ class UnitStackHelper {
     if (action == null) throw Exception('No action available');
 
     var updatedUnits = stack.units.map((unit) {
-      Unit newUnit;
+      Unit? newUnit;
       // apply turn actions automatically if user does not trigger the by themselves from StatsScreen
       if (stack.turnState == TurnState.idle) {
-        newUnit = unit.applyAction(
-            action.modifiers, action.perks, action.area, action.perkValue);
+        newUnit = unit
+            .applyAction(
+              action.modifiers,
+              action.perks,
+              action.area,
+              action.perkValue,
+            )
+            .applyOldActionEffects();
       }
 
-      newUnit = unit.applyOldActionEffects().refreshStatsToDefault(stats);
+      // apply end turn actions automatically if user does not trigger the by themselves from StatsScreen
+      if (stack.turnState == TurnState.started) {
+        newUnit = (newUnit ?? unit).applyOldActionEffects();
+      }
 
-      return newUnit;
+      return (newUnit ?? unit).refreshStatsToDefault(stats);
     }).toList();
 
     return stack.copyWith(
