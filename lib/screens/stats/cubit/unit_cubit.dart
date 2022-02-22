@@ -44,11 +44,11 @@ class UnitCubit extends Cubit<UnitState> {
   final Function(int number) onUnitRemoved;
   late final List<Effect> activityEffects = _initActivityTypes();
 
-  UnitCubit(
-      {required this.unit,
-      required this.onStateChanged,
-      required this.onUnitRemoved})
-      : super(
+  UnitCubit({
+    required this.unit,
+    required this.onStateChanged,
+    required this.onUnitRemoved,
+  }) : super(
           UnitState.ready(
             unit,
             UserAction(

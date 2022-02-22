@@ -162,7 +162,6 @@ class Unit extends Equatable with ActionTypeSerializer {
     var updatedEffects = _removeNegativeEffect(negativeEffects, {
       ActivityType.disarm,
       ActivityType.muddle,
-      ActivityType.pierce,
       ActivityType.strengthen,
       ActivityType.stun,
       ActivityType.invisible,
@@ -171,7 +170,7 @@ class Unit extends Equatable with ActionTypeSerializer {
 
     var updated = _applySuffer()
         ._healedFromAction()
-        .copyWith(negativeEffects: updatedEffects, pierced: 0);
+        .copyWith(negativeEffects: updatedEffects);
 
     return updated;
   }
@@ -185,8 +184,12 @@ class Unit extends Equatable with ActionTypeSerializer {
       move: stats[normality]?.move,
       shield: stats[normality]?.shield,
       retaliate: stats[normality]?.retaliate,
+      retaliateRange: stats[normality]?.retaliateRange,
       perks:
           ActionTypeSerializer.serializeRawData(stats[normality]?.perks) ?? [],
+      perkValue: ActionTypeSerializer.serializeRawPerkValue(
+              stats[normality]?.perkValue) ??
+          {},
       area: [],
     );
   }
@@ -196,10 +199,19 @@ class Unit extends Equatable with ActionTypeSerializer {
       List<ActivityType> newPerks,
       List<String> newArea,
       Map<ActivityType, String> newPerkValue) {
+    if (hasEffect(ActivityType.stun)) {
+      return copyWith(
+          healthPoint:
+              hasEffect(ActivityType.wound) ? (healthPoint - 1) : healthPoint);
+    }
+
     return copyWith(
-      attack: _applyMandatoryModifier(modifiers[ModifierType.attack], attack),
-      move: _applyMandatoryModifier(modifiers[ModifierType.move], move),
-      // range: _applyMandatoryModifier(modifiers[ModifierType.range], range),
+      attack: hasEffect(ActivityType.disarm)
+          ? 0
+          : _applyMandatoryModifier(modifiers[ModifierType.attack], attack),
+      move: hasEffect(ActivityType.immobilize)
+          ? 0
+          : _applyMandatoryModifier(modifiers[ModifierType.move], move),
       range: _modifyRange(modifiers[ModifierType.range], range),
       shield: modifiers.containsKey(ModifierType.shield)
           ? modifiers[ModifierType.shield]! + shield
@@ -299,18 +311,11 @@ class Unit extends Equatable with ActionTypeSerializer {
   /// Check if unit has active negative effect
   bool hasEffect(ActivityType type) => negativeEffects.contains(type) == true;
 
-  // Unit _applyWound() {
-  //   if (_hasEffect(ActivityType.wound))
-  //     return copyWith(healthPoint: healthPoint - 1);
-  //   else
-  //     return this;
-  // }
-
   Unit _applySuffer() {
-    return copyWith(healthPoint: healthPoint - suffer, suffer: 0);
+    return copyWith(healthPoint: _changeHealth(suffer), suffer: 0);
   }
 
-  /// Apply heal if it was present in [UnitAction] card
+  /// Apply heal self if it was present in [UnitAction] card
   Unit _healedFromAction() {
     if (heal == 0) return this;
 
@@ -321,10 +326,8 @@ class Unit extends Equatable with ActionTypeSerializer {
         heal: 0,
       );
     else {
-      var updatedHealth = healthPoint + heal;
       return copyWith(
-        healthPoint:
-            updatedHealth > maxHealthPoint ? maxHealthPoint : updatedHealth,
+        healthPoint: _changeHealth(-heal),
         heal: 0,
         negativeEffects:
             _removeNegativeEffect(negativeEffects, {ActivityType.wound}),
