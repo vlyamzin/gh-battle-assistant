@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
 import 'package:gh_battle_assistant/common/enums/turn_state.dart';
-import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
@@ -24,9 +23,7 @@ class StatsScreen extends StatelessWidget {
     widget = CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         backgroundColor: Color(0xFF3C4659),
-        leading: CupertinoNavigationBarBackButton(
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: _NavigationGuard(),
         middle: Text(
           stack.displayName,
           style: TextStyle(
@@ -155,5 +152,43 @@ class StatsScreen extends StatelessWidget {
     } catch (_) {
       return Container();
     }
+  }
+}
+
+class _NavigationGuard extends StatelessWidget {
+  const _NavigationGuard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(builder: (context) {
+      return CupertinoNavigationBarBackButton(
+        onPressed: () {
+          var cubit = context.read<StatsCubit>();
+          if (cubit.turnStarted) {
+            showCupertinoDialog(
+              context: context,
+              builder: (context) => CupertinoAlertDialog(
+                title: Text('End ${cubit.stack.displayName} turn?'),
+                actions: [
+                  CupertinoDialogAction(
+                    child: const Text('No'),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  CupertinoDialogAction(
+                    child: const Text('Yes'),
+                    onPressed: () {
+                      cubit.endTurn();
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ).then((_) => Navigator.pop(context));
+          } else {
+            Navigator.pop(context);
+          }
+        },
+      );
+    });
   }
 }

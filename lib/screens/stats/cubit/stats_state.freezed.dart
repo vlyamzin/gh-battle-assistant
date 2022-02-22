@@ -23,8 +23,8 @@ class _$StatsStateTearOff {
     );
   }
 
-  _TurnStarted turnStarted(UnitStack stack) {
-    return _TurnStarted(
+  TurnStarted turnStarted(UnitStack stack) {
+    return TurnStarted(
       stack,
     );
   }
@@ -73,7 +73,7 @@ mixin _$StatsState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StatsInitial value) initial,
-    required TResult Function(_TurnStarted value) turnStarted,
+    required TResult Function(TurnStarted value) turnStarted,
     required TResult Function(_TurnEnded value) turnEnded,
     required TResult Function(_NavigateBack value) navigateBack,
   }) =>
@@ -81,7 +81,7 @@ mixin _$StatsState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
   }) =>
@@ -89,7 +89,7 @@ mixin _$StatsState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
@@ -223,7 +223,7 @@ class _$_StatsInitial with DiagnosticableTreeMixin implements _StatsInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StatsInitial value) initial,
-    required TResult Function(_TurnStarted value) turnStarted,
+    required TResult Function(TurnStarted value) turnStarted,
     required TResult Function(_TurnEnded value) turnEnded,
     required TResult Function(_NavigateBack value) navigateBack,
   }) {
@@ -234,7 +234,7 @@ class _$_StatsInitial with DiagnosticableTreeMixin implements _StatsInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
   }) {
@@ -245,7 +245,7 @@ class _$_StatsInitial with DiagnosticableTreeMixin implements _StatsInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
@@ -267,28 +267,28 @@ abstract class _StatsInitial implements StatsState {
 }
 
 /// @nodoc
-abstract class _$TurnStartedCopyWith<$Res> {
-  factory _$TurnStartedCopyWith(
-          _TurnStarted value, $Res Function(_TurnStarted) then) =
-      __$TurnStartedCopyWithImpl<$Res>;
+abstract class $TurnStartedCopyWith<$Res> {
+  factory $TurnStartedCopyWith(
+          TurnStarted value, $Res Function(TurnStarted) then) =
+      _$TurnStartedCopyWithImpl<$Res>;
   $Res call({UnitStack stack});
 }
 
 /// @nodoc
-class __$TurnStartedCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
-    implements _$TurnStartedCopyWith<$Res> {
-  __$TurnStartedCopyWithImpl(
-      _TurnStarted _value, $Res Function(_TurnStarted) _then)
-      : super(_value, (v) => _then(v as _TurnStarted));
+class _$TurnStartedCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
+    implements $TurnStartedCopyWith<$Res> {
+  _$TurnStartedCopyWithImpl(
+      TurnStarted _value, $Res Function(TurnStarted) _then)
+      : super(_value, (v) => _then(v as TurnStarted));
 
   @override
-  _TurnStarted get _value => super._value as _TurnStarted;
+  TurnStarted get _value => super._value as TurnStarted;
 
   @override
   $Res call({
     Object? stack = freezed,
   }) {
-    return _then(_TurnStarted(
+    return _then(TurnStarted(
       stack == freezed
           ? _value.stack
           : stack // ignore: cast_nullable_to_non_nullable
@@ -299,8 +299,8 @@ class __$TurnStartedCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
-  const _$_TurnStarted(this.stack);
+class _$TurnStarted with DiagnosticableTreeMixin implements TurnStarted {
+  const _$TurnStarted(this.stack);
 
   @override
   final UnitStack stack;
@@ -322,7 +322,7 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _TurnStarted &&
+            other is TurnStarted &&
             const DeepCollectionEquality().equals(other.stack, stack));
   }
 
@@ -332,8 +332,8 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
 
   @JsonKey(ignore: true)
   @override
-  _$TurnStartedCopyWith<_TurnStarted> get copyWith =>
-      __$TurnStartedCopyWithImpl<_TurnStarted>(this, _$identity);
+  $TurnStartedCopyWith<TurnStarted> get copyWith =>
+      _$TurnStartedCopyWithImpl<TurnStarted>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -376,7 +376,7 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StatsInitial value) initial,
-    required TResult Function(_TurnStarted value) turnStarted,
+    required TResult Function(TurnStarted value) turnStarted,
     required TResult Function(_TurnEnded value) turnEnded,
     required TResult Function(_NavigateBack value) navigateBack,
   }) {
@@ -387,7 +387,7 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
   }) {
@@ -398,7 +398,7 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
@@ -410,12 +410,12 @@ class _$_TurnStarted with DiagnosticableTreeMixin implements _TurnStarted {
   }
 }
 
-abstract class _TurnStarted implements StatsState {
-  const factory _TurnStarted(UnitStack stack) = _$_TurnStarted;
+abstract class TurnStarted implements StatsState {
+  const factory TurnStarted(UnitStack stack) = _$TurnStarted;
 
   UnitStack get stack;
   @JsonKey(ignore: true)
-  _$TurnStartedCopyWith<_TurnStarted> get copyWith =>
+  $TurnStartedCopyWith<TurnStarted> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -528,7 +528,7 @@ class _$_TurnEnded with DiagnosticableTreeMixin implements _TurnEnded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StatsInitial value) initial,
-    required TResult Function(_TurnStarted value) turnStarted,
+    required TResult Function(TurnStarted value) turnStarted,
     required TResult Function(_TurnEnded value) turnEnded,
     required TResult Function(_NavigateBack value) navigateBack,
   }) {
@@ -539,7 +539,7 @@ class _$_TurnEnded with DiagnosticableTreeMixin implements _TurnEnded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
   }) {
@@ -550,7 +550,7 @@ class _$_TurnEnded with DiagnosticableTreeMixin implements _TurnEnded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),
@@ -655,7 +655,7 @@ class _$_NavigateBack with DiagnosticableTreeMixin implements _NavigateBack {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_StatsInitial value) initial,
-    required TResult Function(_TurnStarted value) turnStarted,
+    required TResult Function(TurnStarted value) turnStarted,
     required TResult Function(_TurnEnded value) turnEnded,
     required TResult Function(_NavigateBack value) navigateBack,
   }) {
@@ -666,7 +666,7 @@ class _$_NavigateBack with DiagnosticableTreeMixin implements _NavigateBack {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
   }) {
@@ -677,7 +677,7 @@ class _$_NavigateBack with DiagnosticableTreeMixin implements _NavigateBack {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_StatsInitial value)? initial,
-    TResult Function(_TurnStarted value)? turnStarted,
+    TResult Function(TurnStarted value)? turnStarted,
     TResult Function(_TurnEnded value)? turnEnded,
     TResult Function(_NavigateBack value)? navigateBack,
     required TResult orElse(),

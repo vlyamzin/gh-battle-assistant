@@ -15,6 +15,8 @@ class StatsCubit extends Cubit<StatsState> {
   StatsCubit.ended(this.enemiesBloc, this.stack)
       : super(StatsState.turnEnded(stack));
 
+  bool get turnStarted => state is TurnStarted;
+
   void startTurn() {
     state.when(
       initial: (stack) {
