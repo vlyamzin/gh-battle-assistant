@@ -86,25 +86,28 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
   void _onNewAction(_, Emitter<EnemiesState> emit) {
     state.maybeWhen(
         loaded: (Enemies enemies) {
-          var updatedMonsters = enemies.monsters.map((UnitStack stack) {
-            UnitActionList? updatedActions;
-            UnitStack updatedStack;
+          var updatedMonsters = enemies.monsters
+              .map((UnitStack stack) {
+                UnitActionList? updatedActions;
+                UnitStack updatedStack;
 
-            if (di<SettingsRepository>().loadSettings().newGame == true) {
-              updatedActions = _actionHelper.initActions(stack);
-            }
+                if (di<SettingsRepository>().loadSettings().newGame == true) {
+                  updatedActions = _actionHelper.initActions(stack);
+                }
 
-            updatedActions =
-                _actionHelper.refreshAction(updatedActions ?? stack.actions);
-            try {
-              updatedStack =
-                  _stackHelper.endRound(stack, updatedActions.currentAction);
-            } catch (e) {
-              di<LoggerService>().log(e.toString(), this.runtimeType);
-              updatedStack = stack;
-            }
-            return updatedStack.copyWith(actions: updatedActions);
-          }).toList();
+                updatedActions = _actionHelper
+                    .refreshAction(updatedActions ?? stack.actions);
+                try {
+                  updatedStack =
+                      _stackHelper.endRound(stack, stack.actions.currentAction);
+                } catch (e) {
+                  di<LoggerService>().log(e.toString(), this.runtimeType);
+                  updatedStack = stack;
+                }
+                return updatedStack.copyWith(actions: updatedActions);
+              })
+              .where((stack) => stack.units.length > 0)
+              .toList();
 
           updatedMonsters.sort((a, b) {
             return a.actions.currentAction!.initiative -

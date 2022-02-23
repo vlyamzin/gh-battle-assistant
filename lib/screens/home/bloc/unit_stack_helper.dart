@@ -35,7 +35,8 @@ class UnitStackHelper {
       return (newUnit ?? unit).refreshStatsToDefault(stats);
     }).toList();
 
-    return stack.copyWith(
-        units: updatedUnits.toList(), turnState: TurnState.idle);
+    return stack
+        .validateDeath(updatedUnits)
+        .copyWith(turnState: TurnState.idle);
   }
 }

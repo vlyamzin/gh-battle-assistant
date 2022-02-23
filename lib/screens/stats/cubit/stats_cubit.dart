@@ -26,12 +26,18 @@ class StatsCubit extends Cubit<StatsState> {
           var updatedUnits = stack.units.map((unit) {
             return unit.applyAction(
                 action.modifiers, action.perks, action.area, action.perkValue);
-          });
+          }).toList();
 
-          var updatedStack = stack.copyWith(
-              units: updatedUnits.toList(), turnState: TurnState.started);
+          var updatedStack = stack
+              .validateDeath(updatedUnits)
+              .copyWith(turnState: TurnState.started);
+
           emit(StatsState.turnStarted(updatedStack));
-          enemiesBloc.add(StackUpdatedE(updatedStack));
+
+          // dead by wound
+          updatedStack.units.length == 0
+              ? enemiesBloc.add(StackRemovedE(updatedStack))
+              : enemiesBloc.add(StackUpdatedE(updatedStack));
         }
       },
       turnStarted: (_) {},
@@ -45,12 +51,18 @@ class StatsCubit extends Cubit<StatsState> {
       turnStarted: (stack) {
         var updatedUnits = stack.units.map((unit) {
           return unit.applyOldActionEffects().copyWith(turnEnded: true);
-        });
+        }).toList();
 
-        var updatedStack = stack.copyWith(
-            units: updatedUnits.toList(), turnState: TurnState.ended);
+        var updatedStack = stack
+            .validateDeath(updatedUnits)
+            .copyWith(turnState: TurnState.ended);
+
         emit(StatsState.turnEnded(updatedStack));
-        enemiesBloc.add(StackUpdatedE(updatedStack));
+
+        // dead by suffer from action card
+        updatedStack.units.length == 0
+            ? enemiesBloc.add(StackRemovedE(updatedStack))
+            : enemiesBloc.add(StackUpdatedE(updatedStack));
       },
       initial: (_) {},
       turnEnded: (_) {},
@@ -86,7 +98,11 @@ class StatsCubit extends Cubit<StatsState> {
 
   void unitRemoved(int unitNumber) {
     UnitStack? handler(UnitStack stack) {
-      var updatedStack = stack.removeUnit(unitNumber);
+      stack.availableNumbersPull.add(unitNumber);
+      stack.availableNumbersPull.sort((a, b) => a - b);
+      var updatedStack = stack
+          .removeUnit(unitNumber)
+          .copyWith(availableNumbersPull: stack.availableNumbersPull);
 
       if (updatedStack.units.length > 0) {
         enemiesBloc.add(StackUpdatedE(updatedStack));

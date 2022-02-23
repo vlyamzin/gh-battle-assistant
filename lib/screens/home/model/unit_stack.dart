@@ -111,10 +111,29 @@ class UnitStack extends Equatable {
   UnitStack removeUnit(int number) {
     var updatedList = [...units]
       ..removeWhere((element) => element.number == number);
-    availableNumbersPull.add(number);
-    availableNumbersPull.sort((a, b) => a - b);
     return copyWith(
       units: updatedList,
+    );
+  }
+
+  /// Runs through the list of [Unit] and check if health point of every item is bigger than 0
+  /// If unit health is 0 then remove it from the list and free it's number back into [availableNumbersPull]
+  UnitStack validateDeath(List<Unit> units) {
+    final filteredUnits = <Unit>[];
+    final removedUnitIds = <int>[];
+
+    for (var i = 0; i < units.length; i++) {
+      if (units[i].healthPoint > 0) {
+        filteredUnits.add(units[i]);
+      } else {
+        removedUnitIds.add(units[i].number);
+      }
+    }
+
+    availableNumbersPull.addAll(removedUnitIds);
+    availableNumbersPull.sort((a, b) => a - b);
+    return copyWith(
+      units: filteredUnits,
       availableNumbersPull: [...availableNumbersPull],
     );
   }
