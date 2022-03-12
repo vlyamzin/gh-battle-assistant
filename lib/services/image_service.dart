@@ -210,6 +210,12 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Inox_Archer_elite_256.png',
     },
+    UnitType.inoxShaman: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Shaman_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Shaman_elite_256.png',
+    },
     UnitType.vermlingScout: {
       UnitNormality.normal:
           '${ImageService.unitIconBaseUrl}Vermling_Scout_normal_256.png',

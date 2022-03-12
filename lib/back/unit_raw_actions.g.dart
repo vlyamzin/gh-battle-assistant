@@ -15,7 +15,7 @@ UnitRawAction _$UnitRawActionFromJson(Map<String, dynamic> json) =>
           .map((e) => RawActionValue.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['modifier'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry($enumDecode(_$ModifierTypeEnumMap, k), e as int),
+        (k, e) => MapEntry($enumDecode(_$ModifierTypeEnumMap, k), e),
       ),
       (json['perks'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
       (json['perkValue'] as Map<String, dynamic>?)?.map(
@@ -44,6 +44,7 @@ const _$ModifierTypeEnumMap = {
   ModifierType.move: 'move',
   ModifierType.shield: 'shield',
   ModifierType.retaliate: 'retaliate',
+  ModifierType.retaliateRange: 'retaliateRange',
   ModifierType.suffer: 'suffer',
   ModifierType.heal: 'heal',
 };

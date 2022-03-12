@@ -1,6 +1,28 @@
 import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/common/enums/modifier_type.dart';
 
 mixin ActionTypeSerializer {
+  static Map<ModifierType, List<String>>? serializeRawModifier(
+    Map<ModifierType, dynamic>? data,
+  ) {
+    return data?.map((key, value) {
+          if (value is int) {
+            return MapEntry(key, [value.toString()]);
+          }
+
+          if (value is Iterable) {
+            return MapEntry(key, value.map((e) => e.toString()).toList());
+          }
+
+          if (value is String) {
+            return MapEntry(key, [value]);
+          }
+
+          throw Exception('Serialize raw data exception. Unknown value type');
+        }) ??
+        {};
+  }
+
   static Map<ActivityType, String>? serializeRawPerkValue(
       Map<String, String>? data) {
     return data?.map((key, value) {

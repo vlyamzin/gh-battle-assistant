@@ -21,9 +21,9 @@ class Unit extends Equatable with ActionTypeSerializer {
   final int healthPoint;
   late final int maxHealthPoint;
   final int shield;
-  final int? attack;
+  final List<int>? attack;
   final int? range;
-  final int? move;
+  final List<int>? move;
   final int retaliate;
   late final int retaliateRange;
   final int heal;
@@ -49,9 +49,9 @@ class Unit extends Equatable with ActionTypeSerializer {
     this.flying = false,
     maxHealthPoint,
     this.shield = 0,
-    this.attack = 0,
+    this.attack = const [0],
     this.range = 0,
-    this.move = 0,
+    this.move = const [0],
     this.retaliate = 0,
     retaliateRange,
     this.heal = 0,
@@ -86,9 +86,9 @@ class Unit extends Equatable with ActionTypeSerializer {
       maxHealthPoint: health,
       number: number,
       shield: data.shield,
-      attack: data.attack,
+      attack: [data.attack ?? 0],
       range: data.range,
-      move: data.move,
+      move: [data.move ?? 0],
       retaliate: data.retaliate,
       retaliateRange: data.retaliateRange,
       elite: elite,
@@ -109,9 +109,9 @@ class Unit extends Equatable with ActionTypeSerializer {
     int? healthPoint,
     int? maxHealthPoint,
     int? shield,
-    int? attack,
+    List<int>? attack,
     int? range,
-    int? move,
+    List<int>? move,
     int? retaliate,
     int? retaliateRange,
     int? heal,
@@ -177,11 +177,13 @@ class Unit extends Equatable with ActionTypeSerializer {
 
   Unit refreshStatsToDefault(StatsByUnitNormalityMap stats) {
     final normality = elite ? UnitNormality.elite : UnitNormality.normal;
+    final defaultAttack = [stats[normality]?.attack ?? 0];
+    final defaultMove = [stats[normality]?.move ?? 0];
 
     return copyWith(
-      attack: stats[normality]?.attack,
+      attack: defaultAttack,
       range: stats[normality]?.range ?? 0,
-      move: stats[normality]?.move,
+      move: defaultMove,
       shield: stats[normality]?.shield,
       retaliate: stats[normality]?.retaliate,
       retaliateRange: stats[normality]?.retaliateRange,
@@ -195,7 +197,7 @@ class Unit extends Equatable with ActionTypeSerializer {
   }
 
   Unit applyAction(
-      Map<ModifierType, int> modifiers,
+      Map<ModifierType, List<String>> modifiers,
       List<ActivityType> newPerks,
       List<String> newArea,
       Map<ActivityType, String> newPerkValue) {
@@ -205,22 +207,25 @@ class Unit extends Equatable with ActionTypeSerializer {
               hasEffect(ActivityType.wound) ? (healthPoint - 1) : healthPoint);
     }
 
+    var dModifiers = Unit._deserializeModifiers(modifiers);
+
     return copyWith(
       attack: hasEffect(ActivityType.disarm)
-          ? 0
+          ? [0]
           : _applyMandatoryModifier(modifiers[ModifierType.attack], attack),
       move: hasEffect(ActivityType.immobilize)
-          ? 0
+          ? [0]
           : _applyMandatoryModifier(modifiers[ModifierType.move], move),
       range: _modifyRange(modifiers[ModifierType.range], range),
-      shield: modifiers.containsKey(ModifierType.shield)
-          ? modifiers[ModifierType.shield]! + shield
+      shield: dModifiers.containsKey(ModifierType.shield)
+          ? dModifiers[ModifierType.shield] + shield
           : shield,
-      retaliate: modifiers.containsKey(ModifierType.retaliate)
-          ? modifiers[ModifierType.retaliate]! + retaliate
+      retaliate: dModifiers.containsKey(ModifierType.retaliate)
+          ? dModifiers[ModifierType.retaliate] + retaliate
           : retaliate,
-      suffer: modifiers[ModifierType.suffer],
-      heal: modifiers[ModifierType.heal],
+      retaliateRange: dModifiers[ModifierType.retaliateRange],
+      suffer: dModifiers[ModifierType.suffer],
+      heal: dModifiers[ModifierType.heal],
       perks: perks + newPerks,
       perkValue: {...perkValue, ...newPerkValue},
       area: area + newArea,
@@ -351,23 +356,28 @@ class Unit extends Equatable with ActionTypeSerializer {
   ///
   /// Ex. if unit has attack = 3 but action card does not have attack modifier,
   /// than attack will be null this round
-  int? _applyMandatoryModifier(int? newValue, int? prevValue) {
-    if (newValue == null) return 0;
+  List<int>? _applyMandatoryModifier(
+    List<String>? newValue,
+    List<int>? prevValue,
+  ) {
+    if (newValue == null || newValue.length == 0) return [0];
     if (prevValue != null)
-      return prevValue + newValue;
+      return newValue.map((v) {
+        return Unit._calcValue(prevValue.first, v);
+      }).toList();
     else
-      return newValue;
+      return newValue.map((v) => int.parse(v)).toList();
   }
 
   /// Range behaves almost the same as mandatory stats (attack or move),
   /// with only one difference - if unit has default range other than null
   /// then it means it's all attacks are ranged even if action does not say it
-  int? _modifyRange(int? newValue, int? prevValue) {
-    if (newValue == null) return prevValue;
+  int? _modifyRange(List<String>? newValue, int? prevValue) {
+    if (newValue == null || newValue.length == 0) return prevValue;
     if (prevValue != null)
-      return prevValue + newValue;
+      return Unit._calcValue(prevValue, newValue.first);
     else
-      return newValue;
+      return int.parse(newValue.first);
   }
 
   /// Health points can not be bigger than the maximum value
@@ -385,6 +395,26 @@ class Unit extends Equatable with ActionTypeSerializer {
           ? _addNegativeEffect(negativeEffects, {type})
           : _removeNegativeEffect(negativeEffects, {type}),
     );
+  }
+
+  static Map<ModifierType, dynamic> _deserializeModifiers(
+    Map<ModifierType, List<String>?> data,
+  ) {
+    return data.map((key, value) {
+      if (key == ModifierType.attack || key == ModifierType.move) {
+        return MapEntry(key, value);
+      } else {
+        return MapEntry(key, int.parse(value?.first ?? '0'));
+      }
+    });
+  }
+
+  static int _calcValue(int a, String b) {
+    if (b[0] == '-' || b[0] == '+') {
+      return a + int.parse(b);
+    } else {
+      return int.parse(b);
+    }
   }
 
   @override

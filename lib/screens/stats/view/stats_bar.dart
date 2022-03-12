@@ -65,11 +65,17 @@ class _Stats extends StatelessWidget {
                     ? _StatsRecordWithIcon(
                         label: 'Move: ',
                         iconPath: di<ImageService>().getIcon('fl'),
-                        value: unit.move.toString())
-                    : _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
-                _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
+                        value: unit.move?.join(' & ') ?? '0')
+                    : _StatsRecord(
+                        text: 'Move: ${unit.move?.join(' & ') ?? '0'}'),
+                _StatsRecord(
+                    text: 'Attack: ${unit.attack?.join(' & ') ?? '0'}'),
                 _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
-                _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
+                unit.retaliateRange > 1
+                    ? _StatsRecord(
+                        text:
+                            'Retaliate: ${unit.retaliate} in range ${unit.retaliateRange}')
+                    : _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
               ],
             );
           });

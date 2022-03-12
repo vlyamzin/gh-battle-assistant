@@ -4,6 +4,7 @@ enum ModifierType {
   move,
   shield,
   retaliate,
+  retaliateRange,
   suffer,
   heal,
 }
