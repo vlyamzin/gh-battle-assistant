@@ -14,7 +14,7 @@ part 'unit.g.dart';
 
 @JsonSerializable()
 @immutable
-class Unit extends Equatable with ActionTypeSerializer {
+class Unit extends Equatable with ActionTypeSerializer implements Comparable {
   final int number;
   final String displayName;
   final bool flying;
@@ -437,4 +437,17 @@ class Unit extends Equatable with ActionTypeSerializer {
         negativeEffects,
         turnEnded,
       ];
+
+  @override
+  int compareTo(other) {
+    if (elite && !other.elite) {
+      return -1;
+    }
+
+    if (!elite && other.elite) {
+      return 1;
+    }
+
+    return number - other.number as int;
+  }
 }

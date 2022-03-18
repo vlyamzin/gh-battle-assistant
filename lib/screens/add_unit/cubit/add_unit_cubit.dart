@@ -125,10 +125,15 @@ class AddUnitCubit extends Cubit<AddUnitState> {
         selectedUnitType: (UnitTypeSelectedS state) {
           var numbersInUse =
               state.stack.units.map((unit) => unit.number).toList();
+
+          state.stack.units.sort((a, b) => a.compareTo(b));
+
           var updatedStack = state.stack.copyWith(
-              availableNumbersPull: state.stack.availableNumbersPull
-                  .where((number) => !numbersInUse.contains(number))
-                  .toList());
+            availableNumbersPull: state.stack.availableNumbersPull
+                .where((number) => !numbersInUse.contains(number))
+                .toList(),
+            // units:
+          );
 
           if (updatedStack.units.isNotEmpty) {
             _enemiesBloc.add(StackAddedE(updatedStack));

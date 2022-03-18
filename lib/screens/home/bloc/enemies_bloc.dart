@@ -53,6 +53,7 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
 
       var updatedEnemies =
           state.enemies.update(updatedStack ?? event.unitStack);
+      _sortEnemiesByInitiative(updatedEnemies);
       emit(EnemiesState.loaded(Enemies(monsters: updatedEnemies)));
     }, orElse: () {
       emit(EnemiesState.loaded(Enemies(monsters: [event.unitStack])));
@@ -109,10 +110,11 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
               .where((stack) => stack.units.length > 0)
               .toList();
 
-          updatedMonsters.sort((a, b) {
-            return a.actions.currentAction!.initiative -
-                b.actions.currentAction!.initiative;
-          });
+          _sortEnemiesByInitiative(updatedMonsters);
+          // updatedMonsters.sort((a, b) {
+          //   return a.actions.currentAction!.initiative -
+          //       b.actions.currentAction!.initiative;
+          // });
 
           emit(
             EnemiesState.loaded(enemies.copyWith(monsters: updatedMonsters)),
@@ -121,5 +123,12 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
         orElse: () => di<LoggerService>().log(
             'selectUnitType - Unhandled state ${state.runtimeType}',
             this.runtimeType));
+  }
+
+  void _sortEnemiesByInitiative(List<UnitStack> enemies) {
+    enemies.sort((a, b) {
+      return a.actions.currentAction!.initiative -
+          b.actions.currentAction!.initiative;
+    });
   }
 }
