@@ -45,6 +45,7 @@ class _Stats extends StatelessWidget {
         },
         builder: (context, state) {
           return state.when(ready: (unit, _) {
+            final shield = unit.shield - unit.pierced;
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -58,7 +59,7 @@ class _Stats extends StatelessWidget {
                         label: 'Shield: ',
                         iconPath: di<ImageService>().getAttackEffect(
                             IconSize.s32)[ActivityType.pierce]!,
-                        value: unit.shield.toString(),
+                        value: shield > 0 ? shield.toString() : '0',
                       )
                     : _StatsRecord(text: 'Shield: ${unit.shield}'),
                 unit.flying
