@@ -159,18 +159,18 @@ class Unit extends Equatable with ActionTypeSerializer implements Comparable {
   Unit applyOldActionEffects() {
     if (turnEnded) return this;
 
-    var updatedEffects = _removeNegativeEffect(negativeEffects, {
-      ActivityType.disarm,
-      ActivityType.muddle,
-      ActivityType.strengthen,
-      ActivityType.stun,
-      ActivityType.invisible,
-      ActivityType.immobilize,
-    });
+    var updated = _applySuffer()._healedFromAction();
 
-    var updated = _applySuffer()
-        ._healedFromAction()
-        .copyWith(negativeEffects: updatedEffects);
+    updated = updated.copyWith(
+      negativeEffects: _removeNegativeEffect(updated.negativeEffects, {
+        ActivityType.disarm,
+        ActivityType.muddle,
+        ActivityType.strengthen,
+        ActivityType.stun,
+        ActivityType.invisible,
+        ActivityType.immobilize,
+      }),
+    );
 
     return updated;
   }
@@ -203,6 +203,9 @@ class Unit extends Equatable with ActionTypeSerializer implements Comparable {
       Map<ActivityType, String> newPerkValue) {
     if (hasEffect(ActivityType.stun)) {
       return copyWith(
+          attack: [0],
+          move: [0],
+          range: null,
           healthPoint:
               hasEffect(ActivityType.wound) ? (healthPoint - 1) : healthPoint);
     }

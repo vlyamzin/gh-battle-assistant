@@ -44,7 +44,14 @@ class StatsScreen extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage(ImageService.mainBackground), fit: BoxFit.fill),
         ),
-        child: _grid(),
+        child: Column(
+          children: [
+            _Actions(),
+            Flexible(
+              child: _grid(),
+            )
+          ],
+        ),
       ),
     );
 
@@ -190,5 +197,49 @@ class _NavigationGuard extends StatelessWidget {
         },
       );
     });
+  }
+}
+
+class _Actions extends StatelessWidget {
+  const _Actions({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var createWidget = (BuildContext context, UnitStack stack) => Center(
+          child: Container(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: stack.actions.currentAction?.values.map((action) {
+                    return Container(
+                      key: ValueKey(action.hashCode),
+                      child: Flexible(
+                        child: Center(
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 5,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFFFFFFF),
+                            ),
+                            child: UnitActionRecord(record: action),
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList() ??
+                  [],
+            ),
+          ),
+        );
+
+    return BlocBuilder<StatsCubit, StatsState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          turnStarted: (stack) => createWidget(context, stack),
+          orElse: () => Container(),
+        );
+      },
+    );
   }
 }
