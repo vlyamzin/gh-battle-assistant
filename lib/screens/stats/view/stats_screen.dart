@@ -206,24 +206,29 @@ class _Actions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var createWidget = (BuildContext context, UnitStack stack) => Center(
-          child: Container(
+          child: IntrinsicHeight(
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: stack.actions.currentAction?.values.map((action) {
-                    return Container(
+                    return Flexible(
                       key: ValueKey(action.hashCode),
-                      child: Flexible(
-                        child: Center(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 10,
-                              horizontal: 5,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Color(0xFFFFFFFF),
-                            ),
-                            child: UnitActionRecord(record: action),
+                      child: Center(
+                        child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 5,
                           ),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(ImageService.cardBackground),
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          child: UnitActionRecord(record: action),
                         ),
                       ),
                     );
