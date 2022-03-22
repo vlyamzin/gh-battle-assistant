@@ -171,6 +171,7 @@ class UnitCubit extends Cubit<UnitState> {
     return state.unit.perks.map((p) {
       var perkValue =
           state.unit.perkValue.containsKey(p) ? state.unit.perkValue[p] : null;
+
       return Effect(p, effectIcons[p]!, perkValue);
     }).toSet();
   }

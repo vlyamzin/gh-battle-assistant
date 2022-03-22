@@ -528,6 +528,8 @@ class ImageService {
     ActivityType.push: ImageService._iconsMap64['push']!,
     ActivityType.target: ImageService._iconsMap64['trgt']!,
     ActivityType.shield: ImageService._iconsMap64['shld']!,
+    ActivityType.advantage: '',
+    ActivityType.disadvantage: '',
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';
