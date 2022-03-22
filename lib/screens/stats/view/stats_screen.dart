@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gh_battle_assistant/common/grid.dart';
 import 'package:gh_battle_assistant/common/enums/turn_state.dart';
-import 'package:gh_battle_assistant/common/enums/unit_normality.dart';
 import 'package:gh_battle_assistant/screens/home/home.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
@@ -24,9 +23,7 @@ class StatsScreen extends StatelessWidget {
     widget = CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         backgroundColor: Color(0xFF3C4659),
-        leading: CupertinoNavigationBarBackButton(
-          onPressed: () => Navigator.pop(context),
-        ),
+        leading: _NavigationGuard(),
         middle: Text(
           stack.displayName,
           style: TextStyle(
@@ -47,7 +44,14 @@ class StatsScreen extends StatelessWidget {
           image: DecorationImage(
               image: AssetImage(ImageService.mainBackground), fit: BoxFit.fill),
         ),
-        child: _grid(),
+        child: Column(
+          children: [
+            _Actions(),
+            Flexible(
+              child: _grid(),
+            )
+          ],
+        ),
       ),
     );
 
@@ -104,15 +108,14 @@ class StatsScreen extends StatelessWidget {
         .map(
           (unit) => BlocProvider<UnitCubit>(
             key: ValueKey(unit.number),
-            create: (context) {
-              return UnitCubit(
-                unit: unit,
-                onStateChanged: (newUnit) =>
-                    context.read<StatsCubit>().unitChanged(newUnit),
-                onUnitRemoved: (unitNumber) =>
-                    context.read<StatsCubit>().unitRemoved(unitNumber),
-              );
-            },
+            create: (_) => UnitCubit(
+              unit: unit,
+              statsCubit: context.read<StatsCubit>(),
+              onStateChanged: (newUnit) =>
+                  context.read<StatsCubit>().unitChanged(newUnit),
+              onUnitRemoved: (unitNumber) =>
+                  context.read<StatsCubit>().unitRemoved(unitNumber),
+            ),
             child: Builder(builder: (context) {
               return UnitStatsCard(
                 width: 500,
@@ -156,5 +159,92 @@ class StatsScreen extends StatelessWidget {
     } catch (_) {
       return Container();
     }
+  }
+}
+
+class _NavigationGuard extends StatelessWidget {
+  const _NavigationGuard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(builder: (context) {
+      return CupertinoNavigationBarBackButton(
+        onPressed: () {
+          var cubit = context.read<StatsCubit>();
+          if (cubit.turnStarted) {
+            showCupertinoDialog(
+              context: context,
+              builder: (context) => CupertinoAlertDialog(
+                title: Text('End ${cubit.stack.displayName} turn?'),
+                actions: [
+                  CupertinoDialogAction(
+                    child: const Text('No'),
+                    onPressed: () => Navigator.pop(context),
+                  ),
+                  CupertinoDialogAction(
+                    child: const Text('Yes'),
+                    onPressed: () {
+                      cubit.endTurn();
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ).then((_) => Navigator.pop(context));
+          } else {
+            Navigator.pop(context);
+          }
+        },
+      );
+    });
+  }
+}
+
+class _Actions extends StatelessWidget {
+  const _Actions({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var createWidget = (BuildContext context, UnitStack stack) => Center(
+          child: IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: stack.actions.currentAction?.values.map((action) {
+                    return Flexible(
+                      key: ValueKey(action.hashCode),
+                      child: Center(
+                        child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                            horizontal: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(ImageService.cardBackground),
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(50)),
+                          ),
+                          child: UnitActionRecord(record: action),
+                        ),
+                      ),
+                    );
+                  }).toList() ??
+                  [],
+            ),
+          ),
+        );
+
+    return BlocBuilder<StatsCubit, StatsState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          turnStarted: (stack) => createWidget(context, stack),
+          orElse: () => Container(),
+        );
+      },
+    );
   }
 }

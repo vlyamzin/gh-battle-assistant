@@ -80,8 +80,8 @@ Unit unit = Unit(
     displayName: 'Unit 1',
     healthPoint: 10,
     shield: 0,
-    attack: 1,
-    move: 1,
+    attack: [1],
+    move: [1],
     range: 1,
     heal: 0,
     retaliate: 0,
@@ -94,13 +94,13 @@ Unit unit = Unit(
 
 List<UnitAction> actions = [
   UnitAction(id: 1, initiative: 1, shouldRefresh: true, modifiers: {
-    ModifierType.attack: 1,
-    ModifierType.heal: 1,
-    ModifierType.move: 1,
-    ModifierType.range: 1,
-    ModifierType.retaliate: 1,
-    ModifierType.shield: 1,
-    ModifierType.suffer: 1
+    ModifierType.attack: ['1'],
+    ModifierType.heal: ["1"],
+    ModifierType.move: ["1"],
+    ModifierType.range: ["1"],
+    ModifierType.retaliate: ["1"],
+    ModifierType.shield: ["1"],
+    ModifierType.suffer: ["1"]
   }),
 ];
 
@@ -119,13 +119,13 @@ class UnitUpdateTest {
     );
     nextAction =
         UnitAction(id: 4, initiative: 4, shouldRefresh: true, modifiers: {
-      ModifierType.attack: 1,
-      ModifierType.move: 1,
-      ModifierType.range: 1,
-      ModifierType.retaliate: 1,
-      ModifierType.shield: 1,
-      ModifierType.suffer: 3,
-      ModifierType.heal: 3,
+      ModifierType.attack: ['1'],
+      ModifierType.move: ["1"],
+      ModifierType.range: ['1'],
+      ModifierType.retaliate: ['1'],
+      ModifierType.shield: ['1'],
+      ModifierType.suffer: ['3'],
+      ModifierType.heal: ['3'],
     });
     unit = Unit(
       number: 1,

@@ -42,10 +42,10 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
     state.maybeMap(loaded: (EnemiesLoaded state) {
       UnitStack? updatedStack;
       var isNewStack = state.enemies.getByType(event.unitStack.type) == null;
+      var isNewGame = di<SettingsRepository>().loadSettings().newGame;
 
       // cover the case when new stack must be initialized with the currentAction
-      if (di<SettingsRepository>().loadSettings().newGame != true &&
-          isNewStack) {
+      if (!isNewGame && isNewStack) {
         var action = _actionHelper.initActions(event.unitStack);
         action = _actionHelper.refreshAction(action);
         updatedStack = event.unitStack.copyWith(actions: action);
@@ -53,6 +53,8 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
 
       var updatedEnemies =
           state.enemies.update(updatedStack ?? event.unitStack);
+
+      if (!isNewGame) _sortEnemiesByInitiative(updatedEnemies);
       emit(EnemiesState.loaded(Enemies(monsters: updatedEnemies)));
     }, orElse: () {
       emit(EnemiesState.loaded(Enemies(monsters: [event.unitStack])));
@@ -86,30 +88,30 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
   void _onNewAction(_, Emitter<EnemiesState> emit) {
     state.maybeWhen(
         loaded: (Enemies enemies) {
-          var updatedMonsters = enemies.monsters.map((UnitStack stack) {
-            UnitActionList? updatedActions;
-            UnitStack updatedStack;
+          var updatedMonsters = enemies.monsters
+              .map((UnitStack stack) {
+                UnitActionList? updatedActions;
+                UnitStack updatedStack;
 
-            if (di<SettingsRepository>().loadSettings().newGame == true) {
-              updatedActions = _actionHelper.initActions(stack);
-            }
+                if (di<SettingsRepository>().loadSettings().newGame == true) {
+                  updatedActions = _actionHelper.initActions(stack);
+                }
 
-            updatedActions =
-                _actionHelper.refreshAction(updatedActions ?? stack.actions);
-            try {
-              updatedStack =
-                  _stackHelper.endRound(stack, updatedActions.currentAction);
-            } catch (e) {
-              di<LoggerService>().log(e.toString(), this.runtimeType);
-              updatedStack = stack;
-            }
-            return updatedStack.copyWith(actions: updatedActions);
-          }).toList();
+                updatedActions = _actionHelper
+                    .refreshAction(updatedActions ?? stack.actions);
+                try {
+                  updatedStack =
+                      _stackHelper.endRound(stack, stack.actions.currentAction);
+                } catch (e) {
+                  di<LoggerService>().log(e.toString(), this.runtimeType);
+                  updatedStack = stack;
+                }
+                return updatedStack.copyWith(actions: updatedActions);
+              })
+              .where((stack) => stack.units.length > 0)
+              .toList();
 
-          updatedMonsters.sort((a, b) {
-            return a.actions.currentAction!.initiative -
-                b.actions.currentAction!.initiative;
-          });
+          _sortEnemiesByInitiative(updatedMonsters);
 
           emit(
             EnemiesState.loaded(enemies.copyWith(monsters: updatedMonsters)),
@@ -118,5 +120,12 @@ class EnemiesBloc extends HydratedBloc<EnemiesEvent, EnemiesState> {
         orElse: () => di<LoggerService>().log(
             'selectUnitType - Unhandled state ${state.runtimeType}',
             this.runtimeType));
+  }
+
+  void _sortEnemiesByInitiative(List<UnitStack> enemies) {
+    enemies.sort((a, b) {
+      return a.actions.currentAction!.initiative -
+          b.actions.currentAction!.initiative;
+    });
   }
 }

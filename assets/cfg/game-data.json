@@ -397,8 +397,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 2
+            "attack": "-1",
+            "range": "+2"
           }
         },
         {
@@ -412,7 +412,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           }
         },
         {
@@ -426,7 +426,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           }
         },
         {
@@ -445,8 +445,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": -1
+            "attack": "-1",
+            "range": "-1"
           },
           "perks": [
             "push"
@@ -474,8 +474,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": -1
+            "attack": "-1",
+            "range": "-1"
           },
           "perks": [
             "push"
@@ -497,7 +497,7 @@
             }
           ],
           "modifier": {
-            "attack": 1
+            "attack": "+1"
           }
         },
         {
@@ -517,8 +517,8 @@
             }
           ],
           "modifier": {
-            "attack": -2,
-            "shield": 2
+            "attack": "-2",
+            "shield": "2"
           },
           "perks": [
             "push"
@@ -539,7 +539,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "immobilize"
@@ -738,8 +738,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -755,8 +755,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -773,9 +773,9 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": 0,
-            "range": -1
+            "attack": "+1",
+            "move": "+0",
+            "range": "-1"
           }
         },
         {
@@ -791,8 +791,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -806,7 +806,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "target"
@@ -826,8 +826,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": 1
+            "attack": "+1",
+            "range": "+1"
           }
         },
         {
@@ -844,8 +844,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           }
         },
         {
@@ -862,9 +862,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 1,
-            "move": 0
+            "attack": "-1",
+            "range": "+1",
+            "move": "+0"
           },
           "perks": [
             "immobilize"
@@ -1060,8 +1060,8 @@
             }
           ],
           "modifier": {
-            "shield": 1,
-            "retaliate": 2
+            "shield": "1",
+            "retaliate": "2"
           }
         },
         {
@@ -1077,8 +1077,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -1095,9 +1095,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 2,
-            "move": -1
+            "attack": "+0",
+            "range": "2",
+            "move": "-1"
           }
         },
         {
@@ -1113,8 +1113,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -1130,8 +1130,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -1147,8 +1147,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -1168,8 +1168,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "strengthen"
@@ -1189,8 +1189,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "shield": 1
+            "attack": "+0",
+            "shield": "1"
           },
           "perks": [
             "poison"
@@ -1478,8 +1478,8 @@
             }
           ],
           "modifier": {
-            "attack": 2,
-            "move": -1
+            "attack": "+2",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -1501,8 +1501,8 @@
             }
           ],
           "modifier": {
-            "attack": 2,
-            "move": -1
+            "attack": "+2",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -1524,8 +1524,8 @@
             }
           ],
           "modifier": {
-            "attack": 2,
-            "move": -1
+            "attack": "+2",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -1545,7 +1545,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "target"
@@ -1570,7 +1570,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "target"
@@ -1595,7 +1595,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "target"
@@ -1618,8 +1618,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -1638,9 +1638,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 3,
-            "move": -1
+            "attack": "-1",
+            "range": "3",
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -1928,8 +1928,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -1951,9 +1951,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -2,
-            "heal": 2
+            "attack": "+0",
+            "move": "-2",
+            "heal": "2"
           },
           "perks": [],
           "area": []
@@ -1971,8 +1971,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -1990,8 +1990,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -2009,8 +2009,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -2025,7 +2025,7 @@
             }
           ],
           "modifier": {
-            "attack": 2
+            "attack": "+2"
           },
           "perks": [],
           "area": []
@@ -2044,8 +2044,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -2064,8 +2064,8 @@
             }
           ],
           "modifier": {
-            "heal": 2,
-            "shield": 1
+            "heal": "2",
+            "shield": "1"
           },
           "perks": [],
           "area": []
@@ -2289,8 +2289,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [],
           "area": [
@@ -2315,8 +2315,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [],
           "area": [
@@ -2336,8 +2336,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -2355,8 +2355,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -2378,9 +2378,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1,
-            "heal": 1
+            "attack": "+0",
+            "move": "-1",
+            "heal": "1"
           },
           "perks": [],
           "area": []
@@ -2399,7 +2399,7 @@
             }
           ],
           "modifier": {
-            "suffer": 2
+            "suffer": "2"
           },
           "perks": [],
           "area": []
@@ -2418,7 +2418,7 @@
             }
           ],
           "modifier": {
-            "suffer": 2
+            "suffer": "2"
           },
           "perks": [],
           "area": []
@@ -2437,11 +2437,15 @@
             }
           ],
           "modifier": {
-            "move": -1
+            "move": "-1",
+            "range": "3"
           },
           "perks": [
             "heal"
           ],
+          "perkValue": {
+            "heal": "3"
+          },
           "area": []
         }
       ]
@@ -2677,8 +2681,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -2700,8 +2704,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -2722,8 +2726,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -2742,8 +2746,8 @@
             }
           ],
           "modifier": {
-            "attack": -2,
-            "range": 3
+            "attack": "-2",
+            "range": "3"
           },
           "perks": [
             "target"
@@ -2767,8 +2771,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -2789,8 +2793,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -2813,7 +2817,10 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": [
+              "-1",
+              "-1"
+            ]
           },
           "perks": [
             "pierce"
@@ -2840,8 +2847,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -3057,7 +3064,7 @@
             }
           ],
           "modifier": {
-            "move": 1
+            "move": "+1"
           },
           "perks": [
             "muddle",
@@ -3078,8 +3085,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -3097,8 +3104,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -3116,8 +3123,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -3135,8 +3142,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -3152,8 +3159,8 @@
             }
           ],
           "modifier": {
-            "move": 1,
-            "suffer": 1
+            "move": "+1",
+            "suffer": "1"
           },
           "perks": [],
           "area": []
@@ -3175,8 +3182,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": 0
+            "attack": "+1",
+            "move": "+0"
           },
           "perks": [
             "poison",
@@ -3202,8 +3209,8 @@
             }
           ],
           "modifier": {
-            "attack": 2,
-            "suffer": 1
+            "attack": "+2",
+            "suffer": "1"
           },
           "perks": [
             "push"
@@ -3427,8 +3434,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -3446,8 +3453,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -3463,7 +3470,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "perks": [
             "target",
@@ -3488,9 +3495,9 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": 1,
-            "move": -1
+            "attack": "+1",
+            "range": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -3506,7 +3513,7 @@
             }
           ],
           "modifier": {
-            "suffer": 2
+            "suffer": "2"
           },
           "perks": [],
           "area": []
@@ -3522,7 +3529,7 @@
             }
           ],
           "modifier": {
-            "suffer": 2
+            "suffer": "2"
           },
           "perks": [],
           "area": []
@@ -3542,8 +3549,8 @@
             }
           ],
           "modifier": {
-            "move": -1,
-            "heal": 2
+            "move": "-1",
+            "heal": "2"
           },
           "perks": [],
           "area": []
@@ -3563,8 +3570,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": -1
+            "attack": "+1",
+            "range": "-1"
           },
           "perks": [
             "push",
@@ -3808,8 +3815,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -3828,8 +3835,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -3847,8 +3854,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "shield": 1
+            "attack": "-1",
+            "shield": "1"
           },
           "perks": [],
           "area": []
@@ -3868,8 +3875,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [
             "target"
@@ -3892,8 +3899,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -3913,10 +3920,12 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
-          "perks": [],
+          "perks": [
+            "disadvantage"
+          ],
           "area": []
         },
         {
@@ -3934,8 +3943,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -3962,8 +3971,11 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": [
+              "-1",
+              "-1"
+            ],
+            "move": "-1"
           },
           "perks": [
             "immobilize"
@@ -3975,6 +3987,7 @@
     {
       "name": "Living Spirit",
       "id": 27,
+      "flying": true,
       "maxNumber": 6,
       "stats": {
         "0": {
@@ -4169,8 +4182,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [
             "muddle"
@@ -4191,8 +4204,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -4215,8 +4228,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -4234,8 +4247,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -4251,8 +4264,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": -1
+            "attack": "+0",
+            "range": "-1"
           },
           "perks": [
             "target"
@@ -4280,10 +4293,10 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": -1,
-            "move": -1,
-            "heal": 1
+            "attack": "+1",
+            "range": "-1",
+            "move": "-1",
+            "heal": "1"
           },
           "perks": [],
           "area": []
@@ -4305,7 +4318,7 @@
             }
           ],
           "modifier": {
-            "move": 0
+            "move": "+0"
           },
           "perks": [
             "curse",
@@ -4330,8 +4343,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -4548,8 +4561,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -4568,8 +4581,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [
             "immobilize"
@@ -4587,7 +4600,7 @@
             }
           ],
           "modifier": {
-            "attack": 1
+            "attack": "+1"
           },
           "perks": [
             "wound"
@@ -4607,8 +4620,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -4626,8 +4639,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -4649,8 +4662,11 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -2
+            "attack": [
+              "-1",
+              "-1"
+            ],
+            "move": "-2"
           },
           "perks": [
             "wound"
@@ -4671,8 +4687,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -4699,9 +4715,9 @@
             }
           ],
           "modifier": {
-            "heal": 2,
-            "shield": 1,
-            "retaliate": 2
+            "heal": "2",
+            "shield": "1",
+            "retaliate": "2"
           },
           "perks": [],
           "area": []
@@ -4905,7 +4921,9 @@
               "subtitle": "|%nfrost%|: Heal |%heal%|3 Self"
             }
           ],
-          "modifier": {},
+          "modifier": {
+            "range": "2"
+          },
           "perks": [
             "immobilize",
             "target"
@@ -4928,8 +4946,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [],
           "area": []
@@ -4947,8 +4965,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -4967,9 +4985,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 2,
-            "move": -1
+            "attack": "-1",
+            "range": "2",
+            "move": "-1"
           },
           "perks": [],
           "area": []
@@ -4991,8 +5009,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [],
           "area": [
@@ -5016,8 +5034,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [],
           "area": [
@@ -5041,8 +5059,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [
             "pierce"
@@ -5069,8 +5087,8 @@
             }
           ],
           "modifier": {
-            "move": 1,
-            "shield": 2
+            "move": "+1",
+            "shield": "2"
           },
           "perks": [],
           "area": []
@@ -5274,8 +5292,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -5302,8 +5320,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "poison"
@@ -5327,9 +5345,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1,
-            "heal": 5
+            "attack": "-1",
+            "move": "-1",
+            "heal": "5"
           },
           "perks": [],
           "area": []
@@ -5348,8 +5366,8 @@
             }
           ],
           "modifier": {
-            "attack": 2,
-            "retaliate": 2
+            "attack": "+2",
+            "retaliate": "2"
           },
           "perks": [
             "immobilize"
@@ -5370,9 +5388,9 @@
             }
           ],
           "modifier": {
-            "range": 3,
-            "shield": 2,
-            "retaliate": 2
+            "range": "3",
+            "shield": "2",
+            "retaliate": "2"
           },
           "perks": [],
           "area": []
@@ -5392,8 +5410,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [],
           "area": [
@@ -5414,8 +5432,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -5440,9 +5458,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 3,
-            "heal": 4
+            "attack": "-1",
+            "range": "3",
+            "heal": "4"
           },
           "perks": [
             "muddle"
@@ -5647,8 +5665,8 @@
             }
           ],
           "modifier": {
-            "shield": 1,
-            "retaliate": 2
+            "shield": "1",
+            "retaliate": "2"
           }
         },
         {
@@ -5664,8 +5682,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -5682,9 +5700,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 2,
-            "move": -1
+            "attack": "+0",
+            "range": "2",
+            "move": "-1"
           }
         },
         {
@@ -5700,8 +5718,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -5717,8 +5735,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -5734,8 +5752,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -5755,8 +5773,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "strengthen"
@@ -5776,8 +5794,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "shield": 1
+            "attack": "+0",
+            "shield": "1"
           },
           "perks": [
             "poison"
@@ -6020,8 +6038,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -6037,8 +6055,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -6055,9 +6073,9 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": 0,
-            "range": -1
+            "attack": "+1",
+            "move": "+0",
+            "range": "-1"
           }
         },
         {
@@ -6073,8 +6091,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -6088,7 +6106,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "target"
@@ -6108,8 +6126,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": 1
+            "attack": "+1",
+            "range": "+1"
           }
         },
         {
@@ -6126,8 +6144,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           }
         },
         {
@@ -6144,9 +6162,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 1,
-            "move": 0
+            "attack": "-1",
+            "range": "+1",
+            "move": "+0"
           },
           "perks": [
             "immobilize"
@@ -6366,8 +6384,8 @@
             }
           ],
           "modifier": {
-            "shield": 1,
-            "retaliate": 2
+            "shield": "1",
+            "retaliate": "2"
           }
         },
         {
@@ -6383,8 +6401,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -6401,9 +6419,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 2,
-            "move": -1
+            "attack": "+0",
+            "range": "2",
+            "move": "-1"
           }
         },
         {
@@ -6419,8 +6437,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -6436,8 +6454,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -6453,8 +6471,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -6474,8 +6492,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "strengthen"
@@ -6495,8 +6513,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "shield": 1
+            "attack": "+0",
+            "shield": "1"
           },
           "perks": [
             "poison"
@@ -6728,8 +6746,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -6745,8 +6763,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -6763,9 +6781,9 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": 0,
-            "range": -1
+            "attack": "+1",
+            "move": "+0",
+            "range": "-1"
           }
         },
         {
@@ -6781,8 +6799,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -6796,7 +6814,7 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": "-1"
           },
           "perks": [
             "target"
@@ -6816,8 +6834,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": 1
+            "attack": "+1",
+            "range": "+1"
           }
         },
         {
@@ -6834,8 +6852,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           }
         },
         {
@@ -6852,9 +6870,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 1,
-            "move": 0
+            "attack": "-1",
+            "range": "+1",
+            "move": "+0"
           },
           "perks": [
             "immobilize"
@@ -7075,8 +7093,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "disarm"
@@ -7098,8 +7116,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "immobilize"
@@ -7121,7 +7139,8 @@
             }
           ],
           "modifier": {
-            "move": 0
+            "move": "+0",
+            "range": "3"
           },
           "perks": [
             "heal"
@@ -7145,7 +7164,8 @@
             }
           ],
           "modifier": {
-            "move": 0
+            "move": "+0",
+            "range": "3"
           },
           "perks": [
             "heal"
@@ -7168,8 +7188,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -7185,8 +7205,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -7207,7 +7227,7 @@
             }
           ],
           "modifier": {
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "heal",
@@ -7231,8 +7251,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [
             "curse",
@@ -7457,9 +7477,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 3,
-            "move": -1
+            "attack": "-1",
+            "range": "3",
+            "move": "-1"
           }
         },
         {
@@ -7475,8 +7495,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -7492,8 +7512,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -7510,9 +7530,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 3,
-            "move": -2
+            "attack": "+0",
+            "range": "3",
+            "move": "-2"
           },
           "perks": [
             "poison"
@@ -7531,8 +7551,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -7546,7 +7566,7 @@
             }
           ],
           "modifier": {
-            "attack": 2
+            "attack": "+2"
           },
           "perks": [
             "poison"
@@ -7563,8 +7583,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "range": 4
+            "attack": "-1",
+            "range": "4"
           },
           "perks": [
             "target"
@@ -7587,7 +7607,7 @@
             }
           ],
           "modifier": {
-            "move": 1
+            "move": "+1"
           }
         }
       ]
@@ -7821,8 +7841,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "disarm"
@@ -7844,8 +7864,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "immobilize"
@@ -7867,7 +7887,8 @@
             }
           ],
           "modifier": {
-            "move": 0
+            "move": "+0",
+            "range": "3"
           },
           "perks": [
             "heal"
@@ -7891,7 +7912,8 @@
             }
           ],
           "modifier": {
-            "move": 0
+            "move": "+0",
+            "range": "3"
           },
           "perks": [
             "heal"
@@ -7914,8 +7936,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -7931,8 +7953,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -7953,7 +7975,7 @@
             }
           ],
           "modifier": {
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "heal",
@@ -7977,8 +7999,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           },
           "perks": [
             "curse",
@@ -8218,8 +8240,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -8238,8 +8260,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -8253,7 +8275,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "area": [
             "1r"
@@ -8274,7 +8296,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "area": [
             "3lg"
@@ -8297,9 +8319,9 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": -1,
-            "move": -1
+            "attack": "+1",
+            "range": "-1",
+            "move": "-1"
           }
         },
         {
@@ -8317,7 +8339,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           }
         },
         {
@@ -8338,8 +8360,8 @@
             }
           ],
           "modifier": {
-            "attack": -2,
-            "move": 0
+            "attack": "-2",
+            "move": "+0"
           },
           "perks": [
             "wound",
@@ -8363,7 +8385,7 @@
             }
           ],
           "modifier": {
-            "move": -1
+            "move": "-1"
           }
         }
       ]
@@ -8598,7 +8620,7 @@
             }
           ],
           "modifier": {
-            "heal": 3
+            "heal": "3"
           },
           "perks": [
             "immobilize",
@@ -8621,8 +8643,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -8641,8 +8663,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -8656,8 +8678,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 4
+            "attack": "+0",
+            "range": "4"
           }
         },
         {
@@ -8676,8 +8698,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -8694,8 +8716,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -8714,12 +8736,12 @@
             },
             {
               "title": "Attack |%atk%|+0",
-              "subtitle": "|%nfire%|: -2 Attack|%atk%|"
+              "subtitle": "|%nwind%|: -2 Attack|%atk%|"
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 1
+            "attack": "+0",
+            "move": "+1"
           }
         },
         {
@@ -8739,8 +8761,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "area": [
             "4pg"
@@ -8974,8 +8996,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "heal": 1
+            "attack": "-1",
+            "heal": "1"
           }
         },
         {
@@ -8995,8 +9017,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [
             "pull"
@@ -9022,8 +9044,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [
             "pull"
@@ -9046,8 +9068,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -9075,8 +9097,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "perkValue": {},
@@ -9098,8 +9120,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -9117,7 +9139,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "perks": [
             "push",
@@ -9147,9 +9169,9 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1,
-            "shield": 1
+            "attack": "-1",
+            "move": "-1",
+            "shield": "1"
           }
         }
       ]
@@ -9397,7 +9419,7 @@
             }
           ],
           "modifier": {
-            "range": 3
+            "range": "3"
           },
           "perks": [
             "heal"
@@ -9423,8 +9445,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -9450,8 +9472,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -9476,8 +9498,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": 0
+            "attack": "+1",
+            "move": "+0"
           }
         },
         {
@@ -9494,8 +9516,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": 0
+            "attack": "+1",
+            "move": "+0"
           }
         },
         {
@@ -9512,9 +9534,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 4,
-            "move": -1
+            "attack": "+0",
+            "range": "4",
+            "move": "-1"
           }
         },
         {
@@ -9531,8 +9553,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -1
+            "attack": "-1",
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -9558,9 +9580,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "range": 3,
-            "move": 0
+            "attack": "+0",
+            "range": "3",
+            "move": "+0"
           }
         }
       ]
@@ -9797,8 +9819,8 @@
             }
           ],
           "modifier": {
-            "heal": 1,
-            "shield": 5
+            "heal": "1",
+            "shield": "5"
           }
         },
         {
@@ -9814,8 +9836,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -9831,8 +9853,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -9849,8 +9871,8 @@
             }
           ],
           "modifier": {
-            "range": 3,
-            "move": 1
+            "range": "3",
+            "move": "+1"
           },
           "perks": [
             "heal"
@@ -9873,8 +9895,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "poison",
@@ -9897,8 +9919,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -9915,8 +9937,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "curse",
@@ -9941,7 +9963,7 @@
             }
           ],
           "modifier": {
-            "range": 2
+            "range": "2"
           },
           "perks": [
             "strengthen",
@@ -10163,8 +10185,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": -1
+            "attack": "+0",
+            "move": "-1"
           },
           "perks": [
             "immobilize"
@@ -10184,7 +10206,7 @@
             }
           ],
           "modifier": {
-            "move": 0
+            "move": "+0"
           },
           "perks": [
             "muddle",
@@ -10208,8 +10230,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -10226,8 +10248,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -10243,8 +10265,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -10260,8 +10282,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -10277,8 +10299,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -2
+            "attack": "+1",
+            "move": "-2"
           }
         },
         {
@@ -10299,8 +10321,11 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": -2
+            "attack": [
+              "-1",
+              "-1"
+            ],
+            "move": "-2"
           },
           "perks": [
             "pierce"
@@ -10521,8 +10546,8 @@
             }
           ],
           "modifier": {
-            "range": 3,
-            "retaliate": 3
+            "retaliateRange": "3",
+            "retaliate": "3"
           }
         },
         {
@@ -10539,9 +10564,9 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 1,
-            "suffer": 1
+            "attack": "+0",
+            "move": "+1",
+            "suffer": "1"
           }
         },
         {
@@ -10557,8 +10582,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 1
+            "attack": "-1",
+            "move": "+1"
           }
         },
         {
@@ -10574,8 +10599,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -10592,9 +10617,9 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": 3,
-            "suffer": 2
+            "attack": "+1",
+            "range": "3",
+            "suffer": "2"
           }
         },
         {
@@ -10610,8 +10635,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "move": -1
+            "attack": "+1",
+            "move": "-1"
           }
         },
         {
@@ -10628,8 +10653,8 @@
             }
           ],
           "modifier": {
-            "attack": -1,
-            "move": 0
+            "attack": "-1",
+            "move": "+0"
           },
           "perks": [
             "target"
@@ -10654,7 +10679,7 @@
           "modifier": {
             "attack": -2,
             "range": 3,
-            "move": 1
+            "move": "+1"
           },
           "perks": [
             "pull",
@@ -10907,7 +10932,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 1
+            "move": "+1"
           }
         },
         {
@@ -10926,7 +10951,10 @@
             }
           ],
           "modifier": {
-            "attack": -1,
+            "attack": [
+              "-1",
+              "-1"
+            ],
             "move": -1
           }
         },
@@ -10943,8 +10971,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -10960,7 +10988,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "move": -1
           }
         },
@@ -11004,7 +11032,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "move": -2
           },
           "perks": [
@@ -11030,7 +11058,11 @@
             }
           ],
           "modifier": {
-            "attack": -1
+            "attack": [
+              "-1",
+              "-1",
+              "-2"
+            ]
           }
         },
         {
@@ -11325,8 +11357,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -11342,8 +11374,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -11361,7 +11393,7 @@
           ],
           "modifier": {
             "range": 3,
-            "move": 1
+            "move": "+1"
           },
           "perks": [
             "heal"
@@ -11385,7 +11417,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           },
           "perks": [
             "poison",
@@ -11408,7 +11440,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "move": -1
           }
         },
@@ -11427,7 +11459,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           },
           "perks": [
             "curse",
@@ -11671,7 +11703,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": "+0",
             "range": 3
           },
           "perks": [
@@ -11694,7 +11726,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "perks": [
             "pierce"
@@ -11718,7 +11750,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "perks": [
             "pierce"
@@ -11745,7 +11777,10 @@
             }
           ],
           "modifier": {
-            "attack": -1,
+            "attack": [
+              "-1",
+              "+0"
+            ],
             "range": 4
           },
           "perks": [
@@ -11767,7 +11802,10 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": [
+              "+0",
+              "-1"
+            ],
             "range": 5
           },
           "perks": [
@@ -11790,7 +11828,10 @@
             }
           ],
           "modifier": {
-            "attack": -2,
+            "attack": [
+              "-2",
+              "+0"
+            ],
             "range": 3
           },
           "perks": [
@@ -11831,7 +11872,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": "+0",
             "range": 4
           },
           "perks": [
@@ -12167,7 +12208,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 1
+            "move": "+1"
           }
         },
         {
@@ -12183,8 +12224,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -12201,8 +12242,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -12218,7 +12259,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "move": -1
           }
         },
@@ -12233,7 +12274,7 @@
             }
           ],
           "modifier": {
-            "attack": 1
+            "attack": "+1"
           }
         },
         {
@@ -12255,7 +12296,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           },
           "perks": [
             "wound"
@@ -12281,7 +12322,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0,
+            "move": "+0",
             "shield": 1
           }
         }
@@ -12565,8 +12606,8 @@
             }
           ],
           "modifier": {
-            "attack": 1,
-            "range": 1
+            "attack": "+1",
+            "range": "+1"
           },
           "perks": [
             "push"
@@ -12626,7 +12667,7 @@
           "modifier": {
             "attack": -1,
             "range": -1,
-            "move": 0,
+            "move": "+0",
             "shield": 1
           }
         },
@@ -12647,7 +12688,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": "+0",
             "retaliate": 2
           }
         },
@@ -12698,7 +12739,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           },
           "perks": [
             "disarm"
@@ -12722,7 +12763,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": -1
+            "move": "-1"
           },
           "area": [
             "6pg"
@@ -13009,7 +13050,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 1
+            "move": "+1"
           }
         },
         {
@@ -13029,7 +13070,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "range": 3,
             "move": -1
           }
@@ -13050,7 +13091,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           },
           "area": [
             "4lgv2"
@@ -13085,7 +13126,7 @@
             "heal"
           ],
           "perkValue": {
-            "heal": "3"
+            "heal": "4"
           }
         },
         {
@@ -13107,7 +13148,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -13358,7 +13399,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 1
+            "move": "+1"
           }
         },
         {
@@ -13374,8 +13415,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -13395,7 +13436,7 @@
           "modifier": {
             "attack": -1,
             "range": -1,
-            "move": 0
+            "move": "+0"
           },
           "area": [
             "3p"
@@ -13412,7 +13453,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "perks": [
             "poison",
@@ -13435,7 +13476,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "move": -1
           }
         },
@@ -13498,7 +13539,7 @@
           "modifier": {
             "attack": -2,
             "range": -2,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "poison"
@@ -13852,8 +13893,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -13872,7 +13913,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -14241,8 +14282,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -14261,7 +14302,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -14567,8 +14608,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0,
+            "attack": "+0",
+            "move": "+0",
             "retaliate": 5
           }
         },
@@ -14588,8 +14629,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0,
+            "attack": "+0",
+            "move": "+0",
             "retaliate": 5
           }
         },
@@ -14609,8 +14650,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0,
+            "attack": "+0",
+            "move": "+0",
             "retaliate": 5
           }
         },
@@ -14629,7 +14670,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": -1
+            "move": "-1"
           },
           "area": [
             "6pg"
@@ -14650,7 +14691,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": -1
+            "move": "-1"
           },
           "area": [
             "6pg"
@@ -14671,7 +14712,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": -1
+            "move": "-1"
           },
           "area": [
             "6pg"
@@ -14690,8 +14731,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -14710,7 +14751,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -15013,7 +15054,7 @@
             }
           ],
           "modifier": {
-            "attack": 1
+            "attack": "+1"
           }
         },
         {
@@ -15029,7 +15070,7 @@
             }
           ],
           "modifier": {
-            "attack": 1
+            "attack": "+1"
           }
         },
         {
@@ -15045,7 +15086,7 @@
             }
           ],
           "modifier": {
-            "attack": 1
+            "attack": "+1"
           }
         },
         {
@@ -15121,8 +15162,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -15143,7 +15184,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -15483,7 +15524,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 2
+            "move": "+2"
           }
         },
         {
@@ -15504,7 +15545,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 2
+            "move": "+2"
           }
         },
         {
@@ -15525,7 +15566,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 2
+            "move": "+2"
           }
         },
         {
@@ -15546,7 +15587,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 2
+            "move": "+2"
           }
         },
         {
@@ -15567,7 +15608,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 2
+            "move": "+2"
           }
         },
         {
@@ -15588,7 +15629,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 2
+            "move": "+2"
           }
         },
         {
@@ -15604,8 +15645,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           },
           "perks": [],
           "area": []
@@ -15626,7 +15667,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -16009,7 +16050,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "area": [
             "10p"
@@ -16026,7 +16067,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "area": [
             "10p"
@@ -16043,7 +16084,7 @@
             }
           ],
           "modifier": {
-            "attack": 0
+            "attack": "+0"
           },
           "area": [
             "10p"
@@ -16062,8 +16103,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0"
           }
         },
         {
@@ -16081,8 +16121,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "range": 3,
-            "move": -1
+            "range": 3
           },
           "perks": [
             "target"
@@ -16467,8 +16506,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -16487,7 +16526,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -16923,8 +16962,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -16943,7 +16982,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -17398,8 +17437,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": 0
           }
         },
         {
@@ -17417,8 +17455,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "range": 3,
-            "move": -1
+            "range": 3
           },
           "perks": [
             "target"
@@ -17725,7 +17762,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           }
         },
         {
@@ -17745,7 +17782,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           }
         },
         {
@@ -17765,7 +17802,7 @@
           ],
           "modifier": {
             "attack": -1,
-            "move": 0
+            "move": "+0"
           }
         },
         {
@@ -17781,8 +17818,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 2
+            "attack": "+0",
+            "move": "+2"
           }
         },
         {
@@ -17798,8 +17835,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 2
+            "attack": "+0",
+            "move": "+2"
           }
         },
         {
@@ -17815,8 +17852,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 2
+            "attack": "+0",
+            "move": "+2"
           }
         },
         {
@@ -17832,8 +17869,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -17852,7 +17889,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -18174,7 +18211,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": "+0",
             "move": -1
           }
         },
@@ -18194,7 +18231,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": "+0",
             "move": -1
           }
         },
@@ -18214,7 +18251,7 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": "+0",
             "move": -1
           }
         },
@@ -18236,7 +18273,10 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": [
+              "-1",
+              "+0"
+            ],
             "range": 3
           },
           "perks": [
@@ -18264,7 +18304,10 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": [
+              "-1",
+              "+0"
+            ],
             "range": 3
           },
           "perks": [
@@ -18292,7 +18335,10 @@
             }
           ],
           "modifier": {
-            "attack": 0,
+            "attack": [
+              "-1",
+              "+0"
+            ],
             "range": 3
           },
           "perks": [
@@ -18315,8 +18361,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -18335,7 +18381,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"
@@ -18687,7 +18733,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "range": 5
           },
           "perks": [
@@ -18710,7 +18756,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "range": 5
           },
           "perks": [
@@ -18733,7 +18779,7 @@
             }
           ],
           "modifier": {
-            "attack": 1,
+            "attack": "+1",
             "range": 5
           },
           "perks": [
@@ -18755,8 +18801,8 @@
             }
           ],
           "modifier": {
-            "attack": 9,
-            "move": 9
+            "attack": "+9",
+            "move": "+9"
           }
         },
         {
@@ -18772,8 +18818,8 @@
             }
           ],
           "modifier": {
-            "attack": 9,
-            "move": 9
+            "attack": "+9",
+            "move": "+9"
           }
         },
         {
@@ -18789,8 +18835,8 @@
             }
           ],
           "modifier": {
-            "attack": 9,
-            "move": 9
+            "attack": "+9",
+            "move": "+9"
           }
         },
         {
@@ -18806,8 +18852,8 @@
             }
           ],
           "modifier": {
-            "attack": 0,
-            "move": 0
+            "attack": "+0",
+            "move": "+0"
           }
         },
         {
@@ -18826,7 +18872,7 @@
           "modifier": {
             "attack": -1,
             "range": 3,
-            "move": -1
+            "move": "-1"
           },
           "perks": [
             "target"

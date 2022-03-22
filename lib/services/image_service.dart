@@ -210,6 +210,12 @@ class ImageService {
       UnitNormality.elite:
           '${ImageService.unitIconBaseUrl}Inox_Archer_elite_256.png',
     },
+    UnitType.inoxShaman: {
+      UnitNormality.normal:
+          '${ImageService.unitIconBaseUrl}Inox_Shaman_normal_256.png',
+      UnitNormality.elite:
+          '${ImageService.unitIconBaseUrl}Inox_Shaman_elite_256.png',
+    },
     UnitType.vermlingScout: {
       UnitNormality.normal:
           '${ImageService.unitIconBaseUrl}Vermling_Scout_normal_256.png',
@@ -500,6 +506,7 @@ class ImageService {
     ActivityType.pull: ImageService._iconsMap32['pull']!,
     ActivityType.push: ImageService._iconsMap32['push']!,
     ActivityType.target: ImageService._iconsMap32['trgt']!,
+    ActivityType.shield: ImageService._iconsMap32['shld']!,
   };
 
   final _attackEffects64 = {
@@ -520,6 +527,9 @@ class ImageService {
     ActivityType.pull: ImageService._iconsMap64['pull']!,
     ActivityType.push: ImageService._iconsMap64['push']!,
     ActivityType.target: ImageService._iconsMap64['trgt']!,
+    ActivityType.shield: ImageService._iconsMap64['shld']!,
+    ActivityType.advantage: '',
+    ActivityType.disadvantage: '',
   };
 
   String getUnitImageByType(UnitType type) => _unitImageMap[type] ?? '';

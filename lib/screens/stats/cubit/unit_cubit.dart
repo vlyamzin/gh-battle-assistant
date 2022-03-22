@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:gh_battle_assistant/di.dart';
 import 'package:gh_battle_assistant/common/enums/activity_type.dart';
+import 'package:gh_battle_assistant/screens/stats/model/user_action.dart';
 import 'package:gh_battle_assistant/screens/stats/stats.dart';
 import 'package:gh_battle_assistant/services/image_service.dart';
+
+typedef UserActionHandler = Unit Function(dynamic v, Unit a);
 
 class UnitCubit extends Cubit<UnitState> {
   /// Map of negative and positive effects. E.g stun, curse, heal, etc.
@@ -21,53 +26,131 @@ class UnitCubit extends Cubit<UnitState> {
     ActivityType.advantage,
     ActivityType.disadvantage
   ];
+  static const _activityHandlers = const <ActivityType, UserActionHandler>{
+    ActivityType.attack: _attackU,
+    ActivityType.heal: _healU,
+    ActivityType.suffer: _sufferDamageU,
+    ActivityType.pierce: _pierceU,
+    ActivityType.poison: _poisonU,
+    ActivityType.wound: _woundU,
+    ActivityType.disarm: _disarmU,
+    ActivityType.stun: _stunU,
+    ActivityType.muddle: _muddleU,
+    ActivityType.strengthen: _strengthenU,
+    ActivityType.immobilize: _immobilizeU,
+    ActivityType.invisible: _invisibleU,
+    ActivityType.shield: _shieldU
+  };
   final Unit unit;
+  final StatsCubit statsCubit;
   final Function(Unit unit) onStateChanged;
   final Function(int number) onUnitRemoved;
   late final List<Effect> activityEffects = _initActivityTypes();
+  late final StreamSubscription subscription;
 
-  UnitCubit(
-      {required this.unit,
-      required this.onStateChanged,
-      required this.onUnitRemoved})
-      : super(UnitState.ready(unit));
-
-  void minusActivity() {
-    state.when(
-      ready: (unit, _) {
-        var updatedUnit = unit.copyWith(healthPoint: unit.healthPoint - 1);
-        updatedUnit.healthPoint == 0
-            ? onUnitRemoved(unit.number)
-            : onStateChanged(updatedUnit);
-        emit(UnitState.ready(updatedUnit, _));
-      },
-    );
+  UnitCubit({
+    required this.unit,
+    required this.statsCubit,
+    required this.onStateChanged,
+    required this.onUnitRemoved,
+  }) : super(
+          UnitState.ready(
+            unit,
+            UserAction(
+              actionType: Effect(ActivityType.attack,
+                  effectIcons[ActivityType.attack]!, null, 0),
+              value: 1,
+            ),
+          ),
+        ) {
+    subscription = statsCubit.stream.listen((state) {
+      state.maybeWhen(
+          orElse: () {},
+          turnEnded: (stack) {
+            var updatedUnit =
+                stack.units.firstWhere((u) => u.number == unit.number);
+            emit(UnitState.ready(updatedUnit, this.state.userAction));
+          },
+          turnStarted: (stack) {
+            var updatedUnit =
+                stack.units.firstWhere((u) => u.number == unit.number);
+            emit(UnitState.ready(updatedUnit, this.state.userAction));
+          });
+    });
   }
 
-  void plusActivity() {
-    state.when(
-      ready: (unit, _) {
-        var updatedUnit = unit.copyWith(healthPoint: unit.healthPoint + 1);
-        emit(UnitState.ready(updatedUnit, _));
-        onStateChanged(updatedUnit);
-      },
-    );
+  @override
+  Future<void> close() {
+    subscription.cancel();
+    return super.close();
   }
 
   void selectActivityType(Effect newActivity) {
-    state.when(ready: (unit, selectedActivity) {
-      if (selectedActivity != newActivity) {
-        emit(UnitState.ready(unit, newActivity));
+    state.when(ready: (unit, userAction) {
+      if (userAction.actionType != newActivity) {
+        if (isCountableAction(newActivity.type)) {
+          var updatedAction = userAction.copyWith(
+            actionType: newActivity,
+            value: 1,
+          );
+          emit(UnitState.ready(unit, updatedAction));
+        } else {
+          // check unit negative effects
+          // if effect is present there then UserAction.value must be false
+          // otherwise UserAction.value is true
+          var defaultValue = unit.hasEffect(newActivity.type) != true;
+          var updatedAction =
+              userAction.copyWith(actionType: newActivity, value: defaultValue);
+          emit(UnitState.ready(unit, updatedAction));
+        }
       }
     });
   }
 
-  void applyActivity() {}
+  void selectActivityValue(dynamic value) {
+    state.when(ready: (unit, userAction) {
+      var updatedUserAction = userAction.copyWith(value: value);
+      emit(UnitState.ready(unit, updatedUserAction));
+    });
+  }
+
+  void applyUserAction() {
+    state.when(ready: (unit, userAction) {
+      var type = userAction.actionType.type;
+      var value = userAction.value;
+      var updatedUnit = _activityHandlers[type]!(value, unit);
+      var updatedUserAction;
+
+      // swap boolean value for better UX
+      if (value is bool) {
+        updatedUserAction = userAction.copyWith(value: !value);
+      }
+
+      emit(UnitState.ready(updatedUnit, updatedUserAction ?? userAction));
+      updatedUnit.healthPoint == 0
+          ? onUnitRemoved(unit.number)
+          : onStateChanged(updatedUnit);
+    });
+  }
 
   Unit get unitInstance => state.unit;
 
-  /// Return [Effect] from state or first item from [activityEffects] list
-  Effect get selectedActivity => state.selectedActivity ?? activityEffects[0];
+  static bool isCountableAction(ActivityType type) {
+    switch (type) {
+      case ActivityType.attack:
+      case ActivityType.heal:
+      case ActivityType.suffer:
+      case ActivityType.pierce:
+      case ActivityType.shield:
+        {
+          return true;
+        }
+      default:
+        {
+          return false;
+        }
+    }
+  }
 
   /// Get a list of negative effects activated on a unit
   Set<Effect> get negativeEffects {
@@ -84,12 +167,13 @@ class UnitCubit extends Cubit<UnitState> {
 
   /// Return List of attack [Effect] aka perks
   /// This list is rendered in 'Attack effects' section of [UnitStatsCard]
-  List<Effect?> get attackEffects {
+  Set<Effect?> get attackEffects {
     return state.unit.perks.map((p) {
       var perkValue =
           state.unit.perkValue.containsKey(p) ? state.unit.perkValue[p] : null;
+
       return Effect(p, effectIcons[p]!, perkValue);
-    }).toList();
+    }).toSet();
   }
 
   /// Return List of area images as path to assets
@@ -112,4 +196,30 @@ class UnitCubit extends Cubit<UnitState> {
     });
     return list;
   }
+
+  static Unit _attackU(value, Unit unit) => unit.applyDamage(value);
+
+  static Unit _healU(value, Unit unit) => unit.applyHeal(value);
+
+  static Unit _sufferDamageU(value, Unit unit) => unit.applySuffer(value);
+
+  static Unit _pierceU(value, Unit unit) => unit.applyPierce(value);
+
+  static Unit _poisonU(value, Unit unit) => unit.addPoison(value);
+
+  static Unit _woundU(value, Unit unit) => unit.addWound(value);
+
+  static Unit _disarmU(value, Unit unit) => unit.addDisarm(value);
+
+  static Unit _stunU(value, Unit unit) => unit.addStun(value);
+
+  static Unit _muddleU(value, Unit unit) => unit.addMuddle(value);
+
+  static Unit _strengthenU(value, Unit unit) => unit.addStrengthen(value);
+
+  static Unit _immobilizeU(value, Unit unit) => unit.addImmobilize(value);
+
+  static Unit _invisibleU(value, Unit unit) => unit.addInvisible(value);
+
+  static Unit _shieldU(value, Unit unit) => unit.applyShield(value);
 }

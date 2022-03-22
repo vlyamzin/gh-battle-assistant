@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 
 import 'overlay.dart';
@@ -61,6 +63,7 @@ class DirectSelectState<T extends DirectSelect> extends State<T> {
   GlobalKey _key = GlobalKey();
   GlobalKey<MySelectionOverlayState>? _keyOverlay;
   OverlayEntry? _overlayEntry;
+  Offset? tapCoords;
 
   int? _currentIndex;
 
@@ -92,8 +95,9 @@ class DirectSelectState<T extends DirectSelect> extends State<T> {
     widget.onSelectedItemChanged!(_currentIndex);
   }
 
-  Future<void> createOverlay() async {
+  Future<void> createOverlay(TapDownDetails tapDetails) async {
     if (mounted) {
+      tapCoords = tapDetails.globalPosition;
       OverlayState? overlayState = Overlay.of(context);
       if (overlayState != null) {
         _overlayEntry =
@@ -103,9 +107,17 @@ class DirectSelectState<T extends DirectSelect> extends State<T> {
     }
   }
 
-  Future<void> removeOverlay() async {
+  Future<void> removeOverlay([TapUpDetails? details]) async {
     if (mounted) {
+      if (details?.globalPosition.dx == tapCoords?.dx &&
+          details?.globalPosition.dy == tapCoords?.dy) {
+        Timer(Duration(milliseconds: 300), () {
+          _keyOverlay?.currentState?.reverse(_overlayEntry);
+          tapCoords = null;
+        });
+      }
       final currentState = _keyOverlay?.currentState;
+
       if (currentState != null) {
         currentState.reverse(_overlayEntry);
       }
@@ -114,44 +126,53 @@ class DirectSelectState<T extends DirectSelect> extends State<T> {
   }
 
   Widget overlayWidget([Key? key]) {
-    final RenderBox box = _key.currentContext!.findRenderObject() as RenderBox;
-    final position = box.localToGlobal(Offset.zero);
-    final posY = position.dy + (box.size.height / 2) - (widget.height / 2);
-    final posX = position.dx + (box.size.width / 2) - (widget.width / 2);
+    try {
+      final RenderBox box =
+          _key.currentContext!.findRenderObject() as RenderBox;
+      final position = box.localToGlobal(Offset.zero);
+      final posY = position.dy + (box.size.height / 2) - (widget.height / 2);
+      final posX = position.dx + (box.size.width / 2) - (widget.width / 2);
 
-    return MySelectionOverlay(
-      key: key,
-      // top: resultY + widget.itemExtent! * widget.itemMagnification!,
-      top: posY,
-      left: posX,
-      width: widget.width,
-      height: widget.height,
-      backgroundColor: widget.backgroundColor,
-      child: MySelectionList(
-        itemExtent: widget.itemExtent,
-        itemMagnification: widget.itemMagnification,
-        childCount: widget.items != null ? widget.items!.length : 0,
-        selectionColor: widget.selectionColor,
-        onItemChanged: (index) {
-          _currentIndex = index;
-        },
-        onItemSelected: () => null,
-        builder: (context, index) {
-          if (widget.items != null) {
-            return widget.items![index];
-          }
-          return const SizedBox.shrink();
-        },
-        controller: _controller,
-      ),
-    );
+      return MySelectionOverlay(
+        key: key,
+        top: posY,
+        left: posX,
+        width: widget.width,
+        height: widget.height,
+        backgroundColor: widget.backgroundColor,
+        child: MySelectionList(
+          itemExtent: widget.itemExtent,
+          itemMagnification: widget.itemMagnification,
+          childCount: widget.items != null ? widget.items!.length : 0,
+          selectionColor: widget.selectionColor,
+          onItemChanged: (index) {
+            _currentIndex = index;
+          },
+          onItemSelected: () => null,
+          builder: (context, index) {
+            if (widget.items != null) {
+              return widget.items![index];
+            }
+            return const SizedBox.shrink();
+          },
+          controller: _controller,
+        ),
+      );
+    } catch (e) {
+      print(e);
+      return Container();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onVerticalDragStart: (_) => createOverlay(),
+      behavior: HitTestBehavior.opaque,
+      onDoubleTap: () => null,
+      onTapDown: (details) => createOverlay(details),
+      onTapUp: (details) => removeOverlay(details),
       onVerticalDragEnd: (_) => removeOverlay(),
+      onHorizontalDragEnd: (_) => removeOverlay(),
       onVerticalDragUpdate: (details) => _controller!.hasScrollPositions
           ? _controller!.jumpTo(_controller!.offset - details.primaryDelta!)
           : null,

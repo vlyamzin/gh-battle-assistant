@@ -13,7 +13,8 @@ UnitAction _$UnitActionFromJson(Map<String, dynamic> json) => UnitAction(
           ?.map((e) => GHAction.fromJson(e as Map<String, dynamic>))
           .toList(),
       modifiers: (json['modifiers'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry($enumDecode(_$ModifierTypeEnumMap, k), e as int),
+        (k, e) => MapEntry($enumDecode(_$ModifierTypeEnumMap, k),
+            (e as List<dynamic>).map((e) => e as String).toList()),
       ),
       shouldRefresh: json['shouldRefresh'] as bool?,
       perks: (json['perks'] as List<dynamic>?)
@@ -50,6 +51,7 @@ const _$ModifierTypeEnumMap = {
   ModifierType.move: 'move',
   ModifierType.shield: 'shield',
   ModifierType.retaliate: 'retaliate',
+  ModifierType.retaliateRange: 'retaliateRange',
   ModifierType.suffer: 'suffer',
   ModifierType.heal: 'heal',
 };
@@ -74,6 +76,7 @@ const _$ActivityTypeEnumMap = {
   ActivityType.invisible: 'invisible',
   ActivityType.advantage: 'advantage',
   ActivityType.disadvantage: 'disadvantage',
+  ActivityType.shield: 'shield',
 };
 
 GHAction _$GHActionFromJson(Map<String, dynamic> json) => GHAction(

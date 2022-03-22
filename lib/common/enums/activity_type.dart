@@ -17,5 +17,6 @@ enum ActivityType {
   target,
   invisible,
   advantage,
-  disadvantage
+  disadvantage,
+  shield
 }

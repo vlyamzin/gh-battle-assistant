@@ -16,7 +16,7 @@ class UnitAction extends Equatable with ActionTypeSerializer {
   final int id;
   late final int initiative;
   late final List<GHAction> values;
-  late final Map<ModifierType, int> modifiers;
+  late final Map<ModifierType, List<String>> modifiers;
   late final bool? shouldRefresh;
   @JsonKey(defaultValue: <ActivityType>[])
   late final List<ActivityType> perks;
@@ -29,14 +29,14 @@ class UnitAction extends Equatable with ActionTypeSerializer {
     required this.id,
     required this.initiative,
     List<GHAction>? values,
-    Map<ModifierType, int>? modifiers,
+    Map<ModifierType, List<String>>? modifiers,
     this.shouldRefresh,
     List<ActivityType>? perks,
     Map<ActivityType, String>? perkValue,
     List<String>? area,
   }) {
     this.values = values ?? [];
-    this.modifiers = modifiers ?? <ModifierType, int>{};
+    this.modifiers = modifiers ?? <ModifierType, List<String>>{};
     this.perks = perks ?? [];
     this.perkValue = perkValue ?? <ActivityType, String>{};
     this.area = area ?? [];
@@ -46,9 +46,10 @@ class UnitAction extends Equatable with ActionTypeSerializer {
       _$UnitActionFromJson(json);
 
   factory UnitAction.fromRawData(UnitRawAction data) {
-    var sPerks, sPerkValue;
+    var sModifier, sPerks, sPerkValue;
 
     try {
+      sModifier = ActionTypeSerializer.serializeRawModifier(data.modifier);
       sPerks = ActionTypeSerializer.serializeRawData(data.perks);
       sPerkValue = ActionTypeSerializer.serializeRawPerkValue(data.perkValue);
     } catch (e) {
@@ -58,7 +59,7 @@ class UnitAction extends Equatable with ActionTypeSerializer {
     return UnitAction(
       id: data.id,
       initiative: data.initiative,
-      modifiers: data.modifier,
+      modifiers: sModifier,
       shouldRefresh: data.shouldRefresh,
       values: data.values
           .map((e) =>
@@ -76,7 +77,7 @@ class UnitAction extends Equatable with ActionTypeSerializer {
     int? id,
     int? initiative,
     List<GHAction>? values,
-    Map<ModifierType, int>? modifiers,
+    Map<ModifierType, List<String>>? modifiers,
     bool? shouldRefresh,
     List<ActivityType>? perks,
     List<String>? area,

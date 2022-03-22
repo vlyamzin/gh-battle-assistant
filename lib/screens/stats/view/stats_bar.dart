@@ -40,8 +40,12 @@ class _Stats extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
       child: BlocBuilder<UnitCubit, UnitState>(
+        buildWhen: (prevState, curState) {
+          return prevState.unit != curState.unit;
+        },
         builder: (context, state) {
           return state.when(ready: (unit, _) {
+            final shield = unit.shield - unit.pierced;
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,13 +59,24 @@ class _Stats extends StatelessWidget {
                         label: 'Shield: ',
                         iconPath: di<ImageService>().getAttackEffect(
                             IconSize.s32)[ActivityType.pierce]!,
-                        value: unit.shield.toString(),
+                        value: shield > 0 ? shield.toString() : '0',
                       )
                     : _StatsRecord(text: 'Shield: ${unit.shield}'),
-                _StatsRecord(text: 'Move: ${unit.move ?? '0'}'),
-                _StatsRecord(text: 'Attack: ${unit.attack ?? '0'}'),
+                unit.flying
+                    ? _StatsRecordWithIcon(
+                        label: 'Move: ',
+                        iconPath: di<ImageService>().getIcon('fl'),
+                        value: unit.move?.join(' & ') ?? '0')
+                    : _StatsRecord(
+                        text: 'Move: ${unit.move?.join(' & ') ?? '0'}'),
+                _StatsRecord(
+                    text: 'Attack: ${unit.attack?.join(' & ') ?? '0'}'),
                 _StatsRecord(text: 'Range: ${unit.range ?? '0'}'),
-                _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
+                unit.retaliateRange > 1
+                    ? _StatsRecord(
+                        text:
+                            'Retaliate: ${unit.retaliate} in range ${unit.retaliateRange}')
+                    : _StatsRecord(text: 'Retaliate: ${unit.retaliate}'),
               ],
             );
           });

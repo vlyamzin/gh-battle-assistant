@@ -17,10 +17,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$UnitStateTearOff {
   const _$UnitStateTearOff();
 
-  _$UnitReady ready(Unit unit, [Effect? selectedActivity]) {
+  _$UnitReady ready(Unit unit, UserAction userAction) {
     return _$UnitReady(
       unit,
-      selectedActivity,
+      userAction,
     );
   }
 }
@@ -31,21 +31,21 @@ const $UnitState = _$UnitStateTearOff();
 /// @nodoc
 mixin _$UnitState {
   Unit get unit => throw _privateConstructorUsedError;
-  Effect? get selectedActivity => throw _privateConstructorUsedError;
+  UserAction get userAction => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Unit unit, Effect? selectedActivity) ready,
+    required TResult Function(Unit unit, UserAction userAction) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Unit unit, Effect? selectedActivity)? ready,
+    TResult Function(Unit unit, UserAction userAction)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Unit unit, Effect? selectedActivity)? ready,
+    TResult Function(Unit unit, UserAction userAction)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -75,7 +75,7 @@ mixin _$UnitState {
 abstract class $UnitStateCopyWith<$Res> {
   factory $UnitStateCopyWith(UnitState value, $Res Function(UnitState) then) =
       _$UnitStateCopyWithImpl<$Res>;
-  $Res call({Unit unit, Effect? selectedActivity});
+  $Res call({Unit unit, UserAction userAction});
 }
 
 /// @nodoc
@@ -89,17 +89,17 @@ class _$UnitStateCopyWithImpl<$Res> implements $UnitStateCopyWith<$Res> {
   @override
   $Res call({
     Object? unit = freezed,
-    Object? selectedActivity = freezed,
+    Object? userAction = freezed,
   }) {
     return _then(_value.copyWith(
       unit: unit == freezed
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Unit,
-      selectedActivity: selectedActivity == freezed
-          ? _value.selectedActivity
-          : selectedActivity // ignore: cast_nullable_to_non_nullable
-              as Effect?,
+      userAction: userAction == freezed
+          ? _value.userAction
+          : userAction // ignore: cast_nullable_to_non_nullable
+              as UserAction,
     ));
   }
 }
@@ -110,7 +110,7 @@ abstract class _$$UnitReadyCopyWith<$Res> implements $UnitStateCopyWith<$Res> {
           _$UnitReady value, $Res Function(_$UnitReady) then) =
       __$$UnitReadyCopyWithImpl<$Res>;
   @override
-  $Res call({Unit unit, Effect? selectedActivity});
+  $Res call({Unit unit, UserAction userAction});
 }
 
 /// @nodoc
@@ -126,17 +126,17 @@ class __$$UnitReadyCopyWithImpl<$Res> extends _$UnitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? unit = freezed,
-    Object? selectedActivity = freezed,
+    Object? userAction = freezed,
   }) {
     return _then(_$UnitReady(
       unit == freezed
           ? _value.unit
           : unit // ignore: cast_nullable_to_non_nullable
               as Unit,
-      selectedActivity == freezed
-          ? _value.selectedActivity
-          : selectedActivity // ignore: cast_nullable_to_non_nullable
-              as Effect?,
+      userAction == freezed
+          ? _value.userAction
+          : userAction // ignore: cast_nullable_to_non_nullable
+              as UserAction,
     ));
   }
 }
@@ -144,16 +144,16 @@ class __$$UnitReadyCopyWithImpl<$Res> extends _$UnitStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_$UnitReady with DiagnosticableTreeMixin implements _$UnitReady {
-  const _$_$UnitReady(this.unit, [this.selectedActivity]);
+  const _$_$UnitReady(this.unit, this.userAction);
 
   @override
   final Unit unit;
   @override
-  final Effect? selectedActivity;
+  final UserAction userAction;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UnitState.ready(unit: $unit, selectedActivity: $selectedActivity)';
+    return 'UnitState.ready(unit: $unit, userAction: $userAction)';
   }
 
   @override
@@ -162,7 +162,7 @@ class _$_$UnitReady with DiagnosticableTreeMixin implements _$UnitReady {
     properties
       ..add(DiagnosticsProperty('type', 'UnitState.ready'))
       ..add(DiagnosticsProperty('unit', unit))
-      ..add(DiagnosticsProperty('selectedActivity', selectedActivity));
+      ..add(DiagnosticsProperty('userAction', userAction));
   }
 
   @override
@@ -172,14 +172,14 @@ class _$_$UnitReady with DiagnosticableTreeMixin implements _$UnitReady {
             other is _$UnitReady &&
             const DeepCollectionEquality().equals(other.unit, unit) &&
             const DeepCollectionEquality()
-                .equals(other.selectedActivity, selectedActivity));
+                .equals(other.userAction, userAction));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(unit),
-      const DeepCollectionEquality().hash(selectedActivity));
+      const DeepCollectionEquality().hash(userAction));
 
   @JsonKey(ignore: true)
   @override
@@ -189,27 +189,27 @@ class _$_$UnitReady with DiagnosticableTreeMixin implements _$UnitReady {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Unit unit, Effect? selectedActivity) ready,
+    required TResult Function(Unit unit, UserAction userAction) ready,
   }) {
-    return ready(unit, selectedActivity);
+    return ready(unit, userAction);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Unit unit, Effect? selectedActivity)? ready,
+    TResult Function(Unit unit, UserAction userAction)? ready,
   }) {
-    return ready?.call(unit, selectedActivity);
+    return ready?.call(unit, userAction);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Unit unit, Effect? selectedActivity)? ready,
+    TResult Function(Unit unit, UserAction userAction)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(unit, selectedActivity);
+      return ready(unit, userAction);
     }
     return orElse();
   }
@@ -244,13 +244,12 @@ class _$_$UnitReady with DiagnosticableTreeMixin implements _$UnitReady {
 }
 
 abstract class _$UnitReady implements UnitState {
-  const factory _$UnitReady(Unit unit, [Effect? selectedActivity]) =
-      _$_$UnitReady;
+  const factory _$UnitReady(Unit unit, UserAction userAction) = _$_$UnitReady;
 
   @override
   Unit get unit;
   @override
-  Effect? get selectedActivity;
+  UserAction get userAction;
   @override
   @JsonKey(ignore: true)
   _$$UnitReadyCopyWith<_$UnitReady> get copyWith =>

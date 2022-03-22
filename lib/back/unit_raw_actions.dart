@@ -9,7 +9,7 @@ class UnitRawAction {
   final int initiative;
   final bool shouldRefresh;
   final List<RawActionValue> values;
-  final Map<ModifierType, int> modifier;
+  final Map<ModifierType, dynamic> modifier;
   @JsonKey(defaultValue: <String>[])
   final List<String>? perks;
   @JsonKey(defaultValue: <String, String>{})

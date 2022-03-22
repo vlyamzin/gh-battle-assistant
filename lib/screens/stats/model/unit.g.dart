@@ -13,9 +13,12 @@ Unit _$UnitFromJson(Map<String, dynamic> json) => Unit(
       flying: json['flying'] as bool? ?? false,
       maxHealthPoint: json['maxHealthPoint'],
       shield: json['shield'] as int? ?? 0,
-      attack: json['attack'] as int? ?? 0,
+      attack:
+          (json['attack'] as List<dynamic>?)?.map((e) => e as int).toList() ??
+              const [0],
       range: json['range'] as int? ?? 0,
-      move: json['move'] as int? ?? 0,
+      move: (json['move'] as List<dynamic>?)?.map((e) => e as int).toList() ??
+          const [0],
       retaliate: json['retaliate'] as int? ?? 0,
       retaliateRange: json['retaliateRange'],
       heal: json['heal'] as int? ?? 0,
@@ -92,4 +95,5 @@ const _$ActivityTypeEnumMap = {
   ActivityType.invisible: 'invisible',
   ActivityType.advantage: 'advantage',
   ActivityType.disadvantage: 'disadvantage',
+  ActivityType.shield: 'shield',
 };
