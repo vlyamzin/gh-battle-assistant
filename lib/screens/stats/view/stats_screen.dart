@@ -25,7 +25,7 @@ class StatsScreen extends StatelessWidget {
         backgroundColor: Color(0xFF3C4659),
         leading: _NavigationGuard(),
         middle: Text(
-          stack.displayName,
+          '${stack.displayName} - ${stack.actions.currentAction?.initiative}',
           style: TextStyle(
             color: Color(0xFFC2ECF2),
             fontSize: 25,

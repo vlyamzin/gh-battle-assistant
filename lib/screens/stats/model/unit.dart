@@ -245,7 +245,10 @@ class Unit extends Equatable with ActionTypeSerializer implements Comparable {
       } else {
         var brokenShield = shield - pierced;
         var pureDamage = value - brokenShield;
-        return copyWith(healthPoint: _changeHealth(pureDamage), pierced: 0);
+        return copyWith(
+          healthPoint: pureDamage > 0 ? _changeHealth(pureDamage) : null,
+          pierced: 0,
+        );
       }
     } else {
       return copyWith(healthPoint: _changeHealth(value), pierced: 0);
